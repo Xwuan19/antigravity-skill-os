@@ -15,6 +15,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import re
 import shutil
 import subprocess
 import sys
@@ -73,10 +74,54 @@ def fetch_repo(repo: str, ref: str, paths: list[str], tmp: Path) -> Path | None:
     return d
 
 
-def vendor(skills: list[dict], only: str | None) -> dict:
+def strip(dest: Path, patterns: list[str]) -> int:
+    """Xoá file khớp glob — dùng để bỏ font/ảnh/test nặng không cần cho skill."""
+    n = 0
+    for pat in patterns:
+        for f in sorted(dest.glob(pat)):
+            if f.is_file():
+                f.unlink()
+                n += 1
+            elif f.is_dir():
+                shutil.rmtree(f)
+                n += 1
+    return n
+
+
+def patch_skill(dest: Path, s: dict) -> None:
+    """Sửa SKILL.md sau khi copy: đổi `name:`, thay chuỗi, chèn ghi chú.
+
+    Làm trước khi ghi sha256 nên `--check` vẫn so trên bản đã vá.
+    """
+    sk = dest / "SKILL.md"
+    if not sk.is_file():
+        return
+    txt = orig = sk.read_text(encoding="utf-8")
+    for old, new in s.get("patch", []):
+        if old not in txt:
+            print(f"      ! {s['id']}: patch không khớp — {old[:50]}")
+        txt = txt.replace(old, new)
+    if s.get("rename"):
+        txt, n = re.subn(r"^name:.*$", f"name: {s['id']}", txt, count=1, flags=re.M)
+        if n == 0:
+            print(f"      ! {s['id']}: không thấy dòng `name:` để đổi")
+    note = s.get("note_md")
+    if note:
+        if txt.startswith("---"):
+            end = txt.find("\n---", 3)
+            end = txt.find("\n", end + 1) if end != -1 else 0
+            txt = txt[:end] + f"\n\n{note}\n" + txt[end:]
+        else:
+            txt = f"{note}\n\n{txt}"
+    if txt != orig:
+        sk.write_text(txt, encoding="utf-8")
+
+
+def vendor(skills: list[dict], only: str | None, ids: list[str] | None = None) -> dict:
     todo = [s for s in skills
             if s["mode"] != "system" and s.get("repo") not in (None, "local")
-            and (only is None or s["pack"] == only)]
+            and (only is None or s["pack"] == only)
+            and (not ids or s["id"] in ids)]
 
     by_repo: dict[tuple[str, str], list[dict]] = {}
     for s in todo:
@@ -109,6 +154,9 @@ def vendor(skills: list[dict], only: str | None) -> dict:
                         shutil.rmtree(dest)
                     shutil.copytree(sdir, dest, ignore=shutil.ignore_patterns(
                         ".git", ".github", ".gitignore", ".gitattributes"))
+                    if s.get("exclude"):
+                        strip(dest, s["exclude"])
+                    patch_skill(dest, s)
                     size = sum(f.stat().st_size for f in dest.rglob("*") if f.is_file())
                     total_bytes += size
                     sk = dest / "SKILL.md"
@@ -129,6 +177,8 @@ def vendor(skills: list[dict], only: str | None) -> dict:
                 shutil.copytree(sdir, dest)
                 if lic and not any((dest / n).exists() for n in LICENSE_NAMES):
                     shutil.copy2(lic, dest / lic.name)
+                if s.get("exclude"):
+                    strip(dest, s["exclude"])
                 for e in s.get("extra", []):
                     src_f = src / e
                     if not src_f.is_file():
@@ -138,6 +188,7 @@ def vendor(skills: list[dict], only: str | None) -> dict:
                     ref_dir.mkdir(exist_ok=True)
                     # giữ tên gốc, viết thường cho dễ đọc trong SKILL.md
                     shutil.copy2(src_f, ref_dir / src_f.name.lower())
+                patch_skill(dest, s)
                 size = sum(f.stat().st_size for f in dest.rglob("*") if f.is_file())
                 total_bytes += size
                 sk = dest / "SKILL.md"
@@ -179,6 +230,8 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--only", choices=["code", "design", "motion", "education",
                                        "docs", "meta"])
+    ap.add_argument("--id", action="append", metavar="ID",
+                    help="chỉ vendor skill này (lặp lại được)")
     ap.add_argument("--check", action="store_true")
     a = ap.parse_args()
 
@@ -190,7 +243,7 @@ def main() -> None:
         print(f"\n  {n} vấn đề." if n else "\n  Tất cả khớp VENDOR.json.")
         raise SystemExit(1 if n else 0)
 
-    man = vendor(skills, a.only)
+    man = vendor(skills, a.only, a.id)
     if MANIFEST.exists():
         old = json.loads(MANIFEST.read_text(encoding="utf-8"))
         old["skills"].update(man["skills"])

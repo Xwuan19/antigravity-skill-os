@@ -8,7 +8,7 @@ Project web quản lý nhận design + code. Project giáo án nhận education 
 không bao giờ thấy skill của nhau — không phải vì bị dặn đừng dùng, mà vì skill
 **không tồn tại** trong workspace đó. Ponytail `full` thì luôn bật cho tất cả.
 
-Repo **tự chứa**: 151 skill + 46 subagent + 9 plugin Claude Code, pin commit.
+Repo **tự chứa**: 174 skill + 46 subagent + 9 plugin Claude Code, pin commit.
 Clone về là cài được, không cần mạng.
 
 ## Một lệnh: cài cho toàn bộ máy
@@ -24,7 +24,7 @@ Nó ghi vào `~/.gemini/`:
 | Ghi gì | Ở đâu |
 |---|---|
 | Rules always_on (ponytail full, skill-first, verify) | `~/.gemini/AGENTS.md` |
-| **Toàn bộ 144 skill** | `~/.gemini/config/skills/` |
+| **Toàn bộ 167 skill** | `~/.gemini/config/skills/` |
 | LSP cho mọi language server có trên máy | `~/.gemini/config/mcp_config.json` |
 
 Chạy lại nhiều lần vô hại — skill đã có thì bỏ qua.
@@ -111,23 +111,43 @@ design" thì tách workspace, vì Antigravity **không** hỗ trợ skill theo s
 Skill `mode: manual` mặc định **không cài** — phải `--include-manual`, để danh sách
 description trong workspace gọn lại.
 
-## 9 profile
+## 10 profile
 
 | Profile | Skill | Agent | LSP | Cho |
 |---|---|---|---|---|
-| `web-admin` | 68 | 43 | ✅ | Dashboard, CRUD, SaaS |
-| `mobile-app` | 64 | 41 | ✅ | React Native, Expo, iOS/Android |
+| `desktop-app` | 84 | 43 | ✅ | App cài trên máy: macOS, Tauri, Electron, WPF |
+| `web-admin` | 76 | 43 | ✅ | Dashboard, CRUD, SaaS |
+| `mobile-app` | 67 | 41 | ✅ | React Native, Expo, iOS/Android |
 | `cli-tool` | 52 | 41 | ✅ | CLI, script, backend |
-| `landing` | 34 | 43 | ✅ | Landing, marketing, portfolio |
+| `landing` | 42 | 43 | ✅ | Landing, marketing, portfolio |
+| `design-system` | 24 | 10 | ✅ | UI kit, component library, token |
 | `education-k12` | 19 | — | — | Giáo án phổ thông, đề kiểm tra |
-| `design-system` | 16 | 10 | ✅ | UI kit, component library |
 | `education-language` | 11 | — | — | Trung tâm ngoại ngữ, gia sư |
-| `docs-writer` | 6 | 3 | — | Báo cáo, thuyết trình, bảng tính |
+| `docs-writer` | 10 | 3 | — | Báo cáo, thuyết trình, bảng tính |
 | `meta` | 5 | 8 | ✅ | Nuôi chính hệ thống này (plugin-dev, hookify) |
 
-Số đo trên workspace TypeScript. Project Python sẽ nhiều hơn (cộng 18 skill `python-*`).
+Đo trên workspace TypeScript, có `--stacks` tự dò. Project Python nhiều hơn; workspace
+chưa có file nào thì không lọc stack (lấy hết).
 
 Thêm profile = thêm 1 file JSON trong `profiles/`. Không sửa code.
+
+## Thiết kế: web, mobile, desktop, slide
+
+30 skill thiết kế trong pack `design`. Chọn theo việc, không theo tool.
+
+| Cần gì | Skill |
+|---|---|
+| **UI/UX tổng** — style, palette, font, UX rule, chart | `ui-ux-pro-max` (22 stack: react → wpf/winui/avalonia/javafx), `design-system` |
+| **Web** — dựng giao diện | `frontend-design`, `ui-styling` (shadcn + Tailwind), `shadcn-ui`, `web-design-guidelines`, `extract-static-html` |
+| **Mobile** — iOS/Android/RN | `apple-hig` (123 trang HIG), `react-native`, `swiftui-pro` |
+| **Desktop** — macOS/Tauri/Electron/WPF | `mac-design`, `mac-design-kit`, `mac-layout-grid`, `mac-ux-design`, `mac-design-system`, `mac-app-icon`, `mac-design-from-app` |
+| **Slide / thuyết trình** | `slides`, `frontend-slides` |
+| **Nhận diện** — logo, icon, brand, banner | `design`, `brand`, `brand-guidelines` |
+| **Chống nhạt** — UI trông như template | `taste-design`, `taste-skill`, `apple-design`, `emil-design-eng` |
+| **Rút hệ thống từ code có sẵn** | `extract-design-md`, `mac-design-from-app` |
+
+`ui-ux-pro-max` tra cứu offline bằng `search.py` trên CSV: 79 style, 192 palette,
+74 cặp font, 119 UX rule, 105 icon, 25 loại chart. Không cần mạng.
 
 ## Vercel
 
@@ -333,9 +353,9 @@ lifecycle hook nên mức không lưu qua lượt; chỉ cần tồn tại một
 
 ```
 core/            rules always_on — ponytail FULL, skill-first, verify, language
-registry/        skills.json (151) + agents.json (46) + plugins.json (9) + lsp.json (12) + taxonomy.md
+registry/        skills.json (174) + agents.json (46) + plugins.json (9) + lsp.json (12) + taxonomy.md
 profiles/        9 kiểu project → skill + nhóm agent + plugin
-packs/           148 skill đã vendor + VENDOR.json (sha256 từng cái)
+packs/           171 skill đã vendor + VENDOR.json (sha256 từng cái)
 agents/          46 subagent đã port sang định dạng Antigravity
 plugins/         9 plugin Claude Code đã port (23 skill + 8 agent)
 hooks/           hooks.json + session-start / format / safety
@@ -413,6 +433,12 @@ Mỗi bản ghi trong `packs/VENDOR.json` có `source` (repo@commit), `sha256`, 
 | [wshobson/agents](https://github.com/wshobson/agents) | MIT | 31 skill (developer-essentials, backend, python, typescript, security) |
 | [tjboudreaux/cc-thinking-skills](https://github.com/tjboudreaux/cc-thinking-skills) | MIT | 6 mô hình tư duy gắn với gỡ lỗi |
 | [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill) | MIT | taste-skill (design) |
+| [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | MIT | 7 skill design (ui-ux-pro-max, ui-styling, design-system, slides, design, brand, banner-design) |
+| [google-labs-code/stitch-skills](https://github.com/google-labs-code/stitch-skills) | Apache-2.0 | 6 skill (shadcn-ui, react-native, extract-design-md, extract-static-html, enhance-prompt, taste-design) |
+| [daveebbelaar/bama](https://github.com/daveebbelaar/bama) | MIT | 7 skill macOS (mac-design, mac-design-kit, …) |
+| [zarazhangrui/frontend-slides](https://github.com/zarazhangrui/frontend-slides) | MIT | frontend-slides |
+| [twostraws/SwiftUI-Agent-Skill](https://github.com/twostraws/SwiftUI-Agent-Skill) | MIT | swiftui-pro |
+| [dickwu/apple-design-skill](https://github.com/dickwu/apple-design-skill) | **không có LICENSE** | `apple-hig` — 123 trang HIG |
 | [RobMitt/grill-me-skill](https://github.com/RobMitt/grill-me-skill) | **không có LICENSE** | `grill-me` — viết lại, xem ghi chú dưới |
 | [ajbmachon/ajbm-skills](https://github.com/ajbmachon/ajbm-skills) | NOASSERTION | testing-best-practices |
 | language server (gopls, pyright, jdtls, …) | giấy phép riêng của từng server | **không vendor** — cài bằng trình quản lý gói của bạn |
@@ -427,6 +453,9 @@ Hai chỗ vẫn ghi rõ vì chúng khác biệt về bản chất:
 - `grill-me` — repo gốc **không có LICENSE**. Không chép nguyên văn: viết lại cho Antigravity
   (tool `ask_question` thay `AskUserQuestion`) và ghi nguồn trong SKILL.md.
 - `ajbm-skills` — license `NOASSERTION` (không xác định được). Đã lấy 1 skill.
+- `dickwu/apple-design-skill` — repo **không có LICENSE**. Lấy nguyên văn vì nội dung là
+  bản tóm tắt HIG công khai của Apple; nếu bạn cần sạch pháp lý thì xoá pack `apple-hig`.
+- `google-labs-code/stitch-skills` — chỉ lấy 6 skill chạy được **không cần** Stitch MCP.
 
 `core/AGENTS.md` phái sinh từ ponytail (`AGENTS.md` + `skills/ponytail/SKILL.md`),
 đã sửa: bỏ mục Levels, khoá `full`, mở phạm vi sang sản phẩm phi code,

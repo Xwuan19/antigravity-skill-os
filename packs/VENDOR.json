@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-29T17:13:01Z",
+  "generated": "2026-10-29T17:34:57Z",
   "skills": {
     "using-superpowers": {
       "pack": "meta",
@@ -1184,7 +1184,191 @@
       "license": "MIT",
       "bytes": 1098169,
       "sha256": "5a74070e740c8aacec1264adfc537daeab14c0f629bb604943295c08fd9252e6"
+    },
+    "apple-hig": {
+      "pack": "design",
+      "source": "dickwu/apple-design-skill@ff4ebddf0488598723a82bfdce1afb04de0b1c44",
+      "path": ".",
+      "license": "none",
+      "bytes": 1245742,
+      "sha256": "399f953eb1a27866a51fab4f081588bbc5672da87370e75ffd6b857c742fa1ca"
+    },
+    "banner-design": {
+      "pack": "design",
+      "source": "nextlevelbuilder/ui-ux-pro-max-skill@28b3b8dee8c976df4fa3e94aed4e092ad43fcb03",
+      "path": ".claude/skills/banner-design",
+      "license": "MIT",
+      "bytes": 13139,
+      "sha256": "ccb89ddc848f60bfe630cb19dfe3e062df94a029467a9b15259f2761019ac5c4"
+    },
+    "brand": {
+      "pack": "design",
+      "source": "nextlevelbuilder/ui-ux-pro-max-skill@28b3b8dee8c976df4fa3e94aed4e092ad43fcb03",
+      "path": ".claude/skills/brand",
+      "license": "MIT",
+      "bytes": 109352,
+      "sha256": "1c24139633e2ebf11da4f97eaeb1c0564f8658a40b3ad779387a5b8c6cb76dbc"
+    },
+    "design": {
+      "pack": "design",
+      "source": "nextlevelbuilder/ui-ux-pro-max-skill@28b3b8dee8c976df4fa3e94aed4e092ad43fcb03",
+      "path": ".claude/skills/design",
+      "license": "MIT",
+      "bytes": 291480,
+      "sha256": "e93fe3683b7fa18a9bfcd00c0dc6e12c6859be07b7bfe20145f96ea49b72da13"
+    },
+    "design-system": {
+      "pack": "design",
+      "source": "nextlevelbuilder/ui-ux-pro-max-skill@28b3b8dee8c976df4fa3e94aed4e092ad43fcb03",
+      "path": ".claude/skills/design-system",
+      "license": "MIT",
+      "bytes": 181811,
+      "sha256": "8aa5ff93320559a6e5289d37b6b06b3307737dbfb4a6f3fc44135c705613c511"
+    },
+    "slides": {
+      "pack": "design",
+      "source": "nextlevelbuilder/ui-ux-pro-max-skill@28b3b8dee8c976df4fa3e94aed4e092ad43fcb03",
+      "path": ".claude/skills/slides",
+      "license": "MIT",
+      "bytes": 20890,
+      "sha256": "86c07f19ec09f79441d3837e909cfcd51034b83bdcc88094c15e652be1e765cb"
+    },
+    "ui-styling": {
+      "pack": "design",
+      "source": "nextlevelbuilder/ui-ux-pro-max-skill@28b3b8dee8c976df4fa3e94aed4e092ad43fcb03",
+      "path": ".claude/skills/ui-styling",
+      "license": "MIT",
+      "bytes": 113369,
+      "sha256": "625e302c60ee8f2e22d56cbe638c4a739e2657f566dae42689503ad517c30f1e"
+    },
+    "ui-ux-pro-max": {
+      "pack": "design",
+      "source": "nextlevelbuilder/ui-ux-pro-max-skill@28b3b8dee8c976df4fa3e94aed4e092ad43fcb03",
+      "path": ".claude/skills/ui-ux-pro-max",
+      "license": "MIT",
+      "bytes": 3325298,
+      "sha256": "f3609982d833933418a40117ca9960c4e816ad640dbcd248a5b774b2dcde730b"
+    },
+    "enhance-prompt": {
+      "pack": "design",
+      "source": "google-labs-code/stitch-skills@0337446dadde6f8c94210444e2aa9d546126480f",
+      "path": "plugins/stitch-utilities/skills/enhance-prompt",
+      "license": "Apache-2.0",
+      "bytes": 21786,
+      "sha256": "ccb200c798072438b642b1fa6a5c515563159e2fab3d56e813d76d8afa9a7ce6"
+    },
+    "extract-design-md": {
+      "pack": "design",
+      "source": "google-labs-code/stitch-skills@0337446dadde6f8c94210444e2aa9d546126480f",
+      "path": "plugins/stitch-design/skills/extract-design-md",
+      "license": "Apache-2.0",
+      "bytes": 51905,
+      "sha256": "60e731e508a2f946744fa7856473ab1e034d593cf5411e95820c06b21d8e05af"
+    },
+    "extract-static-html": {
+      "pack": "design",
+      "source": "google-labs-code/stitch-skills@0337446dadde6f8c94210444e2aa9d546126480f",
+      "path": "plugins/stitch-design/skills/extract-static-html",
+      "license": "Apache-2.0",
+      "bytes": 125527,
+      "sha256": "6edfa299b42d136c492cd2bbf5e0c8033a25867ffaa686189e0d0b5596a0c692"
+    },
+    "react-native": {
+      "pack": "design",
+      "source": "google-labs-code/stitch-skills@0337446dadde6f8c94210444e2aa9d546126480f",
+      "path": "plugins/stitch-build/skills/react-native",
+      "license": "Apache-2.0",
+      "bytes": 45577,
+      "sha256": "0e0fd31b72eb9e2c87cdc985420f3861bd206ec73d90305d41edc83f385e2f68"
+    },
+    "shadcn-ui": {
+      "pack": "design",
+      "source": "google-labs-code/stitch-skills@0337446dadde6f8c94210444e2aa9d546126480f",
+      "path": "plugins/stitch-build/skills/shadcn-ui",
+      "license": "Apache-2.0",
+      "bytes": 96619,
+      "sha256": "2ddfe599ac2ba631ca019f7b6e37ee5df9cd34f83fc016f6ea9d4ba5bbfa0304"
+    },
+    "taste-design": {
+      "pack": "design",
+      "source": "google-labs-code/stitch-skills@0337446dadde6f8c94210444e2aa9d546126480f",
+      "path": "plugins/stitch-utilities/skills/taste-design",
+      "license": "Apache-2.0",
+      "bytes": 36488,
+      "sha256": "e425fdb7ab250764f6229c48941f97e20bd6a7ba9e25a628f1e0ebeb008e8bff"
+    },
+    "frontend-slides": {
+      "pack": "design",
+      "source": "zarazhangrui/frontend-slides@9906a34d640d2111f724544cbc50f7f130569ae1",
+      "path": "plugins/frontend-slides/skills/frontend-slides",
+      "license": "MIT",
+      "bytes": 1748164,
+      "sha256": "832994fe1dfcce2aa7ceca9a1b7b708eca94becef242713999855f4e946cf4d5"
+    },
+    "mac-app-icon": {
+      "pack": "design",
+      "source": "daveebbelaar/bama@f0c2cdbf9e41d838c14d8b7596729581dd4833c0",
+      "path": "skills/design/app-icon",
+      "license": "MIT",
+      "bytes": 10832,
+      "sha256": "75deb8d2de69e1ad9bbc28eb83c736ff36d2131384b800c40a2c365f7b6d0316"
+    },
+    "mac-design": {
+      "pack": "design",
+      "source": "daveebbelaar/bama@f0c2cdbf9e41d838c14d8b7596729581dd4833c0",
+      "path": "skills/design/mac-design",
+      "license": "MIT",
+      "bytes": 74808,
+      "sha256": "cbda2e5283b3c65604d656344b21742956776a14b587d5190ba7954a1fcaac27"
+    },
+    "mac-design-from-app": {
+      "pack": "design",
+      "source": "daveebbelaar/bama@f0c2cdbf9e41d838c14d8b7596729581dd4833c0",
+      "path": "skills/design/design-from-app",
+      "license": "MIT",
+      "bytes": 21874,
+      "sha256": "e9f5ac623b0f53080bb23da57654bcf07ddc0a5f0ffa6dd985b4f2863f49d0dc"
+    },
+    "mac-design-kit": {
+      "pack": "design",
+      "source": "daveebbelaar/bama@f0c2cdbf9e41d838c14d8b7596729581dd4833c0",
+      "path": "skills/design/design-kit",
+      "license": "MIT",
+      "bytes": 24170,
+      "sha256": "b1a70a12a07ec1d647a661acf901eb5c3b53c4ed68e0d1aaf008877ee5c629f9"
+    },
+    "mac-design-system": {
+      "pack": "design",
+      "source": "daveebbelaar/bama@f0c2cdbf9e41d838c14d8b7596729581dd4833c0",
+      "path": "skills/design/design-system",
+      "license": "MIT",
+      "bytes": 8206,
+      "sha256": "5d32742f83c5751ff9ad6b63e1bba05a95b8cbae291b7c5f175a14f3d2c2ffa6"
+    },
+    "mac-layout-grid": {
+      "pack": "design",
+      "source": "daveebbelaar/bama@f0c2cdbf9e41d838c14d8b7596729581dd4833c0",
+      "path": "skills/design/layout-grid",
+      "license": "MIT",
+      "bytes": 6383,
+      "sha256": "0b098ca0bfece833ba8e5ee74500bc94dea831e88d52f6a8d1b50aa185b2f5f6"
+    },
+    "mac-ux-design": {
+      "pack": "design",
+      "source": "daveebbelaar/bama@f0c2cdbf9e41d838c14d8b7596729581dd4833c0",
+      "path": "skills/design/ux-design",
+      "license": "MIT",
+      "bytes": 32782,
+      "sha256": "0425d74222a2bd26318b134c99c3f2a92ad6d1ada8f62132fb01ccead7d858fb"
+    },
+    "swiftui-pro": {
+      "pack": "code",
+      "source": "twostraws/SwiftUI-Agent-Skill@f2920b63995263f57b3e198674e89a602efba6d2",
+      "path": "swiftui-pro",
+      "license": "MIT",
+      "bytes": 69623,
+      "sha256": "fc62139e262bd364cbbcab9b9f97557cd3fd6d2d4f73c4fab039d562fc324643"
     }
   },
-  "total_bytes": 16891987
+  "total_bytes": 24567812
 }

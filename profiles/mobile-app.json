@@ -12,6 +12,7 @@
   "select": {
     "domain": [
       "code",
+      "design",
       "motion"
     ],
     "artifact": [
@@ -24,7 +25,7 @@
     "education",
     "docs"
   ],
-  "rationale": "React Native + Expo. Dùng skill native, không dùng skill web-ui.",
+  "rationale": "React Native + Expo. Có skill thiết kế mobile (HIG, layout, icon) nhưng không kéo skill desktop vào.",
   "max_skills": 64,
   "agent_groups": [
     "code",
@@ -35,5 +36,10 @@
     "code-review",
     "feature-dev"
   ],
-  "lsp": true
+  "lsp": true,
+  "families": [
+    "mobile",
+    "design-core",
+    "logic"
+  ]
 }

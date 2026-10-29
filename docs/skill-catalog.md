@@ -208,6 +208,71 @@ Nguồn: [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills)
 | ☐ | `slack-gif-creator` | anthropics/skills | GIF cho Slack |
 | ☐ | nhóm diagram (Excalidraw / Mermaid / D3) | chưa chốt nguồn — xem [top-agent-skills](https://top-agent-skills.com/) | Vẽ sơ đồ kiến trúc từ mô tả |
 
+### 4.0b Bổ sung 2026-10-30 — 30 skill, phủ đủ 5 mảng
+
+Trước lượt này pack design chỉ có skill web. Thiếu hẳn **mobile**, **desktop** và **slide**.
+
+**UI/UX đẳng cấp — [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) · MIT · 142k★**
+
+| ☑ | Skill | Việc nó làm |
+|---|---|---|
+| ☑ | `ui-ux-pro-max` | Bộ não thiết kế: 22 stack (react → wpf/winui/avalonia/javafx), 79 style, 192 palette, 74 cặp font, 119 UX rule, 25 chart. `search.py` tra CSV offline |
+| ☑ | `ui-styling` | shadcn/ui + Tailwind + canvas. Đã bỏ 4MB font TTF |
+| ☑ | `design-system` | Token 4 tầng + validator + sinh slide từ CSV |
+| ☑ | `slides` | Slide HTML + Chart.js: layout, copywriting formula, chiến lược theo ngữ cảnh |
+| ☑ | `design` | Logo, icon, CIP, social, banner |
+| ☑ | `brand` | Brand guideline: màu, chữ, logo usage, giọng điệu |
+| ☑ | `banner-design` | Banner đủ kích thước từng nền tảng |
+
+**Google Stitch — [google-labs-code/stitch-skills](https://github.com/google-labs-code/stitch-skills) · Apache-2.0**
+
+Chỉ lấy 6 skill chạy được khi **không có** Stitch MCP.
+
+| ☑ | Skill | Việc nó làm |
+|---|---|---|
+| ☑ | `shadcn-ui` | Dựng app bằng shadcn/ui: tìm component, cài, sửa, a11y |
+| ☑ | `react-native` | HTML/design → component React Native giữ đúng token |
+| ☑ | `extract-design-md` | Đọc source frontend → DESIGN.md (token, component, quy ước) |
+| ☑ | `extract-static-html` | Chụp một trạng thái UI thành HTML tự chứa |
+| ☑ | `enhance-prompt` | Ý tưởng UI mơ hồ → prompt đặc tả |
+| ☑ | `taste-design` | Chuẩn chống nhạt: tracking, màu có chủ đích, layout bất đối xứng, micro-motion |
+
+**Desktop macOS — [daveebbelaar/bama](https://github.com/daveebbelaar/bama) · MIT**
+
+| ☑ | Skill | Việc nó làm |
+|---|---|---|
+| ☑ | `mac-design` | 8 nguyên tắc Apple + Liquid Glass: cửa sổ, sidebar, toolbar, menu, dark mode |
+| ☑ | `mac-design-kit` | Kit dựng UI macOS: control, spacing, cỡ chữ, trạng thái |
+| ☑ | `mac-layout-grid` | Lưới + nhịp khoảng cách cho cửa sổ nhiều kích thước |
+| ☑ | `mac-ux-design` | Luồng, phím tắt, menu, trạng thái rỗng/lỗi |
+| ☑ | `mac-design-system` | Accent color + token Swift + DESIGN-SYSTEM.md |
+| ☑ | `mac-app-icon` | Icon macOS 26: cấu trúc, ánh sáng, squircle, bộ kích thước |
+| ☑ | `mac-design-from-app` | Nhìn app có sẵn rồi rút ra quy ước thiết kế |
+
+**Slide — MIT**
+
+| ☑ | Skill | Nguồn | Việc nó làm |
+|---|---|---|---|
+| ☑ | `frontend-slides` | zarazhangrui/frontend-slides · 31k★ | 28KB SKILL + bộ template design.md (bold, editorial…) |
+| ☑ | `slides` | ui-ux-pro-max | Slide HTML + Chart.js |
+
+**Mobile + desktop native (Apple) — HIG**
+
+| ☑ | Skill | Nguồn | Việc nó làm |
+|---|---|---|---|
+| ☑ | `apple-hig` | dickwu/apple-design-skill · **không LICENSE** | 123 trang HIG, audit a11y/dark mode. Mobile + macOS + Tauri/Electron |
+| ☑ | `swiftui-pro` | twostraws/SwiftUI-Agent-Skill · MIT · 6.4k★ | SwiftUI hiện đại: view, dữ liệu, a11y, layout, hiệu năng |
+
+**Đã cân nhắc và loại:**
+
+| Repo | Vì sao không lấy |
+|---|---|
+| `mobbin/skills` | Skill gọi `search_screens` — cần Mobbin MCP trả phí, không có thì vô dụng |
+| `plugin87/ux-ui-agent-skills` (3k★) | Trùng địa hạt `ui-ux-pro-max` (1/47 số sao), skill lại phụ thuộc "kit" ngoài phải vendor cả 1MB `library.json` |
+| `ceorkm/mobile-app-ui-design` | Không LICENSE, không có gì hơn `apple-hig` + `ui-ux-pro-max` |
+| `kevmoo/dash_skills` | Toàn Dart code-quality, không phải thiết kế |
+| `anthropics/skills/pptx` | Sinh PPTX bằng python-pptx; `slides` + `frontend-slides` cho kết quả đẹp hơn, đã có sẵn |
+
 ### 4.1 Motion pack — [emilkowalski/skills](https://github.com/emilkowalski/skills) · MIT
 
 14 skill, trong đó 6 cái đã đưa vào registry. Đây là bộ mạnh nhất về chuyển động web.
