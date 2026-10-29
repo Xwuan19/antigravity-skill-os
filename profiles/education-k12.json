@@ -30,5 +30,6 @@
   "max_skills": 24,
   "families": [
     "k12"
-  ]
+  ],
+  "agent_groups": []
 }

@@ -1,9 +1,32 @@
 {
   "id": "docs-writer",
   "label": "Tài liệu / báo cáo / thuyết trình / bảng tính",
-  "tags": ["docs", "report", "presentation", "spreadsheet", "writing"],
-  "select": {"domain": ["docs", "design"], "artifact": ["document", "slide", "sheet", "pdf"]},
-  "forbid_domains": ["education", "code"],
+  "tags": [
+    "docs",
+    "report",
+    "presentation",
+    "spreadsheet",
+    "writing"
+  ],
+  "select": {
+    "domain": [
+      "docs",
+      "design"
+    ],
+    "artifact": [
+      "document",
+      "slide",
+      "sheet",
+      "pdf"
+    ]
+  },
+  "forbid_domains": [
+    "education",
+    "code"
+  ],
   "rationale": "Chỉ cần xuất file và quy chuẩn trình bày.",
-  "max_skills": 14
+  "max_skills": 14,
+  "agent_groups": [
+    "docs"
+  ]
 }

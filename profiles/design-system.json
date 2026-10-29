@@ -1,9 +1,31 @@
 {
   "id": "design-system",
   "label": "Design system / component library / UI kit",
-  "tags": ["design-system", "components", "ui-kit", "tokens", "storybook"],
-  "select": {"domain": ["design", "motion"], "artifact": ["web-ui", "motion"]},
-  "forbid_domains": ["education", "code"],
+  "tags": [
+    "design-system",
+    "components",
+    "ui-kit",
+    "tokens",
+    "storybook"
+  ],
+  "select": {
+    "domain": [
+      "design",
+      "motion"
+    ],
+    "artifact": [
+      "web-ui",
+      "motion"
+    ]
+  },
+  "forbid_domains": [
+    "education",
+    "code"
+  ],
   "rationale": "Không cần superpowers/TDD. Cần quy chuẩn thị giác và chuyển động nhất quán.",
-  "max_skills": 18
+  "max_skills": 18,
+  "agent_groups": [
+    "design",
+    "meta"
+  ]
 }

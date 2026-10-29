@@ -28,6 +28,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 PACKS = ROOT / "packs"
 REGISTRY = ROOT / "registry" / "skills.json"
+AGENTS_REG = ROOT / "registry" / "agents.json"
+AGENTS_SRC = ROOT / "agents"
+HOOKS_SRC = ROOT / "hooks"
 PROFILES = ROOT / "profiles"
 OWNER = ".skill-os-owner"
 
@@ -113,6 +116,56 @@ def do_core(skills: list[dict], dry: bool, force: bool) -> None:
         print(f"    {copy_skill(s, GLOBAL_SKILLS, dry, force)} {s['id']}")
 
 
+def install_agents(groups: list[str], ws: Path, dry: bool, force: bool) -> int:
+    """Copy subagent .md vào <ws>/.agents/agents/."""
+    if not groups:
+        return 0
+    reg = json.loads(AGENTS_REG.read_text(encoding="utf-8"))["agents"]
+    picked = [a for a in reg if a["group"] in groups]
+    dest_root = ws / ".agents" / "agents"
+    print(f"\n  Subagent → {dest_root}  ({len(picked)})")
+    n = 0
+    for a in picked:
+        src = AGENTS_SRC / a["group"] / f"{a['id']}.md"
+        dest = dest_root / f"{a['id']}.md"
+        if not src.is_file():
+            print(f"    ✗ {a['id']}: thiếu trong agents/ — chạy tools/port_agents.py --all")
+            continue
+        if dest.exists() and not force:
+            print(f"    = {a['id']}")
+            continue
+        if dry:
+            print(f"    · {a['id']}")
+            continue
+        dest_root.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(src, dest)
+        print(f"    ✓ {a['id']}")
+        n += 1
+    return len(picked)
+
+
+def install_hooks(ws: Path, dry: bool, force: bool) -> None:
+    """Copy hooks.json + script vào <ws>/.agents/."""
+    if not HOOKS_SRC.is_dir():
+        print("\n  ✗ không thấy thư mục hooks/")
+        return
+    dest_json = ws / ".agents" / "hooks.json"
+    dest_dir = ws / ".agents" / "skill-os"
+    print(f"\n  Hooks → {dest_json}")
+    if dest_json.exists() and not force:
+        print("    ! hooks.json đã có — bỏ qua (--force để ghi đè)")
+    elif dry:
+        print("    · sẽ ghi hooks.json + scripts")
+    else:
+        ws.joinpath(".agents").mkdir(parents=True, exist_ok=True)
+        shutil.copy2(HOOKS_SRC / "hooks.json", dest_json)
+        dest_dir.mkdir(parents=True, exist_ok=True)
+        for f in HOOKS_SRC.glob("*.py"):
+            shutil.copy2(f, dest_dir / f.name)
+            (dest_dir / f.name).chmod(0o755)
+        print("    ✓ hooks.json + 3 script (chỉ session-start bật mặc định)")
+
+
 def do_manifest(dest_root: Path, skills: list[dict], prof: str, dry: bool) -> None:
     if dry:
         return
@@ -128,7 +181,7 @@ def do_manifest(dest_root: Path, skills: list[dict], prof: str, dry: bool) -> No
 
 def do_workspace(skills: list[dict], profiles: dict[str, dict],
                  profile: str, ws: Path, dry: bool, force: bool,
-                 include_manual: bool = False) -> None:
+                 include_manual: bool = False, hooks: bool = False) -> None:
     if profile not in profiles:
         sys.exit(f"  Không có profile '{profile}'. Có: {', '.join(profiles)}")
     prof = profiles[profile]
@@ -142,6 +195,9 @@ def do_workspace(skills: list[dict], profiles: dict[str, dict],
         print(f"    {r} {s['id']}")
         if r.startswith("✓") or r.startswith("~"):
             by_pack[s["pack"]] = by_pack.get(s["pack"], 0) + 1
+    install_agents(prof.get("agent_groups", []), ws, dry, force)
+    if hooks:
+        install_hooks(ws, dry, force)
     do_manifest(target, chosen, profile, dry)
     skipped = len([s for s in skills if s["mode"] != "system"]) - len(chosen)
     print(f"\n  {sum(by_pack.values())} skill đã cài — "
@@ -198,6 +254,8 @@ def main() -> None:
     ap.add_argument("--force", action="store_true", help="ghi đè skill không do Skill OS tạo")
     ap.add_argument("--include-manual", action="store_true",
                     help="cài cả skill mode=manual (mặc định bỏ để workspace gọn)")
+    ap.add_argument("--hooks", action="store_true",
+                    help="cài hooks.json (session-start nhắc luật hệ thống)")
     a = ap.parse_args()
 
     skills, profiles = load()
@@ -211,7 +269,7 @@ def main() -> None:
         do_core(skills, dry, a.force)
     if a.profile:
         do_workspace(skills, profiles, a.profile, Path(a.workspace).expanduser().resolve(),
-                     dry, a.force, a.include_manual)
+                     dry, a.force, a.include_manual, a.hooks)
     if a.uninstall:
         do_uninstall(skills, dry)
     if not any([a.list, a.core, a.profile, a.uninstall]):

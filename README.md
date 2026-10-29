@@ -8,16 +8,17 @@ Project web quản lý nhận design + code. Project giáo án nhận education 
 không bao giờ thấy skill của nhau — không phải vì bị dặn đừng dùng, mà vì skill
 **không tồn tại** trong workspace đó. Ponytail `full` thì luôn bật cho tất cả.
 
-Repo **tự chứa**: 70 skill đã vendor, pin commit. Clone về là cài được, không cần mạng.
+Repo **tự chứa**: 70 skill + 46 subagent đã vendor, pin commit. Clone về là cài được,
+không cần mạng.
 
 ## Bắt đầu trong 3 lệnh
 
 ```bash
 git clone <repo> antigravity-skill-os && cd antigravity-skill-os
 
-python3 tools/install.py --core                                  # rules + 3 skill global
-python3 tools/install.py --profile web-admin -w ~/projects/admin # skill cho 1 project
-python3 tools/install.py --list                                  # xem đã cài gì
+python3 tools/install.py --core                                        # rules + 3 skill global
+python3 tools/install.py --profile web-admin -w ~/projects/admin --hooks # skill + agent + hook
+python3 tools/install.py --list                                        # xem đã cài gì
 ```
 
 Có `--dry-run` cho mọi lệnh, `--uninstall` để gỡ, `--include-manual` để cài cả skill phải gọi bằng `/`.
@@ -27,7 +28,8 @@ Có `--dry-run` cho mọi lệnh, `--uninstall` để gỡ, `--include-manual` �
 | Tầng | Lệnh | Đích | Hiệu lực |
 |---|---|---|---|
 | Global | `--core` | `~/.gemini/AGENTS.md` + `~/.gemini/config/skills/` | Mọi project, mọi phiên, không cần `/` |
-| Workspace | `--profile <id> -w <dir>` | `<dir>/.agents/skills/` | Cô lập cứng trong project đó |
+| Workspace | `--profile <id> -w <dir>` | `<dir>/.agents/skills/` + `.agents/agents/` | Cô lập cứng trong project đó |
+| Hooks | `--hooks` | `<dir>/.agents/hooks.json` + `.agents/skill-os/` | SessionStart nhắc luật hệ thống |
 
 **Cô lập cứng:** mỗi project một `--profile`. Router loại toàn bộ skill không liên quan —
 50 skill trong 73 bị loại khỏi workspace mobile. Muốn chắc chắn "folder design chỉ có skill
@@ -72,6 +74,25 @@ Nguồn: [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills)
 (9 skill, nhóm chính thức: React / Vercel / Design) và
 [vercel-labs/vercel-byoc](https://github.com/vercel-labs/vercel-byoc) (1 skill).
 
+## Ngang Claude Code ở đâu
+
+Đối chiếu đầy đủ: [docs/claude-code-parity.md](docs/claude-code-parity.md).
+
+| Năng lực | Claude Code | Antigravity | |
+|---|---|---|---|
+| Skill / rules / subagent / hooks / plugin / slash | ✅ | ✅ | ngang |
+| Hệ sinh thái nội dung | 15.000+ repo | nhỏ | **Claude Code thắng** |
+| Điều phối đa agent | ✅ | ✅ `/boost` 3 tầng | **Antigravity nhỉnh** |
+| Subagent workspace | — | `inherit` / `branch` / `share` | Antigravity |
+| Agent → agent messaging | hạn chế | `send_message` theo ID | Antigravity |
+
+**Đã port:** 46 subagent (VoltAgent, MIT) qua `tools/port_agents.py`, và 3 hook
+(`SessionStart` bật sẵn, formatter + safety gate tắt sẵn).
+
+> ⚠️ **Đính chính:** mình từng nói Antigravity không có lifecycle hook. **Sai** — docs
+> 2.0 có 6 sự kiện hook. Quyết định khoá cứng ponytail `full` vẫn giữ, nhưng lý do đổi:
+> không phải "không thể", mà là "không cần làm khác".
+
 ## Ponytail: FULL, khoá cứng
 
 Luật hệ thống, không phải tuỳ chọn. `lite`, `ultra`, `off`, `/ponytail` đều **bị bỏ** —
@@ -90,13 +111,16 @@ lifecycle hook nên mức không lưu qua lượt; chỉ cần tồn tại một
 
 ```
 core/            rules always_on — ponytail FULL, skill-first, verify, language
-registry/        skills.json (73 skill, 4 trục) + taxonomy.md
-profiles/        8 kiểu project → tập skill
+registry/        skills.json (73) + agents.json (46) + taxonomy.md
+profiles/        8 kiểu project → tập skill + nhóm agent
 packs/           70 skill đã vendor + VENDOR.json (sha256 từng cái)
+agents/          46 subagent đã port sang định dạng Antigravity
+hooks/           hooks.json + session-start / format / safety
 tools/route.py   xem router chọn gì (không cài)
-tools/install.py cài vào Antigravity App (~/.gemini) + workspace
+tools/install.py cài app: skills + agents + hooks
 tools/vendor.py  tải/cập nhật skill từ upstream, pin commit
-docs/            catalog để duyệt
+tools/port_agents.py  chuyển subagent Claude Code → Antigravity
+docs/            catalog + đối chiếu Claude Code
 ```
 
 ## Phân loại
@@ -144,6 +168,7 @@ Mỗi bản ghi trong `packs/VENDOR.json` có `source` (repo@commit), `sha256`, 
 | [dh2211/edu-agents](https://github.com/dh2211/edu-agents) | MIT | education |
 | [CristianHeyde/language-teaching-skills](https://github.com/CristianHeyde/language-teaching-skills) | MIT | education |
 | [JayRHa/agent-skills](https://github.com/JayRHa/agent-skills) | MIT | education |
+| [VoltAgent/awesome-claude-code-subagents](https://github.com/VoltAgent/awesome-claude-code-subagents) | MIT | 46 subagent (port) |
 
 `vercel-labs/agent-skills` không có file `LICENSE` ở gốc, nhưng README mục *License* ghi
 MIT và 4 SKILL.md tự khai `license: MIT`. Coi là MIT.
@@ -157,4 +182,5 @@ thêm §3 (phạm vi skill theo project) và §4 (ngôn ngữ).
 - [registry/taxonomy.md](registry/taxonomy.md) — hệ phân loại và lý do
 - [docs/skill-catalog.md](docs/skill-catalog.md) — danh mục đầy đủ, link + license
 - [core/AGENTS.md](core/AGENTS.md) — core rules đang dùng
+- [docs/claude-code-parity.md](docs/claude-code-parity.md) — đối chiếu với Claude Code
 - [packs/design/apple-design/PATCH.md](packs/design/apple-design/PATCH.md) — lưu ý riêng

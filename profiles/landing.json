@@ -23,5 +23,10 @@
     "education"
   ],
   "rationale": "Landing cần ấn tượng thị giác + chuyển động mượt, logic mỏng.",
-  "max_skills": 30
+  "max_skills": 30,
+  "agent_groups": [
+    "code",
+    "design",
+    "meta"
+  ]
 }

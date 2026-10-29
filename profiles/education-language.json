@@ -26,5 +26,6 @@
   "max_skills": 18,
   "families": [
     "language"
-  ]
+  ],
+  "agent_groups": []
 }

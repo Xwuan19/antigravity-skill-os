@@ -24,5 +24,10 @@
     "education"
   ],
   "rationale": "Cần cả mỹ thuật lẫn logic. Không motion nặng — dashboard ưu tiên rõ ràng hơn hào nhoáng.",
-  "max_skills": 30
+  "max_skills": 30,
+  "agent_groups": [
+    "code",
+    "design",
+    "meta"
+  ]
 }
