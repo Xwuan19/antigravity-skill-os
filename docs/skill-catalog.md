@@ -193,6 +193,37 @@ Nguồn: [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills)
 
 ---
 
+### 3.5 Đo lường & tự chẩn đoán — [affaan-m/ECC](https://github.com/affaan-m/ECC) · MIT
+
+ECC là **hệ cài đặt đa harness** (Claude Code, Codex, Cursor, Gemini CLI, Qwen, Kimi,
+Copilot…), không phải kho skill — và **không** hỗ trợ Antigravity (`~/.gemini/AGENTS.md`).
+Cài ECC không làm Antigravity có thêm skill nào. Nhưng 3 skill dưới đây không phụ thuộc
+runtime của nó, nên lấy được:
+
+| ☑ | Skill | Pack | Việc nó làm |
+|---|---|---|---|
+| ☑ | `change-impact` | code | Đo tác động trước khi sửa (call path, schema, API, test, migration, rollback), rồi so kế hoạch với diff thật |
+| ☑ | `eval-harness` | code | Khung eval: định nghĩa tiêu chí đạt/trượt, chạy, chấm, chốt trước khi tin một workflow |
+| ☑ | `agent-introspection-debugging` | meta | Agent lặp tool / đốt token không tiến triển: capture → chẩn đoán → gỡ rối có kiểm soát |
+
+`eval-harness` đã vá: bỏ `allowed-tools` (tên tool của Claude), đổi "Claude Code" →
+"Antigravity"/"the model".
+
+**Không lấy `benchmark-methodology`** dù tên nghe hợp: nội dung là **phân tích đối thủ
+marketing** (positioning, voice, offer packaging), không phải benchmark code.
+
+**Đã cân nhắc và loại:**
+
+| Repo | Vì sao không lấy |
+|---|---|
+| `mobbin/skills` | Skill gọi `search_screens` — cần Mobbin MCP trả phí, không có thì vô dụng |
+| `plugin87/ux-ui-agent-skills` (3k★) | Trùng địa hạt `ui-ux-pro-max` (1/47 số sao), skill lại phụ thuộc "kit" ngoài phải vendor cả 1MB `library.json` |
+| `ceorkm/mobile-app-ui-design` | Không LICENSE, không có gì hơn `apple-hig` + `ui-ux-pro-max` |
+| `kevmoo/dash_skills` | Toàn Dart code-quality, không phải thiết kế |
+| Cài nguyên `affaan-m/ECC` | Là hệ cài đặt đa harness, không có target Antigravity; `rules/` gắn `paths:` của Claude Code |
+| `nousresearch/hermes-agent` | Là **ứng dụng agent** (60k commit: TUI, desktop, gateway, providers); `skills/` gọi tool `hermes pm` — không chạy ngoài runtime đó |
+| `anthropics/skills/pptx` | Sinh PPTX bằng python-pptx; `slides` + `frontend-slides` cho kết quả đẹp hơn, đã có sẵn |
+
 ## 4. PACK DESIGN — cài vào workspace thiết kế
 
 | ☐ | Skill | Nguồn | Việc nó làm |
@@ -262,16 +293,6 @@ Chỉ lấy 6 skill chạy được khi **không có** Stitch MCP.
 |---|---|---|---|
 | ☑ | `apple-hig` | dickwu/apple-design-skill · **không LICENSE** | 123 trang HIG, audit a11y/dark mode. Mobile + macOS + Tauri/Electron |
 | ☑ | `swiftui-pro` | twostraws/SwiftUI-Agent-Skill · MIT · 6.4k★ | SwiftUI hiện đại: view, dữ liệu, a11y, layout, hiệu năng |
-
-**Đã cân nhắc và loại:**
-
-| Repo | Vì sao không lấy |
-|---|---|
-| `mobbin/skills` | Skill gọi `search_screens` — cần Mobbin MCP trả phí, không có thì vô dụng |
-| `plugin87/ux-ui-agent-skills` (3k★) | Trùng địa hạt `ui-ux-pro-max` (1/47 số sao), skill lại phụ thuộc "kit" ngoài phải vendor cả 1MB `library.json` |
-| `ceorkm/mobile-app-ui-design` | Không LICENSE, không có gì hơn `apple-hig` + `ui-ux-pro-max` |
-| `kevmoo/dash_skills` | Toàn Dart code-quality, không phải thiết kế |
-| `anthropics/skills/pptx` | Sinh PPTX bằng python-pptx; `slides` + `frontend-slides` cho kết quả đẹp hơn, đã có sẵn |
 
 ### 4.1 Motion pack — [emilkowalski/skills](https://github.com/emilkowalski/skills) · MIT
 

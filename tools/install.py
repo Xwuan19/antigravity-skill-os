@@ -33,6 +33,7 @@ AGENTS_SRC = ROOT / "agents"
 HOOKS_SRC = ROOT / "hooks"
 PLUGINS_SRC = ROOT / "plugins"
 PLUGINS_REG = ROOT / "registry" / "plugins.json"
+RULES_SRC = ROOT / "rules"
 sys.path.insert(0, str(ROOT / "tools"))
 PROFILES = ROOT / "profiles"
 OWNER = ".skill-os-owner"
@@ -89,7 +90,7 @@ def copy_skill(skill: dict, dest_root: Path, dry: bool, force: bool) -> str:
     return "✓"
 
 
-def install_rules(dry: bool) -> str:
+def install_global_rules(dry: bool) -> str:
     src = ROOT / "core" / "AGENTS.md"
     if dry:
         return f"· sẽ ghi {GLOBAL_RULES}"
@@ -105,7 +106,7 @@ def install_rules(dry: bool) -> str:
 
 def do_core(skills: list[dict], dry: bool, force: bool) -> None:
     print(f"\n  Rules → {GLOBAL_RULES}")
-    print(f"    {install_rules(dry)}")
+    print(f"    {install_global_rules(dry)}")
     core = [s for s in skills if s["mode"] == "core"]
     print(f"\n  Skill global → {GLOBAL_SKILLS}  ({len(core)})")
     for s in core:
@@ -120,7 +121,7 @@ def do_system(skills: list[dict], dry: bool, force: bool,
     Đổi lại: cài một lần, không phải làm gì cho từng project nữa.
     """
     print(f"\n  Rules → {GLOBAL_RULES}")
-    print(f"    {install_rules(dry)}")
+    print(f"    {install_global_rules(dry)}")
 
     chosen = [s for s in skills
               if s["mode"] != "system"
@@ -278,11 +279,55 @@ def do_manifest(dest_root: Path, skills: list[dict], prof: str, dry: bool) -> No
     }, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
 
+def install_stack_rules(ws: Path, stacks: list[str] | None, dry: bool) -> tuple[list[str], int]:
+    """Chép luật theo ngôn ngữ vào <ws>/.agents/rules/.
+
+    Luôn cài `common.md`; mỗi ngôn ngữ dò được thì thêm `<ngôn ngữ>.md`.
+    Không đè file lạ: file đã có mà không do Skill OS tạo thì bỏ qua và cảnh báo.
+    """
+    if not RULES_SRC.is_dir():
+        return [], 0
+    dest = ws / ".agents" / "rules"
+    names = ["common"] + [s for s in (stacks or []) if (RULES_SRC / f"{s}.md").is_file()]
+    manifest = dest / ".skill-os-rules.json"
+    owned = set()
+    if manifest.is_file():
+        try:
+            owned = set(json.loads(manifest.read_text(encoding="utf-8")).get("files", []))
+        except ValueError:
+            owned = set()
+
+    written: list[str] = []
+    changed = 0
+    for n in names:
+        src = RULES_SRC / f"{n}.md"
+        if not src.is_file():
+            continue
+        out = dest / f"{n}.md"
+        if out.exists() and n not in owned and out.read_bytes() != src.read_bytes():
+            print(f"    ! {out.name} đã có và không do Skill OS tạo — giữ nguyên")
+            continue
+        if dry or (out.is_file() and out.read_bytes() == src.read_bytes()):
+            written.append(n)
+            continue
+        dest.mkdir(parents=True, exist_ok=True)
+        out.write_bytes(src.read_bytes())
+        written.append(n)
+        owned.add(n)
+        changed += 1
+
+    if not dry and written:
+        manifest.write_text(json.dumps(
+            {"files": sorted(owned), "stacks": sorted(stacks or [])},
+            indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    return written, changed
+
+
 def do_workspace(skills: list[dict], profiles: dict[str, dict],
                  profile: str, ws: Path, dry: bool, force: bool,
                  include_manual: bool = False, hooks: bool = False,
                  plugins: bool = False, lsp: str | None = None,
-                 stacks: str | None = None) -> None:
+                 stacks: str | None = None, rules: bool = True) -> None:
     if profile not in profiles:
         sys.exit(f"  Không có profile '{profile}'. Có: {', '.join(profiles)}")
     prof = profiles[profile]
@@ -303,6 +348,12 @@ def do_workspace(skills: list[dict], profiles: dict[str, dict],
             existing += 1
         if r.startswith(("✓", "~", "=")):
             by_pack[s["pack"]] = by_pack.get(s["pack"], 0) + 1
+    if rules:
+        got, changed = install_stack_rules(ws, stk, dry)
+        if got:
+            mark = "·" if dry else ("+" if changed else "=")
+            note = "" if changed or dry else "  (không đổi)"
+            print(f"    {mark} rules: {', '.join(got)}{note}  →  {ws / '.agents' / 'rules'}")
     install_agents(prof.get("agent_groups", []), ws, dry, force)
     install_plugins(prof.get("plugins", []) if plugins else [], ws, dry, force)
     if hooks:
@@ -388,6 +439,8 @@ def main() -> None:
                          "workspace, hoặc 'all', hoặc 'go,python,rust' "
                          "(mặc định theo profile)")
     ap.add_argument("--no-lsp", action="store_true", help="tắt LSP dù profile có bật")
+    ap.add_argument("--no-rules", action="store_true",
+                    help="không cài luật theo ngôn ngữ vào .agents/rules/")
     ap.add_argument("--stacks", metavar="LIST",
                     help="lọc skill theo ngôn ngữ: 'python,go'. Bỏ trống = tự dò "
                          "theo đuôi file trong workspace")
@@ -412,7 +465,7 @@ def main() -> None:
             lsp_spec = "auto"
         do_workspace(skills, profiles, a.profile, Path(a.workspace).expanduser().resolve(),
                      dry, a.force, a.include_manual, a.hooks, a.plugins, lsp_spec,
-                     a.stacks)
+                     a.stacks, not a.no_rules)
     if a.uninstall:
         do_uninstall(skills, dry)
     if not any([a.list, a.core, a.system, a.profile, a.uninstall]):

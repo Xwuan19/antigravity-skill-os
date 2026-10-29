@@ -22,7 +22,7 @@ FLAGS=()
 for a in "$@"; do
   case "$a" in
     --system)     SYSTEM=1 ;;
-    --no-hooks|--no-plugins|--no-lsp|--include-manual|--dry-run) FLAGS+=("$a") ;;
+    --no-hooks|--no-plugins|--no-lsp|--include-manual|--dry-run|--no-rules) FLAGS+=("$a") ;;
     -*)           echo "  ! tham số lạ: $a" >&2 ;;
     *)            if [ -z "$PROFILE" ]; then PROFILE="$a"
                   elif [ -z "$WS" ]; then WS="$a"
@@ -117,6 +117,7 @@ has --no-hooks   || ARGS+=(--hooks)
 has --no-plugins || ARGS+=(--plugins)
 has --include-manual && ARGS+=(--include-manual)
 has --dry-run && ARGS+=(--dry-run)
+has --no-rules   && ARGS+=(--no-rules)
 python3 "$ROOT/tools/install.py" "${ARGS[@]}"
 
 if ! has --no-lsp; then

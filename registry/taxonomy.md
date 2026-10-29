@@ -145,7 +145,7 @@ trong `.agents/agents/`, plugin = số khai báo trong profile — cần `--plug
 
 Thêm profile mới = thêm một file JSON. Không cần sửa code.
 
-Tổng registry: **174 skill** (171 vendor + 3 rule hệ thống) + 46 subagent + 9 plugin + **12
+Tổng registry: **177 skill** (174 vendor + 3 rule hệ thống) + 46 subagent + 9 plugin + **12
 language server**. Skill, agent và plugin đều đã nằm trong repo, pin commit, nên cài đặt
 không cần mạng.
 

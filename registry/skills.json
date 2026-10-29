@@ -249,6 +249,32 @@
       ]
     },
     {
+      "id": "change-impact",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "plan",
+        "verify"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "families": [
+        "logic"
+      ],
+      "repo": "affaan-m/ECC",
+      "ref": "25278e7d7b6cf6e6a4e7a6c8e10f14ff22f0eb5b",
+      "path": ".agents/skills/change-impact",
+      "license": "MIT",
+      "exclude": [
+        "agents"
+      ],
+      "note": "Đo tác động trước khi sửa: call path, schema, API, test, migration, rollback. So bản kế hoạch với diff thật sau khi xong.",
+      "mode": "auto"
+    },
+    {
       "id": "cpp",
       "pack": "code",
       "domain": [
@@ -368,6 +394,54 @@
       "stack": [
         "general"
       ]
+    },
+    {
+      "id": "eval-harness",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "verify"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "families": [
+        "logic"
+      ],
+      "repo": "affaan-m/ECC",
+      "ref": "25278e7d7b6cf6e6a4e7a6c8e10f14ff22f0eb5b",
+      "path": ".agents/skills/eval-harness",
+      "license": "MIT",
+      "exclude": [
+        "agents"
+      ],
+      "rename": true,
+      "patch": [
+        [
+          "Claude Code sessions",
+          "Antigravity sessions"
+        ],
+        [
+          "Claude Code",
+          "Antigravity"
+        ],
+        [
+          "allowed-tools: Read, Write, Edit, Bash, Grep, Glob\n",
+          ""
+        ],
+        [
+          "a Antigravity",
+          "an Antigravity"
+        ],
+        [
+          "Claude",
+          "the model"
+        ]
+      ],
+      "note": "Khung eval chính thức: định nghĩa tiêu chí, chạy, chấm, chốt trước khi tin một workflow.",
+      "mode": "auto"
     },
     {
       "id": "executing-plans",
@@ -3273,6 +3347,29 @@
       "ref": "c73a9b89e781f8d44e17124af645af9db15d0577",
       "path": "skills/task-design",
       "license": "MIT"
+    },
+    {
+      "id": "agent-introspection-debugging",
+      "pack": "meta",
+      "domain": [
+        "meta"
+      ],
+      "phase": [
+        "verify"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "repo": "affaan-m/ECC",
+      "ref": "25278e7d7b6cf6e6a4e7a6c8e10f14ff22f0eb5b",
+      "path": ".agents/skills/agent-introspection-debugging",
+      "license": "MIT",
+      "exclude": [
+        "agents"
+      ],
+      "rename": true,
+      "note": "Agent lặp tool, đốt token không tiến triển: capture → chẩn đoán → gỡ rối có kiểm soát.",
+      "mode": "auto"
     },
     {
       "id": "handoff",

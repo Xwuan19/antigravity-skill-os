@@ -8,7 +8,7 @@ Project web quản lý nhận design + code. Project giáo án nhận education 
 không bao giờ thấy skill của nhau — không phải vì bị dặn đừng dùng, mà vì skill
 **không tồn tại** trong workspace đó. Ponytail `full` thì luôn bật cho tất cả.
 
-Repo **tự chứa**: 174 skill + 46 subagent + 9 plugin Claude Code, pin commit.
+Repo **tự chứa**: 177 skill + 46 subagent + 9 plugin Claude Code, pin commit.
 Clone về là cài được, không cần mạng.
 
 ## Một lệnh: cài cho toàn bộ máy
@@ -24,7 +24,7 @@ Nó ghi vào `~/.gemini/`:
 | Ghi gì | Ở đâu |
 |---|---|
 | Rules always_on (ponytail full, skill-first, verify) | `~/.gemini/AGENTS.md` |
-| **Toàn bộ 167 skill** | `~/.gemini/config/skills/` |
+| **Toàn bộ 170 skill** | `~/.gemini/config/skills/` |
 | LSP cho mọi language server có trên máy | `~/.gemini/config/mcp_config.json` |
 
 Chạy lại nhiều lần vô hại — skill đã có thì bỏ qua.
@@ -110,6 +110,23 @@ design" thì tách workspace, vì Antigravity **không** hỗ trợ skill theo s
 
 Skill `mode: manual` mặc định **không cài** — phải `--include-manual`, để danh sách
 description trong workspace gọn lại.
+
+## Luật theo ngôn ngữ
+
+Cài theo project, tự dò ngôn ngữ, chép vào `.agents/rules/`:
+
+```
+<workspace>/.agents/rules/common.md      ← luôn
+<workspace>/.agents/rules/python.md      ← khi dò thấy Python
+<workspace>/.agents/rules/go.md          ← khi dò thấy Go
+```
+
+Skill phải **được chọn** mới chạy; luật thì luôn chạy. Vài thứ phải đúng ở mọi lần sửa
+code, không phụ thuộc agent có nhớ gọi skill hay không — đó là chỗ của tầng này.
+
+14 ngôn ngữ: `python` `typescript` `go` `rust` `java` `kotlin` `csharp` `ruby` `php`
+`swift` `cpp` `lua` `sql` `shell`. Workspace Python: **2 file, ~2.1 KB** always-on.
+Tắt bằng `--no-rules`. Chi tiết: [docs/rules-per-stack.md](docs/rules-per-stack.md).
 
 ## 10 profile
 
@@ -353,9 +370,10 @@ lifecycle hook nên mức không lưu qua lượt; chỉ cần tồn tại một
 
 ```
 core/            rules always_on — ponytail FULL, skill-first, verify, language
-registry/        skills.json (174) + agents.json (46) + plugins.json (9) + lsp.json (12) + taxonomy.md
+rules/           14 luật ngôn ngữ + common.md (always-on, cài theo workspace)
+registry/        skills.json (177) + agents.json (46) + plugins.json (9) + lsp.json (12) + taxonomy.md
 profiles/        9 kiểu project → skill + nhóm agent + plugin
-packs/           171 skill đã vendor + VENDOR.json (sha256 từng cái)
+packs/           174 skill đã vendor + VENDOR.json (sha256 từng cái)
 agents/          46 subagent đã port sang định dạng Antigravity
 plugins/         9 plugin Claude Code đã port (23 skill + 8 agent)
 hooks/           hooks.json + session-start / format / safety
@@ -469,5 +487,6 @@ thêm §3 (phạm vi skill theo project) và §4 (ngôn ngữ).
 - [docs/claude-code-parity.md](docs/claude-code-parity.md) — đối chiếu năng lực
 - [docs/ported-from-claude-code.md](docs/ported-from-claude-code.md) — port cái gì, bỏ cái gì, vì sao
 - [docs/code-logic.md](docs/code-logic.md) — sáu cổng logic code, skill nào giữ cổng nào
+- [docs/rules-per-stack.md](docs/rules-per-stack.md) — luật theo ngôn ngữ, vì sao không chép của ECC
 - [docs/prompt-cho-antigravity.md](docs/prompt-cho-antigravity.md) — câu để dán vào Antigravity, nó tự cài
 - [packs/design/apple-design/SKILL.md](packs/design/apple-design/SKILL.md) — skill design gốc Apple, kèm LICENSE
