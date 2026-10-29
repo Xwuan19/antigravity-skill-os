@@ -424,4 +424,5 @@ thêm §3 (phạm vi skill theo project) và §4 (ngôn ngữ).
 - [docs/claude-code-parity.md](docs/claude-code-parity.md) — đối chiếu năng lực
 - [docs/ported-from-claude-code.md](docs/ported-from-claude-code.md) — port cái gì, bỏ cái gì, vì sao
 - [docs/code-logic.md](docs/code-logic.md) — sáu cổng logic code, skill nào giữ cổng nào
+- [docs/prompt-cho-antigravity.md](docs/prompt-cho-antigravity.md) — câu để dán vào Antigravity, nó tự cài
 - [packs/design/apple-design/SKILL.md](packs/design/apple-design/SKILL.md) — skill design gốc Apple, kèm LICENSE
