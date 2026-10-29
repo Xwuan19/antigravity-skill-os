@@ -31,6 +31,8 @@ REGISTRY = ROOT / "registry" / "skills.json"
 AGENTS_REG = ROOT / "registry" / "agents.json"
 AGENTS_SRC = ROOT / "agents"
 HOOKS_SRC = ROOT / "hooks"
+PLUGINS_SRC = ROOT / "plugins"
+PLUGINS_REG = ROOT / "registry" / "plugins.json"
 PROFILES = ROOT / "profiles"
 OWNER = ".skill-os-owner"
 
@@ -144,6 +146,35 @@ def install_agents(groups: list[str], ws: Path, dry: bool, force: bool) -> int:
     return len(picked)
 
 
+def install_plugins(names: list[str], ws: Path, dry: bool, force: bool) -> int:
+    """Copy plugin đã port vào <ws>/.agents/plugins/."""
+    if not names:
+        return 0
+    reg = {p["id"]: p for p in json.loads(PLUGINS_REG.read_text(encoding="utf-8"))["plugins"]}
+    dest_root = ws / ".agents" / "plugins"
+    print(f"\n  Plugin → {dest_root}  ({len(names)})")
+    for n in names:
+        src = PLUGINS_SRC / n
+        if not src.is_dir():
+            print(f"    ✗ {n}: thiếu trong plugins/ — chạy tools/port_plugins.py --all")
+            continue
+        dest = dest_root / n
+        if dest.exists() and not force:
+            print(f"    = {n}")
+            continue
+        if dry:
+            print(f"    · {n}")
+            continue
+        dest_root.mkdir(parents=True, exist_ok=True)
+        if dest.exists():
+            shutil.rmtree(dest)
+        shutil.copytree(src, dest)
+        rec = reg.get(n, {})
+        nsk = len(list((dest / "skills").glob("*"))) if (dest / "skills").is_dir() else 0
+        print(f"    ✓ {n:<24} {nsk} skill · {rec.get('license', '?')}")
+    return len(names)
+
+
 def install_hooks(ws: Path, dry: bool, force: bool) -> None:
     """Copy hooks.json + script vào <ws>/.agents/."""
     if not HOOKS_SRC.is_dir():
@@ -181,7 +212,8 @@ def do_manifest(dest_root: Path, skills: list[dict], prof: str, dry: bool) -> No
 
 def do_workspace(skills: list[dict], profiles: dict[str, dict],
                  profile: str, ws: Path, dry: bool, force: bool,
-                 include_manual: bool = False, hooks: bool = False) -> None:
+                 include_manual: bool = False, hooks: bool = False,
+                 plugins: bool = False) -> None:
     if profile not in profiles:
         sys.exit(f"  Không có profile '{profile}'. Có: {', '.join(profiles)}")
     prof = profiles[profile]
@@ -196,6 +228,7 @@ def do_workspace(skills: list[dict], profiles: dict[str, dict],
         if r.startswith("✓") or r.startswith("~"):
             by_pack[s["pack"]] = by_pack.get(s["pack"], 0) + 1
     install_agents(prof.get("agent_groups", []), ws, dry, force)
+    install_plugins(prof.get("plugins", []) if plugins else [], ws, dry, force)
     if hooks:
         install_hooks(ws, dry, force)
     do_manifest(target, chosen, profile, dry)
@@ -254,6 +287,8 @@ def main() -> None:
     ap.add_argument("--force", action="store_true", help="ghi đè skill không do Skill OS tạo")
     ap.add_argument("--include-manual", action="store_true",
                     help="cài cả skill mode=manual (mặc định bỏ để workspace gọn)")
+    ap.add_argument("--plugins", action="store_true",
+                    help="cài cả plugin đã port (mặc định tắt để workspace gọn)")
     ap.add_argument("--hooks", action="store_true",
                     help="cài hooks.json (session-start nhắc luật hệ thống)")
     a = ap.parse_args()
@@ -269,7 +304,7 @@ def main() -> None:
         do_core(skills, dry, a.force)
     if a.profile:
         do_workspace(skills, profiles, a.profile, Path(a.workspace).expanduser().resolve(),
-                     dry, a.force, a.include_manual, a.hooks)
+                     dry, a.force, a.include_manual, a.hooks, a.plugins)
     if a.uninstall:
         do_uninstall(skills, dry)
     if not any([a.list, a.core, a.profile, a.uninstall]):

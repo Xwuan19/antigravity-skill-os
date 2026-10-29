@@ -28,5 +28,8 @@
   "max_skills": 14,
   "agent_groups": [
     "docs"
+  ],
+  "plugins": [
+    "commit-commands"
   ]
 }

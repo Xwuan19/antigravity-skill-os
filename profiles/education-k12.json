@@ -31,5 +31,6 @@
   "families": [
     "k12"
   ],
-  "agent_groups": []
+  "agent_groups": [],
+  "plugins": []
 }

@@ -1,0 +1,124 @@
+{
+  "generated": "auto",
+  "plugins": [
+    {
+      "id": "commit-commands",
+      "skills": [
+        "clean_gone",
+        "commit-push-pr",
+        "commit"
+      ],
+      "agents": [],
+      "hooks": null,
+      "warnings": [
+        "commit-push-pr: bỏ allowed-tools",
+        "commit: bỏ allowed-tools"
+      ]
+    },
+    {
+      "id": "code-review",
+      "skills": [
+        "code-review"
+      ],
+      "agents": [],
+      "hooks": null,
+      "warnings": [
+        "code-review: bỏ allowed-tools"
+      ]
+    },
+    {
+      "id": "feature-dev",
+      "skills": [
+        "feature-dev"
+      ],
+      "agents": [
+        "code-architect",
+        "code-explorer",
+        "code-reviewer"
+      ],
+      "hooks": null,
+      "warnings": []
+    },
+    {
+      "id": "security-guidance",
+      "skills": [],
+      "agents": [],
+      "hooks": "converted",
+      "warnings": []
+    },
+    {
+      "id": "claude-md-management",
+      "skills": [
+        "claude-md-improver",
+        "revise-claude-md"
+      ],
+      "agents": [],
+      "hooks": null,
+      "warnings": [
+        "revise-claude-md: bỏ allowed-tools"
+      ]
+    },
+    {
+      "id": "plugin-dev",
+      "skills": [
+        "agent-development",
+        "command-development",
+        "hook-development",
+        "mcp-integration",
+        "plugin-settings",
+        "plugin-structure",
+        "skill-development",
+        "create-plugin"
+      ],
+      "agents": [
+        "agent-creator",
+        "plugin-validator",
+        "skill-reviewer"
+      ],
+      "hooks": null,
+      "warnings": [
+        "create-plugin: bỏ allowed-tools"
+      ]
+    },
+    {
+      "id": "code-simplifier",
+      "skills": [],
+      "agents": [
+        "code-simplifier"
+      ],
+      "hooks": null,
+      "warnings": []
+    },
+    {
+      "id": "mcp-server-dev",
+      "skills": [
+        "build-mcp-app",
+        "build-mcp-server",
+        "build-mcpb"
+      ],
+      "agents": [],
+      "hooks": null,
+      "warnings": []
+    },
+    {
+      "id": "hookify",
+      "skills": [
+        "writing-rules",
+        "configure",
+        "help",
+        "hookify",
+        "list"
+      ],
+      "agents": [
+        "conversation-analyzer"
+      ],
+      "hooks": "converted",
+      "warnings": [
+        "configure: bỏ allowed-tools",
+        "help: bỏ allowed-tools",
+        "hookify: bỏ allowed-tools",
+        "list: bỏ allowed-tools"
+      ]
+    }
+  ]
+}

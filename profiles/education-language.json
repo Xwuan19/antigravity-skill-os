@@ -27,5 +27,6 @@
   "families": [
     "language"
   ],
-  "agent_groups": []
+  "agent_groups": [],
+  "plugins": []
 }

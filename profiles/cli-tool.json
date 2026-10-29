@@ -28,5 +28,13 @@
   "agent_groups": [
     "code",
     "meta"
+  ],
+  "plugins": [
+    "commit-commands",
+    "code-review",
+    "feature-dev",
+    "security-guidance",
+    "code-simplifier",
+    "mcp-server-dev"
   ]
 }

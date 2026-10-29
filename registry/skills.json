@@ -1441,6 +1441,45 @@
       "ref": "e8a175de22ae1e49370fc144c1f3bb9aeedf988d",
       "path": "skills/write-swift",
       "license": "MIT"
+    },
+    {
+      "id": "handoff",
+      "pack": "meta",
+      "domain": [
+        "meta"
+      ],
+      "phase": [
+        "ship"
+      ],
+      "artifact": [
+        "*"
+      ],
+      "mode": "core",
+      "repo": "local",
+      "path": "packs/meta/handoff",
+      "license": "MIT",
+      "note": "Nén phiên thành HANDOFF.md để phiên mới tiếp tục. Tự viết vì mọi repo handoff đều không có license."
+    },
+    {
+      "id": "planning-with-files",
+      "pack": "code",
+      "domain": [
+        "code",
+        "meta"
+      ],
+      "phase": [
+        "plan",
+        "build"
+      ],
+      "artifact": [
+        "*"
+      ],
+      "mode": "auto",
+      "repo": "OthmanAdi/planning-with-files",
+      "ref": "5d29800bf8b919ca9a88ee7885b90050b5cb64ed",
+      "path": ".agents/skills/planning-with-files",
+      "license": "MIT",
+      "note": "Plan ghi ra đĩa (task_plan/findings/progress), sống sót khi mất context. 536KB, có script hook."
     }
   ]
 }

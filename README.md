@@ -8,17 +8,17 @@ Project web quản lý nhận design + code. Project giáo án nhận education 
 không bao giờ thấy skill của nhau — không phải vì bị dặn đừng dùng, mà vì skill
 **không tồn tại** trong workspace đó. Ponytail `full` thì luôn bật cho tất cả.
 
-Repo **tự chứa**: 70 skill + 46 subagent đã vendor, pin commit. Clone về là cài được,
-không cần mạng.
+Repo **tự chứa**: 75 skill + 46 subagent + 9 plugin Claude Code đã port, pin commit.
+Clone về là cài được, không cần mạng.
 
 ## Bắt đầu trong 3 lệnh
 
 ```bash
 git clone <repo> antigravity-skill-os && cd antigravity-skill-os
 
-python3 tools/install.py --core                                        # rules + 3 skill global
-python3 tools/install.py --profile web-admin -w ~/projects/admin --hooks # skill + agent + hook
-python3 tools/install.py --list                                        # xem đã cài gì
+python3 tools/install.py --core                                                # rules + 4 skill global
+python3 tools/install.py --profile web-admin -w ~/p/admin --hooks --plugins    # đầy đủ
+python3 tools/install.py --list                                                # xem đã cài gì
 ```
 
 Có `--dry-run` cho mọi lệnh, `--uninstall` để gỡ, `--include-manual` để cài cả skill phải gọi bằng `/`.
@@ -30,6 +30,7 @@ Có `--dry-run` cho mọi lệnh, `--uninstall` để gỡ, `--include-manual` �
 | Global | `--core` | `~/.gemini/AGENTS.md` + `~/.gemini/config/skills/` | Mọi project, mọi phiên, không cần `/` |
 | Workspace | `--profile <id> -w <dir>` | `<dir>/.agents/skills/` + `.agents/agents/` | Cô lập cứng trong project đó |
 | Hooks | `--hooks` | `<dir>/.agents/hooks.json` + `.agents/skill-os/` | SessionStart nhắc luật hệ thống |
+| Plugins | `--plugins` | `<dir>/.agents/plugins/` | 9 plugin Claude Code đã port (23 skill) |
 
 **Cô lập cứng:** mỗi project một `--profile`. Router loại toàn bộ skill không liên quan —
 50 skill trong 73 bị loại khỏi workspace mobile. Muốn chắc chắn "folder design chỉ có skill
@@ -50,6 +51,7 @@ description trong workspace gọn lại.
 | `education-k12` | 19 | education 14, docs 5 | Giáo án phổ thông, đề kiểm tra |
 | `education-language` | 11 | education 9, docs 2 | Trung tâm ngoại ngữ, gia sư |
 | `docs-writer` | 6 | docs 5, design 1 | Báo cáo, thuyết trình, bảng tính |
+| `meta` | — | meta | Nuôi chính hệ thống này (plugin-dev, hookify) |
 
 Thêm profile = thêm 1 file JSON trong `profiles/`. Không sửa code.
 
@@ -73,6 +75,29 @@ Thêm profile = thêm 1 file JSON trong `profiles/`. Không sửa code.
 Nguồn: [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) @ `1a2c79d4`
 (9 skill, nhóm chính thức: React / Vercel / Design) và
 [vercel-labs/vercel-byoc](https://github.com/vercel-labs/vercel-byoc) (1 skill).
+
+## Port từ Claude Code
+
+9 plugin của Anthropic (Apache-2.0) đã chuyển sang định dạng Antigravity: **23 skill,
+8 agent, 2 bộ hook**. Chi tiết + bảng ánh xạ ở
+[docs/ported-from-claude-code.md](docs/ported-from-claude-code.md).
+
+| Plugin | Cho ra |
+|---|---|
+| `commit-commands` | `/commit`, `/commit-push-pr`, `/clean_gone` |
+| `code-review` | `/code-review` (multi-agent) |
+| `feature-dev` | `/feature-dev` + 3 agent |
+| `security-guidance` | cảnh báo bảo mật khi sửa file |
+| `claude-md-management` | audit `AGENTS.md` |
+| `plugin-dev` | 8 skill dạy viết plugin/skill/agent |
+| `code-simplifier`, `mcp-server-dev`, `hookify` | đơn giản hoá code, dựng MCP, tạo hook |
+
+Cộng thêm **`planning-with-files`** (MIT, 27k★ — repo đã native Antigravity) và
+**`handoff`** (mình tự viết, vì mọi repo handoff đều không có license).
+
+**Không port** — `context-mode` (Elastic License 2.0), `grill-me` và `taste-skill`
+(không có license), `claude-mem` (là app Node, không phải skill). Lý do đầy đủ trong
+tài liệu trên.
 
 ## Ngang Claude Code ở đâu
 
@@ -111,16 +136,18 @@ lifecycle hook nên mức không lưu qua lượt; chỉ cần tồn tại một
 
 ```
 core/            rules always_on — ponytail FULL, skill-first, verify, language
-registry/        skills.json (73) + agents.json (46) + taxonomy.md
-profiles/        8 kiểu project → tập skill + nhóm agent
-packs/           70 skill đã vendor + VENDOR.json (sha256 từng cái)
+registry/        skills.json (75) + agents.json (46) + plugins.json (9) + taxonomy.md
+profiles/        9 kiểu project → skill + nhóm agent + plugin
+packs/           72 skill đã vendor + VENDOR.json (sha256 từng cái)
 agents/          46 subagent đã port sang định dạng Antigravity
+plugins/         9 plugin Claude Code đã port (23 skill + 8 agent)
 hooks/           hooks.json + session-start / format / safety
 tools/route.py   xem router chọn gì (không cài)
-tools/install.py cài app: skills + agents + hooks
+tools/install.py cài app: skills + agents + plugins + hooks
 tools/vendor.py  tải/cập nhật skill từ upstream, pin commit
-tools/port_agents.py  chuyển subagent Claude Code → Antigravity
-docs/            catalog + đối chiếu Claude Code
+tools/port_agents.py   chuyển subagent Claude Code → Antigravity
+tools/port_plugins.py  chuyển plugin Claude Code → Antigravity
+docs/            catalog + đối chiếu + nhật ký port
 ```
 
 ## Phân loại
@@ -169,6 +196,8 @@ Mỗi bản ghi trong `packs/VENDOR.json` có `source` (repo@commit), `sha256`, 
 | [CristianHeyde/language-teaching-skills](https://github.com/CristianHeyde/language-teaching-skills) | MIT | education |
 | [JayRHa/agent-skills](https://github.com/JayRHa/agent-skills) | MIT | education |
 | [VoltAgent/awesome-claude-code-subagents](https://github.com/VoltAgent/awesome-claude-code-subagents) | MIT | 46 subagent (port) |
+| [anthropics/claude-plugins-official](https://github.com/anthropics/claude-plugins-official) | Apache-2.0 | 9 plugin (port) |
+| [OthmanAdi/planning-with-files](https://github.com/OthmanAdi/planning-with-files) | MIT | planning-with-files |
 
 `vercel-labs/agent-skills` không có file `LICENSE` ở gốc, nhưng README mục *License* ghi
 MIT và 4 SKILL.md tự khai `license: MIT`. Coi là MIT.
@@ -182,5 +211,6 @@ thêm §3 (phạm vi skill theo project) và §4 (ngôn ngữ).
 - [registry/taxonomy.md](registry/taxonomy.md) — hệ phân loại và lý do
 - [docs/skill-catalog.md](docs/skill-catalog.md) — danh mục đầy đủ, link + license
 - [core/AGENTS.md](core/AGENTS.md) — core rules đang dùng
-- [docs/claude-code-parity.md](docs/claude-code-parity.md) — đối chiếu với Claude Code
+- [docs/claude-code-parity.md](docs/claude-code-parity.md) — đối chiếu năng lực
+- [docs/ported-from-claude-code.md](docs/ported-from-claude-code.md) — port cái gì, bỏ cái gì, vì sao
 - [packs/design/apple-design/PATCH.md](packs/design/apple-design/PATCH.md) — lưu ý riêng

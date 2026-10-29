@@ -27,5 +27,9 @@
   "agent_groups": [
     "design",
     "meta"
+  ],
+  "plugins": [
+    "commit-commands",
+    "claude-md-management"
   ]
 }

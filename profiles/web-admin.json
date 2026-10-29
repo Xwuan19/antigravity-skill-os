@@ -29,5 +29,13 @@
     "code",
     "design",
     "meta"
+  ],
+  "plugins": [
+    "commit-commands",
+    "code-review",
+    "feature-dev",
+    "security-guidance",
+    "claude-md-management",
+    "code-simplifier"
   ]
 }

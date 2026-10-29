@@ -568,7 +568,23 @@
       "license": "MIT",
       "bytes": 24610,
       "sha256": "e43dcaa3af25f211b1db40d4fba2a2411cefb780b22b0fb97354e38644289eec"
+    },
+    "handoff": {
+      "pack": "meta",
+      "source": "local (tự viết)",
+      "path": "meta/handoff",
+      "license": "MIT",
+      "bytes": 0,
+      "sha256": null
+    },
+    "planning-with-files": {
+      "pack": "code",
+      "source": "OthmanAdi/planning-with-files@5d29800bf8",
+      "path": "code/planning-with-files",
+      "license": "MIT",
+      "bytes": 471289,
+      "sha256": "ddef2d7f6ff8f7894b8b55604dafbe3158b9a311edba4a1745a7099684979593"
     }
   },
-  "total_bytes": 11950309
+  "total_bytes": 12421598
 }

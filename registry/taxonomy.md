@@ -84,7 +84,7 @@ Profile khai domain bị cấm, router loại **tuyệt đối** — kể cả s
 
 ## Profile
 
-7 kiểu project dựng sẵn trong [`profiles/`](../profiles):
+9 kiểu project dựng sẵn trong [`profiles/`](../profiles):
 
 | Profile | Skill | Thành phần | Dùng cho |
 |---|---|---|---|
@@ -99,7 +99,7 @@ Profile khai domain bị cấm, router loại **tuyệt đối** — kể cả s
 
 Thêm profile mới = thêm một file JSON. Không cần sửa code.
 
-Tổng registry: **73 skill** (70 vendor + 3 rule hệ thống). Toàn bộ đã nằm trong `packs/`,
+Tổng registry: **75 skill** (72 vendor + 3 rule hệ thống) + 46 subagent + 9 plugin. Toàn bộ đã nằm trong `packs/`,
 pin commit, nên cài đặt không cần mạng.
 
 ## Ví dụ chạy
