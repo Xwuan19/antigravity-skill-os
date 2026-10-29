@@ -244,10 +244,15 @@ def do_workspace(skills: list[dict], profiles: dict[str, dict],
     print(f"  Stack   : {', '.join(stk) if stk else 'không lọc theo ngôn ngữ'}")
     print(f"  Cài vào : {target}  ({len(chosen)} skill)")
     by_pack: dict[str, int] = {}
+    new = existing = 0
     for s in chosen:
         r = copy_skill(s, target, dry, force)
         print(f"    {r} {s['id']}")
         if r.startswith("✓") or r.startswith("~"):
+            new += 1
+        elif r.startswith("="):
+            existing += 1
+        if r.startswith(("✓", "~", "=")):
             by_pack[s["pack"]] = by_pack.get(s["pack"], 0) + 1
     install_agents(prof.get("agent_groups", []), ws, dry, force)
     install_plugins(prof.get("plugins", []) if plugins else [], ws, dry, force)
@@ -257,8 +262,14 @@ def do_workspace(skills: list[dict], profiles: dict[str, dict],
         install_lsp(ws, lsp, dry)
     do_manifest(target, chosen, profile, dry)
     skipped = len([s for s in skills if s["mode"] != "system"]) - len(chosen)
-    print(f"\n  {sum(by_pack.values())} skill đã cài — "
-          + ", ".join(f"{k} {v}" for k, v in sorted(by_pack.items())))
+    if dry:
+        print(f"\n  {sum(by_pack.values())} skill sẽ cài — "
+              + ", ".join(f"{k} {v}" for k, v in sorted(by_pack.items())))
+    elif new:
+        print(f"\n  {new} skill mới, {existing} đã có sẵn — "
+              + ", ".join(f"{k} {v}" for k, v in sorted(by_pack.items())))
+    else:
+        print(f"\n  {existing} skill đã có sẵn, không đổi gì — workspace đã cài rồi.")
     print(f"  {skipped} skill bị loại khỏi workspace này (cô lập cứng).")
     cap = prof.get("max_skills")
     if cap and len(chosen) > cap:
