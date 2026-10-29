@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-29T17:34:57Z",
+  "generated": "2026-10-29T17:44:44Z",
   "skills": {
     "using-superpowers": {
       "pack": "meta",
@@ -1368,7 +1368,31 @@
       "license": "MIT",
       "bytes": 69623,
       "sha256": "fc62139e262bd364cbbcab9b9f97557cd3fd6d2d4f73c4fab039d562fc324643"
+    },
+    "change-impact": {
+      "pack": "code",
+      "source": "affaan-m/ECC@25278e7d7b6cf6e6a4e7a6c8e10f14ff22f0eb5b",
+      "path": ".agents/skills/change-impact",
+      "license": "MIT",
+      "bytes": 7287,
+      "sha256": "b8d8a11417af8b84e93983a8eb682e3b9a16d04f926778eb635c96e90019bf18"
+    },
+    "eval-harness": {
+      "pack": "code",
+      "source": "affaan-m/ECC@25278e7d7b6cf6e6a4e7a6c8e10f14ff22f0eb5b",
+      "path": ".agents/skills/eval-harness",
+      "license": "MIT",
+      "bytes": 6640,
+      "sha256": "01783a716aa593c9f9fa0a82791b71b0423356b6474ec4708be98f25a0001c73"
+    },
+    "agent-introspection-debugging": {
+      "pack": "meta",
+      "source": "affaan-m/ECC@25278e7d7b6cf6e6a4e7a6c8e10f14ff22f0eb5b",
+      "path": ".agents/skills/agent-introspection-debugging",
+      "license": "MIT",
+      "bytes": 6687,
+      "sha256": "5357d123cf8cee6dc2e901542a28a19d7ee9e939e34528d27987897318bcfbf6"
     }
   },
-  "total_bytes": 24567812
+  "total_bytes": 24588426
 }

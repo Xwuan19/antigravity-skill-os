@@ -92,9 +92,9 @@ def select(skills: list[dict], prof: dict, include_manual: bool = False,
             continue
         if dom & forbid:
             continue
-        if not ("*" in dom or dom & want_dom):
+        if not ("*" in dom or "*" in want_dom or dom & want_dom):
             continue
-        if not ("*" in art or art & want_art):
+        if not ("*" in art or "*" in want_art or art & want_art):
             continue
 
         # stack: "general" luôn qua; skill không khai stack cũng qua
@@ -120,10 +120,10 @@ def explain(s: dict, prof: dict, stacks: list[str] | None) -> str:
         return "mode=manual (cần --include-manual)"
     if set(s["domain"]) & forbid:
         return "domain bị cấm: " + ", ".join(sorted(set(s["domain"]) & forbid))
-    if not (set(s["domain"]) & want_dom):
+    if not ("*" in want_dom or set(s["domain"]) & want_dom):
         return "domain: " + "/".join(s["domain"])
     art = set(s["artifact"]) or {"*"}
-    if not ("*" in art or art & want_art):
+    if not ("*" in art or "*" in want_art or art & want_art):
         return "artifact: " + "/".join(sorted(art))
     fam = set(s.get("families", []))
     if fam and want_fam and not (fam & want_fam):
