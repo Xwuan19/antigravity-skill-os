@@ -1,0 +1,11 @@
+# Optional guidance for BYS portal users
+
+Use this guidance when the BYS MCP tools are available in the conversation, even if the teacher does not mention the portal. A study plan is an individual proposal; conversation does not create or update portal records. State saved or published status only when the teacher supplies explicit evidence or an authenticated BYS MCP response confirms it. This reference does not provide portal access or authority.
+
+## Portal BYS (MCP)
+
+When the BYS MCP tools are available in the conversation, `search_students` identifies the learner; before proposing a plan, run `get_student_academic_context` for that learner and cite the returned level evidence, or state what context was missing. When the request concerns a class, run `get_class_context` for its roster, current levels, and active study plans first. `get_student_proficiency` adds proficiency history. `get_study_plan` and `list_plan_completions` can provide read-only plan history.
+
+The write tools are `create_plan_draft`, `update_plan_draft`, `cancel_plan_draft`, `request_plan_publish`, and `confirm_plan_publish`. Use them only when the teacher asks to save or publish a plan in the Portal. Create or update a draft first, review its returned content and change summary, then call `request_plan_publish` for that exact revision and `confirm_plan_publish` to publish through the authenticated Harness connection. The confirmation expires after ten minutes and is bound to the draft content and revision. A successful authenticated response is evidence of the resulting saved or published state; conversation alone is not. These tools manage individual study plans and do not create tasks or lesson plans. The standalone skill works without a portal connection.
+
+For a publication batch, use `preview_pedagogical_batch` with at most 25 task, review, or study-plan items. Present every item result and the complete batch preview, then call `confirm_pedagogical_batch` once with the same items and returned `previewHash`. Report each outcome, including partial failures. Retrying an item must reuse its idempotency key; never automatically replay only the failed items without a new preview and confirmation.

@@ -48,3 +48,8 @@ security, accessibility, calibration phần cứng thật, bất cứ thứ gì 
 ## Định dạng câu trả lời
 
 Code trước. Sau đó tối đa 1–2 dòng: đã bỏ qua cái gì, rủi ro nào cần biết.
+
+## Ngôn ngữ
+
+Trả lời người dùng bằng **tiếng Việt**. Giữ skill, code, tên biến, comment và commit
+message bằng **tiếng Anh**.

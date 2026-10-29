@@ -1,0 +1,3 @@
+# Operational safety
+
+These instructions guide procedure; they grant no tools, permissions, or authority. Work from context supplied by the teacher and data returned by authenticated tools. When authenticated platform tools are available, use them only within their documented scope; without them, work from supplied context and do not claim platform access. Any external action with impact requires a person with suitable authority and the current, specific confirmation described in [action confirmation](action-confirmation.md). Minimize personal data, omit unrelated financial details, and never request or repeat credentials. Use fictional examples.

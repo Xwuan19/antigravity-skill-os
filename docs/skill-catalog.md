@@ -170,13 +170,19 @@ Cách duy nhất giữ `full` vĩnh viễn là **không tồn tại mức nào k
 | ☐ | Skill | Việc nó làm |
 |---|---|---|
 | ☑ | `apple-design` | 17 mục từ WWDC: response, direct manipulation, interruptibility, spring, momentum, rubber-banding, materials, typography, reduced-motion. **23KB — sát trần 24KB.** Đã vendor, xem [PATCH.md](../packs/design/apple-design/PATCH.md) |
-| ☐ | `emil-design-eng` | Quan điểm design-engineering của tác giả |
-| ☐ | `animate` | Viết animation |
-| ☐ | `improve-animations` | Nâng animation có sẵn |
-| ☐ | `review-animations` | Review animation |
-| ☐ | `find-animation-opportunities` | Tìm chỗ nên thêm chuyển động |
-| ☐ | `break-ui` | Cố tình phá UI để tìm lỗi |
-| ☐ | `animation-vocabulary` · `prototype` · `pick-ui-library` · `mobile-native` · `write-swift` · `animate-expo` · `ask-sonner` | Chưa xếp — chờ bạn chọn |
+| ☑ | `emil-design-eng` | Quan điểm design-engineering của tác giả |
+| ☑ | `animate` | Viết animation |
+| ☑ | `improve-animations` | Nâng animation có sẵn |
+| ☑ | `review-animations` | Review animation |
+| ☑ | `find-animation-opportunities` | Tìm chỗ nên thêm chuyển động |
+| ☑ | `break-ui` | Cố tình phá UI để tìm lỗi |
+| ☑ | `animation-vocabulary` | Từ vựng mô tả chuyển động |
+| ☑ | `prototype` | Dựng prototype nhanh |
+| ☑ | `pick-ui-library` | Chọn thư viện UI |
+| ☑ | `ask-sonner` | Toast/thông báo (Sonner) |
+| ☑ | `mobile-native` | Chuyển động native mobile |
+| ☑ | `animate-expo` | Animation cho Expo |
+| ☑ | `write-swift` | Viết Swift/SwiftUI |
 
 > `frontend-design` và `apple-design` **không xung đột**: một cái lo "trông thế nào",
 > một cái lo "chạm vào thấy thế nào". Khác trục, cài cả hai là hợp lý.
@@ -305,9 +311,9 @@ Bốn món đầu là **rules** → có hiệu lực ngay, mọi phiên, không 
 |---|---|---|
 | A | Repo tên `antigravity-skill-os` | ✔ **đã chốt: giữ** |
 | A2 | Mức ponytail | ✔ **đã chốt: `full` khoá cứng, mọi phiên, mọi yêu cầu, không `/`, không lite/ultra/off** |
-| B | Cô lập folder: **cứng** (mỗi lĩnh vực 1 workspace) hay **mềm** (1 workspace + hàng rào rule)? | ▢ cứng · ▢ mềm · ▢ cả hai |
-| C | Vendor skill vào repo (copy, chạy offline, pin commit) hay để installer tải từ upstream? | ▢ vendor · ▢ tải · ▢ hybrid |
-| D | Antigravity của bạn là **App**, **CLI**, hay **IDE**? (đường dẫn global khác nhau) | ▢ App · ▢ CLI · ▢ IDE |
+| B | Cô lập folder | ✔ **đã chốt: CỨNG** — mỗi lĩnh vực 1 workspace, `--profile` riêng |
+| C | Vendor | ✔ **đã chốt: VENDOR TOÀN BỘ** — 63 skill trong `packs/`, clone repo là cài được, không cần mạng |
+| D | Surface | ✔ **đã chốt: App** — `~/.gemini/AGENTS.md` + `~/.gemini/config/skills/` |
 | F | 7 profile đã đủ chưa? Thiếu kiểu project nào của bạn? | ▢ đủ · ▢ thiếu: ______ |
-| G | Skill nào trong motion pack muốn giữ? (mặc định 6) | ▢ 6 cái · ▢ tất cả 14 · ▢ chỉ apple-design |
-| E | Ngôn ngữ trong skill: giữ tiếng Anh (model hiểu tốt nhất) hay Việt hoá phần diễn giải? | ▢ EN · ▢ VI · ▢ EN + VI |
+| G | Motion pack | ✔ **đã chốt: cả 14** |
+| E | Ngôn ngữ | ✔ **đã chốt: skill EN, giao tiếp VI** — luật ở `core/AGENTS.md` §4 |

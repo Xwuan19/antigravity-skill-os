@@ -1,0 +1,510 @@
+{
+  "generated": "2026-10-29T16:42:57Z",
+  "skills": {
+    "using-superpowers": {
+      "pack": "meta",
+      "source": "obra/superpowers@2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "skills/using-superpowers",
+      "license": "MIT",
+      "bytes": 21700,
+      "sha256": "82c5c8866ad7f5dd4440ce66bd7806ba48a2f13771beae5cf112e53f08fe36ba"
+    },
+    "writing-skills": {
+      "pack": "meta",
+      "source": "obra/superpowers@2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "skills/writing-skills",
+      "license": "MIT",
+      "bytes": 110279,
+      "sha256": "8cb3ac68c6d8c4bb46886b998b09af7989643cab8bd0e46ee86dd62e64546bbe"
+    },
+    "verification-before-completion": {
+      "pack": "meta",
+      "source": "obra/superpowers@2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "skills/verification-before-completion",
+      "license": "MIT",
+      "bytes": 4716,
+      "sha256": "2befe7fc55bcadaa3d97dd9e8efeb633d2561c0ebe74c5a8b17c4d9e7e4520b3"
+    },
+    "brainstorming": {
+      "pack": "code",
+      "source": "obra/superpowers@2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "skills/brainstorming",
+      "license": "MIT",
+      "bytes": 78545,
+      "sha256": "61a7ef918652108c76a3fd01e02dd92d39996c6b46d4cb2819cbd03f6c45e46a"
+    },
+    "writing-plans": {
+      "pack": "code",
+      "source": "obra/superpowers@2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "skills/writing-plans",
+      "license": "MIT",
+      "bytes": 11405,
+      "sha256": "a6c67c1900064347c2a329990dd3c555657c51c3ec53b259a08aa01a2c26139a"
+    },
+    "executing-plans": {
+      "pack": "code",
+      "source": "obra/superpowers@2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "skills/executing-plans",
+      "license": "MIT",
+      "bytes": 21828,
+      "sha256": "e4649e59880ef2643d1da128e3d607e87e3f969410d72095a5bf65811b6036dc"
+    },
+    "test-driven-development": {
+      "pack": "code",
+      "source": "obra/superpowers@2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "skills/test-driven-development",
+      "license": "MIT",
+      "bytes": 18916,
+      "sha256": "64b03fce4aee5a97a93160cea8111f3ba13a17b7c001db4bd5836d67fd10705d"
+    },
+    "systematic-debugging": {
+      "pack": "code",
+      "source": "obra/superpowers@2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "skills/systematic-debugging",
+      "license": "MIT",
+      "bytes": 41912,
+      "sha256": "51c6435d98c83c42c96ba7c35725a0b2c376cd487fb1a4e6bd0ddbe7e33ef202"
+    },
+    "requesting-code-review": {
+      "pack": "code",
+      "source": "obra/superpowers@2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "skills/requesting-code-review",
+      "license": "MIT",
+      "bytes": 10493,
+      "sha256": "2180e14a448e9410bec88e6646a2d1f0ce7fdd58de27388c1e052e929679d2bc"
+    },
+    "receiving-code-review": {
+      "pack": "code",
+      "source": "obra/superpowers@2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "skills/receiving-code-review",
+      "license": "MIT",
+      "bytes": 7273,
+      "sha256": "091df1629510af1b92fc4abd6f96732ebedb4cb2c0f3457e8f2740b0504a2438"
+    },
+    "using-git-worktrees": {
+      "pack": "code",
+      "source": "obra/superpowers@2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "skills/using-git-worktrees",
+      "license": "MIT",
+      "bytes": 7883,
+      "sha256": "8cfb86f121269e8f7f12361e6795c4f6738828340e28964c9229d365666c9edd"
+    },
+    "finishing-a-development-branch": {
+      "pack": "code",
+      "source": "obra/superpowers@2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "skills/finishing-a-development-branch",
+      "license": "MIT",
+      "bytes": 8851,
+      "sha256": "8db5a922b242dd4e1bf824cb91c13b3e8d8e8a86d6ceaf7f0774eb9cce909d65"
+    },
+    "dispatching-parallel-agents": {
+      "pack": "code",
+      "source": "obra/superpowers@2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "skills/dispatching-parallel-agents",
+      "license": "MIT",
+      "bytes": 7148,
+      "sha256": "1968923066f3b707eb01d1992cdf4c42284c3855f70253b9cd5000ff45fca13c"
+    },
+    "subagent-driven-development": {
+      "pack": "code",
+      "source": "obra/superpowers@2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "skills/subagent-driven-development",
+      "license": "MIT",
+      "bytes": 58559,
+      "sha256": "ba41f697136cba88a7962d60c8e2f97488ba04a8688b1d0fbeb27f6953808e75"
+    },
+    "skill-creator": {
+      "pack": "meta",
+      "source": "anthropics/skills@2235be7c60b551f5de82ade908fd3816455afcda",
+      "path": "skills/skill-creator",
+      "license": "Apache-2.0",
+      "bytes": 224992,
+      "sha256": "dcd4803e61e913e6fc27294184cd3a71f09f5e924ff20c8a9a20173e7b3c2bcf"
+    },
+    "webapp-testing": {
+      "pack": "code",
+      "source": "anthropics/skills@2235be7c60b551f5de82ade908fd3816455afcda",
+      "path": "skills/webapp-testing",
+      "license": "Apache-2.0",
+      "bytes": 22394,
+      "sha256": "51b7349e77ec63b7744a6f63647e7566a0b4d2e301121cc10e8c2113af6556a2"
+    },
+    "frontend-design": {
+      "pack": "design",
+      "source": "anthropics/skills@2235be7c60b551f5de82ade908fd3816455afcda",
+      "path": "skills/frontend-design",
+      "license": "Apache-2.0",
+      "bytes": 18434,
+      "sha256": "1608ea77fbb6fc30d13a97d12cfa8ebf31358d40f0dd97beed24829d6b3f45dd"
+    },
+    "canvas-design": {
+      "pack": "design",
+      "source": "anthropics/skills@2235be7c60b551f5de82ade908fd3816455afcda",
+      "path": "skills/canvas-design",
+      "license": "Apache-2.0",
+      "bytes": 5554003,
+      "sha256": "a1f288079624402f30682753c1d43920b6664785698d21d3e7aa197450a6448b"
+    },
+    "theme-factory": {
+      "pack": "design",
+      "source": "anthropics/skills@2235be7c60b551f5de82ade908fd3816455afcda",
+      "path": "skills/theme-factory",
+      "license": "Apache-2.0",
+      "bytes": 144094,
+      "sha256": "c35893e221e28895c52143cc11bf30e41a44817796b39d4b15727dadc9796552"
+    },
+    "brand-guidelines": {
+      "pack": "design",
+      "source": "anthropics/skills@2235be7c60b551f5de82ade908fd3816455afcda",
+      "path": "skills/brand-guidelines",
+      "license": "Apache-2.0",
+      "bytes": 13580,
+      "sha256": "1120b3769e2985cefb3d25be981b1f914abeba57ae079b83c20c666c164fa9fe"
+    },
+    "web-artifacts-builder": {
+      "pack": "design",
+      "source": "anthropics/skills@2235be7c60b551f5de82ade908fd3816455afcda",
+      "path": "skills/web-artifacts-builder",
+      "license": "Apache-2.0",
+      "bytes": 45840,
+      "sha256": "81c5002c6643b0de7b8710b00e7a9038daa6fb9b68d59870ee6adb12da8d10f8"
+    },
+    "docx": {
+      "pack": "docs",
+      "source": "anthropics/skills@2235be7c60b551f5de82ade908fd3816455afcda",
+      "path": "skills/docx",
+      "license": "Apache-2.0",
+      "bytes": 1121303,
+      "sha256": "cfbabd72b1aec7dfaad988fb6e5e16b27dc744b9a00cae15db9045e95f53903e"
+    },
+    "pdf": {
+      "pack": "docs",
+      "source": "anthropics/skills@2235be7c60b551f5de82ade908fd3816455afcda",
+      "path": "skills/pdf",
+      "license": "Apache-2.0",
+      "bytes": 58692,
+      "sha256": "9f78b8359fbd4943ad260a7a1e436e5a96503406d6c34e99f69223d647d85b9c"
+    },
+    "pptx": {
+      "pack": "docs",
+      "source": "anthropics/skills@2235be7c60b551f5de82ade908fd3816455afcda",
+      "path": "skills/pptx",
+      "license": "Apache-2.0",
+      "bytes": 1129944,
+      "sha256": "e5b0df918cbe9d62508b3cf808d73899633f82fc19f6258a25ef9f0de7e62125"
+    },
+    "xlsx": {
+      "pack": "docs",
+      "source": "anthropics/skills@2235be7c60b551f5de82ade908fd3816455afcda",
+      "path": "skills/xlsx",
+      "license": "Apache-2.0",
+      "bytes": 1093063,
+      "sha256": "dd316db7785a6be12966c2a2d848931fbf5f518b3cdb0a66fa62ee835ead1cfc"
+    },
+    "doc-coauthoring": {
+      "pack": "docs",
+      "source": "anthropics/skills@2235be7c60b551f5de82ade908fd3816455afcda",
+      "path": "skills/doc-coauthoring",
+      "license": "Apache-2.0",
+      "bytes": 15815,
+      "sha256": "2e47d78846faeea4a56e9809c52700087a15a2155a3f293a3efbaded81398ef4"
+    },
+    "react-best-practices": {
+      "pack": "code",
+      "source": "vercel-labs/agent-skills@1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62",
+      "path": "skills/react-best-practices",
+      "license": "UNKNOWN",
+      "bytes": 230383,
+      "sha256": "71ed7794962fa6e803ee83030517b5b93a9f70fbfeb431ec4535c5480a8d8355"
+    },
+    "web-design-guidelines": {
+      "pack": "design",
+      "source": "vercel-labs/agent-skills@1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62",
+      "path": "skills/web-design-guidelines",
+      "license": "UNKNOWN",
+      "bytes": 1231,
+      "sha256": "f4647ca866a3accf763777f83e7682954f0187cd6bea7eea0399796652414e8f"
+    },
+    "writing-guidelines": {
+      "pack": "design",
+      "source": "vercel-labs/agent-skills@1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62",
+      "path": "skills/writing-guidelines",
+      "license": "UNKNOWN",
+      "bytes": 1233,
+      "sha256": "89a5f581193289b80af58b980090aeed535047c8df2b55ccbaae0de40283a99d"
+    },
+    "apple-design": {
+      "pack": "design",
+      "source": "emilkowalski/skills@e8a175de22ae1e49370fc144c1f3bb9aeedf988d",
+      "path": "skills/apple-design",
+      "license": "MIT",
+      "bytes": 24106,
+      "sha256": "77bb63b7043bb93aca2ff4ab040c249484eef35682bb6ff7163433c31d30adc7"
+    },
+    "animate": {
+      "pack": "motion",
+      "source": "emilkowalski/skills@e8a175de22ae1e49370fc144c1f3bb9aeedf988d",
+      "path": "skills/animate",
+      "license": "MIT",
+      "bytes": 20887,
+      "sha256": "b8ede161270458e6ae2e45e8a1985373515d4c63de5568ddb0f9012d7634356c"
+    },
+    "improve-animations": {
+      "pack": "motion",
+      "source": "emilkowalski/skills@e8a175de22ae1e49370fc144c1f3bb9aeedf988d",
+      "path": "skills/improve-animations",
+      "license": "MIT",
+      "bytes": 19765,
+      "sha256": "73962447464433476343e2c12cd08ab39cc99a9e5f3c118c5fb54ed897574ef6"
+    },
+    "review-animations": {
+      "pack": "motion",
+      "source": "emilkowalski/skills@e8a175de22ae1e49370fc144c1f3bb9aeedf988d",
+      "path": "skills/review-animations",
+      "license": "MIT",
+      "bytes": 19278,
+      "sha256": "6ff590d29e436766135aa3d137be1fac2a867165c7257fc315b189361f1873af"
+    },
+    "find-animation-opportunities": {
+      "pack": "motion",
+      "source": "emilkowalski/skills@e8a175de22ae1e49370fc144c1f3bb9aeedf988d",
+      "path": "skills/find-animation-opportunities",
+      "license": "MIT",
+      "bytes": 10878,
+      "sha256": "d52a377819b84a71930f0c822cfe2849f40301605a2d5c7eccbfa3b257700df2"
+    },
+    "emil-design-eng": {
+      "pack": "motion",
+      "source": "emilkowalski/skills@e8a175de22ae1e49370fc144c1f3bb9aeedf988d",
+      "path": "skills/emil-design-eng",
+      "license": "MIT",
+      "bytes": 28193,
+      "sha256": "ffbe68e6007fb42cb8149f089b400a1ca007d59ba23e8948e2be4476f3175939"
+    },
+    "break-ui": {
+      "pack": "motion",
+      "source": "emilkowalski/skills@e8a175de22ae1e49370fc144c1f3bb9aeedf988d",
+      "path": "skills/break-ui",
+      "license": "MIT",
+      "bytes": 23718,
+      "sha256": "e7eec1d70ac56a04255e9c0dbe98084ea3d544cc04aaad34f32c95d6fa9dff5e"
+    },
+    "animation-vocabulary": {
+      "pack": "motion",
+      "source": "emilkowalski/skills@e8a175de22ae1e49370fc144c1f3bb9aeedf988d",
+      "path": "skills/animation-vocabulary",
+      "license": "MIT",
+      "bytes": 14495,
+      "sha256": "40d2b27adfdfeb0570a9f20e7d0255109d9233c50603878bcd0dcd04c923fd94"
+    },
+    "prototype": {
+      "pack": "motion",
+      "source": "emilkowalski/skills@e8a175de22ae1e49370fc144c1f3bb9aeedf988d",
+      "path": "skills/prototype",
+      "license": "MIT",
+      "bytes": 16448,
+      "sha256": "bba39c955eb1871c5a02733976ceec5d0324198e0812e667604756489c89f7b9"
+    },
+    "pick-ui-library": {
+      "pack": "motion",
+      "source": "emilkowalski/skills@e8a175de22ae1e49370fc144c1f3bb9aeedf988d",
+      "path": "skills/pick-ui-library",
+      "license": "MIT",
+      "bytes": 5860,
+      "sha256": "675fdce308683256ed617351a9b74d23457a5fbd0a562d9831b9c764b8c5e682"
+    },
+    "ask-sonner": {
+      "pack": "motion",
+      "source": "emilkowalski/skills@e8a175de22ae1e49370fc144c1f3bb9aeedf988d",
+      "path": "skills/ask-sonner",
+      "license": "MIT",
+      "bytes": 12848,
+      "sha256": "39f3ee185b3aa2cf70a689052ff078953ce7ba5915ed7a9391d232e9d4dcf57f"
+    },
+    "mobile-native": {
+      "pack": "motion",
+      "source": "emilkowalski/skills@e8a175de22ae1e49370fc144c1f3bb9aeedf988d",
+      "path": "skills/mobile-native",
+      "license": "MIT",
+      "bytes": 17908,
+      "sha256": "888b7651d66d66dbac4e72b7c554638eb19bd971d686d6cbdf030a5ef3788f55"
+    },
+    "animate-expo": {
+      "pack": "motion",
+      "source": "emilkowalski/skills@e8a175de22ae1e49370fc144c1f3bb9aeedf988d",
+      "path": "skills/animate-expo",
+      "license": "MIT",
+      "bytes": 35769,
+      "sha256": "9a01a91701e6563c67677dde6b66ab30f066a5341d42c21a90ba51d99679274a"
+    },
+    "write-swift": {
+      "pack": "motion",
+      "source": "emilkowalski/skills@e8a175de22ae1e49370fc144c1f3bb9aeedf988d",
+      "path": "skills/write-swift",
+      "license": "MIT",
+      "bytes": 43515,
+      "sha256": "16a4b6adb74e338e55e704ce5753ad54d825438b8a63930eeaede9f3c04c9447"
+    },
+    "edu-learning-objectives": {
+      "pack": "education",
+      "source": "dh2211/edu-agents@6277f437a40294cf387b3648a1f91b49f5ebc2f3",
+      "path": "skills/edu-learning-objectives",
+      "license": "MIT",
+      "bytes": 3912,
+      "sha256": "b5a5d5ffda8ef9fe8e4d6f3a26114ecae8e7c75e55d4abc9ac0818da37a8369a"
+    },
+    "edu-unit-planner": {
+      "pack": "education",
+      "source": "dh2211/edu-agents@6277f437a40294cf387b3648a1f91b49f5ebc2f3",
+      "path": "skills/edu-unit-planner",
+      "license": "MIT",
+      "bytes": 4088,
+      "sha256": "539038c509e3437f00cd4b9d920a0791375a099359b22504407d0c66a16732a8"
+    },
+    "edu-lesson-planner": {
+      "pack": "education",
+      "source": "dh2211/edu-agents@6277f437a40294cf387b3648a1f91b49f5ebc2f3",
+      "path": "skills/edu-lesson-planner",
+      "license": "MIT",
+      "bytes": 4243,
+      "sha256": "78923fffeaae1a191c22a1fb261f61cce599eeb0515d8cbfe672db89bbaa13e8"
+    },
+    "edu-slide-outline": {
+      "pack": "education",
+      "source": "dh2211/edu-agents@6277f437a40294cf387b3648a1f91b49f5ebc2f3",
+      "path": "skills/edu-slide-outline",
+      "license": "MIT",
+      "bytes": 3350,
+      "sha256": "34a7d4652828e1a4709583625ab96f9c0829eabd6f3344b33017155af5c5d50c"
+    },
+    "edu-worksheet-builder": {
+      "pack": "education",
+      "source": "dh2211/edu-agents@6277f437a40294cf387b3648a1f91b49f5ebc2f3",
+      "path": "skills/edu-worksheet-builder",
+      "license": "MIT",
+      "bytes": 3674,
+      "sha256": "521b4659d0c07b41c66477d2808d9e8a1e508f819f4c4b655865800a2d1356f9"
+    },
+    "edu-assessment-builder": {
+      "pack": "education",
+      "source": "dh2211/edu-agents@6277f437a40294cf387b3648a1f91b49f5ebc2f3",
+      "path": "skills/edu-assessment-builder",
+      "license": "MIT",
+      "bytes": 5525,
+      "sha256": "a4cf0cf137f6dccf17126f7720d443e6a3c4a258145625854f851689bc06f14c"
+    },
+    "edu-formative-checks": {
+      "pack": "education",
+      "source": "dh2211/edu-agents@6277f437a40294cf387b3648a1f91b49f5ebc2f3",
+      "path": "skills/edu-formative-checks",
+      "license": "MIT",
+      "bytes": 3460,
+      "sha256": "e93b10f1962831633c3ad1f92f0643f1eb15471cee8d5e3c12e25a08552b2f29"
+    },
+    "edu-rubric-builder": {
+      "pack": "education",
+      "source": "dh2211/edu-agents@6277f437a40294cf387b3648a1f91b49f5ebc2f3",
+      "path": "skills/edu-rubric-builder",
+      "license": "MIT",
+      "bytes": 3738,
+      "sha256": "d594740ab38612a6968d0f44058b294e581a4dbc38d8b835b348c3816d95abc1"
+    },
+    "edu-differentiation": {
+      "pack": "education",
+      "source": "dh2211/edu-agents@6277f437a40294cf387b3648a1f91b49f5ebc2f3",
+      "path": "skills/edu-differentiation",
+      "license": "MIT",
+      "bytes": 4761,
+      "sha256": "82990d06f2c84e2822223d2bfe323493d82b479fd81c8598f9373c5ba0817a3b"
+    },
+    "edu-student-work-feedback": {
+      "pack": "education",
+      "source": "dh2211/edu-agents@6277f437a40294cf387b3648a1f91b49f5ebc2f3",
+      "path": "skills/edu-student-work-feedback",
+      "license": "MIT",
+      "bytes": 3838,
+      "sha256": "a7b004e1dc75698ea467966496c4342a1071d2262a3841ff37dc5ddf76dd32fc"
+    },
+    "edu-family-message": {
+      "pack": "education",
+      "source": "dh2211/edu-agents@6277f437a40294cf387b3648a1f91b49f5ebc2f3",
+      "path": "skills/edu-family-message",
+      "license": "MIT",
+      "bytes": 3820,
+      "sha256": "479abc1b321be27959a71726993f63c3837b845bdcac5a076e0945b7e19a1380"
+    },
+    "lesson-planning": {
+      "pack": "education",
+      "source": "CristianHeyde/language-teaching-skills@c73a9b89e781f8d44e17124af645af9db15d0577",
+      "path": "skills/lesson-planning",
+      "license": "MIT",
+      "bytes": 10927,
+      "sha256": "0913cf758d029331473a3b6a477ad39300df5ee1a0a181a567189c0f2c480eb6"
+    },
+    "task-design": {
+      "pack": "education",
+      "source": "CristianHeyde/language-teaching-skills@c73a9b89e781f8d44e17124af645af9db15d0577",
+      "path": "skills/task-design",
+      "license": "MIT",
+      "bytes": 10009,
+      "sha256": "cd476ef7a7e16468b1508c194e7ba00bf5e475454e0c134fd189d782b5f6dfb8"
+    },
+    "submission-review": {
+      "pack": "education",
+      "source": "CristianHeyde/language-teaching-skills@c73a9b89e781f8d44e17124af645af9db15d0577",
+      "path": "skills/submission-review",
+      "license": "MIT",
+      "bytes": 12150,
+      "sha256": "b00e62e74348853a0975e0ca61559804593e17106f60fffb1f67d05b85bf2555"
+    },
+    "study-planning": {
+      "pack": "education",
+      "source": "CristianHeyde/language-teaching-skills@c73a9b89e781f8d44e17124af645af9db15d0577",
+      "path": "skills/study-planning",
+      "license": "MIT",
+      "bytes": 9523,
+      "sha256": "7b0c72b1dd3ec11f5b5e8cc0be70f301a2731495ffbac22f0639c7f5defc1b34"
+    },
+    "course-architecture": {
+      "pack": "education",
+      "source": "CristianHeyde/language-teaching-skills@c73a9b89e781f8d44e17124af645af9db15d0577",
+      "path": "skills/course-architecture",
+      "license": "MIT",
+      "bytes": 10733,
+      "sha256": "26b2733daff31cd6293d3103c4ed9cd0af5667cd5f80159762248864c47abbfa"
+    },
+    "concept-explainer": {
+      "pack": "education",
+      "source": "JayRHa/agent-skills@f9a456bf34c297bd23fb234f410ec9b239ebed14",
+      "path": "concept-explainer",
+      "license": "MIT",
+      "bytes": 8823,
+      "sha256": "13dd58690d0299a0401f66a1805f241cea7e58f7a0decbc4e66f2737f4851652"
+    },
+    "flashcard-generator": {
+      "pack": "education",
+      "source": "JayRHa/agent-skills@f9a456bf34c297bd23fb234f410ec9b239ebed14",
+      "path": "flashcard-generator",
+      "license": "MIT",
+      "bytes": 11365,
+      "sha256": "a2bdfc8203ca9c827506ba991bb5f083e351cf12dadc3670a1c05d6d873448fe"
+    },
+    "study-plan-builder": {
+      "pack": "education",
+      "source": "JayRHa/agent-skills@f9a456bf34c297bd23fb234f410ec9b239ebed14",
+      "path": "study-plan-builder",
+      "license": "MIT",
+      "bytes": 9010,
+      "sha256": "c95dabf6fd3f49dd02b8d76e1aa1f86301f6856ed6795f231685f59d6fb8cbf0"
+    },
+    "language-tutor": {
+      "pack": "education",
+      "source": "JayRHa/agent-skills@f9a456bf34c297bd23fb234f410ec9b239ebed14",
+      "path": "language-tutor",
+      "license": "MIT",
+      "bytes": 11421,
+      "sha256": "88480bb660eb52babff85ae058f7d631c55a35a1ede6e0d14e2767d18b3ccb25"
+    }
+  },
+  "total_bytes": 10516547
+}

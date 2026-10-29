@@ -86,33 +86,43 @@ Profile khai domain bị cấm, router loại **tuyệt đối** — kể cả s
 
 7 kiểu project dựng sẵn trong [`profiles/`](../profiles):
 
-| Profile | Domain | Skill | Dùng cho |
+| Profile | Skill | Thành phần | Dùng cho |
 |---|---|---|---|
-| `web-admin` | design + code | 22 | Dashboard, CRUD, SaaS |
-| `landing` | design + code + motion | ~24 | Landing, marketing, portfolio |
-| `design-system` | design + motion | 12 | UI kit, component library |
-| `cli-tool` | code | 11 | CLI, script, backend |
-| `education-k12` | education + docs | 19 | Giáo án phổ thông, đề kiểm tra |
-| `education-language` | education + docs | 11 | Trung tâm ngoại ngữ, gia sư |
-| `docs-writer` | docs + design | ~10 | Báo cáo, thuyết trình, bảng tính |
+| `web-admin` | 25 | code 13, design 7, motion 5 | Dashboard, CRUD, SaaS |
+| `landing` | 22 | code 5, design 7, motion 10 | Landing, marketing, portfolio |
+| `design-system` | 16 | design 6, motion 10 | UI kit, component library |
+| `cli-tool` | 11 | code 11 | CLI, script, backend |
+| `education-k12` | 19 | education 14, docs 5 | Giáo án phổ thông, đề kiểm tra |
+| `education-language` | 11 | education 9, docs 2 | Trung tâm ngoại ngữ, gia sư |
+| `docs-writer` | 7 | docs 5, design 2 | Báo cáo, thuyết trình, bảng tính |
 
 Thêm profile mới = thêm một file JSON. Không cần sửa code.
+
+Tổng registry: **66 skill** (63 vendor + 3 rule hệ thống). Toàn bộ đã nằm trong `packs/`,
+pin commit, nên cài đặt không cần mạng.
 
 ## Ví dụ chạy
 
 ```bash
-# xem có profile gì
-python3 tools/route.py --list-profiles
+# cài phần global (rules + skill luôn có mặt)
+python3 tools/install.py --core
 
-# xem router chọn gì (chưa cài)
-python3 tools/route.py --profile web-admin
+# xem có profile gì
+python3 tools/install.py --list
 
 # cài vào project thật
-python3 tools/route.py --profile web-admin --install ~/projects/shop-admin
+python3 tools/install.py --profile web-admin -w ~/projects/shop-admin
 
-# project lạ, chưa có profile → suy từ tags
-python3 tools/route.py --tags dashboard,design --install ~/projects/x
+# xem trước, không ghi gì
+python3 tools/install.py --profile landing -w ~/p/landing --dry-run
+
+# project lạ, chưa có profile → suy từ tags (router, không cài)
+python3 tools/route.py --tags dashboard,design
 ```
 
-Router cài xong sẽ ghi `.agents/skill-os.json` vào workspace, để lần sau biết project
-này thuộc profile nào mà không cần đoán lại.
+Cài xong, `.agents/skill-os.json` được ghi vào workspace để lần sau biết project này
+thuộc profile nào mà không cần đoán lại.
+
+Installer **không bao giờ** xoá thư mục skill không do nó tạo (đánh dấu bằng
+`.skill-os-owner`); muốn ghi đè phải `--force`. Gỡ bằng `--uninstall`, và lệnh đó
+chỉ đụng phần global — skill trong workspace giữ nguyên.
