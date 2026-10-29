@@ -136,7 +136,31 @@ Cách duy nhất giữ `full` vĩnh viễn là **không tồn tại mức nào k
 `full` được hiện thực thành **một file rule `always_on` duy nhất** — xem
 [`core/rules/ponytail-full.md`](../core/rules/ponytail-full.md).
 
-### 3.3 Kỹ thuật khác
+### 3.3 Vercel — 10 skill, MIT
+
+Nguồn: [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) @ `1a2c79d4`
+(9 skill, có `skills.sh.json` phân nhóm chính thức) + [vercel-labs/vercel-byoc](https://github.com/vercel-labs/vercel-byoc).
+
+| ☑ | Skill | Nhóm | Việc nó làm |
+|---|---|---|---|
+| ☑ | `vercel-react-best-practices` | React | 70 rule React/Next.js, 8 nhóm, xếp theo tác động. Bản lớn nhất (420KB) |
+| ☑ | `vercel-composition-patterns` | React | Compound component, render props, context provider, API React 19 |
+| ☑ | `vercel-react-native-skills` | React | React Native + Expo, list performance, animation, native module |
+| ☑ | `vercel-react-view-transitions` | React | `<ViewTransition>`, `addTransitionType`, tích hợp Next.js. Không cần lib animation |
+| ☑ | `deploy-to-vercel` | Vercel | Deploy; **luôn preview** trừ khi nói rõ production. Có cổng duyệt trước khi push |
+| ☑ | `vercel-optimize` | Vercel | Audit chi phí/hiệu năng: thu metrics trước, chỉ điều tra cái metrics chỉ ra (1.2MB) |
+| ☑ | `vercel-cli-with-tokens` | Vercel | CLI bằng token, không cần `vercel login`. Khuyến nghị `VERCEL_TOKEN` env, không truyền qua flag |
+| ☑ | `vercel-byoc` | (repo riêng) | Bring Your Own Cloud — function chạy Lambda trên AWS của bạn |
+| ☑ | `web-design-guidelines` | Design | ~100 check a11y/UX. Dùng để **review** UI, không phải tạo UI |
+| ☑ | `writing-guidelines` | Design | Review copy/prose của trang |
+
+> **License:** repo không có file `LICENSE` ở gốc, nhưng README mục *License* ghi **MIT**
+> và 4 SKILL.md tự khai `license: MIT`. Mình đã sửa cảnh báo "UNKNOWN" trước đó — sai.
+>
+> **Không thêm `next-skills`:** repo `vercel-labs/next-skills` giờ chỉ còn README, skill
+> đã bị gỡ khỏi repo đó (kiểm bằng git tree API, không phải do lỗi mạng).
+
+### 3.4 Kỹ thuật khác
 
 | ☐ | Skill | Nguồn | Việc nó làm |
 |---|---|---|---|
@@ -153,8 +177,8 @@ Cách duy nhất giữ `full` vĩnh viễn là **không tồn tại mức nào k
 | ☐ | Skill | Nguồn | Việc nó làm |
 |---|---|---|---|
 | ☑ | `frontend-design` **đã vendor** @ `2235be7` | anthropics/skills · Apache-2.0 | Ép chọn hướng thẩm mỹ + typography trước khi viết UI; chống "AI slop" |
-| ☐ | `web-design-guidelines` | [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) · MIT | Audit UI/a11y theo Web Interface Guidelines |
-| ☐ | `writing-guidelines` | vercel-labs/agent-skills | Copy/microcopy cho trang |
+| ☑ | `web-design-guidelines` | vercel-labs/agent-skills · **MIT** | Audit UI/a11y theo Web Interface Guidelines |
+| ☑ | `writing-guidelines` | vercel-labs/agent-skills · **MIT** | Review copy/microcopy của trang |
 | ☐ | `canvas-design` | anthropics/skills | Ấn phẩm/visual chất lượng tạp chí |
 | ☐ | `theme-factory` | anthropics/skills | 10 theme màu chuyên nghiệp |
 | ☐ | `brand-guidelines` | anthropics/skills | Chuẩn brand (mẫu của Anthropic — thay bằng brand của bạn) |

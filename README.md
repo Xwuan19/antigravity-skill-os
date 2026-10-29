@@ -8,7 +8,7 @@ Project web quản lý nhận design + code. Project giáo án nhận education 
 không bao giờ thấy skill của nhau — không phải vì bị dặn đừng dùng, mà vì skill
 **không tồn tại** trong workspace đó. Ponytail `full` thì luôn bật cho tất cả.
 
-Repo **tự chứa**: toàn bộ 63 skill đã vendor, pin commit. Clone về là cài được, không cần mạng.
+Repo **tự chứa**: 70 skill đã vendor, pin commit. Clone về là cài được, không cần mạng.
 
 ## Bắt đầu trong 3 lệnh
 
@@ -20,7 +20,7 @@ python3 tools/install.py --profile web-admin -w ~/projects/admin # skill cho 1 p
 python3 tools/install.py --list                                  # xem đã cài gì
 ```
 
-Có `--dry-run` cho mọi lệnh, và `--uninstall` để gỡ sạch.
+Có `--dry-run` cho mọi lệnh, `--uninstall` để gỡ, `--include-manual` để cài cả skill phải gọi bằng `/`.
 
 ## Hai tầng cài
 
@@ -29,23 +29,48 @@ Có `--dry-run` cho mọi lệnh, và `--uninstall` để gỡ sạch.
 | Global | `--core` | `~/.gemini/AGENTS.md` + `~/.gemini/config/skills/` | Mọi project, mọi phiên, không cần `/` |
 | Workspace | `--profile <id> -w <dir>` | `<dir>/.agents/skills/` | Cô lập cứng trong project đó |
 
-**Cô lập cứng:** chọn `--profile` khác nhau cho từng project. Router xoá cả 38 skill
-không liên quan khỏi workspace web. Muốn chắc chắn "folder design chỉ có skill design"
-thì tách workspace — vì Antigravity **không** hỗ trợ skill theo sub-folder.
+**Cô lập cứng:** mỗi project một `--profile`. Router loại toàn bộ skill không liên quan —
+50 skill trong 73 bị loại khỏi workspace mobile. Muốn chắc chắn "folder design chỉ có skill
+design" thì tách workspace, vì Antigravity **không** hỗ trợ skill theo sub-folder.
 
-## 7 profile
+Skill `mode: manual` mặc định **không cài** — phải `--include-manual`, để danh sách
+description trong workspace gọn lại.
+
+## 8 profile
 
 | Profile | Skill | Thành phần | Cho |
 |---|---|---|---|
-| `web-admin` | 25 | code 13, design 7, motion 5 | Dashboard, CRUD, SaaS |
-| `landing` | 22 | code 5, design 7, motion 10 | Landing, marketing, portfolio |
-| `design-system` | 16 | design 6, motion 10 | UI kit, component library |
-| `cli-tool` | 11 | code 11 | CLI, script, backend |
+| `web-admin` | 28 | code 16, design 6, motion 6 | Dashboard, CRUD, SaaS |
+| `landing` | 25 | code 8, design 6, motion 11 | Landing, marketing, portfolio |
+| `mobile-app` | 17 | code 6, design 1, motion 10 | React Native, Expo, iOS/Android |
+| `design-system` | 15 | design 5, motion 10 | UI kit, component library |
+| `cli-tool` | 13 | code 13 | CLI, script, backend |
 | `education-k12` | 19 | education 14, docs 5 | Giáo án phổ thông, đề kiểm tra |
 | `education-language` | 11 | education 9, docs 2 | Trung tâm ngoại ngữ, gia sư |
-| `docs-writer` | 7 | docs 5, design 2 | Báo cáo, thuyết trình, bảng tính |
+| `docs-writer` | 6 | docs 5, design 1 | Báo cáo, thuyết trình, bảng tính |
 
 Thêm profile = thêm 1 file JSON trong `profiles/`. Không sửa code.
+
+## Vercel
+
+10 skill từ 2 repo chính thức, **MIT**:
+
+| Skill | Pack | Việc nó làm |
+|---|---|---|
+| `vercel-react-best-practices` | code | 70 rule React/Next.js, 8 nhóm, xếp theo tác động |
+| `vercel-composition-patterns` | code | Compound component, render props, context, React 19 |
+| `vercel-react-native-skills` | code | React Native + Expo, list performance, native module |
+| `deploy-to-vercel` | code | Deploy; **mặc định preview**, trừ khi nói rõ production |
+| `vercel-optimize` | code | Audit chi phí/hiệu năng trên project đã deploy, metrics-first |
+| `vercel-cli-with-tokens` | code | CLI bằng token, không cần `vercel login` (manual) |
+| `vercel-byoc` | code | Bring Your Own Cloud: function chạy trên AWS của bạn (manual) |
+| `vercel-react-view-transitions` | motion | View Transition API native, không cần lib animation |
+| `web-design-guidelines` | design | ~100 check a11y/UX — để **review** UI |
+| `writing-guidelines` | design | Review copy/prose của trang |
+
+Nguồn: [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) @ `1a2c79d4`
+(9 skill, nhóm chính thức: React / Vercel / Design) và
+[vercel-labs/vercel-byoc](https://github.com/vercel-labs/vercel-byoc) (1 skill).
 
 ## Ponytail: FULL, khoá cứng
 
@@ -59,16 +84,16 @@ lifecycle hook nên mức không lưu qua lượt; chỉ cần tồn tại một
 
 - **Skill, code, tên biến, comment, commit message: tiếng Anh** — model đọc chỉ dẫn tiếng
   Anh ổn định nhất, và giữ được diff sạch với upstream khi cập nhật.
-- **Giao tiếp với bạn: tiếng Việt** — ghi thành luật trong `core/AGENTS.md` §4, nạp mọi phiên.
+- **Giao tiếp với bạn: tiếng Việt** — luật ở `core/AGENTS.md` §4, nạp mọi phiên.
 
 ## Cấu trúc
 
 ```
 core/            rules always_on — ponytail FULL, skill-first, verify, language
-registry/        skills.json (66 skill, 4 trục) + taxonomy.md
-profiles/        7 kiểu project → tập skill
-packs/           63 skill đã vendor + VENDOR.json (sha256 từng cái)
-tools/route.py   chọn & cài skill vào workspace
+registry/        skills.json (73 skill, 4 trục) + taxonomy.md
+profiles/        8 kiểu project → tập skill
+packs/           70 skill đã vendor + VENDOR.json (sha256 từng cái)
+tools/route.py   xem router chọn gì (không cài)
 tools/install.py cài vào Antigravity App (~/.gemini) + workspace
 tools/vendor.py  tải/cập nhật skill từ upstream, pin commit
 docs/            catalog để duyệt
@@ -80,8 +105,8 @@ Chi tiết ở [`registry/taxonomy.md`](registry/taxonomy.md). Bốn trục:
 
 - `domain` — `code` · `design` · `motion` · `education` · `docs` · `meta`
 - `phase` — `discover` · `plan` · `build` · `verify` · `review` · `ship`
-- `artifact` — `web-ui` · `code` · `document` · `slide` · `lesson` · `native-ui` · …
-- `mode` — `system` (luôn bật) · `core` · `auto` · `manual`
+- `artifact` — `web-ui` · `native-ui` · `code` · `document` · `slide` · `lesson` · `motion` · …
+- `mode` — `system` (luôn bật) · `core` · `auto` · `manual` (phải `--include-manual`)
 
 Thêm `families` (tách K-12 khỏi ngoại ngữ) và `forbid_domains` (loại cứng).
 
@@ -89,7 +114,7 @@ Thêm `families` (tách K-12 khỏi ngoại ngữ) và `forbid_domains` (loại 
 
 ```bash
 python3 tools/vendor.py                 # tải lại toàn bộ theo registry
-python3 tools/vendor.py --only design   # chỉ 1 pack
+python3 tools/vendor.py --only code     # chỉ 1 pack
 python3 tools/vendor.py --check         # kiểm sha256, phát hiện sửa tay
 ```
 
@@ -114,10 +139,14 @@ Mỗi bản ghi trong `packs/VENDOR.json` có `source` (repo@commit), `sha256`, 
 | [emilkowalski/skills](https://github.com/emilkowalski/skills) | MIT | motion (cả 14) |
 | [obra/superpowers](https://github.com/obra/superpowers) | MIT | code, meta |
 | [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail) | MIT | core |
+| [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) | MIT | code, design, motion |
+| [vercel-labs/vercel-byoc](https://github.com/vercel-labs/vercel-byoc) | MIT | code |
 | [dh2211/edu-agents](https://github.com/dh2211/edu-agents) | MIT | education |
 | [CristianHeyde/language-teaching-skills](https://github.com/CristianHeyde/language-teaching-skills) | MIT | education |
 | [JayRHa/agent-skills](https://github.com/JayRHa/agent-skills) | MIT | education |
-| [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) | ⚠ repo không khai license | code, design |
+
+`vercel-labs/agent-skills` không có file `LICENSE` ở gốc, nhưng README mục *License* ghi
+MIT và 4 SKILL.md tự khai `license: MIT`. Coi là MIT.
 
 `core/AGENTS.md` phái sinh từ ponytail (`AGENTS.md` + `skills/ponytail/SKILL.md`),
 đã sửa: bỏ mục Levels, khoá `full`, mở phạm vi sang sản phẩm phi code,

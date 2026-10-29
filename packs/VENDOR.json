@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-29T16:42:57Z",
+  "generated": "2026-10-29T16:47:13Z",
   "skills": {
     "using-superpowers": {
       "pack": "meta",
@@ -221,7 +221,7 @@
       "pack": "design",
       "source": "vercel-labs/agent-skills@1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62",
       "path": "skills/web-design-guidelines",
-      "license": "UNKNOWN",
+      "license": "MIT",
       "bytes": 1231,
       "sha256": "f4647ca866a3accf763777f83e7682954f0187cd6bea7eea0399796652414e8f"
     },
@@ -229,7 +229,7 @@
       "pack": "design",
       "source": "vercel-labs/agent-skills@1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62",
       "path": "skills/writing-guidelines",
-      "license": "UNKNOWN",
+      "license": "MIT",
       "bytes": 1233,
       "sha256": "89a5f581193289b80af58b980090aeed535047c8df2b55ccbaae0de40283a99d"
     },
@@ -504,7 +504,71 @@
       "license": "MIT",
       "bytes": 11421,
       "sha256": "88480bb660eb52babff85ae058f7d631c55a35a1ede6e0d14e2767d18b3ccb25"
+    },
+    "vercel-react-view-transitions": {
+      "pack": "motion",
+      "source": "vercel-labs/agent-skills@1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62",
+      "path": "skills/react-view-transitions",
+      "license": "MIT",
+      "bytes": 121871,
+      "sha256": "693acbddd1d2dcf774286867efbc9a5c09dce2da6f21f8e12618187a92f2106a"
+    },
+    "deploy-to-vercel": {
+      "pack": "code",
+      "source": "vercel-labs/agent-skills@1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62",
+      "path": "skills/deploy-to-vercel",
+      "license": "MIT",
+      "bytes": 9721,
+      "sha256": "418ca2a60d35c551e6cb645f4e82c1b704a8335486ffe74b1b3d0617a17504e5"
+    },
+    "vercel-cli-with-tokens": {
+      "pack": "code",
+      "source": "vercel-labs/agent-skills@1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62",
+      "path": "skills/vercel-cli-with-tokens",
+      "license": "MIT",
+      "bytes": 10476,
+      "sha256": "c06bea99e75eab07fde4fae26069baa002f82f39b53f07981704c2901551dd4c"
+    },
+    "vercel-composition-patterns": {
+      "pack": "code",
+      "source": "vercel-labs/agent-skills@1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62",
+      "path": "skills/composition-patterns",
+      "license": "MIT",
+      "bytes": 50339,
+      "sha256": "e38e0eaa609316b10423a9a138ed95e35099accd3f735585295c8a8f165c28a3"
+    },
+    "vercel-optimize": {
+      "pack": "code",
+      "source": "vercel-labs/agent-skills@1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62",
+      "path": "skills/vercel-optimize",
+      "license": "MIT",
+      "bytes": 827340,
+      "sha256": "95ae2683b30d892d165af92a350c5628b68106f395a59b448857b654e306ed91"
+    },
+    "vercel-react-best-practices": {
+      "pack": "code",
+      "source": "vercel-labs/agent-skills@1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62",
+      "path": "skills/react-best-practices",
+      "license": "MIT",
+      "bytes": 230383,
+      "sha256": "71ed7794962fa6e803ee83030517b5b93a9f70fbfeb431ec4535c5480a8d8355"
+    },
+    "vercel-react-native-skills": {
+      "pack": "code",
+      "source": "vercel-labs/agent-skills@1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62",
+      "path": "skills/react-native-skills",
+      "license": "MIT",
+      "bytes": 159022,
+      "sha256": "4012750a5ccbe064ca04af3835d5d1b011979d2d09d9b6df1c8128fac58e0a66"
+    },
+    "vercel-byoc": {
+      "pack": "code",
+      "source": "vercel-labs/vercel-byoc@HEAD",
+      "path": "skills/vercel-byoc",
+      "license": "MIT",
+      "bytes": 24610,
+      "sha256": "e43dcaa3af25f211b1db40d4fba2a2411cefb780b22b0fb97354e38644289eec"
     }
   },
-  "total_bytes": 10516547
+  "total_bytes": 11950309
 }

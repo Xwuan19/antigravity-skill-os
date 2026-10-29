@@ -58,14 +58,17 @@ def fetch_repo(repo: str, ref: str, paths: list[str], tmp: Path) -> Path | None:
     run(["git", "-C", str(d), "sparse-checkout", "init", "--no-cone"])
     (d / ".git" / "info" / "sparse-checkout").write_text(
         "\n".join(paths + LICENSE_NAMES) + "\n", encoding="utf-8")
-    ok, err = run(["git", "-C", str(d), "fetch", "--depth", "1", "--quiet",
-                   "origin", ref])
+    if ref:
+        ok, err = run(["git", "-C", str(d), "fetch", "--depth", "1", "--quiet",
+                       "origin", ref])
+        if not ok:
+            print(f"  ✗ fetch {repo}@{ref[:10]}: {err[:140]}")
+            return None
+        ok, err = run(["git", "-C", str(d), "checkout", "--quiet", ref])
+    else:
+        ok, err = run(["git", "-C", str(d), "checkout", "--quiet"])
     if not ok:
-        print(f"  ✗ fetch {repo}@{ref[:10]}: {err[:140]}")
-        return None
-    ok, err = run(["git", "-C", str(d), "checkout", "--quiet", ref])
-    if not ok:
-        print(f"  ✗ checkout {repo}@{ref[:10]}: {err[:140]}")
+        print(f"  ✗ checkout {repo}@{ref[:10] or 'HEAD'}: {err[:140]}")
         return None
     return d
 
@@ -77,7 +80,7 @@ def vendor(skills: list[dict], only: str | None) -> dict:
 
     by_repo: dict[tuple[str, str], list[dict]] = {}
     for s in todo:
-        by_repo.setdefault((s["repo"], s.get("ref", "")), []).append(s)
+        by_repo.setdefault((s["repo"], s.get("ref") or ""), []).append(s)
 
     out: dict = {
         "generated": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
@@ -110,7 +113,7 @@ def vendor(skills: list[dict], only: str | None) -> dict:
                 sk = dest / "SKILL.md"
                 out["skills"][s["id"]] = {
                     "pack": s["pack"],
-                    "source": f"{repo}@{ref}" if ref else repo,
+                    "source": (f"{repo}@{ref}" if ref else f"{repo}@HEAD"),
                     "path": s["path"],
                     "license": s["license"],
                     "bytes": size,

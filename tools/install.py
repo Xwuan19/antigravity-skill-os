@@ -47,7 +47,7 @@ def pack_dir(skill: dict) -> Path:
     return PACKS / skill["pack"] / skill["id"]
 
 
-def select(skills: list[dict], prof: dict) -> list[dict]:
+def select(skills: list[dict], prof: dict, include_manual: bool = False) -> list[dict]:
     want_dom = set(prof["select"].get("domain", []))
     want_art = set(prof["select"].get("artifact", []))
     forbid = set(prof.get("forbid_domains", []))
@@ -55,6 +55,8 @@ def select(skills: list[dict], prof: dict) -> list[dict]:
     out = []
     for s in skills:
         if s["mode"] == "system":
+            continue
+        if s["mode"] == "manual" and not include_manual:
             continue
         dom, art = set(s["domain"]), set(s["artifact"]) or {"*"}
         fam = set(s.get("families", []))
@@ -125,11 +127,12 @@ def do_manifest(dest_root: Path, skills: list[dict], prof: str, dry: bool) -> No
 
 
 def do_workspace(skills: list[dict], profiles: dict[str, dict],
-                 profile: str, ws: Path, dry: bool, force: bool) -> None:
+                 profile: str, ws: Path, dry: bool, force: bool,
+                 include_manual: bool = False) -> None:
     if profile not in profiles:
         sys.exit(f"  Không có profile '{profile}'. Có: {', '.join(profiles)}")
     prof = profiles[profile]
-    chosen = select(skills, prof)
+    chosen = select(skills, prof, include_manual)
     target = ws / ".agents" / "skills"
     print(f"\n  Profile : {profile} — {prof['label']}")
     print(f"  Cài vào : {target}  ({len(chosen)} skill)")
@@ -193,6 +196,8 @@ def main() -> None:
     ap.add_argument("--uninstall", action="store_true")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--force", action="store_true", help="ghi đè skill không do Skill OS tạo")
+    ap.add_argument("--include-manual", action="store_true",
+                    help="cài cả skill mode=manual (mặc định bỏ để workspace gọn)")
     a = ap.parse_args()
 
     skills, profiles = load()
@@ -206,7 +211,7 @@ def main() -> None:
         do_core(skills, dry, a.force)
     if a.profile:
         do_workspace(skills, profiles, a.profile, Path(a.workspace).expanduser().resolve(),
-                     dry, a.force)
+                     dry, a.force, a.include_manual)
     if a.uninstall:
         do_uninstall(skills, dry)
     if not any([a.list, a.core, a.profile, a.uninstall]):
