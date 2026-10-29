@@ -1,0 +1,28 @@
+{
+  "id": "meta",
+  "label": "Meta — nuôi chính hệ thống",
+  "tags": [
+    "meta",
+    "skill",
+    "plugin"
+  ],
+  "select": {
+    "domain": [
+      "meta"
+    ],
+    "artifact": [
+      "*"
+    ]
+  },
+  "forbid_domains": [],
+  "agent_groups": [
+    "meta"
+  ],
+  "plugins": [
+    "plugin-dev",
+    "claude-md-management",
+    "hookify"
+  ],
+  "max_skills": 20,
+  "lsp": true
+}

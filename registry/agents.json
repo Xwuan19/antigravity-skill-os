@@ -1,0 +1,427 @@
+{
+  "_comment": "Subagent port từ hệ Claude Code sang .agents/agents/. `group` quyết định profile nào nhận.",
+  "generated": "2026-10-29",
+  "tool_map_doc": "tools/port_agents.py có bảng map tool; mặc định KHÔNG ghi `tools` để tránh treo subagent.",
+  "groups": {
+    "code": "Agent kỹ thuật: review, debug, test, refactor, backend, frontend, infra, data",
+    "design": "Agent thẩm mỹ và a11y",
+    "docs": "Agent tài liệu",
+    "meta": "Agent điều phối, orchestration, nghiên cứu"
+  },
+  "agents": [
+    {
+      "id": "code-reviewer",
+      "group": "code",
+      "repo": "VoltAgent/awesome-claude-code-subagents",
+      "ref": null,
+      "path": "categories/04-quality-security/code-reviewer.md",
+      "license": "MIT",
+      "source_category": "04-quality-security"
+    },
+    {
+      "id": "debugger",
+      "group": "code",
+      "repo": "VoltAgent/awesome-claude-code-subagents",
+      "ref": null,
+      "path": "categories/04-quality-security/debugger.md",
+      "license": "MIT",
+      "source_category": "04-quality-security"
+    },
+    {
+      "id": "error-detective",
+      "group": "code",
+      "repo": "VoltAgent/awesome-claude-code-subagents",
+      "ref": null,
+      "path": "categories/04-quality-security/error-detective.md",
+      "license": "MIT",
+      "source_category": "04-quality-security"
+    },
+    {
+      "id": "test-automator",
+      "group": "code",
+      "repo": "VoltAgent/awesome-claude-code-subagents",
+      "ref": null,
+      "path": "categories/04-quality-security/test-automator.md",
+      "license": "MIT",
+      "source_category": "04-quality-security"
+    },
+    {
+      "id": "qa-expert",
+      "group": "code",
+      "repo": "VoltAgent/awesome-claude-code-subagents",
+      "ref": null,
+      "path": "categories/04-quality-security/qa-expert.md",
+      "license": "MIT",
+      "source_category": "04-quality-security"
+    },
+    {
+      "id": "refactoring-specialist",
+      "group": "code",
+      "repo": "VoltAgent/awesome-claude-code-subagents",
+      "ref": null,
+      "path": "categories/06-developer-experience/refactoring-specialist.md",
+      "license": "MIT",
+      "source_category": "06-developer-experience"
+    },
+    {
+      "id": "architect-reviewer",
+      "group": "code",
+      "repo": "VoltAgent/awesome-claude-code-subagents",
+      "ref": null,
+      "path": "categories/04-quality-security/architect-reviewer.md",
+      "license": "MIT",
+      "source_category": "04-quality-security"
+    },
+    {
+      "id": "security-auditor",
+      "group": "code",
+      "repo": "VoltAgent/awesome-claude-code-subagents",
+      "ref": null,
+      "path": "categories/04-quality-security/security-auditor.md",
+      "license": "MIT",
+      "source_category": "04-quality-security"
+    },
+    {
+      "id": "performance-engineer",
+      "group": "code",
+      "repo": "VoltAgent/awesome-claude-code-subagents",
+      "ref": null,
+      "path": "categories/04-quality-security/performance-engineer.md",
+      "license": "MIT",
+      "source_category": "04-quality-security"
+    },
+    {
+      "id": "accessibility-tester",
+      "group": "design",
+      "repo": "VoltAgent/awesome-claude-code-subagents",
+      "ref": null,
+      "path": "categories/04-quality-security/accessibility-tester.md",
+      "license": "MIT",
+      "source_category": "04-quality-security"
+    },
+    {
+      "id": "git-workflow-manager",
+      "group": "code",
+      "repo": "VoltAgent/awesome-claude-code-subagents",
+      "ref": null,
+      "path": "categories/06-developer-experience/git-workflow-manager.md",
+      "license": "MIT",
+      "source_category": "06-developer-experience"
+    },
+    {
+      "id": "frontend-developer",
+      "group": "code",
+      "repo": "VoltAgent/awesome-claude-code-subagents",
+      "ref": null,
+      "path": "categories/01-core-development/frontend-developer.md",
+      "license": "MIT",
+      "source_category": "01-core-development"
+    },
+    {
+      "id": "ui-designer",
+      "group": "design",
+      "repo": "VoltAgent/awesome-claude-code-subagents",
+      "ref": null,
+      "path": "categories/01-core-development/ui-designer.md",
+      "license": "MIT",
+      "source_category": "01-core-development"
+    },
+    {
+      "id": "react-specialist",
+      "group": "code",
+      "repo": "VoltAgent/awesome-claude-code-subagents",
+      "ref": null,
+      "path": "categories/02-language-specialists/react-specialist.md",
+      "license": "MIT",
+      "source_category": "02-language-specialists"
+    },
+    {
+      "id": "nextjs-developer",
+      "group": "code",
+      "repo": "VoltAgent/awesome-claude-code-subagents",
+      "ref": null,
+      "path": "categories/02-language-specialists/nextjs-developer.md",
+      "license": "MIT",
+      "source_category": "02-language-specialists"
+    },
+    {
+      "id": "typescript-pro",
+      "group": "code",
+      "repo": "VoltAgent/awesome-claude-code-subagents",
+      "ref": null,
+      "path": "categories/02-language-specialists/typescript-pro.md",
+      "license": "MIT",
+      "source_category": "02-language-specialists"
+    },
+    {
+      "id": "backend-developer",
+      "group": "code",
+      "repo": "VoltAgent/awesome-claude-code-subagents",
+      "ref": null,
+      "path": "categories/01-core-development/backend-developer.md",
+      "license": "MIT",
+      "source_category": "01-core-development"
+    },
+    {
+      "id": "api-designer",
+      "group": "code",
+      "repo": "VoltAgent/awesome-claude-code-subagents",
+      "ref": null,
+      "path": "categories/01-core-development/api-designer.md",
+      "license": "MIT",
+      "source_category": "01-core-development"
+    },
+    {
+      "id": "graphql-architect",
+      "group": "code",
+      "repo": "VoltAgent/awesome-claude-code-subagents",
+      "ref": null,
+      "path": "categories/01-core-development/graphql-architect.md",
+      "license": "MIT",
+      "source_category": "01-core-development"
+    },
+    {
+      "id": "python-pro",
+      "group": "code",
+      "repo": "VoltAgent/awesome-claude-code-subagents",
+      "ref": null,
+      "path": "categories/02-language-specialists/python-pro.md",
+      "license": "MIT",
+      "source_category": "02-language-specialists"
+    },
+    {
+      "id": "golang-pro",
+      "group": "code",
+      "repo": "VoltAgent/awesome-claude-code-subagents",
+      "ref": null,
+      "path": "categories/02-language-specialists/golang-pro.md",
+      "license": "MIT",
+      "source_category": "02-language-specialists"
+    },
+    {
+      "id": "rust-engineer",
+      "group": "code",
+      "repo": "VoltAgent/awesome-claude-code-subagents",
+      "ref": null,
+      "path": "categories/02-language-specialists/rust-engineer.md",
+      "license": "MIT",
+      "source_category": "02-language-specialists"
+    },
+    {
+      "id": "fastapi-developer",
+      "group": "code",
+      "repo": "VoltAgent/awesome-claude-code-subagents",
+      "ref": null,
+      "path": "categories/02-language-specialists/fastapi-developer.md",
+      "license": "MIT",
+      "source_category": "02-language-specialists"
+    },
+    {
+      "id": "mobile-developer",
+      "group": "code",
+      "repo": "VoltAgent/awesome-claude-code-subagents",
+      "ref": null,
+      "path": "categories/01-core-development/mobile-developer.md",
+      "license": "MIT",
+      "source_category": "01-core-development"
+    },
+    {
+      "id": "expo-react-native-expert",
+      "group": "code",
+      "repo": "VoltAgent/awesome-claude-code-subagents",
+      "ref": null,
+      "path": "categories/02-language-specialists/expo-react-native-expert.md",
+      "license": "MIT",
+      "source_category": "02-language-specialists"
+    },
+    {
+      "id": "swift-expert",
+      "group": "code",
+      "repo": "VoltAgent/awesome-claude-code-subagents",
+      "ref": null,
+      "path": "categories/02-language-specialists/swift-expert.md",
+      "license": "MIT",
+      "source_category": "02-language-specialists"
+    },
+    {
+      "id": "devops-engineer",
+      "group": "code",
+      "repo": "VoltAgent/awesome-claude-code-subagents",
+      "ref": null,
+      "path": "categories/03-infrastructure/devops-engineer.md",
+      "license": "MIT",
+      "source_category": "03-infrastructure"
+    },
+    {
+      "id": "kubernetes-specialist",
+      "group": "code",
+      "repo": "VoltAgent/awesome-claude-code-subagents",
+      "ref": null,
+      "path": "categories/03-infrastructure/kubernetes-specialist.md",
+      "license": "MIT",
+      "source_category": "03-infrastructure"
+    },
+    {
+      "id": "terraform-engineer",
+      "group": "code",
+      "repo": "VoltAgent/awesome-claude-code-subagents",
+      "ref": null,
+      "path": "categories/03-infrastructure/terraform-engineer.md",
+      "license": "MIT",
+      "source_category": "03-infrastructure"
+    },
+    {
+      "id": "database-optimizer",
+      "group": "code",
+      "repo": "VoltAgent/awesome-claude-code-subagents",
+      "ref": null,
+      "path": "categories/05-data-ai/database-optimizer.md",
+      "license": "MIT",
+      "source_category": "05-data-ai"
+    },
+    {
+      "id": "ai-engineer",
+      "group": "code",
+      "repo": "VoltAgent/awesome-claude-code-subagents",
+      "ref": null,
+      "path": "categories/05-data-ai/ai-engineer.md",
+      "license": "MIT",
+      "source_category": "05-data-ai"
+    },
+    {
+      "id": "llm-architect",
+      "group": "code",
+      "repo": "VoltAgent/awesome-claude-code-subagents",
+      "ref": null,
+      "path": "categories/05-data-ai/llm-architect.md",
+      "license": "MIT",
+      "source_category": "05-data-ai"
+    },
+    {
+      "id": "data-engineer",
+      "group": "code",
+      "repo": "VoltAgent/awesome-claude-code-subagents",
+      "ref": null,
+      "path": "categories/05-data-ai/data-engineer.md",
+      "license": "MIT",
+      "source_category": "05-data-ai"
+    },
+    {
+      "id": "prompt-engineer",
+      "group": "code",
+      "repo": "VoltAgent/awesome-claude-code-subagents",
+      "ref": null,
+      "path": "categories/05-data-ai/prompt-engineer.md",
+      "license": "MIT",
+      "source_category": "05-data-ai"
+    },
+    {
+      "id": "technical-writer",
+      "group": "docs",
+      "repo": "VoltAgent/awesome-claude-code-subagents",
+      "ref": null,
+      "path": "categories/08-business-product/technical-writer.md",
+      "license": "MIT",
+      "source_category": "08-business-product"
+    },
+    {
+      "id": "documentation-engineer",
+      "group": "docs",
+      "repo": "VoltAgent/awesome-claude-code-subagents",
+      "ref": null,
+      "path": "categories/06-developer-experience/documentation-engineer.md",
+      "license": "MIT",
+      "source_category": "06-developer-experience"
+    },
+    {
+      "id": "api-documenter",
+      "group": "docs",
+      "repo": "VoltAgent/awesome-claude-code-subagents",
+      "ref": null,
+      "path": "categories/07-specialized-domains/api-documenter.md",
+      "license": "MIT",
+      "source_category": "07-specialized-domains"
+    },
+    {
+      "id": "mcp-developer",
+      "group": "code",
+      "repo": "VoltAgent/awesome-claude-code-subagents",
+      "ref": null,
+      "path": "categories/06-developer-experience/mcp-developer.md",
+      "license": "MIT",
+      "source_category": "06-developer-experience"
+    },
+    {
+      "id": "codebase-orchestrator",
+      "group": "meta",
+      "repo": "VoltAgent/awesome-claude-code-subagents",
+      "ref": null,
+      "path": "categories/09-meta-orchestration/codebase-orchestrator.md",
+      "license": "MIT",
+      "source_category": "09-meta-orchestration"
+    },
+    {
+      "id": "workflow-orchestrator",
+      "group": "meta",
+      "repo": "VoltAgent/awesome-claude-code-subagents",
+      "ref": null,
+      "path": "categories/09-meta-orchestration/workflow-orchestrator.md",
+      "license": "MIT",
+      "source_category": "09-meta-orchestration"
+    },
+    {
+      "id": "context-manager",
+      "group": "meta",
+      "repo": "VoltAgent/awesome-claude-code-subagents",
+      "ref": null,
+      "path": "categories/09-meta-orchestration/context-manager.md",
+      "license": "MIT",
+      "source_category": "09-meta-orchestration"
+    },
+    {
+      "id": "memory-curator",
+      "group": "meta",
+      "repo": "VoltAgent/awesome-claude-code-subagents",
+      "ref": null,
+      "path": "categories/09-meta-orchestration/memory-curator.md",
+      "license": "MIT",
+      "source_category": "09-meta-orchestration"
+    },
+    {
+      "id": "task-distributor",
+      "group": "meta",
+      "repo": "VoltAgent/awesome-claude-code-subagents",
+      "ref": null,
+      "path": "categories/09-meta-orchestration/task-distributor.md",
+      "license": "MIT",
+      "source_category": "09-meta-orchestration"
+    },
+    {
+      "id": "knowledge-synthesizer",
+      "group": "meta",
+      "repo": "VoltAgent/awesome-claude-code-subagents",
+      "ref": null,
+      "path": "categories/09-meta-orchestration/knowledge-synthesizer.md",
+      "license": "MIT",
+      "source_category": "09-meta-orchestration"
+    },
+    {
+      "id": "research-analyst",
+      "group": "meta",
+      "repo": "VoltAgent/awesome-claude-code-subagents",
+      "ref": null,
+      "path": "categories/10-research-analysis/research-analyst.md",
+      "license": "MIT",
+      "source_category": "10-research-analysis"
+    },
+    {
+      "id": "search-specialist",
+      "group": "meta",
+      "repo": "VoltAgent/awesome-claude-code-subagents",
+      "ref": null,
+      "path": "categories/10-research-analysis/search-specialist.md",
+      "license": "MIT",
+      "source_category": "10-research-analysis"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "id": "mobile-app",
+  "label": "Ứng dụng mobile / React Native / Expo",
+  "tags": [
+    "mobile",
+    "react-native",
+    "expo",
+    "ios",
+    "android",
+    "app"
+  ],
+  "select": {
+    "domain": [
+      "code",
+      "motion"
+    ],
+    "artifact": [
+      "native-ui",
+      "motion",
+      "code"
+    ]
+  },
+  "forbid_domains": [
+    "education",
+    "docs"
+  ],
+  "rationale": "React Native + Expo. Dùng skill native, không dùng skill web-ui.",
+  "max_skills": 64,
+  "agent_groups": [
+    "code",
+    "meta"
+  ],
+  "plugins": [
+    "commit-commands",
+    "code-review",
+    "feature-dev"
+  ],
+  "lsp": true
+}

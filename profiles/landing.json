@@ -1,0 +1,39 @@
+{
+  "id": "landing",
+  "label": "Landing page / marketing site / portfolio",
+  "tags": [
+    "landing",
+    "marketing",
+    "portfolio",
+    "website",
+    "brand"
+  ],
+  "select": {
+    "domain": [
+      "design",
+      "code",
+      "motion"
+    ],
+    "artifact": [
+      "web-ui",
+      "motion"
+    ]
+  },
+  "forbid_domains": [
+    "education"
+  ],
+  "rationale": "Landing cần ấn tượng thị giác + chuyển động mượt, logic mỏng.",
+  "max_skills": 36,
+  "agent_groups": [
+    "code",
+    "design",
+    "meta"
+  ],
+  "plugins": [
+    "commit-commands",
+    "code-review",
+    "feature-dev",
+    "security-guidance"
+  ],
+  "lsp": true
+}

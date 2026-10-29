@@ -1,0 +1,41 @@
+{
+  "id": "cli-tool",
+  "label": "CLI / script / thư viện / backend thuần",
+  "tags": [
+    "cli",
+    "script",
+    "library",
+    "backend",
+    "api",
+    "tool"
+  ],
+  "select": {
+    "domain": [
+      "code"
+    ],
+    "artifact": [
+      "code",
+      "api"
+    ]
+  },
+  "forbid_domains": [
+    "education",
+    "design",
+    "motion"
+  ],
+  "rationale": "Không có UI thì skill thiết kế chỉ làm nhiễu danh sách skill.",
+  "max_skills": 52,
+  "agent_groups": [
+    "code",
+    "meta"
+  ],
+  "plugins": [
+    "commit-commands",
+    "code-review",
+    "feature-dev",
+    "security-guidance",
+    "code-simplifier",
+    "mcp-server-dev"
+  ],
+  "lsp": true
+}

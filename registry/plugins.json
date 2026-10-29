@@ -1,0 +1,96 @@
+{
+  "_comment": "Plugin Claude Code được port sang định dạng Antigravity bằng tools/port_plugins.py",
+  "generated": "2026-10-29",
+  "plugins": [
+    {
+      "id": "commit-commands",
+      "origin": "anthropics",
+      "repo": "anthropics/claude-plugins-official",
+      "ref": "f8c5e7a1dcb71b10cb74586224b5401f3de5db28",
+      "path": "plugins/commit-commands",
+      "license": "Apache-2.0",
+      "description": "Git commit / push / PR commands",
+      "vendor": false
+    },
+    {
+      "id": "code-review",
+      "origin": "anthropics",
+      "repo": "anthropics/claude-plugins-official",
+      "ref": "f8c5e7a1dcb71b10cb74586224b5401f3de5db28",
+      "path": "plugins/code-review",
+      "license": "Apache-2.0",
+      "description": "Multi-agent PR review",
+      "vendor": false
+    },
+    {
+      "id": "feature-dev",
+      "origin": "anthropics",
+      "repo": "anthropics/claude-plugins-official",
+      "ref": "f8c5e7a1dcb71b10cb74586224b5401f3de5db28",
+      "path": "plugins/feature-dev",
+      "license": "Apache-2.0",
+      "description": "Feature workflow: explorer, architect, reviewer agents",
+      "vendor": false
+    },
+    {
+      "id": "security-guidance",
+      "origin": "anthropics",
+      "repo": "anthropics/claude-plugins-official",
+      "ref": "f8c5e7a1dcb71b10cb74586224b5401f3de5db28",
+      "path": "plugins/security-guidance",
+      "license": "Apache-2.0",
+      "description": "Security warnings on edits + diff review on stop",
+      "vendor": false
+    },
+    {
+      "id": "claude-md-management",
+      "origin": "anthropics",
+      "repo": "anthropics/claude-plugins-official",
+      "ref": "f8c5e7a1dcb71b10cb74586224b5401f3de5db28",
+      "path": "plugins/claude-md-management",
+      "license": "Apache-2.0",
+      "description": "Audit and improve AGENTS.md/CLAUDE.md",
+      "vendor": false
+    },
+    {
+      "id": "plugin-dev",
+      "origin": "anthropics",
+      "repo": "anthropics/claude-plugins-official",
+      "ref": "f8c5e7a1dcb71b10cb74586224b5401f3de5db28",
+      "path": "plugins/plugin-dev",
+      "license": "Apache-2.0",
+      "description": "Toolkit để viết plugin/skill/agent",
+      "vendor": false
+    },
+    {
+      "id": "code-simplifier",
+      "origin": "anthropics",
+      "repo": "anthropics/claude-plugins-official",
+      "ref": "f8c5e7a1dcb71b10cb74586224b5401f3de5db28",
+      "path": "plugins/code-simplifier",
+      "license": "Apache-2.0",
+      "description": "Đơn giản hoá code",
+      "vendor": false
+    },
+    {
+      "id": "mcp-server-dev",
+      "origin": "anthropics",
+      "repo": "anthropics/claude-plugins-official",
+      "ref": "f8c5e7a1dcb71b10cb74586224b5401f3de5db28",
+      "path": "plugins/mcp-server-dev",
+      "license": "Apache-2.0",
+      "description": "Thiết kế và dựng MCP server",
+      "vendor": false
+    },
+    {
+      "id": "hookify",
+      "origin": "anthropics",
+      "repo": "anthropics/claude-plugins-official",
+      "ref": "f8c5e7a1dcb71b10cb74586224b5401f3de5db28",
+      "path": "plugins/hookify",
+      "license": "Apache-2.0",
+      "description": "Biến câu 'từ giờ luôn...' thành hook",
+      "vendor": false
+    }
+  ]
+}

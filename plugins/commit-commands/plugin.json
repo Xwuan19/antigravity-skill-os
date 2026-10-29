@@ -1,0 +1,5 @@
+{
+  "$schema": "https://antigravity.google/schemas/v1/plugin.json",
+  "name": "commit-commands",
+  "description": "Git commit / push / PR commands"
+}

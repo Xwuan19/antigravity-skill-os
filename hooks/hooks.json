@@ -1,0 +1,48 @@
+{
+  "skill-os-session-start": {
+    "enabled": true,
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 .agents/skill-os/session-start.py",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  },
+
+  "skill-os-format-on-write": {
+    "enabled": false,
+    "PostToolUse": [
+      {
+        "matcher": "write_to_file|replace_file_content|multi_replace_file_content",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 .agents/skill-os/format.py",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  },
+
+  "skill-os-safety-gate": {
+    "enabled": false,
+    "PreToolUse": [
+      {
+        "matcher": "run_command",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 .agents/skill-os/safety.py",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}
