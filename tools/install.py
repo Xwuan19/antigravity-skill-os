@@ -264,6 +264,10 @@ def do_workspace(skills: list[dict], profiles: dict[str, dict],
     print(f"\n  {sum(by_pack.values())} skill đã cài — "
           + ", ".join(f"{k} {v}" for k, v in sorted(by_pack.items())))
     print(f"  {skipped} skill bị loại khỏi workspace này (cô lập cứng).")
+    cap = prof.get("max_skills")
+    if cap and len(chosen) > cap:
+        print(f"  ⚠  {len(chosen)} skill > trần {cap} của profile — "
+              "danh sách description dài, agent dễ chọn sai.")
 
 
 def do_list(skills: list[dict]) -> None:

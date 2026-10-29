@@ -68,6 +68,18 @@ Dùng khi hai bộ skill cùng domain nhưng không được trộn:
 Skill **không khai** `families` = khớp mọi họ. Skill **có khai** = chỉ khớp profile cùng họ.
 Không có trục này thì mở project K-12 sẽ thấy cả `lesson-planning` của bộ ngoại ngữ.
 
+### `families: ["logic"]` — kỷ luật kỹ thuật
+
+12 skill mang `families: ["logic"]`: cách suy luận khi code, không phải công cụ của một
+framework. Chúng đi theo **miền** (`domain: code`) chứ không theo `artifact`, nên profile có
+`domain` chứa `code` là nhận — bất kể artifact là `web-ui`, `native-ui` hay `code`.
+
+Đây là chỗ dễ sai nhất khi thêm profile: `mobile-app` từng khai `domain: code` nhưng
+`artifact: [native-ui, motion]`, nên **không** skill debug nào lọt vào. Khai miền mà chặn
+artifact của chính miền đó là tự vô hiệu hoá.
+
+Chi tiết sáu cổng: [docs/code-logic.md](../docs/code-logic.md).
+
 ## Hàng rào cứng: `forbid_domains`
 
 Profile khai domain bị cấm, router loại **tuyệt đối** — kể cả skill khớp ở trục khác.
@@ -88,12 +100,12 @@ Profile khai domain bị cấm, router loại **tuyệt đối** — kể cả s
 
 | Profile | Skill | Plugin | Agent | LSP | Dùng cho |
 |---|---|---|---|---|---|
-| `web-admin` | 29 | 6 | 43 | ✅ | Dashboard, CRUD, SaaS |
+| `web-admin` | 41 | 6 | 43 | ✅ | Dashboard, CRUD, SaaS |
+| `mobile-app` | 38 | 3 | 41 | ✅ | React Native, Expo, iOS/Android |
 | `landing` | 26 | 4 | 43 | ✅ | Landing, marketing, portfolio |
+| `cli-tool` | 26 | 6 | 41 | ✅ | CLI, script, backend |
 | `education-k12` | 19 | — | — | — | Giáo án phổ thông, đề kiểm tra |
-| `mobile-app` | 18 | 3 | 41 | ✅ | React Native, Expo, iOS/Android |
 | `design-system` | 15 | 2 | 10 | ✅ | UI kit, component library |
-| `cli-tool` | 14 | 6 | 41 | ✅ | CLI, script, backend |
 | `education-language` | 11 | — | — | — | Trung tâm ngoại ngữ, gia sư |
 | `docs-writer` | 6 | 1 | 3 | — | Báo cáo, thuyết trình, bảng tính |
 | `meta` | 5 | 3 | 8 | ✅ | Nuôi chính hệ thống (plugin, hook, AGENTS.md) |
@@ -106,7 +118,7 @@ trong `.agents/agents/`, plugin = số khai báo trong profile — cần `--plug
 
 Thêm profile mới = thêm một file JSON. Không cần sửa code.
 
-Tổng registry: **75 skill** (72 vendor + 3 rule hệ thống) + 46 subagent + 9 plugin + **12
+Tổng registry: **87 skill** (84 vendor + 3 rule hệ thống) + 46 subagent + 9 plugin + **12
 language server**. Skill, agent và plugin đều đã nằm trong repo, pin commit, nên cài đặt
 không cần mạng.
 

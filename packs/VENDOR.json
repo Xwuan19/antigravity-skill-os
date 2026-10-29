@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-29T16:47:13Z",
+  "generated": "2026-10-29T17:03:57Z",
   "skills": {
     "using-superpowers": {
       "pack": "meta",
@@ -208,14 +208,6 @@
       "license": "Apache-2.0",
       "bytes": 15815,
       "sha256": "2e47d78846faeea4a56e9809c52700087a15a2155a3f293a3efbaded81398ef4"
-    },
-    "react-best-practices": {
-      "pack": "code",
-      "source": "vercel-labs/agent-skills@1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62",
-      "path": "skills/react-best-practices",
-      "license": "UNKNOWN",
-      "bytes": 230383,
-      "sha256": "71ed7794962fa6e803ee83030517b5b93a9f70fbfeb431ec4535c5480a8d8355"
     },
     "web-design-guidelines": {
       "pack": "design",
@@ -579,12 +571,108 @@
     },
     "planning-with-files": {
       "pack": "code",
-      "source": "OthmanAdi/planning-with-files@5d29800bf8",
-      "path": "code/planning-with-files",
+      "source": "OthmanAdi/planning-with-files@5d29800bf8b919ca9a88ee7885b90050b5cb64ed",
+      "path": ".agents/skills/planning-with-files",
       "license": "MIT",
       "bytes": 471289,
       "sha256": "ddef2d7f6ff8f7894b8b55604dafbe3158b9a311edba4a1745a7099684979593"
+    },
+    "audit-security": {
+      "pack": "code",
+      "source": "tounsils/claude-code-skills@807b57c9eb35842569bb3732ff8831ca7e6a3d57",
+      "path": "skills/audit-security",
+      "license": "MIT",
+      "bytes": 18116,
+      "sha256": "02ccbf13c733d1f2b420aa5ed50c383325450bb75d7e7f9670599f0445cba0ba"
+    },
+    "bump-deps": {
+      "pack": "code",
+      "source": "tounsils/claude-code-skills@807b57c9eb35842569bb3732ff8831ca7e6a3d57",
+      "path": "skills/bump-deps",
+      "license": "MIT",
+      "bytes": 7404,
+      "sha256": "b2c349559719e1443ee5d2393626f1b102fdc6eb3732351163e765248d8db5d4"
+    },
+    "onboard-repo": {
+      "pack": "code",
+      "source": "tounsils/claude-code-skills@807b57c9eb35842569bb3732ff8831ca7e6a3d57",
+      "path": "skills/onboard-repo",
+      "license": "MIT",
+      "bytes": 8075,
+      "sha256": "c85c3208928825da915b5cd5608d2ca40caaf3abaeceef9c754cb94115701eba"
+    },
+    "perf-hunt": {
+      "pack": "code",
+      "source": "tounsils/claude-code-skills@807b57c9eb35842569bb3732ff8831ca7e6a3d57",
+      "path": "skills/perf-hunt",
+      "license": "MIT",
+      "bytes": 7553,
+      "sha256": "c7f3e8c052ee5efb20f3a75bf0e44c8ff3469d53c98d662dcde0bdb004b30d36"
+    },
+    "restructure": {
+      "pack": "code",
+      "source": "tounsils/claude-code-skills@807b57c9eb35842569bb3732ff8831ca7e6a3d57",
+      "path": "skills/restructure",
+      "license": "MIT",
+      "bytes": 19936,
+      "sha256": "d861a70dcfd490c281f22735d0ac20449876601b52b9a475aec78d83ee62ad95"
+    },
+    "review-diff": {
+      "pack": "code",
+      "source": "tounsils/claude-code-skills@807b57c9eb35842569bb3732ff8831ca7e6a3d57",
+      "path": "skills/review-diff",
+      "license": "MIT",
+      "bytes": 5969,
+      "sha256": "95fd3d14e9d380e7bab9e0309d0b92c8d1420b869f7669f2224e56dc7d68f481"
+    },
+    "root-cause": {
+      "pack": "code",
+      "source": "tounsils/claude-code-skills@807b57c9eb35842569bb3732ff8831ca7e6a3d57",
+      "path": "skills/root-cause",
+      "license": "MIT",
+      "bytes": 6899,
+      "sha256": "bc06b8435511ae6ae9a6becb7349fc20156d33c4a6db53d33365a39c739b39dd"
+    },
+    "ship-pr": {
+      "pack": "code",
+      "source": "tounsils/claude-code-skills@807b57c9eb35842569bb3732ff8831ca7e6a3d57",
+      "path": "skills/ship-pr",
+      "license": "MIT",
+      "bytes": 7063,
+      "sha256": "a8ce274395e7a37fb7af311bd8163595aad1c3d43cb5ace70fd60df6ac89f800"
+    },
+    "test-gaps": {
+      "pack": "code",
+      "source": "tounsils/claude-code-skills@807b57c9eb35842569bb3732ff8831ca7e6a3d57",
+      "path": "skills/test-gaps",
+      "license": "MIT",
+      "bytes": 6061,
+      "sha256": "c14486dcd7243297b67c85433f69cf830f5e1b368001b59d089b6591a16d4157"
+    },
+    "triage-ci": {
+      "pack": "code",
+      "source": "tounsils/claude-code-skills@807b57c9eb35842569bb3732ff8831ca7e6a3d57",
+      "path": "skills/triage-ci",
+      "license": "MIT",
+      "bytes": 7773,
+      "sha256": "1ccb3ff0f6b595190b77129aa4bbdc929ac5eaa033be72fadd1f077c977c192a"
+    },
+    "karpathy-guidelines": {
+      "pack": "code",
+      "source": "multica-ai/andrej-karpathy-skills@2c606141936f1eeef17fa3043a72095b4765b9c2",
+      "path": "skills/karpathy-guidelines",
+      "license": "MIT",
+      "bytes": 2518,
+      "sha256": "6e22cc54cb02a5e98ae42d06d9d7292db0c1b43894831b32879beb0166b2aea7"
+    },
+    "parallel-debugging": {
+      "pack": "code",
+      "source": "wshobson/agents@0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "path": "plugins/agent-teams/skills/parallel-debugging",
+      "license": "MIT",
+      "bytes": 9104,
+      "sha256": "31b6e288504f465cfecb2ff18ec014a836448a246f61f7a8e10c5462df5520d4"
     }
   },
-  "total_bytes": 12421598
+  "total_bytes": 12297686
 }

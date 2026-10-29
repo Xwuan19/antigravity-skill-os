@@ -42,305 +42,29 @@
   },
   "skills": [
     {
-      "id": "brainstorming",
-      "pack": "code",
+      "id": "animate",
+      "pack": "motion",
       "domain": [
-        "code"
-      ],
-      "phase": [
-        "discover"
-      ],
-      "artifact": [
-        "*"
-      ],
-      "mode": "auto",
-      "repo": "obra/superpowers",
-      "ref": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
-      "path": "skills/brainstorming",
-      "license": "MIT"
-    },
-    {
-      "id": "deploy-to-vercel",
-      "pack": "code",
-      "domain": [
-        "code"
-      ],
-      "phase": [
-        "ship"
-      ],
-      "artifact": [
-        "*"
-      ],
-      "mode": "auto",
-      "repo": "vercel-labs/agent-skills",
-      "ref": "1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62",
-      "path": "skills/deploy-to-vercel",
-      "license": "MIT",
-      "note": "Luôn deploy preview, trừ khi người dùng nói rõ production."
-    },
-    {
-      "id": "dispatching-parallel-agents",
-      "pack": "code",
-      "domain": [
-        "code"
+        "motion"
       ],
       "phase": [
         "build"
       ],
       "artifact": [
-        "code"
+        "web-ui",
+        "motion"
       ],
       "mode": "auto",
-      "repo": "obra/superpowers",
-      "ref": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
-      "path": "skills/dispatching-parallel-agents",
+      "repo": "emilkowalski/skills",
+      "ref": "e8a175de22ae1e49370fc144c1f3bb9aeedf988d",
+      "path": "skills/animate",
       "license": "MIT"
     },
     {
-      "id": "executing-plans",
-      "pack": "code",
+      "id": "animate-expo",
+      "pack": "motion",
       "domain": [
-        "code"
-      ],
-      "phase": [
-        "build"
-      ],
-      "artifact": [
-        "*"
-      ],
-      "mode": "auto",
-      "repo": "obra/superpowers",
-      "ref": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
-      "path": "skills/executing-plans",
-      "license": "MIT"
-    },
-    {
-      "id": "finishing-a-development-branch",
-      "pack": "code",
-      "domain": [
-        "code"
-      ],
-      "phase": [
-        "ship"
-      ],
-      "artifact": [
-        "code"
-      ],
-      "mode": "auto",
-      "repo": "obra/superpowers",
-      "ref": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
-      "path": "skills/finishing-a-development-branch",
-      "license": "MIT"
-    },
-    {
-      "id": "receiving-code-review",
-      "pack": "code",
-      "domain": [
-        "code"
-      ],
-      "phase": [
-        "review"
-      ],
-      "artifact": [
-        "code"
-      ],
-      "mode": "auto",
-      "repo": "obra/superpowers",
-      "ref": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
-      "path": "skills/receiving-code-review",
-      "license": "MIT"
-    },
-    {
-      "id": "requesting-code-review",
-      "pack": "code",
-      "domain": [
-        "code"
-      ],
-      "phase": [
-        "review"
-      ],
-      "artifact": [
-        "code"
-      ],
-      "mode": "auto",
-      "repo": "obra/superpowers",
-      "ref": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
-      "path": "skills/requesting-code-review",
-      "license": "MIT"
-    },
-    {
-      "id": "subagent-driven-development",
-      "pack": "code",
-      "domain": [
-        "code"
-      ],
-      "phase": [
-        "build"
-      ],
-      "artifact": [
-        "code"
-      ],
-      "mode": "auto",
-      "repo": "obra/superpowers",
-      "ref": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
-      "path": "skills/subagent-driven-development",
-      "license": "MIT"
-    },
-    {
-      "id": "systematic-debugging",
-      "pack": "code",
-      "domain": [
-        "code"
-      ],
-      "phase": [
-        "verify"
-      ],
-      "artifact": [
-        "code"
-      ],
-      "mode": "auto",
-      "repo": "obra/superpowers",
-      "ref": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
-      "path": "skills/systematic-debugging",
-      "license": "MIT"
-    },
-    {
-      "id": "test-driven-development",
-      "pack": "code",
-      "domain": [
-        "code"
-      ],
-      "phase": [
-        "build"
-      ],
-      "artifact": [
-        "code"
-      ],
-      "mode": "auto",
-      "repo": "obra/superpowers",
-      "ref": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
-      "path": "skills/test-driven-development",
-      "license": "MIT"
-    },
-    {
-      "id": "using-git-worktrees",
-      "pack": "code",
-      "domain": [
-        "code"
-      ],
-      "phase": [
-        "build"
-      ],
-      "artifact": [
-        "code"
-      ],
-      "mode": "auto",
-      "repo": "obra/superpowers",
-      "ref": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
-      "path": "skills/using-git-worktrees",
-      "license": "MIT"
-    },
-    {
-      "id": "vercel-byoc",
-      "pack": "code",
-      "domain": [
-        "code"
-      ],
-      "phase": [
-        "ship"
-      ],
-      "artifact": [
-        "*"
-      ],
-      "mode": "manual",
-      "repo": "vercel-labs/vercel-byoc",
-      "ref": null,
-      "path": "skills/vercel-byoc",
-      "license": "MIT",
-      "note": "Bring Your Own Cloud: function chạy trên AWS của bạn. Repo riêng, chưa pin commit."
-    },
-    {
-      "id": "vercel-cli-with-tokens",
-      "pack": "code",
-      "domain": [
-        "code"
-      ],
-      "phase": [
-        "ship"
-      ],
-      "artifact": [
-        "*"
-      ],
-      "mode": "manual",
-      "repo": "vercel-labs/agent-skills",
-      "ref": "1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62",
-      "path": "skills/vercel-cli-with-tokens",
-      "license": "MIT",
-      "note": "Cần VERCEL_TOKEN. Để manual vì có thể đụng tài khoản thật."
-    },
-    {
-      "id": "vercel-composition-patterns",
-      "pack": "code",
-      "domain": [
-        "code"
-      ],
-      "phase": [
-        "build"
-      ],
-      "artifact": [
-        "web-ui"
-      ],
-      "mode": "auto",
-      "repo": "vercel-labs/agent-skills",
-      "ref": "1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62",
-      "path": "skills/composition-patterns",
-      "license": "MIT",
-      "note": "Compound component, render props, context — gồm thay đổi API React 19."
-    },
-    {
-      "id": "vercel-optimize",
-      "pack": "code",
-      "domain": [
-        "code"
-      ],
-      "phase": [
-        "review"
-      ],
-      "artifact": [
-        "*"
-      ],
-      "mode": "auto",
-      "repo": "vercel-labs/agent-skills",
-      "ref": "1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62",
-      "path": "skills/vercel-optimize",
-      "license": "MIT",
-      "note": "Audit chi phí/hiệu năng trên project đã deploy. Metrics-first, 1.2MB."
-    },
-    {
-      "id": "vercel-react-best-practices",
-      "pack": "code",
-      "domain": [
-        "code"
-      ],
-      "phase": [
-        "build",
-        "review"
-      ],
-      "artifact": [
-        "web-ui"
-      ],
-      "mode": "auto",
-      "repo": "vercel-labs/agent-skills",
-      "ref": "1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62",
-      "path": "skills/react-best-practices",
-      "license": "MIT",
-      "note": "70 rule, 8 nhóm, xếp theo mức tác động. Bản lớn nhất của Vercel (420KB)."
-    },
-    {
-      "id": "vercel-react-native-skills",
-      "pack": "code",
-      "domain": [
-        "code"
+        "motion"
       ],
       "phase": [
         "build"
@@ -349,101 +73,28 @@
         "native-ui"
       ],
       "mode": "auto",
-      "repo": "vercel-labs/agent-skills",
-      "ref": "1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62",
-      "path": "skills/react-native-skills",
-      "license": "MIT",
-      "note": "React Native + Expo. Chỉ vào profile có artifact native-ui."
-    },
-    {
-      "id": "webapp-testing",
-      "pack": "code",
-      "domain": [
-        "code"
-      ],
-      "phase": [
-        "verify"
-      ],
-      "artifact": [
-        "web-ui"
-      ],
-      "mode": "auto",
-      "repo": "anthropics/skills",
-      "ref": "2235be7c60b551f5de82ade908fd3816455afcda",
-      "path": "skills/webapp-testing",
-      "license": "Apache-2.0"
-    },
-    {
-      "id": "writing-plans",
-      "pack": "code",
-      "domain": [
-        "code"
-      ],
-      "phase": [
-        "plan"
-      ],
-      "artifact": [
-        "*"
-      ],
-      "mode": "auto",
-      "repo": "obra/superpowers",
-      "ref": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
-      "path": "skills/writing-plans",
+      "repo": "emilkowalski/skills",
+      "ref": "e8a175de22ae1e49370fc144c1f3bb9aeedf988d",
+      "path": "skills/animate-expo",
       "license": "MIT"
     },
     {
-      "id": "ponytail-full",
-      "pack": "core",
+      "id": "animation-vocabulary",
+      "pack": "motion",
       "domain": [
-        "*"
+        "motion"
       ],
       "phase": [
-        "*"
+        "build"
       ],
       "artifact": [
-        "*"
+        "motion"
       ],
-      "mode": "system",
-      "repo": "local",
-      "path": "core/rules/ponytail-full.md",
-      "license": "MIT",
-      "note": "Rule always_on. Không cài như skill, không có mức khác ngoài full."
-    },
-    {
-      "id": "skill-first",
-      "pack": "core",
-      "domain": [
-        "*"
-      ],
-      "phase": [
-        "*"
-      ],
-      "artifact": [
-        "*"
-      ],
-      "mode": "system",
-      "repo": "local",
-      "path": "core/AGENTS.md",
-      "license": "MIT",
-      "note": "Quét skill trước khi trả lời."
-    },
-    {
-      "id": "verify-before-done",
-      "pack": "core",
-      "domain": [
-        "*"
-      ],
-      "phase": [
-        "verify"
-      ],
-      "artifact": [
-        "*"
-      ],
-      "mode": "system",
-      "repo": "local",
-      "path": "core/AGENTS.md",
-      "license": "MIT",
-      "note": "Không tuyên bố xong khi chưa có bằng chứng."
+      "mode": "auto",
+      "repo": "emilkowalski/skills",
+      "ref": "e8a175de22ae1e49370fc144c1f3bb9aeedf988d",
+      "path": "skills/animation-vocabulary",
+      "license": "MIT"
     },
     {
       "id": "apple-design",
@@ -469,6 +120,64 @@
       "note": "23KB, sát trần 24KB. Có mục 'Initial Response' sẽ chiếm lượt trả lời đầu — xem PATCH.md."
     },
     {
+      "id": "ask-sonner",
+      "pack": "motion",
+      "domain": [
+        "design",
+        "motion"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "web-ui"
+      ],
+      "mode": "auto",
+      "repo": "emilkowalski/skills",
+      "ref": "e8a175de22ae1e49370fc144c1f3bb9aeedf988d",
+      "path": "skills/ask-sonner",
+      "license": "MIT"
+    },
+    {
+      "id": "audit-security",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "review"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "tounsils/claude-code-skills",
+      "ref": "807b57c9eb35842569bb3732ff8831ca7e6a3d57",
+      "path": "skills/audit-security",
+      "license": "MIT",
+      "families": [
+        "logic"
+      ]
+    },
+    {
+      "id": "brainstorming",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "discover"
+      ],
+      "artifact": [
+        "*"
+      ],
+      "mode": "auto",
+      "repo": "obra/superpowers",
+      "ref": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "skills/brainstorming",
+      "license": "MIT"
+    },
+    {
       "id": "brand-guidelines",
       "pack": "design",
       "domain": [
@@ -488,6 +197,46 @@
       "note": "Là brand của Anthropic. Thay bằng brand của bạn trước khi dùng."
     },
     {
+      "id": "break-ui",
+      "pack": "motion",
+      "domain": [
+        "design",
+        "motion"
+      ],
+      "phase": [
+        "review"
+      ],
+      "artifact": [
+        "web-ui"
+      ],
+      "mode": "auto",
+      "repo": "emilkowalski/skills",
+      "ref": "e8a175de22ae1e49370fc144c1f3bb9aeedf988d",
+      "path": "skills/break-ui",
+      "license": "MIT"
+    },
+    {
+      "id": "bump-deps",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "ship"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "tounsils/claude-code-skills",
+      "ref": "807b57c9eb35842569bb3732ff8831ca7e6a3d57",
+      "path": "skills/bump-deps",
+      "license": "MIT",
+      "families": [
+        "logic"
+      ]
+    },
+    {
       "id": "canvas-design",
       "pack": "design",
       "domain": [
@@ -503,193 +252,6 @@
       "repo": "anthropics/skills",
       "ref": "2235be7c60b551f5de82ade908fd3816455afcda",
       "path": "skills/canvas-design",
-      "license": "Apache-2.0"
-    },
-    {
-      "id": "frontend-design",
-      "pack": "design",
-      "domain": [
-        "design"
-      ],
-      "phase": [
-        "build"
-      ],
-      "artifact": [
-        "web-ui"
-      ],
-      "mode": "auto",
-      "repo": "anthropics/skills",
-      "ref": "2235be7c60b551f5de82ade908fd3816455afcda",
-      "path": "skills/frontend-design",
-      "license": "Apache-2.0",
-      "bytes": 8260,
-      "verified": true
-    },
-    {
-      "id": "theme-factory",
-      "pack": "design",
-      "domain": [
-        "design"
-      ],
-      "phase": [
-        "build"
-      ],
-      "artifact": [
-        "web-ui",
-        "document",
-        "slide"
-      ],
-      "mode": "auto",
-      "repo": "anthropics/skills",
-      "ref": "2235be7c60b551f5de82ade908fd3816455afcda",
-      "path": "skills/theme-factory",
-      "license": "Apache-2.0"
-    },
-    {
-      "id": "web-artifacts-builder",
-      "pack": "design",
-      "domain": [
-        "code",
-        "design"
-      ],
-      "phase": [
-        "build"
-      ],
-      "artifact": [
-        "web-ui"
-      ],
-      "mode": "auto",
-      "repo": "anthropics/skills",
-      "ref": "2235be7c60b551f5de82ade908fd3816455afcda",
-      "path": "skills/web-artifacts-builder",
-      "license": "Apache-2.0"
-    },
-    {
-      "id": "web-design-guidelines",
-      "pack": "design",
-      "domain": [
-        "design"
-      ],
-      "phase": [
-        "review"
-      ],
-      "artifact": [
-        "web-ui"
-      ],
-      "mode": "auto",
-      "repo": "vercel-labs/agent-skills",
-      "ref": "1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62",
-      "path": "skills/web-design-guidelines",
-      "license": "MIT",
-      "note": "100+ check a11y/UX. Review UI thay vì tạo UI."
-    },
-    {
-      "id": "writing-guidelines",
-      "pack": "design",
-      "domain": [
-        "design"
-      ],
-      "phase": [
-        "review"
-      ],
-      "artifact": [
-        "web-ui"
-      ],
-      "mode": "auto",
-      "repo": "vercel-labs/agent-skills",
-      "ref": "1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62",
-      "path": "skills/writing-guidelines",
-      "license": "MIT",
-      "note": "Review copy/prose của trang. Không xếp vào docs để không lọt profile giáo dục."
-    },
-    {
-      "id": "doc-coauthoring",
-      "pack": "docs",
-      "domain": [
-        "docs"
-      ],
-      "phase": [
-        "build"
-      ],
-      "artifact": [
-        "document"
-      ],
-      "mode": "auto",
-      "repo": "anthropics/skills",
-      "ref": "2235be7c60b551f5de82ade908fd3816455afcda",
-      "path": "skills/doc-coauthoring",
-      "license": "Apache-2.0"
-    },
-    {
-      "id": "docx",
-      "pack": "docs",
-      "domain": [
-        "docs"
-      ],
-      "phase": [
-        "build"
-      ],
-      "artifact": [
-        "document"
-      ],
-      "mode": "auto",
-      "repo": "anthropics/skills",
-      "ref": "2235be7c60b551f5de82ade908fd3816455afcda",
-      "path": "skills/docx",
-      "license": "Apache-2.0"
-    },
-    {
-      "id": "pdf",
-      "pack": "docs",
-      "domain": [
-        "docs"
-      ],
-      "phase": [
-        "build"
-      ],
-      "artifact": [
-        "pdf"
-      ],
-      "mode": "auto",
-      "repo": "anthropics/skills",
-      "ref": "2235be7c60b551f5de82ade908fd3816455afcda",
-      "path": "skills/pdf",
-      "license": "Apache-2.0"
-    },
-    {
-      "id": "pptx",
-      "pack": "docs",
-      "domain": [
-        "docs"
-      ],
-      "phase": [
-        "build"
-      ],
-      "artifact": [
-        "slide"
-      ],
-      "mode": "auto",
-      "repo": "anthropics/skills",
-      "ref": "2235be7c60b551f5de82ade908fd3816455afcda",
-      "path": "skills/pptx",
-      "license": "Apache-2.0"
-    },
-    {
-      "id": "xlsx",
-      "pack": "docs",
-      "domain": [
-        "docs"
-      ],
-      "phase": [
-        "build"
-      ],
-      "artifact": [
-        "sheet"
-      ],
-      "mode": "auto",
-      "repo": "anthropics/skills",
-      "ref": "2235be7c60b551f5de82ade908fd3816455afcda",
-      "path": "skills/xlsx",
       "license": "Apache-2.0"
     },
     {
@@ -730,6 +292,79 @@
       "ref": "c73a9b89e781f8d44e17124af645af9db15d0577",
       "path": "skills/course-architecture",
       "license": "MIT"
+    },
+    {
+      "id": "deploy-to-vercel",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "ship"
+      ],
+      "artifact": [
+        "*"
+      ],
+      "mode": "auto",
+      "repo": "vercel-labs/agent-skills",
+      "ref": "1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62",
+      "path": "skills/deploy-to-vercel",
+      "license": "MIT",
+      "note": "Luôn deploy preview, trừ khi người dùng nói rõ production."
+    },
+    {
+      "id": "dispatching-parallel-agents",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "obra/superpowers",
+      "ref": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "skills/dispatching-parallel-agents",
+      "license": "MIT"
+    },
+    {
+      "id": "doc-coauthoring",
+      "pack": "docs",
+      "domain": [
+        "docs"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "document"
+      ],
+      "mode": "auto",
+      "repo": "anthropics/skills",
+      "ref": "2235be7c60b551f5de82ade908fd3816455afcda",
+      "path": "skills/doc-coauthoring",
+      "license": "Apache-2.0"
+    },
+    {
+      "id": "docx",
+      "pack": "docs",
+      "domain": [
+        "docs"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "document"
+      ],
+      "mode": "auto",
+      "repo": "anthropics/skills",
+      "ref": "2235be7c60b551f5de82ade908fd3816455afcda",
+      "path": "skills/docx",
+      "license": "Apache-2.0"
     },
     {
       "id": "edu-assessment-builder",
@@ -968,6 +603,81 @@
       "license": "MIT"
     },
     {
+      "id": "emil-design-eng",
+      "pack": "motion",
+      "domain": [
+        "design",
+        "motion"
+      ],
+      "phase": [
+        "build",
+        "review"
+      ],
+      "artifact": [
+        "web-ui",
+        "motion"
+      ],
+      "mode": "auto",
+      "repo": "emilkowalski/skills",
+      "ref": "e8a175de22ae1e49370fc144c1f3bb9aeedf988d",
+      "path": "skills/emil-design-eng",
+      "license": "MIT"
+    },
+    {
+      "id": "executing-plans",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "*"
+      ],
+      "mode": "auto",
+      "repo": "obra/superpowers",
+      "ref": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "skills/executing-plans",
+      "license": "MIT"
+    },
+    {
+      "id": "find-animation-opportunities",
+      "pack": "motion",
+      "domain": [
+        "motion"
+      ],
+      "phase": [
+        "discover"
+      ],
+      "artifact": [
+        "motion"
+      ],
+      "mode": "auto",
+      "repo": "emilkowalski/skills",
+      "ref": "e8a175de22ae1e49370fc144c1f3bb9aeedf988d",
+      "path": "skills/find-animation-opportunities",
+      "license": "MIT"
+    },
+    {
+      "id": "finishing-a-development-branch",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "ship"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "obra/superpowers",
+      "ref": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "skills/finishing-a-development-branch",
+      "license": "MIT"
+    },
+    {
       "id": "flashcard-generator",
       "pack": "education",
       "domain": [
@@ -984,6 +694,85 @@
       "ref": "f9a456bf34c297bd23fb234f410ec9b239ebed14",
       "path": "flashcard-generator",
       "license": "MIT"
+    },
+    {
+      "id": "frontend-design",
+      "pack": "design",
+      "domain": [
+        "design"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "web-ui"
+      ],
+      "mode": "auto",
+      "repo": "anthropics/skills",
+      "ref": "2235be7c60b551f5de82ade908fd3816455afcda",
+      "path": "skills/frontend-design",
+      "license": "Apache-2.0",
+      "bytes": 8260,
+      "verified": true
+    },
+    {
+      "id": "handoff",
+      "pack": "meta",
+      "domain": [
+        "meta"
+      ],
+      "phase": [
+        "ship"
+      ],
+      "artifact": [
+        "*"
+      ],
+      "mode": "core",
+      "repo": "local",
+      "path": "packs/meta/handoff",
+      "license": "MIT",
+      "note": "Nén phiên thành HANDOFF.md để phiên mới tiếp tục. Tự viết vì mọi repo handoff đều không có license."
+    },
+    {
+      "id": "improve-animations",
+      "pack": "motion",
+      "domain": [
+        "motion"
+      ],
+      "phase": [
+        "review"
+      ],
+      "artifact": [
+        "motion"
+      ],
+      "mode": "auto",
+      "repo": "emilkowalski/skills",
+      "ref": "e8a175de22ae1e49370fc144c1f3bb9aeedf988d",
+      "path": "skills/improve-animations",
+      "license": "MIT"
+    },
+    {
+      "id": "karpathy-guidelines",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "build",
+        "review"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "multica-ai/andrej-karpathy-skills",
+      "ref": "2c606141936f1eeef17fa3043a72095b4765b9c2",
+      "path": "skills/karpathy-guidelines",
+      "license": "MIT",
+      "families": [
+        "logic"
+      ],
+      "note": "nghĩ trước khi code, tối giản, sửa phẫu thuật, mục tiêu kiểm chứng được"
     },
     {
       "id": "language-tutor",
@@ -1028,6 +817,375 @@
       "license": "MIT"
     },
     {
+      "id": "mobile-native",
+      "pack": "motion",
+      "domain": [
+        "motion"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "native-ui"
+      ],
+      "mode": "auto",
+      "repo": "emilkowalski/skills",
+      "ref": "e8a175de22ae1e49370fc144c1f3bb9aeedf988d",
+      "path": "skills/mobile-native",
+      "license": "MIT"
+    },
+    {
+      "id": "onboard-repo",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "discover"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "tounsils/claude-code-skills",
+      "ref": "807b57c9eb35842569bb3732ff8831ca7e6a3d57",
+      "path": "skills/onboard-repo",
+      "license": "MIT",
+      "families": [
+        "logic"
+      ]
+    },
+    {
+      "id": "parallel-debugging",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "verify"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "wshobson/agents",
+      "ref": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "path": "plugins/agent-teams/skills/parallel-debugging",
+      "license": "MIT",
+      "families": [
+        "logic"
+      ],
+      "note": "Analysis of Competing Hypotheses: 6 nhóm lỗi, bằng chứng, trọng tài"
+    },
+    {
+      "id": "pdf",
+      "pack": "docs",
+      "domain": [
+        "docs"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "pdf"
+      ],
+      "mode": "auto",
+      "repo": "anthropics/skills",
+      "ref": "2235be7c60b551f5de82ade908fd3816455afcda",
+      "path": "skills/pdf",
+      "license": "Apache-2.0"
+    },
+    {
+      "id": "perf-hunt",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "verify"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "tounsils/claude-code-skills",
+      "ref": "807b57c9eb35842569bb3732ff8831ca7e6a3d57",
+      "path": "skills/perf-hunt",
+      "license": "MIT",
+      "families": [
+        "logic"
+      ]
+    },
+    {
+      "id": "pick-ui-library",
+      "pack": "motion",
+      "domain": [
+        "design"
+      ],
+      "phase": [
+        "discover"
+      ],
+      "artifact": [
+        "web-ui"
+      ],
+      "mode": "auto",
+      "repo": "emilkowalski/skills",
+      "ref": "e8a175de22ae1e49370fc144c1f3bb9aeedf988d",
+      "path": "skills/pick-ui-library",
+      "license": "MIT"
+    },
+    {
+      "id": "planning-with-files",
+      "pack": "code",
+      "domain": [
+        "code",
+        "meta"
+      ],
+      "phase": [
+        "plan",
+        "build"
+      ],
+      "artifact": [
+        "*"
+      ],
+      "mode": "auto",
+      "repo": "OthmanAdi/planning-with-files",
+      "ref": "5d29800bf8b919ca9a88ee7885b90050b5cb64ed",
+      "path": ".agents/skills/planning-with-files",
+      "license": "MIT",
+      "note": "Plan ghi ra đĩa (task_plan/findings/progress), sống sót khi mất context. 536KB, có script hook."
+    },
+    {
+      "id": "ponytail-full",
+      "pack": "core",
+      "domain": [
+        "*"
+      ],
+      "phase": [
+        "*"
+      ],
+      "artifact": [
+        "*"
+      ],
+      "mode": "system",
+      "repo": "local",
+      "path": "core/rules/ponytail-full.md",
+      "license": "MIT",
+      "note": "Rule always_on. Không cài như skill, không có mức khác ngoài full."
+    },
+    {
+      "id": "pptx",
+      "pack": "docs",
+      "domain": [
+        "docs"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "slide"
+      ],
+      "mode": "auto",
+      "repo": "anthropics/skills",
+      "ref": "2235be7c60b551f5de82ade908fd3816455afcda",
+      "path": "skills/pptx",
+      "license": "Apache-2.0"
+    },
+    {
+      "id": "prototype",
+      "pack": "motion",
+      "domain": [
+        "design",
+        "motion"
+      ],
+      "phase": [
+        "discover"
+      ],
+      "artifact": [
+        "web-ui",
+        "motion"
+      ],
+      "mode": "auto",
+      "repo": "emilkowalski/skills",
+      "ref": "e8a175de22ae1e49370fc144c1f3bb9aeedf988d",
+      "path": "skills/prototype",
+      "license": "MIT"
+    },
+    {
+      "id": "receiving-code-review",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "review"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "obra/superpowers",
+      "ref": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "skills/receiving-code-review",
+      "license": "MIT"
+    },
+    {
+      "id": "requesting-code-review",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "review"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "obra/superpowers",
+      "ref": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "skills/requesting-code-review",
+      "license": "MIT"
+    },
+    {
+      "id": "restructure",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "tounsils/claude-code-skills",
+      "ref": "807b57c9eb35842569bb3732ff8831ca7e6a3d57",
+      "path": "skills/restructure",
+      "license": "MIT",
+      "families": [
+        "logic"
+      ]
+    },
+    {
+      "id": "review-animations",
+      "pack": "motion",
+      "domain": [
+        "motion"
+      ],
+      "phase": [
+        "review"
+      ],
+      "artifact": [
+        "motion"
+      ],
+      "mode": "auto",
+      "repo": "emilkowalski/skills",
+      "ref": "e8a175de22ae1e49370fc144c1f3bb9aeedf988d",
+      "path": "skills/review-animations",
+      "license": "MIT"
+    },
+    {
+      "id": "review-diff",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "review"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "tounsils/claude-code-skills",
+      "ref": "807b57c9eb35842569bb3732ff8831ca7e6a3d57",
+      "path": "skills/review-diff",
+      "license": "MIT",
+      "families": [
+        "logic"
+      ]
+    },
+    {
+      "id": "root-cause",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "verify"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "tounsils/claude-code-skills",
+      "ref": "807b57c9eb35842569bb3732ff8831ca7e6a3d57",
+      "path": "skills/root-cause",
+      "license": "MIT",
+      "families": [
+        "logic"
+      ]
+    },
+    {
+      "id": "ship-pr",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "ship"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "tounsils/claude-code-skills",
+      "ref": "807b57c9eb35842569bb3732ff8831ca7e6a3d57",
+      "path": "skills/ship-pr",
+      "license": "MIT",
+      "families": [
+        "logic"
+      ]
+    },
+    {
+      "id": "skill-creator",
+      "pack": "meta",
+      "domain": [
+        "meta"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "*"
+      ],
+      "mode": "manual",
+      "repo": "anthropics/skills",
+      "ref": "2235be7c60b551f5de82ade908fd3816455afcda",
+      "path": "skills/skill-creator",
+      "license": "Apache-2.0"
+    },
+    {
+      "id": "skill-first",
+      "pack": "core",
+      "domain": [
+        "*"
+      ],
+      "phase": [
+        "*"
+      ],
+      "artifact": [
+        "*"
+      ],
+      "mode": "system",
+      "repo": "local",
+      "path": "core/AGENTS.md",
+      "license": "MIT",
+      "note": "Quét skill trước khi trả lời."
+    },
+    {
       "id": "study-plan-builder",
       "pack": "education",
       "domain": [
@@ -1067,6 +1225,24 @@
       "license": "MIT"
     },
     {
+      "id": "subagent-driven-development",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "obra/superpowers",
+      "ref": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "skills/subagent-driven-development",
+      "license": "MIT"
+    },
+    {
       "id": "submission-review",
       "families": [
         "language"
@@ -1085,6 +1261,24 @@
       "repo": "CristianHeyde/language-teaching-skills",
       "ref": "c73a9b89e781f8d44e17124af645af9db15d0577",
       "path": "skills/submission-review",
+      "license": "MIT"
+    },
+    {
+      "id": "systematic-debugging",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "verify"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "obra/superpowers",
+      "ref": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "skills/systematic-debugging",
       "license": "MIT"
     },
     {
@@ -1109,22 +1303,102 @@
       "license": "MIT"
     },
     {
-      "id": "skill-creator",
-      "pack": "meta",
+      "id": "test-driven-development",
+      "pack": "code",
       "domain": [
-        "meta"
+        "code"
       ],
       "phase": [
         "build"
       ],
       "artifact": [
-        "*"
+        "code"
       ],
-      "mode": "manual",
+      "mode": "auto",
+      "repo": "obra/superpowers",
+      "ref": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "skills/test-driven-development",
+      "license": "MIT"
+    },
+    {
+      "id": "test-gaps",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "verify"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "tounsils/claude-code-skills",
+      "ref": "807b57c9eb35842569bb3732ff8831ca7e6a3d57",
+      "path": "skills/test-gaps",
+      "license": "MIT",
+      "families": [
+        "logic"
+      ]
+    },
+    {
+      "id": "theme-factory",
+      "pack": "design",
+      "domain": [
+        "design"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "web-ui",
+        "document",
+        "slide"
+      ],
+      "mode": "auto",
       "repo": "anthropics/skills",
       "ref": "2235be7c60b551f5de82ade908fd3816455afcda",
-      "path": "skills/skill-creator",
+      "path": "skills/theme-factory",
       "license": "Apache-2.0"
+    },
+    {
+      "id": "triage-ci",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "verify"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "tounsils/claude-code-skills",
+      "ref": "807b57c9eb35842569bb3732ff8831ca7e6a3d57",
+      "path": "skills/triage-ci",
+      "license": "MIT",
+      "families": [
+        "logic"
+      ]
+    },
+    {
+      "id": "using-git-worktrees",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "obra/superpowers",
+      "ref": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "skills/using-git-worktrees",
+      "license": "MIT"
     },
     {
       "id": "using-superpowers",
@@ -1145,102 +1419,48 @@
       "license": "MIT"
     },
     {
-      "id": "verification-before-completion",
-      "pack": "meta",
+      "id": "vercel-byoc",
+      "pack": "code",
       "domain": [
-        "meta"
+        "code"
       ],
       "phase": [
-        "verify"
+        "ship"
       ],
       "artifact": [
         "*"
       ],
-      "mode": "core",
-      "repo": "obra/superpowers",
-      "ref": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
-      "path": "skills/verification-before-completion",
-      "license": "MIT"
+      "mode": "manual",
+      "repo": "vercel-labs/vercel-byoc",
+      "ref": null,
+      "path": "skills/vercel-byoc",
+      "license": "MIT",
+      "note": "Bring Your Own Cloud: function chạy trên AWS của bạn. Repo riêng, chưa pin commit."
     },
     {
-      "id": "writing-skills",
-      "pack": "meta",
+      "id": "vercel-cli-with-tokens",
+      "pack": "code",
       "domain": [
-        "meta"
+        "code"
       ],
       "phase": [
-        "build"
+        "ship"
       ],
       "artifact": [
         "*"
       ],
-      "mode": "core",
-      "repo": "obra/superpowers",
-      "ref": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
-      "path": "skills/writing-skills",
-      "license": "MIT"
+      "mode": "manual",
+      "repo": "vercel-labs/agent-skills",
+      "ref": "1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62",
+      "path": "skills/vercel-cli-with-tokens",
+      "license": "MIT",
+      "note": "Cần VERCEL_TOKEN. Để manual vì có thể đụng tài khoản thật."
     },
     {
-      "id": "animate",
-      "pack": "motion",
+      "id": "vercel-composition-patterns",
+      "pack": "code",
       "domain": [
-        "motion"
-      ],
-      "phase": [
-        "build"
-      ],
-      "artifact": [
-        "web-ui",
-        "motion"
-      ],
-      "mode": "auto",
-      "repo": "emilkowalski/skills",
-      "ref": "e8a175de22ae1e49370fc144c1f3bb9aeedf988d",
-      "path": "skills/animate",
-      "license": "MIT"
-    },
-    {
-      "id": "animate-expo",
-      "pack": "motion",
-      "domain": [
-        "motion"
-      ],
-      "phase": [
-        "build"
-      ],
-      "artifact": [
-        "native-ui"
-      ],
-      "mode": "auto",
-      "repo": "emilkowalski/skills",
-      "ref": "e8a175de22ae1e49370fc144c1f3bb9aeedf988d",
-      "path": "skills/animate-expo",
-      "license": "MIT"
-    },
-    {
-      "id": "animation-vocabulary",
-      "pack": "motion",
-      "domain": [
-        "motion"
-      ],
-      "phase": [
-        "build"
-      ],
-      "artifact": [
-        "motion"
-      ],
-      "mode": "auto",
-      "repo": "emilkowalski/skills",
-      "ref": "e8a175de22ae1e49370fc144c1f3bb9aeedf988d",
-      "path": "skills/animation-vocabulary",
-      "license": "MIT"
-    },
-    {
-      "id": "ask-sonner",
-      "pack": "motion",
-      "domain": [
-        "design",
-        "motion"
+        "code"
       ],
       "phase": [
         "build"
@@ -1249,92 +1469,56 @@
         "web-ui"
       ],
       "mode": "auto",
-      "repo": "emilkowalski/skills",
-      "ref": "e8a175de22ae1e49370fc144c1f3bb9aeedf988d",
-      "path": "skills/ask-sonner",
-      "license": "MIT"
+      "repo": "vercel-labs/agent-skills",
+      "ref": "1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62",
+      "path": "skills/composition-patterns",
+      "license": "MIT",
+      "note": "Compound component, render props, context — gồm thay đổi API React 19."
     },
     {
-      "id": "break-ui",
-      "pack": "motion",
+      "id": "vercel-optimize",
+      "pack": "code",
       "domain": [
-        "design",
-        "motion"
+        "code"
       ],
       "phase": [
         "review"
       ],
       "artifact": [
-        "web-ui"
+        "*"
       ],
       "mode": "auto",
-      "repo": "emilkowalski/skills",
-      "ref": "e8a175de22ae1e49370fc144c1f3bb9aeedf988d",
-      "path": "skills/break-ui",
-      "license": "MIT"
+      "repo": "vercel-labs/agent-skills",
+      "ref": "1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62",
+      "path": "skills/vercel-optimize",
+      "license": "MIT",
+      "note": "Audit chi phí/hiệu năng trên project đã deploy. Metrics-first, 1.2MB."
     },
     {
-      "id": "emil-design-eng",
-      "pack": "motion",
+      "id": "vercel-react-best-practices",
+      "pack": "code",
       "domain": [
-        "design",
-        "motion"
+        "code"
       ],
       "phase": [
         "build",
         "review"
       ],
       "artifact": [
-        "web-ui",
-        "motion"
+        "web-ui"
       ],
       "mode": "auto",
-      "repo": "emilkowalski/skills",
-      "ref": "e8a175de22ae1e49370fc144c1f3bb9aeedf988d",
-      "path": "skills/emil-design-eng",
-      "license": "MIT"
+      "repo": "vercel-labs/agent-skills",
+      "ref": "1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62",
+      "path": "skills/react-best-practices",
+      "license": "MIT",
+      "note": "70 rule, 8 nhóm, xếp theo mức tác động. Bản lớn nhất của Vercel (420KB)."
     },
     {
-      "id": "find-animation-opportunities",
-      "pack": "motion",
+      "id": "vercel-react-native-skills",
+      "pack": "code",
       "domain": [
-        "motion"
-      ],
-      "phase": [
-        "discover"
-      ],
-      "artifact": [
-        "motion"
-      ],
-      "mode": "auto",
-      "repo": "emilkowalski/skills",
-      "ref": "e8a175de22ae1e49370fc144c1f3bb9aeedf988d",
-      "path": "skills/find-animation-opportunities",
-      "license": "MIT"
-    },
-    {
-      "id": "improve-animations",
-      "pack": "motion",
-      "domain": [
-        "motion"
-      ],
-      "phase": [
-        "review"
-      ],
-      "artifact": [
-        "motion"
-      ],
-      "mode": "auto",
-      "repo": "emilkowalski/skills",
-      "ref": "e8a175de22ae1e49370fc144c1f3bb9aeedf988d",
-      "path": "skills/improve-animations",
-      "license": "MIT"
-    },
-    {
-      "id": "mobile-native",
-      "pack": "motion",
-      "domain": [
-        "motion"
+        "code"
       ],
       "phase": [
         "build"
@@ -1343,66 +1527,11 @@
         "native-ui"
       ],
       "mode": "auto",
-      "repo": "emilkowalski/skills",
-      "ref": "e8a175de22ae1e49370fc144c1f3bb9aeedf988d",
-      "path": "skills/mobile-native",
-      "license": "MIT"
-    },
-    {
-      "id": "pick-ui-library",
-      "pack": "motion",
-      "domain": [
-        "design"
-      ],
-      "phase": [
-        "discover"
-      ],
-      "artifact": [
-        "web-ui"
-      ],
-      "mode": "auto",
-      "repo": "emilkowalski/skills",
-      "ref": "e8a175de22ae1e49370fc144c1f3bb9aeedf988d",
-      "path": "skills/pick-ui-library",
-      "license": "MIT"
-    },
-    {
-      "id": "prototype",
-      "pack": "motion",
-      "domain": [
-        "design",
-        "motion"
-      ],
-      "phase": [
-        "discover"
-      ],
-      "artifact": [
-        "web-ui",
-        "motion"
-      ],
-      "mode": "auto",
-      "repo": "emilkowalski/skills",
-      "ref": "e8a175de22ae1e49370fc144c1f3bb9aeedf988d",
-      "path": "skills/prototype",
-      "license": "MIT"
-    },
-    {
-      "id": "review-animations",
-      "pack": "motion",
-      "domain": [
-        "motion"
-      ],
-      "phase": [
-        "review"
-      ],
-      "artifact": [
-        "motion"
-      ],
-      "mode": "auto",
-      "repo": "emilkowalski/skills",
-      "ref": "e8a175de22ae1e49370fc144c1f3bb9aeedf988d",
-      "path": "skills/review-animations",
-      "license": "MIT"
+      "repo": "vercel-labs/agent-skills",
+      "ref": "1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62",
+      "path": "skills/react-native-skills",
+      "license": "MIT",
+      "note": "React Native + Expo. Chỉ vào profile có artifact native-ui."
     },
     {
       "id": "vercel-react-view-transitions",
@@ -1425,6 +1554,98 @@
       "note": "View Transition API native, không cần thư viện animation bên thứ ba. Chỉ web."
     },
     {
+      "id": "verification-before-completion",
+      "pack": "meta",
+      "domain": [
+        "meta"
+      ],
+      "phase": [
+        "verify"
+      ],
+      "artifact": [
+        "*"
+      ],
+      "mode": "core",
+      "repo": "obra/superpowers",
+      "ref": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "skills/verification-before-completion",
+      "license": "MIT"
+    },
+    {
+      "id": "verify-before-done",
+      "pack": "core",
+      "domain": [
+        "*"
+      ],
+      "phase": [
+        "verify"
+      ],
+      "artifact": [
+        "*"
+      ],
+      "mode": "system",
+      "repo": "local",
+      "path": "core/AGENTS.md",
+      "license": "MIT",
+      "note": "Không tuyên bố xong khi chưa có bằng chứng."
+    },
+    {
+      "id": "web-artifacts-builder",
+      "pack": "design",
+      "domain": [
+        "code",
+        "design"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "web-ui"
+      ],
+      "mode": "auto",
+      "repo": "anthropics/skills",
+      "ref": "2235be7c60b551f5de82ade908fd3816455afcda",
+      "path": "skills/web-artifacts-builder",
+      "license": "Apache-2.0"
+    },
+    {
+      "id": "web-design-guidelines",
+      "pack": "design",
+      "domain": [
+        "design"
+      ],
+      "phase": [
+        "review"
+      ],
+      "artifact": [
+        "web-ui"
+      ],
+      "mode": "auto",
+      "repo": "vercel-labs/agent-skills",
+      "ref": "1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62",
+      "path": "skills/web-design-guidelines",
+      "license": "MIT",
+      "note": "100+ check a11y/UX. Review UI thay vì tạo UI."
+    },
+    {
+      "id": "webapp-testing",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "verify"
+      ],
+      "artifact": [
+        "web-ui"
+      ],
+      "mode": "auto",
+      "repo": "anthropics/skills",
+      "ref": "2235be7c60b551f5de82ade908fd3816455afcda",
+      "path": "skills/webapp-testing",
+      "license": "Apache-2.0"
+    },
+    {
       "id": "write-swift",
       "pack": "motion",
       "domain": [
@@ -1443,43 +1664,77 @@
       "license": "MIT"
     },
     {
-      "id": "handoff",
-      "pack": "meta",
+      "id": "writing-guidelines",
+      "pack": "design",
       "domain": [
-        "meta"
+        "design"
       ],
       "phase": [
-        "ship"
+        "review"
       ],
       "artifact": [
-        "*"
+        "web-ui"
       ],
-      "mode": "core",
-      "repo": "local",
-      "path": "packs/meta/handoff",
+      "mode": "auto",
+      "repo": "vercel-labs/agent-skills",
+      "ref": "1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62",
+      "path": "skills/writing-guidelines",
       "license": "MIT",
-      "note": "Nén phiên thành HANDOFF.md để phiên mới tiếp tục. Tự viết vì mọi repo handoff đều không có license."
+      "note": "Review copy/prose của trang. Không xếp vào docs để không lọt profile giáo dục."
     },
     {
-      "id": "planning-with-files",
+      "id": "writing-plans",
       "pack": "code",
       "domain": [
-        "code",
-        "meta"
+        "code"
       ],
       "phase": [
-        "plan",
-        "build"
+        "plan"
       ],
       "artifact": [
         "*"
       ],
       "mode": "auto",
-      "repo": "OthmanAdi/planning-with-files",
-      "ref": "5d29800bf8b919ca9a88ee7885b90050b5cb64ed",
-      "path": ".agents/skills/planning-with-files",
-      "license": "MIT",
-      "note": "Plan ghi ra đĩa (task_plan/findings/progress), sống sót khi mất context. 536KB, có script hook."
+      "repo": "obra/superpowers",
+      "ref": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "skills/writing-plans",
+      "license": "MIT"
+    },
+    {
+      "id": "writing-skills",
+      "pack": "meta",
+      "domain": [
+        "meta"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "*"
+      ],
+      "mode": "core",
+      "repo": "obra/superpowers",
+      "ref": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "skills/writing-skills",
+      "license": "MIT"
+    },
+    {
+      "id": "xlsx",
+      "pack": "docs",
+      "domain": [
+        "docs"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "sheet"
+      ],
+      "mode": "auto",
+      "repo": "anthropics/skills",
+      "ref": "2235be7c60b551f5de82ade908fd3816455afcda",
+      "path": "skills/xlsx",
+      "license": "Apache-2.0"
     }
   ]
 }

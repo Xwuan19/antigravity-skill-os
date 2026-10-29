@@ -54,6 +54,30 @@ Agent SDK, chưa chắc chạy trong Antigravity. Bật sau khi tự kiểm.
 
 ---
 
+## 2b. Kỷ luật code — 12 skill
+
+Đợt 4 trả lời câu "Claude Code mạnh ở logic code". Không có skill nào tên là "logic": cái
+mạnh là **sáu cổng** trong quy trình, mỗi cổng có một câu từ chối. Chi tiết ở
+[code-logic.md](code-logic.md), ở đây chỉ ghi nguồn và quyết định.
+
+| Nguồn | License | Lấy gì |
+|---|---|---|
+| `tounsils/claude-code-skills` @ `807b57c9` | MIT | cả **10** skill: `root-cause`, `review-diff`, `test-gaps`, `restructure`, `ship-pr`, `audit-security`, `onboard-repo`, `perf-hunt`, `triage-ci`, `bump-deps` |
+| `multica-ai/andrej-karpathy-skills` @ `2c606141` | MIT | `karpathy-guidelines` (226k★) |
+| `wshobson/agents` @ `0874a27b` | MIT | `parallel-debugging` (ACH) |
+
+`tounsils` chỉ có 1 sao nhưng là bộ **đặc nhất** đã đọc: mỗi skill ứng với một việc cụ thể
+giữa "viết code xong" và "giao được", và mỗi cái có một câu từ chối rõ ràng.
+
+**Không lấy:**
+
+| Nguồn | Lý do |
+|---|---|
+| `tjboudreaux/cc-thinking-skills` (28 skill, MIT) | Mô hình tư duy chung, không phải logic code; tự khai "manual-only" → trái nguyên tắc tự áp dụng |
+| `ajbmachon/ajbm-skills` | License `NOASSERTION` — không vendor khi chưa rõ |
+| `etemigarba/Debug-and-Fix-Bugs-Skill` | 6 pha nặng bàn giấy, đã bị `root-cause` + `systematic-debugging` phủ gọn |
+| `obra/superpowers` → `diagnosing-superpowers` | Công cụ viết bug report cho chính superpowers |
+
 ## 3. LSP — không port được, nên viết lại
 
 12 plugin `*-lsp` của Anthropic (`pyright-lsp`, `gopls-lsp`, `rust-analyzer-lsp`, …) thoạt
@@ -121,7 +145,7 @@ Kết quả trong workspace:
 
 ```
 .agents/
-├── skills/     29 skill
+├── skills/     41 skill
 ├── agents/     43 subagent
 ├── plugins/    6 plugin (7 skill bên trong)
 ├── hooks.json

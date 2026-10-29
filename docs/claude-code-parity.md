@@ -103,6 +103,32 @@ agent `kubernetes-specialist`).
 
 Bật bằng `"enabled": true` trong `.agents/hooks.json`.
 
+### 3.2b Kỷ luật code — chỗ Claude Code thật sự mạnh
+
+Claude Code viết code tốt không phải vì có skill đặc biệt, mà vì quy trình của nó **chặn ở
+sáu cổng**: hiểu → tối giản → tái hiện → kiểm chứng → review → giao. Mỗi cổng có một câu
+từ chối, và câu từ chối mới là thứ tạo ra chất lượng.
+
+Ở đây điều đó được đóng gói thành skill, và cài theo profile:
+
+| Cổng | Skill giữ cổng | Có từ |
+|---|---|---|
+| Hiểu | `karpathy-guidelines`, `onboard-repo`, `brainstorming` | đợt 4 |
+| Tối giản | `karpathy-guidelines`, `restructure` | đợt 4 |
+| Tái hiện | `systematic-debugging`, `root-cause`, `parallel-debugging`, `triage-ci` | đợt 1 + 4 |
+| Kiểm chứng | `test-driven-development`, `test-gaps`, `perf-hunt`, **`verification-before-completion`** | đợt 1 + 4 |
+| Review | `review-diff`, `requesting-`/`receiving-code-review`, `audit-security` | đợt 1 + 4 |
+| Giao | `ship-pr`, `finishing-a-development-branch`, `bump-deps` | đợt 1 + 4 |
+
+`verification-before-completion` là `mode: core` → cài vào global, **mọi** workspace đều có
+cổng "bằng chứng trước, tuyên bố sau" kể cả khi profile không chọn nó.
+
+**Claude Code không có** ba thứ này, nên đây là chỗ Antigravity nhỉnh: `root-cause` (kỷ luật
+tái hiện + ba giải thích rẻ tiền), `parallel-debugging` (ACH — nhiều giả thuyết cạnh tranh),
+và bộ 10 skill `tounsils` (mỗi cái ứng với một việc, mỗi cái một câu từ chối).
+
+Chi tiết: [code-logic.md](code-logic.md).
+
 ### 3.3 Code intelligence (LSP) — 12 ngôn ngữ
 
 Đây là khoảng cách lớn nhất còn lại, và nó không phải chuyện "thiếu skill".
@@ -165,7 +191,7 @@ Cập nhật sau khi port xong đợt 3. Danh sách **còn lại**:
 
 | Ưu tiên | Skill / plugin | Nguồn | Vì sao đáng |
 |---|---|---|---|
-| 1 | **`wshobson/agents`** | 42k★, MIT | **92 plugin** đã ở đúng định dạng Antigravity (`skills/` + `agents/`). Nguồn lớn nhất chưa khai thác — đủ để nhân đôi số skill hiện có |
+| 1 | **`wshobson/agents`** | 42k★, MIT | **92 plugin**, 185 skill đã ở đúng định dạng Antigravity. Đã lấy `parallel-debugging`, còn ~180 skill chưa khai thác |
 | 2 | **`grill-me`** | cộng đồng | Phỏng vấn ngược trước khi code, chống hiểu sai yêu cầu. **Kẹt license** — repo không có LICENSE |
 | 3 | **`taste-skill`** | Leonxlnx | Design có "gu", dial variance/motion. **Kẹt license** — không có LICENSE |
 | 4 | `context-mode` | mksglu | Bộ nhớ xuyên phiên. **Elastic License 2.0** — không vendor |
@@ -182,6 +208,7 @@ Cập nhật sau khi port xong đợt 3. Danh sách **còn lại**:
 | `hookify` | ✅ port |
 | `code-review`, `feature-dev`, `commit-commands` | ✅ port |
 | **LSP** | ✅ tự viết cầu — xem §3.3 |
+| **Kỷ luật code** | ✅ 12 skill đợt 4 — xem §3.2b |
 
 ---
 

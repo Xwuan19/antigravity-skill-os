@@ -16,7 +16,8 @@
     ],
     "artifact": [
       "native-ui",
-      "motion"
+      "motion",
+      "code"
     ]
   },
   "forbid_domains": [
@@ -24,7 +25,7 @@
     "docs"
   ],
   "rationale": "React Native + Expo. Dùng skill native, không dùng skill web-ui.",
-  "max_skills": 22,
+  "max_skills": 40,
   "agent_groups": [
     "code",
     "meta"

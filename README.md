@@ -8,7 +8,7 @@ Project web quản lý nhận design + code. Project giáo án nhận education 
 không bao giờ thấy skill của nhau — không phải vì bị dặn đừng dùng, mà vì skill
 **không tồn tại** trong workspace đó. Ponytail `full` thì luôn bật cho tất cả.
 
-Repo **tự chứa**: 75 skill + 46 subagent + 9 plugin Claude Code đã port, pin commit.
+Repo **tự chứa**: 87 skill + 46 subagent + 9 plugin Claude Code đã port, pin commit.
 Clone về là cài được, không cần mạng.
 
 ## Bắt đầu trong 3 lệnh
@@ -46,12 +46,12 @@ description trong workspace gọn lại.
 
 | Profile | Skill | Agent | LSP | Cho |
 |---|---|---|---|---|
-| `web-admin` | 29 | 43 | ✅ | Dashboard, CRUD, SaaS |
+| `web-admin` | 41 | 43 | ✅ | Dashboard, CRUD, SaaS |
+| `mobile-app` | 38 | 41 | ✅ | React Native, Expo, iOS/Android |
 | `landing` | 26 | 43 | ✅ | Landing, marketing, portfolio |
+| `cli-tool` | 26 | 41 | ✅ | CLI, script, backend |
 | `education-k12` | 19 | — | — | Giáo án phổ thông, đề kiểm tra |
-| `mobile-app` | 18 | 41 | ✅ | React Native, Expo, iOS/Android |
 | `design-system` | 15 | 10 | ✅ | UI kit, component library |
-| `cli-tool` | 14 | 41 | ✅ | CLI, script, backend |
 | `education-language` | 11 | — | — | Trung tâm ngoại ngữ, gia sư |
 | `docs-writer` | 6 | 3 | — | Báo cáo, thuyết trình, bảng tính |
 | `meta` | 5 | 8 | ✅ | Nuôi chính hệ thống này (plugin-dev, hookify) |
@@ -78,6 +78,37 @@ Thêm profile = thêm 1 file JSON trong `profiles/`. Không sửa code.
 Nguồn: [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) @ `1a2c79d4`
 (9 skill, nhóm chính thức: React / Vercel / Design) và
 [vercel-labs/vercel-byoc](https://github.com/vercel-labs/vercel-byoc) (1 skill).
+
+## Logic code của Claude
+
+Claude Code không giỏi vì có thêm một skill thần kỳ. Nó giỏi vì bị **chặn ở sáu cổng**
+mà người ta hay đi tắt: *hiểu → tối giản → tái hiện → kiểm chứng → review → giao*.
+Chi tiết và bảng ánh xạ: [docs/code-logic.md](docs/code-logic.md).
+
+Đã port **12 skill** giữ các cổng đó:
+
+| Skill | Giữ cổng gì | Từ chối điều gì |
+|---|---|---|
+| `karpathy-guidelines` | hiểu + tối giản | Code thừa, abstraction cho một lần dùng, "cải thiện" code bên cạnh |
+| `root-cause` | tái hiện | Sửa khi chưa tái hiện; nới timeout / thêm retry cho bug biến mất |
+| `parallel-debugging` | tái hiện | Đào một giả thuyết đến cùng rồi thiên kiến xác nhận |
+| `test-gaps` | kiểm chứng | Đuổi % coverage; test không chứng minh được là nó fail được |
+| `perf-hunt` | kiểm chứng | Tối ưu khi chưa có số trước |
+| `triage-ci` | tái hiện | Làm xanh CI bằng cách tắt check |
+| `review-diff` | review | Báo lỗi không kèm kịch bản hỏng cụ thể |
+| `audit-security` | review | Liệt kê tên lỗ hổng thay vì nói ai chạm được, bằng input nào |
+| `restructure` | tối giản | Tách file theo số dòng thay vì theo đường nối |
+| `onboard-repo` | hiểu | Gọi thứ gì là "quy ước" khi chưa đếm |
+| `ship-pr` | giao | Viết commit message từ trí nhớ |
+| `bump-deps` | giao | Trộn major bump với refactor |
+
+Nguồn: `tounsils/claude-code-skills` (MIT, 10 skill), `multica-ai/andrej-karpathy-skills`
+(MIT, 226k★), `wshobson/agents` (MIT). Cộng với 15 skill `obra/superpowers` đã có từ trước —
+trong đó `verification-before-completion` là `mode: core`, cài global nên workspace nào cũng có.
+
+Skill logic đi theo **miền** chứ không theo artifact: `web-admin` 41, `mobile-app` 38,
+`cli-tool` 26 đều nhận đủ 12. `landing` (logic mỏng) và `design-system` (ghi rõ "không cần
+TDD") thì không.
 
 ## Port từ Claude Code
 
@@ -161,6 +192,7 @@ thì **merge**, server của bạn không bị xoá.
 |---|---|---|---|
 | Skill / rules / subagent / hooks / plugin / slash | ✅ | ✅ | ngang |
 | Code intelligence (LSP: định nghĩa, tham chiếu, hover) | ✅ | ✅ 12 ngôn ngữ | ngang |
+| Kỷ luật code (tái hiện trước, kiểm chứng trước khi nói xong) | ✅ trong binary | ✅ 12 skill + core | ngang |
 | Hệ sinh thái nội dung | 15.000+ repo | nhỏ | **Claude Code thắng** |
 | Điều phối đa agent | ✅ | ✅ `/boost` 3 tầng | **Antigravity nhỉnh** |
 | Subagent workspace | — | `inherit` / `branch` / `share` | Antigravity |
@@ -191,9 +223,9 @@ lifecycle hook nên mức không lưu qua lượt; chỉ cần tồn tại một
 
 ```
 core/            rules always_on — ponytail FULL, skill-first, verify, language
-registry/        skills.json (75) + agents.json (46) + plugins.json (9) + lsp.json (12) + taxonomy.md
+registry/        skills.json (87) + agents.json (46) + plugins.json (9) + lsp.json (12) + taxonomy.md
 profiles/        9 kiểu project → skill + nhóm agent + plugin
-packs/           72 skill đã vendor + VENDOR.json (sha256 từng cái)
+packs/           84 skill đã vendor + VENDOR.json (sha256 từng cái)
 agents/          46 subagent đã port sang định dạng Antigravity
 plugins/         9 plugin Claude Code đã port (23 skill + 8 agent)
 hooks/           hooks.json + session-start / format / safety
@@ -266,6 +298,9 @@ Mỗi bản ghi trong `packs/VENDOR.json` có `source` (repo@commit), `sha256`, 
 | [VoltAgent/awesome-claude-code-subagents](https://github.com/VoltAgent/awesome-claude-code-subagents) | MIT | 46 subagent (port) |
 | [anthropics/claude-plugins-official](https://github.com/anthropics/claude-plugins-official) | Apache-2.0 | 9 plugin (port) |
 | [OthmanAdi/planning-with-files](https://github.com/OthmanAdi/planning-with-files) | MIT | planning-with-files |
+| [tounsils/claude-code-skills](https://github.com/tounsils/claude-code-skills) | MIT | 10 skill kỷ luật kỹ thuật |
+| [multica-ai/andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills) | MIT (README + frontmatter) | karpathy-guidelines |
+| [wshobson/agents](https://github.com/wshobson/agents) | MIT | parallel-debugging |
 | language server (gopls, pyright, jdtls, …) | giấy phép riêng của từng server | **không vendor** — cài bằng trình quản lý gói của bạn |
 
 `vercel-labs/agent-skills` không có file `LICENSE` ở gốc, nhưng README mục *License* ghi
@@ -282,4 +317,5 @@ thêm §3 (phạm vi skill theo project) và §4 (ngôn ngữ).
 - [core/AGENTS.md](core/AGENTS.md) — core rules đang dùng
 - [docs/claude-code-parity.md](docs/claude-code-parity.md) — đối chiếu năng lực
 - [docs/ported-from-claude-code.md](docs/ported-from-claude-code.md) — port cái gì, bỏ cái gì, vì sao
+- [docs/code-logic.md](docs/code-logic.md) — sáu cổng logic code, skill nào giữ cổng nào
 - [packs/design/apple-design/SKILL.md](packs/design/apple-design/SKILL.md) — skill design gốc Apple, kèm LICENSE

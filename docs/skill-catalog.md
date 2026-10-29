@@ -103,6 +103,27 @@ Vẫn cài vào `~/.gemini/config/skills/` nhưng ở tầng skill (progressive 
 | ☐ | `dispatching-parallel-agents` | 2+ việc độc lập → chạy song song |
 | ☐ | `subagent-driven-development` | Mỗi task 1 subagent + 1 review |
 
+### 3.1b Logic code — 12 skill giữ sáu cổng
+
+Bộ này trả lời trực tiếp câu "Claude Code mạnh ở logic code". Mỗi skill ứng với một cổng
+trong *hiểu → tối giản → tái hiện → kiểm chứng → review → giao* và có một câu **từ chối**.
+Chi tiết: [code-logic.md](code-logic.md).
+
+| ☐ | Skill | Nguồn | Cổng | Từ chối điều gì |
+|---|---|---|---|---|
+| ☐ | `karpathy-guidelines` | multica-ai | hiểu + tối giản | Code thừa; "cải thiện" code bên cạnh |
+| ☐ | `onboard-repo` | tounsils | hiểu | Gọi là "quy ước" khi chưa đếm số lần |
+| ☐ | `root-cause` | tounsils | tái hiện | Sửa khi chưa tái hiện; nới timeout cho bug biến mất |
+| ☐ | `parallel-debugging` | wshobson | tái hiện | Đào một giả thuyết rồi thiên kiến xác nhận |
+| ☐ | `triage-ci` | tounsils | tái hiện | Làm xanh CI bằng cách tắt check |
+| ☐ | `test-gaps` | tounsils | kiểm chứng | Đuổi % coverage; test không fail được |
+| ☐ | `perf-hunt` | tounsils | kiểm chứng | Tối ưu khi chưa có số trước |
+| ☐ | `review-diff` | tounsils | review | Báo lỗi không kèm kịch bản hỏng |
+| ☐ | `audit-security` | tounsils | review | Liệt kê tên lỗ hổng thay vì đường khai thác |
+| ☐ | `restructure` | tounsils | tối giản | Tách file theo số dòng thay vì theo đường nối |
+| ☐ | `ship-pr` | tounsils | giao | Viết commit message từ trí nhớ |
+| ☐ | `bump-deps` | tounsils | giao | Trộn major bump với refactor |
+
 ### 3.2 Ponytail (bộ đầy đủ — 6 skill)
 
 | ☐ | Skill | Việc nó làm |
