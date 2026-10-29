@@ -1,0 +1,34 @@
+{
+  "id": "education-k12",
+  "label": "Giáo dục phổ thông / soạn giáo án / đề kiểm tra",
+  "tags": [
+    "education",
+    "lesson",
+    "curriculum",
+    "teacher",
+    "school",
+    "k12"
+  ],
+  "select": {
+    "domain": [
+      "education",
+      "docs"
+    ],
+    "artifact": [
+      "lesson",
+      "document",
+      "slide",
+      "sheet",
+      "pdf"
+    ]
+  },
+  "forbid_domains": [
+    "code",
+    "motion"
+  ],
+  "rationale": "Không cần skill code. Cần docs để xuất Word/PPTX/PDF.",
+  "max_skills": 24,
+  "families": [
+    "k12"
+  ]
+}

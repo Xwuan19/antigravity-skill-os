@@ -1,0 +1,9 @@
+{
+  "id": "web-admin",
+  "label": "Web quản lý / dashboard / CRUD / SaaS",
+  "tags": ["web", "dashboard", "admin", "crud", "saas", "fullstack"],
+  "select": {"domain": ["design", "code"], "artifact": ["web-ui", "code", "api"]},
+  "forbid_domains": ["education"],
+  "rationale": "Cần cả mỹ thuật lẫn logic. Không motion nặng — dashboard ưu tiên rõ ràng hơn hào nhoáng.",
+  "max_skills": 22
+}

@@ -1,0 +1,80 @@
+{
+  "version": 1,
+  "updated": "2026-10-29",
+  "_comment": "Nguồn sự thật duy nhất cho việc chọn skill. Mỗi skill gắn: domain, phase, artifact, mode. `ref` là commit đã pin.",
+  "axes": {
+    "domain": ["code", "design", "motion", "education", "docs", "meta"],
+    "phase": ["discover", "plan", "build", "verify", "review", "ship"],
+    "artifact": ["code", "web-ui", "native-ui", "motion", "api", "document", "slide", "sheet", "pdf", "lesson", "image", "video"],
+    "mode": ["system", "core", "auto", "manual"]
+  },
+  "skills": [
+    {"id":"ponytail-full","pack":"core","domain":["*"],"phase":["*"],"artifact":["*"],"mode":"system","repo":"local","path":"core/rules/ponytail-full.md","license":"MIT","note":"Rule always_on. Không cài như skill, không có mức khác ngoài full."},
+    {"id":"skill-first","pack":"core","domain":["*"],"phase":["*"],"artifact":["*"],"mode":"system","repo":"local","path":"core/AGENTS.md","license":"MIT","note":"Quét skill trước khi trả lời."},
+    {"id":"verify-before-done","pack":"core","domain":["*"],"phase":["verify"],"artifact":["*"],"mode":"system","repo":"local","path":"core/AGENTS.md","license":"MIT","note":"Không tuyên bố xong khi chưa có bằng chứng."},
+
+    {"id":"using-superpowers","pack":"meta","domain":["meta"],"phase":["discover"],"artifact":["*"],"mode":"core","repo":"obra/superpowers","ref":"2ce8aa15d05bd57213e6f746f953aafb7ded7a8b","path":"skills/using-superpowers","license":"MIT"},
+    {"id":"writing-skills","pack":"meta","domain":["meta"],"phase":["build"],"artifact":["*"],"mode":"core","repo":"obra/superpowers","ref":"2ce8aa15d05bd57213e6f746f953aafb7ded7a8b","path":"skills/writing-skills","license":"MIT"},
+    {"id":"verification-before-completion","pack":"meta","domain":["meta"],"phase":["verify"],"artifact":["*"],"mode":"core","repo":"obra/superpowers","ref":"2ce8aa15d05bd57213e6f746f953aafb7ded7a8b","path":"skills/verification-before-completion","license":"MIT"},
+    {"id":"skill-creator","pack":"meta","domain":["meta"],"phase":["build"],"artifact":["*"],"mode":"manual","repo":"anthropics/skills","ref":"2235be7c60b551f5de82ade908fd3816455afcda","path":"skills/skill-creator","license":"Apache-2.0"},
+
+    {"id":"brainstorming","pack":"code","domain":["code"],"phase":["discover"],"artifact":["*"],"mode":"auto","repo":"obra/superpowers","ref":"2ce8aa15d05bd57213e6f746f953aafb7ded7a8b","path":"skills/brainstorming","license":"MIT"},
+    {"id":"writing-plans","pack":"code","domain":["code"],"phase":["plan"],"artifact":["*"],"mode":"auto","repo":"obra/superpowers","ref":"2ce8aa15d05bd57213e6f746f953aafb7ded7a8b","path":"skills/writing-plans","license":"MIT"},
+    {"id":"executing-plans","pack":"code","domain":["code"],"phase":["build"],"artifact":["*"],"mode":"auto","repo":"obra/superpowers","ref":"2ce8aa15d05bd57213e6f746f953aafb7ded7a8b","path":"skills/executing-plans","license":"MIT"},
+    {"id":"test-driven-development","pack":"code","domain":["code"],"phase":["build"],"artifact":["code"],"mode":"auto","repo":"obra/superpowers","ref":"2ce8aa15d05bd57213e6f746f953aafb7ded7a8b","path":"skills/test-driven-development","license":"MIT"},
+    {"id":"systematic-debugging","pack":"code","domain":["code"],"phase":["verify"],"artifact":["code"],"mode":"auto","repo":"obra/superpowers","ref":"2ce8aa15d05bd57213e6f746f953aafb7ded7a8b","path":"skills/systematic-debugging","license":"MIT"},
+    {"id":"requesting-code-review","pack":"code","domain":["code"],"phase":["review"],"artifact":["code"],"mode":"auto","repo":"obra/superpowers","ref":"2ce8aa15d05bd57213e6f746f953aafb7ded7a8b","path":"skills/requesting-code-review","license":"MIT"},
+    {"id":"receiving-code-review","pack":"code","domain":["code"],"phase":["review"],"artifact":["code"],"mode":"auto","repo":"obra/superpowers","ref":"2ce8aa15d05bd57213e6f746f953aafb7ded7a8b","path":"skills/receiving-code-review","license":"MIT"},
+    {"id":"using-git-worktrees","pack":"code","domain":["code"],"phase":["build"],"artifact":["code"],"mode":"auto","repo":"obra/superpowers","ref":"2ce8aa15d05bd57213e6f746f953aafb7ded7a8b","path":"skills/using-git-worktrees","license":"MIT"},
+    {"id":"finishing-a-development-branch","pack":"code","domain":["code"],"phase":["ship"],"artifact":["code"],"mode":"auto","repo":"obra/superpowers","ref":"2ce8aa15d05bd57213e6f746f953aafb7ded7a8b","path":"skills/finishing-a-development-branch","license":"MIT"},
+    {"id":"dispatching-parallel-agents","pack":"code","domain":["code"],"phase":["build"],"artifact":["code"],"mode":"auto","repo":"obra/superpowers","ref":"2ce8aa15d05bd57213e6f746f953aafb7ded7a8b","path":"skills/dispatching-parallel-agents","license":"MIT"},
+    {"id":"subagent-driven-development","pack":"code","domain":["code"],"phase":["build"],"artifact":["code"],"mode":"auto","repo":"obra/superpowers","ref":"2ce8aa15d05bd57213e6f746f953aafb7ded7a8b","path":"skills/subagent-driven-development","license":"MIT"},
+    {"id":"react-best-practices","pack":"code","domain":["code"],"phase":["build"],"artifact":["web-ui"],"mode":"auto","repo":"vercel-labs/agent-skills","ref":"1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62","path":"skills/react-best-practices","license":"UNKNOWN","note":"Repo không khai license."},
+    {"id":"webapp-testing","pack":"code","domain":["code"],"phase":["verify"],"artifact":["web-ui"],"mode":"auto","repo":"anthropics/skills","ref":"2235be7c60b551f5de82ade908fd3816455afcda","path":"skills/webapp-testing","license":"Apache-2.0"},
+
+    {"id":"frontend-design","pack":"design","domain":["design"],"phase":["build"],"artifact":["web-ui"],"mode":"auto","repo":"anthropics/skills","ref":"2235be7c60b551f5de82ade908fd3816455afcda","path":"skills/frontend-design","license":"Apache-2.0","bytes":8260,"verified":true},
+    {"id":"apple-design","pack":"design","domain":["design","motion"],"phase":["build"],"artifact":["web-ui","motion"],"mode":"auto","repo":"emilkowalski/skills","ref":"e8a175de22ae1e49370fc144c1f3bb9aeedf988d","path":"skills/apple-design","license":"MIT","bytes":23036,"verified":true,"note":"23KB, sát trần 24KB. Có mục 'Initial Response' sẽ chiếm lượt trả lời đầu — xem PATCH.md."},
+    {"id":"web-design-guidelines","pack":"design","domain":["design"],"phase":["review"],"artifact":["web-ui"],"mode":"auto","repo":"vercel-labs/agent-skills","ref":"1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62","path":"skills/web-design-guidelines","license":"UNKNOWN"},
+    {"id":"writing-guidelines","pack":"design","domain":["design"],"phase":["build"],"artifact":["web-ui"],"mode":"auto","repo":"vercel-labs/agent-skills","ref":"1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62","path":"skills/writing-guidelines","license":"UNKNOWN"},
+    {"id":"canvas-design","pack":"design","domain":["design"],"phase":["build"],"artifact":["image"],"mode":"auto","repo":"anthropics/skills","ref":"2235be7c60b551f5de82ade908fd3816455afcda","path":"skills/canvas-design","license":"Apache-2.0"},
+    {"id":"theme-factory","pack":"design","domain":["design"],"phase":["build"],"artifact":["web-ui","document","slide"],"mode":"auto","repo":"anthropics/skills","ref":"2235be7c60b551f5de82ade908fd3816455afcda","path":"skills/theme-factory","license":"Apache-2.0"},
+    {"id":"brand-guidelines","pack":"design","domain":["design"],"phase":["build"],"artifact":["*"],"mode":"manual","repo":"anthropics/skills","ref":"2235be7c60b551f5de82ade908fd3816455afcda","path":"skills/brand-guidelines","license":"Apache-2.0","note":"Là brand của Anthropic. Thay bằng brand của bạn trước khi dùng."},
+    {"id":"web-artifacts-builder","pack":"design","domain":["code","design"],"phase":["build"],"artifact":["web-ui"],"mode":"auto","repo":"anthropics/skills","ref":"2235be7c60b551f5de82ade908fd3816455afcda","path":"skills/web-artifacts-builder","license":"Apache-2.0"},
+
+    {"id":"animate","pack":"motion","domain":["motion"],"phase":["build"],"artifact":["web-ui","motion"],"mode":"auto","repo":"emilkowalski/skills","ref":"e8a175de22ae1e49370fc144c1f3bb9aeedf988d","path":"skills/animate","license":"MIT"},
+    {"id":"improve-animations","pack":"motion","domain":["motion"],"phase":["review"],"artifact":["motion"],"mode":"auto","repo":"emilkowalski/skills","ref":"e8a175de22ae1e49370fc144c1f3bb9aeedf988d","path":"skills/improve-animations","license":"MIT"},
+    {"id":"review-animations","pack":"motion","domain":["motion"],"phase":["review"],"artifact":["motion"],"mode":"auto","repo":"emilkowalski/skills","ref":"e8a175de22ae1e49370fc144c1f3bb9aeedf988d","path":"skills/review-animations","license":"MIT"},
+    {"id":"find-animation-opportunities","pack":"motion","domain":["motion"],"phase":["discover"],"artifact":["motion"],"mode":"auto","repo":"emilkowalski/skills","ref":"e8a175de22ae1e49370fc144c1f3bb9aeedf988d","path":"skills/find-animation-opportunities","license":"MIT"},
+    {"id":"emil-design-eng","pack":"motion","domain":["design","motion"],"phase":["build","review"],"artifact":["web-ui","motion"],"mode":"auto","repo":"emilkowalski/skills","ref":"e8a175de22ae1e49370fc144c1f3bb9aeedf988d","path":"skills/emil-design-eng","license":"MIT"},
+    {"id":"break-ui","pack":"motion","domain":["design","motion"],"phase":["review"],"artifact":["web-ui"],"mode":"auto","repo":"emilkowalski/skills","ref":"e8a175de22ae1e49370fc144c1f3bb9aeedf988d","path":"skills/break-ui","license":"MIT"},
+
+    {"id":"edu-learning-objectives","families":["k12"],"pack":"education","domain":["education"],"phase":["plan"],"artifact":["lesson"],"mode":"auto","repo":"dh2211/edu-agents","ref":"6277f437a40294cf387b3648a1f91b49f5ebc2f3","path":"skills/edu-learning-objectives","license":"MIT"},
+    {"id":"edu-unit-planner","families":["k12"],"pack":"education","domain":["education"],"phase":["plan"],"artifact":["lesson"],"mode":"auto","repo":"dh2211/edu-agents","ref":"6277f437a40294cf387b3648a1f91b49f5ebc2f3","path":"skills/edu-unit-planner","license":"MIT"},
+    {"id":"edu-lesson-planner","families":["k12"],"pack":"education","domain":["education"],"phase":["build"],"artifact":["lesson"],"mode":"auto","repo":"dh2211/edu-agents","ref":"6277f437a40294cf387b3648a1f91b49f5ebc2f3","path":"skills/edu-lesson-planner","license":"MIT"},
+    {"id":"edu-slide-outline","families":["k12"],"pack":"education","domain":["education","docs"],"phase":["build"],"artifact":["slide","lesson"],"mode":"auto","repo":"dh2211/edu-agents","ref":"6277f437a40294cf387b3648a1f91b49f5ebc2f3","path":"skills/edu-slide-outline","license":"MIT"},
+    {"id":"edu-worksheet-builder","families":["k12"],"pack":"education","domain":["education"],"phase":["build"],"artifact":["document","lesson"],"mode":"auto","repo":"dh2211/edu-agents","ref":"6277f437a40294cf387b3648a1f91b49f5ebc2f3","path":"skills/edu-worksheet-builder","license":"MIT"},
+    {"id":"edu-assessment-builder","families":["k12"],"pack":"education","domain":["education"],"phase":["verify"],"artifact":["document","lesson"],"mode":"auto","repo":"dh2211/edu-agents","ref":"6277f437a40294cf387b3648a1f91b49f5ebc2f3","path":"skills/edu-assessment-builder","license":"MIT"},
+    {"id":"edu-formative-checks","families":["k12"],"pack":"education","domain":["education"],"phase":["verify"],"artifact":["lesson"],"mode":"auto","repo":"dh2211/edu-agents","ref":"6277f437a40294cf387b3648a1f91b49f5ebc2f3","path":"skills/edu-formative-checks","license":"MIT"},
+    {"id":"edu-rubric-builder","families":["k12"],"pack":"education","domain":["education"],"phase":["verify"],"artifact":["document","lesson"],"mode":"auto","repo":"dh2211/edu-agents","ref":"6277f437a40294cf387b3648a1f91b49f5ebc2f3","path":"skills/edu-rubric-builder","license":"MIT"},
+    {"id":"edu-differentiation","families":["k12"],"pack":"education","domain":["education"],"phase":["build"],"artifact":["lesson"],"mode":"auto","repo":"dh2211/edu-agents","ref":"6277f437a40294cf387b3648a1f91b49f5ebc2f3","path":"skills/edu-differentiation","license":"MIT"},
+    {"id":"edu-student-work-feedback","families":["k12"],"pack":"education","domain":["education"],"phase":["review"],"artifact":["document"],"mode":"auto","repo":"dh2211/edu-agents","ref":"6277f437a40294cf387b3648a1f91b49f5ebc2f3","path":"skills/edu-student-work-feedback","license":"MIT"},
+    {"id":"edu-family-message","families":["k12"],"pack":"education","domain":["education"],"phase":["ship"],"artifact":["document"],"mode":"auto","repo":"dh2211/edu-agents","ref":"6277f437a40294cf387b3648a1f91b49f5ebc2f3","path":"skills/edu-family-message","license":"MIT"},
+
+    {"id":"lesson-planning","families":["language"],"pack":"education","domain":["education"],"phase":["build"],"artifact":["lesson"],"mode":"auto","repo":"CristianHeyde/language-teaching-skills","ref":"c73a9b89e781f8d44e17124af645af9db15d0577","path":"skills/lesson-planning","license":"MIT"},
+    {"id":"task-design","families":["language"],"pack":"education","domain":["education"],"phase":["build"],"artifact":["lesson"],"mode":"auto","repo":"CristianHeyde/language-teaching-skills","ref":"c73a9b89e781f8d44e17124af645af9db15d0577","path":"skills/task-design","license":"MIT"},
+    {"id":"submission-review","families":["language"],"pack":"education","domain":["education"],"phase":["review"],"artifact":["document"],"mode":"auto","repo":"CristianHeyde/language-teaching-skills","ref":"c73a9b89e781f8d44e17124af645af9db15d0577","path":"skills/submission-review","license":"MIT"},
+    {"id":"study-planning","families":["language"],"pack":"education","domain":["education"],"phase":["plan"],"artifact":["lesson"],"mode":"auto","repo":"CristianHeyde/language-teaching-skills","ref":"c73a9b89e781f8d44e17124af645af9db15d0577","path":"skills/study-planning","license":"MIT"},
+    {"id":"course-architecture","families":["language"],"pack":"education","domain":["education"],"phase":["plan"],"artifact":["lesson"],"mode":"auto","repo":"CristianHeyde/language-teaching-skills","ref":"c73a9b89e781f8d44e17124af645af9db15d0577","path":"skills/course-architecture","license":"MIT"},
+
+    {"id":"concept-explainer","pack":"education","domain":["education"],"phase":["build"],"artifact":["document"],"mode":"auto","repo":"JayRHa/agent-skills","ref":"f9a456bf34c297bd23fb234f410ec9b239ebed14","path":"concept-explainer","license":"MIT"},
+    {"id":"flashcard-generator","pack":"education","domain":["education"],"phase":["build"],"artifact":["document"],"mode":"auto","repo":"JayRHa/agent-skills","ref":"f9a456bf34c297bd23fb234f410ec9b239ebed14","path":"flashcard-generator","license":"MIT"},
+    {"id":"study-plan-builder","pack":"education","domain":["education"],"phase":["plan"],"artifact":["document"],"mode":"auto","repo":"JayRHa/agent-skills","ref":"f9a456bf34c297bd23fb234f410ec9b239ebed14","path":"study-plan-builder","license":"MIT"},
+    {"id":"language-tutor","families":["language"],"pack":"education","domain":["education"],"phase":["build"],"artifact":["lesson"],"mode":"auto","repo":"JayRHa/agent-skills","ref":"f9a456bf34c297bd23fb234f410ec9b239ebed14","path":"language-tutor","license":"MIT"},
+
+    {"id":"docx","pack":"docs","domain":["docs"],"phase":["build"],"artifact":["document"],"mode":"auto","repo":"anthropics/skills","ref":"2235be7c60b551f5de82ade908fd3816455afcda","path":"skills/docx","license":"Apache-2.0"},
+    {"id":"pdf","pack":"docs","domain":["docs"],"phase":["build"],"artifact":["pdf"],"mode":"auto","repo":"anthropics/skills","ref":"2235be7c60b551f5de82ade908fd3816455afcda","path":"skills/pdf","license":"Apache-2.0"},
+    {"id":"pptx","pack":"docs","domain":["docs"],"phase":["build"],"artifact":["slide"],"mode":"auto","repo":"anthropics/skills","ref":"2235be7c60b551f5de82ade908fd3816455afcda","path":"skills/pptx","license":"Apache-2.0"},
+    {"id":"xlsx","pack":"docs","domain":["docs"],"phase":["build"],"artifact":["sheet"],"mode":"auto","repo":"anthropics/skills","ref":"2235be7c60b551f5de82ade908fd3816455afcda","path":"skills/xlsx","license":"Apache-2.0"},
+    {"id":"doc-coauthoring","pack":"docs","domain":["docs"],"phase":["build"],"artifact":["document"],"mode":"auto","repo":"anthropics/skills","ref":"2235be7c60b551f5de82ade908fd3816455afcda","path":"skills/doc-coauthoring","license":"Apache-2.0"}
+  ]
+}

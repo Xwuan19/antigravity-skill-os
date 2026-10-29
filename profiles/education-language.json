@@ -1,0 +1,30 @@
+{
+  "id": "education-language",
+  "label": "Dạy ngoại ngữ / trung tâm / gia sư",
+  "tags": [
+    "language",
+    "english",
+    "teaching",
+    "tutor",
+    "center"
+  ],
+  "select": {
+    "domain": [
+      "education",
+      "docs"
+    ],
+    "artifact": [
+      "lesson",
+      "document"
+    ]
+  },
+  "forbid_domains": [
+    "code",
+    "motion"
+  ],
+  "rationale": "Tập trung task design, chấm bài, giáo án ngôn ngữ.",
+  "max_skills": 18,
+  "families": [
+    "language"
+  ]
+}
