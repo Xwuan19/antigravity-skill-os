@@ -71,39 +71,19 @@ def resolve_profile(skills: list[dict], profiles: dict[str, dict],
 
 # ------------------------------------------------------------- select
 
-def select(skills: list[dict], prof: dict) -> tuple[list[dict], list[dict]]:
-    want_dom = set(prof["select"].get("domain", []))
-    want_art = set(prof["select"].get("artifact", []))
-    forbid = set(prof.get("forbid_domains", []))
-    want_fam = set(prof.get("families", []))
-
-    chosen, skipped = [], []
-    for s in skills:
-        if s["mode"] == "system":
-            skipped.append(s)  # báo riêng, không cài
-            continue
-
-        dom = set(s["domain"])
-        art = set(s["artifact"]) or {"*"}
-
-        # skill có khai `families` thì chỉ khớp đúng họ; không khai = khớp mọi họ
-        fam = set(s.get("families", []))
-        hit_fam = not fam or not want_fam or bool(fam & want_fam)
-
-        hit_dom = "*" in dom or bool(dom & want_dom)
-        hit_art = "*" in art or bool(art & want_art)
-        if hit_dom and hit_art and hit_fam and not dom & forbid:
-            chosen.append(s)
-        else:
-            skipped.append(s)
-
+def select(skills: list[dict], prof: dict,
+           stacks: list[str] | None = None) -> tuple[list[dict], list[dict]]:
+    """Bọc skillselect — một chỗ quyết định, hai công cụ dùng chung."""
+    import skillselect
+    chosen = skillselect.select(skills, prof, False, stacks)
+    ids = {id(x) for x in chosen}
+    skipped = [x for x in skills if id(x) not in ids]
     chosen.sort(key=lambda s: (s["pack"], s["phase"][0] if s["phase"] else "", s["id"]))
     return chosen, skipped
 
 
-# -------------------------------------------------------------- output
-
-def report(prof: dict, chosen: list[dict], skipped: list[dict]) -> None:
+def report(prof: dict, chosen: list[dict], skipped: list[dict],
+           stacks: list[str] | None = None) -> None:
     systems = [s for s in skipped if s["mode"] == "system"]
     print(f"\n  Profile : {prof['id']} — {prof['label']}")
     print(f"  Domain  : {', '.join(prof['select'].get('domain', []))}   "
@@ -112,6 +92,7 @@ def report(prof: dict, chosen: list[dict], skipped: list[dict]) -> None:
         print(f"  Cấm     : {', '.join(prof['forbid_domains'])}  (loại cứng)")
     if prof.get("rationale"):
         print(f"  Lý do   : {prof['rationale']}")
+        print(f"  Stack   : {', '.join(sorted(stacks)) if stacks else 'không lọc theo ngôn ngữ'}")
 
     print(f"\n  LUÔN BẬT — rules always_on, không cài vào .agents/skills/ ({len(systems)}):")
     for s in systems:
@@ -226,6 +207,9 @@ def main() -> None:
     ap.add_argument("--tags", "-t", default="")
     ap.add_argument("--install", metavar="DIR")
     ap.add_argument("--json", action="store_true")
+    ap.add_argument("--stacks", metavar="LIST",
+                    help="lọc theo ngôn ngữ: 'python,go'. Bỏ trống = tự dò")
+    ap.add_argument("--workspace", "-w", default=".")
     ap.add_argument("--list-profiles", action="store_true")
     a = ap.parse_args()
 
@@ -241,7 +225,11 @@ def main() -> None:
 
     tags = [t.strip().lower() for t in a.tags.split(",") if t.strip()]
     prof = resolve_profile(skills, profiles, a.profile, tags)
-    chosen, skipped = select(skills, prof)
+    import skillselect
+    stk = ([x.strip() for x in a.stacks.split(",") if x.strip()] if a.stacks
+           else (prof.get("stacks") or skillselect.detect_stacks(Path(a.workspace))
+                 or None))
+    chosen, skipped = select(skills, prof, stk)
 
     if a.json:
         print(json.dumps({"profile": prof["id"], "skills": chosen,
@@ -249,7 +237,7 @@ def main() -> None:
                          indent=2, ensure_ascii=False))
         return
 
-    report(prof, chosen, skipped)
+    report(prof, chosen, skipped, stk)
     if a.install:
         install(chosen, Path(a.install).expanduser().resolve())
         print()

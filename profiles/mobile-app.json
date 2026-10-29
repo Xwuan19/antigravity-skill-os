@@ -25,7 +25,7 @@
     "docs"
   ],
   "rationale": "React Native + Expo. Dùng skill native, không dùng skill web-ui.",
-  "max_skills": 40,
+  "max_skills": 64,
   "agent_groups": [
     "code",
     "meta"

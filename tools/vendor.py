@@ -92,13 +92,34 @@ def vendor(skills: list[dict], only: str | None) -> dict:
         tmp = Path(t)
         for (repo, ref), group in by_repo.items():
             print(f"\n  {repo} @ {ref[:10] or 'HEAD'}  ({len(group)} skill)")
-            paths = sorted({s["path"] for s in group})
+            paths = sorted({s["path"] for s in group}
+                           | {e for s in group for e in s.get("extra", [])})
+            if "." in paths or "./" in paths:
+                paths = ["/**"]  # skill ở gốc repo: lấy cả cây
             src = fetch_repo(repo, ref, paths, tmp)
             if src is None:
                 continue
             lic = repo_root_license(src)
             for s in group:
                 sdir = src / s["path"]
+                if s["path"] in (".", "./"):
+                    # skill nằm ngay gốc repo: copy cả cây, bỏ .git và file ẩn
+                    dest = PACKS / s["pack"] / s["id"]
+                    if dest.exists():
+                        shutil.rmtree(dest)
+                    shutil.copytree(sdir, dest, ignore=shutil.ignore_patterns(
+                        ".git", ".github", ".gitignore", ".gitattributes"))
+                    size = sum(f.stat().st_size for f in dest.rglob("*") if f.is_file())
+                    total_bytes += size
+                    sk = dest / "SKILL.md"
+                    out["skills"][s["id"]] = {
+                        "pack": s["pack"],
+                        "source": (f"{repo}@{ref}" if ref else f"{repo}@HEAD"),
+                        "path": s["path"], "license": s["license"],
+                        "bytes": size, "sha256": sha(sk) if sk.is_file() else None,
+                    }
+                    print(f"    ✓ {s['id']:<30} {size:>8,}B  {len(list(dest.iterdir()))} mục")
+                    continue
                 if not sdir.is_dir():
                     print(f"    ✗ {s['id']}: không thấy {s['path']}")
                     continue
@@ -108,6 +129,15 @@ def vendor(skills: list[dict], only: str | None) -> dict:
                 shutil.copytree(sdir, dest)
                 if lic and not any((dest / n).exists() for n in LICENSE_NAMES):
                     shutil.copy2(lic, dest / lic.name)
+                for e in s.get("extra", []):
+                    src_f = src / e
+                    if not src_f.is_file():
+                        print(f"      ! {s['id']}: thiếu {e}")
+                        continue
+                    ref_dir = dest / "references"
+                    ref_dir.mkdir(exist_ok=True)
+                    # giữ tên gốc, viết thường cho dễ đọc trong SKILL.md
+                    shutil.copy2(src_f, ref_dir / src_f.name.lower())
                 size = sum(f.stat().st_size for f in dest.rglob("*") if f.is_file())
                 total_bytes += size
                 sk = dest / "SKILL.md"

@@ -8,7 +8,7 @@ Project web quản lý nhận design + code. Project giáo án nhận education 
 không bao giờ thấy skill của nhau — không phải vì bị dặn đừng dùng, mà vì skill
 **không tồn tại** trong workspace đó. Ponytail `full` thì luôn bật cho tất cả.
 
-Repo **tự chứa**: 87 skill + 46 subagent + 9 plugin Claude Code đã port, pin commit.
+Repo **tự chứa**: 151 skill + 46 subagent + 9 plugin Claude Code, pin commit.
 Clone về là cài được, không cần mạng.
 
 ## Bắt đầu trong 3 lệnh
@@ -34,6 +34,7 @@ Có `--dry-run` cho mọi lệnh, `--uninstall` để gỡ, `--include-manual` �
 | Hooks | `--hooks` | `<dir>/.agents/hooks.json` + `.agents/skill-os/` | SessionStart nhắc luật hệ thống |
 | Plugins | `--plugins` | `<dir>/.agents/plugins/` | 9 plugin Claude Code đã port (23 skill) |
 | LSP | `--lsp` | `<dir>/.agents/mcp_config.json` + `.agents/lsp/` | code intelligence 12 ngôn ngữ qua MCP |
+| Stack | `--stacks` | (lọc, không chép gì) | skill theo ngôn ngữ: tự dò đuôi file, hoặc ép `python,go` |
 
 **Cô lập cứng:** mỗi project một `--profile`. Router loại toàn bộ skill không liên quan —
 50 skill trong 73 bị loại khỏi workspace mobile. Muốn chắc chắn "folder design chỉ có skill
@@ -46,15 +47,17 @@ description trong workspace gọn lại.
 
 | Profile | Skill | Agent | LSP | Cho |
 |---|---|---|---|---|
-| `web-admin` | 41 | 43 | ✅ | Dashboard, CRUD, SaaS |
-| `mobile-app` | 38 | 41 | ✅ | React Native, Expo, iOS/Android |
-| `landing` | 26 | 43 | ✅ | Landing, marketing, portfolio |
-| `cli-tool` | 26 | 41 | ✅ | CLI, script, backend |
+| `web-admin` | 68 | 43 | ✅ | Dashboard, CRUD, SaaS |
+| `mobile-app` | 64 | 41 | ✅ | React Native, Expo, iOS/Android |
+| `cli-tool` | 52 | 41 | ✅ | CLI, script, backend |
+| `landing` | 34 | 43 | ✅ | Landing, marketing, portfolio |
 | `education-k12` | 19 | — | — | Giáo án phổ thông, đề kiểm tra |
-| `design-system` | 15 | 10 | ✅ | UI kit, component library |
+| `design-system` | 16 | 10 | ✅ | UI kit, component library |
 | `education-language` | 11 | — | — | Trung tâm ngoại ngữ, gia sư |
 | `docs-writer` | 6 | 3 | — | Báo cáo, thuyết trình, bảng tính |
 | `meta` | 5 | 8 | ✅ | Nuôi chính hệ thống này (plugin-dev, hookify) |
+
+Số đo trên workspace TypeScript. Project Python sẽ nhiều hơn (cộng 18 skill `python-*`).
 
 Thêm profile = thêm 1 file JSON trong `profiles/`. Không sửa code.
 
@@ -127,11 +130,50 @@ TDD") thì không.
 | `code-simplifier`, `mcp-server-dev`, `hookify` | đơn giản hoá code, dựng MCP, tạo hook |
 
 Cộng thêm **`planning-with-files`** (MIT, 27k★ — repo đã native Antigravity) và
-**`handoff`** (mình tự viết, vì mọi repo handoff đều không có license).
+**`handoff`** (mình tự viết — các bản cộng đồng đều quá mỏng, chỉ 1 file không có mục "đường cụt đã thử").
 
-**Không port** — `context-mode` (Elastic License 2.0), `grill-me` và `taste-skill`
-(không có license), `claude-mem` (là app Node, không phải skill). Lý do đầy đủ trong
-tài liệu trên.
+**Không port** — `context-mode` (44 MB, là **ứng dụng** chứ không phải skill),
+`claude-mem` (app Node + sqlite). `grill-me` và `taste-skill` **đã port**: `grill-me` viết
+lại (bản gốc gọi tool `AskUserQuestion` mà Antigravity không có), `taste-skill` ghi chú cũ
+của mình sai — repo là **MIT**. Lý do đầy đủ trong tài liệu trên.
+
+## Lọc theo ngôn ngữ (`--stacks`)
+
+Skill Python không nên nằm trong project TypeScript. `install.py` **tự dò** ngôn ngữ bằng
+cách đếm đuôi file trong workspace rồi chỉ cài skill đúng stack:
+
+```
+workspace toàn .py   → lấy 18 skill python, không lấy skill typescript
+workspace toàn .ts   → lấy 5 skill typescript, không lấy skill python
+```
+
+```bash
+python3 tools/install.py --profile web-admin -w ~/p/admin               # tự dò
+python3 tools/install.py --profile web-admin -w ~/p/admin --stacks go,rust   # ép
+```
+
+Skill khai `stack: ["general"]` hoặc không khai stack thì vào mọi project. Đây là lý do
+`web-admin` trên project TS ra 68 skill còn trên project Python ra 79 — khác nhau đúng phần
+ngôn ngữ, không phải hai bộ khác nhau.
+
+**Phủ ngôn ngữ:**
+
+| Ngôn ngữ | Skill | Nguồn |
+|---|---|---|
+| Python | 18 (`python-*`, `uv-package-manager`, `async-python-patterns`, `fastapi-templates`…) | wshobson |
+| TypeScript / JS | 7 (`typescript-strict`, `javascript-strict`, `typescript-advanced-types`, `nodejs-backend-patterns`…) | 0xMassi, wshobson |
+| Rust | 4 (`rust-strict`, `rust-skills` 265 rule, `rust-async-patterns`) | 0xMassi, leonardomso, wshobson |
+| Go | 2 (`go-strict`, `go-concurrency-patterns`) | 0xMassi, wshobson |
+| C# | 2 (`c-sharp`, `dotnet-backend-patterns`) | Mindrally, wshobson |
+| C / C++ | 2 (`cpp`, `memory-safety-patterns`) | Mindrally, wshobson |
+| Shell | 3 (`bash-defensive-patterns`, `bats-testing-patterns`, `shellcheck-configuration`) | wshobson |
+| Java · Kotlin · Ruby · PHP · Lua · Swift · SQL | 1 mỗi cái | Mindrally, 0xMassi |
+
+Ngôn ngữ **chưa có skill riêng**: Dart/Flutter. Vẫn có LSP cho Dart? — không, xem bảng LSP
+(12 ngôn ngữ, chưa gồm Dart).
+
+**Chi phí thật:** 64 skill ≈ **4.400 token** description mỗi phiên; 77 skill ≈ 5.100 token.
+Đây là giá của việc có nhiều skill — `route.py` in ra con số này trước khi bạn cài.
 
 ## Code intelligence: LSP cho 12 ngôn ngữ
 
@@ -223,9 +265,9 @@ lifecycle hook nên mức không lưu qua lượt; chỉ cần tồn tại một
 
 ```
 core/            rules always_on — ponytail FULL, skill-first, verify, language
-registry/        skills.json (87) + agents.json (46) + plugins.json (9) + lsp.json (12) + taxonomy.md
+registry/        skills.json (151) + agents.json (46) + plugins.json (9) + lsp.json (12) + taxonomy.md
 profiles/        9 kiểu project → skill + nhóm agent + plugin
-packs/           84 skill đã vendor + VENDOR.json (sha256 từng cái)
+packs/           148 skill đã vendor + VENDOR.json (sha256 từng cái)
 agents/          46 subagent đã port sang định dạng Antigravity
 plugins/         9 plugin Claude Code đã port (23 skill + 8 agent)
 hooks/           hooks.json + session-start / format / safety
@@ -300,11 +342,23 @@ Mỗi bản ghi trong `packs/VENDOR.json` có `source` (repo@commit), `sha256`, 
 | [OthmanAdi/planning-with-files](https://github.com/OthmanAdi/planning-with-files) | MIT | planning-with-files |
 | [tounsils/claude-code-skills](https://github.com/tounsils/claude-code-skills) | MIT | 10 skill kỷ luật kỹ thuật |
 | [multica-ai/andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills) | MIT (README + frontmatter) | karpathy-guidelines |
-| [wshobson/agents](https://github.com/wshobson/agents) | MIT | parallel-debugging |
+| [wshobson/agents](https://github.com/wshobson/agents) | MIT | 31 skill (developer-essentials, backend, python, typescript, security) |
+| [tjboudreaux/cc-thinking-skills](https://github.com/tjboudreaux/cc-thinking-skills) | MIT | 6 mô hình tư duy gắn với gỡ lỗi |
+| [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill) | MIT | taste-skill (design) |
+| [RobMitt/grill-me-skill](https://github.com/RobMitt/grill-me-skill) | **không có LICENSE** | `grill-me` — viết lại, xem ghi chú dưới |
+| [ajbmachon/ajbm-skills](https://github.com/ajbmachon/ajbm-skills) | NOASSERTION | testing-best-practices |
 | language server (gopls, pyright, jdtls, …) | giấy phép riêng của từng server | **không vendor** — cài bằng trình quản lý gói của bạn |
 
 `vercel-labs/agent-skills` không có file `LICENSE` ở gốc, nhưng README mục *License* ghi
 MIT và 4 SKILL.md tự khai `license: MIT`. Coi là MIT.
+
+**Chính sách license (đổi sau khi bạn yêu cầu):** không dùng license làm bộ lọc nữa — lấy
+cái hiệu quả. Cột license ở trên để bạn biết mình đang dùng cái gì, không phải để loại.
+Hai chỗ vẫn ghi rõ vì chúng khác biệt về bản chất:
+
+- `grill-me` — repo gốc **không có LICENSE**. Không chép nguyên văn: viết lại cho Antigravity
+  (tool `ask_question` thay `AskUserQuestion`) và ghi nguồn trong SKILL.md.
+- `ajbm-skills` — license `NOASSERTION` (không xác định được). Đã lấy 1 skill.
 
 `core/AGENTS.md` phái sinh từ ponytail (`AGENTS.md` + `skills/ponytail/SKILL.md`),
 đã sửa: bỏ mục Levels, khoá `full`, mở phạm vi sang sản phẩm phi code,

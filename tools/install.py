@@ -53,27 +53,20 @@ def pack_dir(skill: dict) -> Path:
     return PACKS / skill["pack"] / skill["id"]
 
 
-def select(skills: list[dict], prof: dict, include_manual: bool = False) -> list[dict]:
-    want_dom = set(prof["select"].get("domain", []))
-    want_art = set(prof["select"].get("artifact", []))
-    forbid = set(prof.get("forbid_domains", []))
-    want_fam = set(prof.get("families", []))
-    out = []
-    for s in skills:
-        if s["mode"] == "system":
-            continue
-        if s["mode"] == "manual" and not include_manual:
-            continue
-        dom, art = set(s["domain"]), set(s["artifact"]) or {"*"}
-        fam = set(s.get("families", []))
-        if fam and want_fam and not (fam & want_fam):
-            continue
-        if dom & forbid:
-            continue
-        if "*" in dom or dom & want_dom:
-            if "*" in art or art & want_art:
-                out.append(s)
-    return sorted(out, key=lambda s: (s["pack"], s["id"]))
+def select_all(skills: list[dict], prof: dict, include_manual: bool = False,
+               stacks: list[str] | None = None) -> list[dict]:
+    import skillselect
+    return skillselect.select(skills, prof, include_manual, stacks)
+
+
+def resolve_stacks(ws: Path, prof: dict, explicit: str | None) -> list[str] | None:
+    """Explicit > profile > tự dò theo đuôi file."""
+    if explicit:
+        return [x.strip() for x in explicit.split(",") if x.strip()]
+    if prof.get("stacks"):
+        return list(prof["stacks"])
+    import skillselect
+    return skillselect.detect_stacks(ws) or None
 
 
 def copy_skill(skill: dict, dest_root: Path, dry: bool, force: bool) -> str:
@@ -239,13 +232,16 @@ def do_manifest(dest_root: Path, skills: list[dict], prof: str, dry: bool) -> No
 def do_workspace(skills: list[dict], profiles: dict[str, dict],
                  profile: str, ws: Path, dry: bool, force: bool,
                  include_manual: bool = False, hooks: bool = False,
-                 plugins: bool = False, lsp: str | None = None) -> None:
+                 plugins: bool = False, lsp: str | None = None,
+                 stacks: str | None = None) -> None:
     if profile not in profiles:
         sys.exit(f"  Không có profile '{profile}'. Có: {', '.join(profiles)}")
     prof = profiles[profile]
-    chosen = select(skills, prof, include_manual)
+    stk = resolve_stacks(ws, prof, stacks)
+    chosen = select_all(skills, prof, include_manual, stk)
     target = ws / ".agents" / "skills"
     print(f"\n  Profile : {profile} — {prof['label']}")
+    print(f"  Stack   : {', '.join(stk) if stk else 'không lọc theo ngôn ngữ'}")
     print(f"  Cài vào : {target}  ({len(chosen)} skill)")
     by_pack: dict[str, int] = {}
     for s in chosen:
@@ -328,6 +324,9 @@ def main() -> None:
                          "workspace, hoặc 'all', hoặc 'go,python,rust' "
                          "(mặc định theo profile)")
     ap.add_argument("--no-lsp", action="store_true", help="tắt LSP dù profile có bật")
+    ap.add_argument("--stacks", metavar="LIST",
+                    help="lọc skill theo ngôn ngữ: 'python,go'. Bỏ trống = tự dò "
+                         "theo đuôi file trong workspace")
     a = ap.parse_args()
 
     skills, profiles = load()
@@ -346,7 +345,8 @@ def main() -> None:
         elif lsp_spec is None and profiles.get(a.profile, {}).get("lsp"):
             lsp_spec = "auto"
         do_workspace(skills, profiles, a.profile, Path(a.workspace).expanduser().resolve(),
-                     dry, a.force, a.include_manual, a.hooks, a.plugins, lsp_spec)
+                     dry, a.force, a.include_manual, a.hooks, a.plugins, lsp_spec,
+                     a.stacks)
     if a.uninstall:
         do_uninstall(skills, dry)
     if not any([a.list, a.core, a.profile, a.uninstall]):

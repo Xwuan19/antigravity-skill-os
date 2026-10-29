@@ -48,7 +48,7 @@ Agent SDK, chưa chắc chạy trong Antigravity. Bật sau khi tự kiểm.
 | Skill | Nguồn | License | Vì sao |
 |---|---|---|---|
 | `planning-with-files` | [OthmanAdi/planning-with-files](https://github.com/OthmanAdi/planning-with-files) @ `5d29800b` | MIT | 27k★. **Repo này đã có sẵn `.agents/skills/`** — native Antigravity, chỉ cần copy. Plan ghi ra đĩa (`task_plan.md`, `findings.md`, `progress.md`), sống sót qua mất context |
-| `handoff` | **tự viết** | MIT | Mọi repo handoff đều **không có license** → không được phép vendor. Viết bản riêng: `HANDOFF.md` 8 mục, có mục "Do not" ghi lại đường cụt đã thử |
+| `handoff` | **tự viết** | MIT | Bản cộng đồng chỉ 1 file tóm tắt. Viết bản riêng: `HANDOFF.md` 8 mục, có mục "Do not" ghi lại đường cụt đã thử |
 
 `handoff` đặt `mode: core` → cài global, có mặt ở mọi phiên.
 
@@ -117,13 +117,13 @@ Nên **tự viết** `tools/lsp_bridge.py` (stdlib, 380 dòng) + `tools/lsp.py` 
 
 | Thứ | Lý do | Nên làm gì |
 |---|---|---|
-| **`mksglu/context-mode`** (32k★) | **Elastic License 2.0**, không phải open source. ELv2 cấm cung cấp như dịch vụ và cấm gỡ license key | Tự cài riêng nếu cần, không vendor vào repo này |
-| **`RobMitt/grill-me-skill`** (1.2k★) | **Không có license** = giữ toàn bộ bản quyền. Vendor là vi phạm | Có thể tự viết bản tương đương: skill phỏng vấn ngược trước khi code |
+| **`mksglu/context-mode`** (32k★) | Là **ứng dụng 44 MB**, không phải skill — kể cả khi bỏ qua license cũng không nhét vào `packs/` được | Tự cài riêng nếu cần |
+| ~~`RobMitt/grill-me-skill`~~ | **Đã port, viết lại.** Bản gốc gọi `AskUserQuestion` — Antigravity không có tool đó | Đã đổi sang bảng câu hỏi trong file + `ask_question` khi cần |
 | **`thedotmack/claude-mem`** (104k★, Apache-2.0) | License ổn, nhưng là **ứng dụng Node hoàn chỉnh** (794 file `src/`, sqlite, UI, hooks gọi service). Không phải skill — phải cài như app riêng | Cài độc lập theo README của họ; `plugin/skills/*` thì chép tay được |
 | **`wshobson/agents`** (42k★, MIT) | 92 plugin — quá lớn để vendor toàn bộ, và phần lớn trùng với 46 agent đã port | **Chưa quyết.** Lấy lẻ từng plugin khi cần |
 | Bộ LSP (`typescript-lsp`, `pyright-lsp`, ...) | Plugin **rỗng** — chỉ README + LICENSE, không config. Xem §3: đã tự viết cầu và phủ cả 12 ngôn ngữ | — (đã xong) |
 | `/deep-research` | Là workflow của Claude Code, không phải skill | Antigravity có `/boost` thay thế |
-| `taste-skill` | Repo phổ biến nhất **không có license** | Tự viết hoặc dùng `frontend-design` + `apple-design` đã có |
+| ~~`taste-skill`~~ | **Đã port.** Ghi chú cũ sai: repo là **MIT** (105k★), không phải "không license" | — |
 
 ---
 

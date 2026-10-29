@@ -24,7 +24,7 @@
     "motion"
   ],
   "rationale": "Không có UI thì skill thiết kế chỉ làm nhiễu danh sách skill.",
-  "max_skills": 30,
+  "max_skills": 52,
   "agent_groups": [
     "code",
     "meta"

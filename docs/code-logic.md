@@ -147,33 +147,66 @@ phụ thuộc profile. Đây là lý do mọi workspace đều có cổng ④ k�
 
 ---
 
-## 4. Nguồn đã đọc nhưng không lấy
+## 4. Nguồn đã đọc: lấy gì, bỏ gì
 
-| Nguồn | Vì sao không |
+Sau khi bỏ license khỏi tiêu chí lọc, tiêu chí còn lại là **có trùng chức năng không**.
+
+### Đã lấy thêm
+
+| Nguồn | Lấy | Vì sao |
+|---|---|---|
+| `tounsils/claude-code-skills` | cả 10 | Sắc nhất trong tất cả — mỗi skill một việc, mỗi cái một câu từ chối |
+| `multica-ai/andrej-karpathy-skills` | 1 + `references/` | SKILL.md 2.5 KB + `EXAMPLES.md` 15 KB ví dụ cụ thể + `CLAUDE.md` 2.4 KB |
+| `wshobson/agents` | 31 | Thư viện theo ngôn ngữ: Python 18, TypeScript 5, general 18 |
+| `tjboudreaux/cc-thinking-skills` | 6 / 28 | Chỉ 6 cái gắn với gỡ lỗi và quyết định; 22 cái còn lại là mô hình kinh doanh/tổ chức, không phải logic code |
+| `Leonxlnx/taste-skill` | 1 | Design taste, 39 KB SKILL.md + thư viện mẫu. Trước đây ghi "không license" — **sai**, repo là MIT |
+| `ajbmachon/ajbm-skills` | 1 | `testing-best-practices` |
+| `RobMitt/grill-me-skill` | 1 (viết lại) | Phỏng vấn ngược trước khi code. Bản gốc gọi `AskUserQuestion` — Antigravity không có tool đó |
+
+### Bỏ vì trùng, không vì license
+
+| Skill | Trùng với |
 |---|---|
-| `tjboudreaux/cc-thinking-skills` (1.7k★, MIT, 28 skill) | Là **mô hình tư duy chung** (Kepner-Tregoe, Cynefin, OODA, TRIZ…), không phải logic code. 28 skill sẽ làm loãng việc chọn skill trong project code. Bản thân repo cũng ghi *"all manual-only"* — tức phải gọi tay, trái nguyên tắc tự áp dụng. Vài cái trùng ý với `root-cause` nhưng yếu hơn vì không gắn với code |
-| `ajbmachon/ajbm-skills` (7★) | License `NOASSERTION` — không rõ ràng, không vendor. Nội dung hay (`thinking` router 5 chế độ, `be-creative` dùng Verbalized Sampling) nhưng thà thiếu còn hơn sai license |
-| `etemigarba/Debug-and-Fix-Bugs-Skill` (MIT) | 1 skill nhưng 6 pha, nặng về quy trình bàn giấy. `root-cause` + `systematic-debugging` đã phủ gọn hơn |
-| `obra/superpowers` → `diagnosing-superpowers` | Là công cụ viết bug report cho chính repo superpowers, không liên quan logic code |
-| `lyndonkl/claude` (271 skill) | Bộ "thinking frameworks" nghiêng về ra quyết định kinh doanh/viết lách, không phải code |
-| `swapnildahiphale/first-principles-thinking-skill` | Trùng phần "nghĩ trước khi code" của `karpathy-guidelines`, và nặng hơn (5 pha, 3 mức) |
+| `e2e-testing-patterns` | `webapp-testing` (Playwright) |
+| `multi-reviewer-patterns` | plugin `code-review` (multi-agent) |
+| `task-coordination-strategies` | `subagent-driven-development` |
+| `dependency-upgrade` | `bump-deps` (sắc hơn) |
+| `sast-configuration`, `attack-tree-construction`, `threat-mitigation-mapping`, `security-requirement-extraction` | `audit-security` + `stride-analysis-patterns` |
+| `microservices-patterns` | `architecture-patterns` |
+| `monorepo-management` | quá hẹp, không phải logic code |
+| `debugging-strategies` | `root-cause` (sắc hơn) |
+| `code-review-excellence` | `review-diff` (sắc hơn) |
+| 22/28 `thinking-*` | Mô hình tư duy chung, không gắn với code |
 
----
+Bỏ 10 skill trùng làm `web-admin` từ 74 xuống 64 — không mất năng lực nào, chỉ bỏ đường
+gọi trùng tên.
+
+### Vẫn bỏ vì nội dung
+
+| Nguồn | Vì sao |
+|---|---|
+| `obra/superpowers` → `diagnosing-superpowers` | Công cụ viết bug report cho chính superpowers |
+| `etemigarba/Debug-and-Fix-Bugs-Skill` | 6 pha nặng bàn giấy, đã bị phủ gọn |
+| `mksglu/context-mode` (44 MB) | Là **ứng dụng**, không phải skill trần |
+| `thedotmack/claude-mem` (104k★) | Cũng là app Node (sqlite + UI), không phải skill |
 
 ## 5. Nối vào workspace thế nào
 
 12 skill có `domain: ["code"]`, `families: ["logic"]`, `mode: auto`. Chúng đi theo **miền**
 chứ không theo **artifact** — nên profile nào có `domain` chứa `code` là nhận.
 
-| Profile | Skill | Có logic skill? | Vì sao |
+| Profile (project TS) | Skill | Có logic skill? | Vì sao |
 |---|---|---|---|
-| `web-admin` | 41 | ✅ cả 12 | Dashboard/CRUD: logic là phần chính |
-| `mobile-app` | 38 | ✅ cả 12 | App thật: state, navigation, API, offline |
-| `cli-tool` | 26 | ✅ cả 12 | Không UI, toàn logic |
-| `landing` | 26 | ❌ | Rationale: "logic mỏng". Vẫn có `verify-before-done` global |
-| `design-system` | 15 | ❌ | Rationale ghi rõ: "không cần superpowers/TDD" |
+| `web-admin` | 68 | ✅ cả 12 | Dashboard/CRUD: logic là phần chính |
+| `mobile-app` | 64 | ✅ cả 12 | App thật: state, navigation, API, offline |
+| `cli-tool` | 52 | ✅ cả 12 | Không UI, toàn logic |
+| `landing` | 34 | ❌ | Rationale: "logic mỏng". Vẫn có `verify-before-done` global |
+| `design-system` | 16 | ❌ | Rationale ghi rõ: "không cần superpowers/TDD" |
 | `docs-writer` | 6 | ❌ | Không viết code |
 | `education-*` | 19 / 11 | ❌ | `forbid_domains: code` |
+
+Trên project Python, `web-admin` ra 79 skill (cộng 18 skill `python-*`) và **không** có
+skill `typescript-*`. Xem mục `--stacks` ở README.
 
 ### Một lỗ hổng đã sửa trong lúc làm
 

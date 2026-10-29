@@ -192,16 +192,14 @@ Cập nhật sau khi port xong đợt 3. Danh sách **còn lại**:
 | Ưu tiên | Skill / plugin | Nguồn | Vì sao đáng |
 |---|---|---|---|
 | 1 | **`wshobson/agents`** | 42k★, MIT | **92 plugin**, 185 skill đã ở đúng định dạng Antigravity. Đã lấy `parallel-debugging`, còn ~180 skill chưa khai thác |
-| 2 | **`grill-me`** | cộng đồng | Phỏng vấn ngược trước khi code, chống hiểu sai yêu cầu. **Kẹt license** — repo không có LICENSE |
-| 3 | **`taste-skill`** | Leonxlnx | Design có "gu", dial variance/motion. **Kẹt license** — không có LICENSE |
-| 4 | `context-mode` | mksglu | Bộ nhớ xuyên phiên. **Elastic License 2.0** — không vendor |
+| 2 | `context-mode` | mksglu | Bộ nhớ xuyên phiên. Là **app 44 MB**, không phải skill trần — cài riêng |
 | 5 | `claude-mem` | cộng đồng | Apache-2.0 nhưng là **app Node** (sqlite + UI), không phải skill trần |
 
 ### Đã xong trong đợt 3
 
 | Thứ | Tình trạng |
 |---|---|
-| `handoff` | ✅ tự viết (MIT) — mọi bản cộng đồng đều không có license |
+| `handoff` | ✅ tự viết (MIT) — bản cộng đồng quá mỏng |
 | `planning-with-files` | ✅ vendor MIT, repo đã native Antigravity |
 | `security-guidance` | ✅ port từ `claude-plugins-official` |
 | `claude-md-management` | ✅ port |
@@ -209,6 +207,7 @@ Cập nhật sau khi port xong đợt 3. Danh sách **còn lại**:
 | `code-review`, `feature-dev`, `commit-commands` | ✅ port |
 | **LSP** | ✅ tự viết cầu — xem §3.3 |
 | **Kỷ luật code** | ✅ 12 skill đợt 4 — xem §3.2b |
+| **Theo ngôn ngữ** | ✅ Go · Rust · Python · TS/JS · C# · C/C++ · Shell · Java · Kotlin · Ruby · PHP · Lua · Swift · SQL |
 
 ---
 

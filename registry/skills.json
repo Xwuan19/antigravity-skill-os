@@ -97,6 +97,27 @@
       "license": "MIT"
     },
     {
+      "id": "api-design-principles",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "wshobson/agents",
+      "ref": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "path": "plugins/backend-development/skills/api-design-principles",
+      "license": "MIT",
+      "stack": [
+        "general"
+      ]
+    },
+    {
       "id": "apple-design",
       "pack": "design",
       "domain": [
@@ -120,6 +141,27 @@
       "note": "23KB, sát trần 24KB. Có mục 'Initial Response' sẽ chiếm lượt trả lời đầu — xem PATCH.md."
     },
     {
+      "id": "architecture-patterns",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "wshobson/agents",
+      "ref": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "path": "plugins/backend-development/skills/architecture-patterns",
+      "license": "MIT",
+      "stack": [
+        "general"
+      ]
+    },
+    {
       "id": "ask-sonner",
       "pack": "motion",
       "domain": [
@@ -137,6 +179,27 @@
       "ref": "e8a175de22ae1e49370fc144c1f3bb9aeedf988d",
       "path": "skills/ask-sonner",
       "license": "MIT"
+    },
+    {
+      "id": "async-python-patterns",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "wshobson/agents",
+      "ref": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "path": "plugins/python-development/skills/async-python-patterns",
+      "license": "MIT",
+      "stack": [
+        "python"
+      ]
     },
     {
       "id": "audit-security",
@@ -157,6 +220,69 @@
       "license": "MIT",
       "families": [
         "logic"
+      ]
+    },
+    {
+      "id": "auth-implementation-patterns",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "wshobson/agents",
+      "ref": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "path": "plugins/developer-essentials/skills/auth-implementation-patterns",
+      "license": "MIT",
+      "stack": [
+        "general"
+      ]
+    },
+    {
+      "id": "bash-defensive-patterns",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "wshobson/agents",
+      "ref": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "path": "plugins/shell-scripting/skills/bash-defensive-patterns",
+      "license": "MIT",
+      "stack": [
+        "shell"
+      ]
+    },
+    {
+      "id": "bats-testing-patterns",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "verify"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "wshobson/agents",
+      "ref": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "path": "plugins/shell-scripting/skills/bats-testing-patterns",
+      "license": "MIT",
+      "stack": [
+        "shell"
       ]
     },
     {
@@ -237,6 +363,27 @@
       ]
     },
     {
+      "id": "c-sharp",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "Mindrally/skills",
+      "ref": "7682ca77710e0971eab4e0ae5dddfa281aea0ba5",
+      "path": "c-sharp",
+      "license": "Apache-2.0",
+      "stack": [
+        "csharp"
+      ]
+    },
+    {
       "id": "canvas-design",
       "pack": "design",
       "domain": [
@@ -292,6 +439,48 @@
       "ref": "c73a9b89e781f8d44e17124af645af9db15d0577",
       "path": "skills/course-architecture",
       "license": "MIT"
+    },
+    {
+      "id": "cpp",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "Mindrally/skills",
+      "ref": "7682ca77710e0971eab4e0ae5dddfa281aea0ba5",
+      "path": "cpp",
+      "license": "Apache-2.0",
+      "stack": [
+        "cpp"
+      ]
+    },
+    {
+      "id": "database-migration",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "ship"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "wshobson/agents",
+      "ref": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "path": "plugins/framework-migration/skills/database-migration",
+      "license": "MIT",
+      "stack": [
+        "general"
+      ]
     },
     {
       "id": "deploy-to-vercel",
@@ -365,6 +554,27 @@
       "ref": "2235be7c60b551f5de82ade908fd3816455afcda",
       "path": "skills/docx",
       "license": "Apache-2.0"
+    },
+    {
+      "id": "dotnet-backend-patterns",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "wshobson/agents",
+      "ref": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "path": "plugins/dotnet-contribution/skills/dotnet-backend-patterns",
+      "license": "MIT",
+      "stack": [
+        "csharp"
+      ]
     },
     {
       "id": "edu-assessment-builder",
@@ -624,6 +834,27 @@
       "license": "MIT"
     },
     {
+      "id": "error-handling-patterns",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "wshobson/agents",
+      "ref": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "path": "plugins/developer-essentials/skills/error-handling-patterns",
+      "license": "MIT",
+      "stack": [
+        "general"
+      ]
+    },
+    {
       "id": "executing-plans",
       "pack": "code",
       "domain": [
@@ -640,6 +871,27 @@
       "ref": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
       "path": "skills/executing-plans",
       "license": "MIT"
+    },
+    {
+      "id": "fastapi-templates",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "wshobson/agents",
+      "ref": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "path": "plugins/api-scaffolding/skills/fastapi-templates",
+      "license": "MIT",
+      "stack": [
+        "python"
+      ]
     },
     {
       "id": "find-animation-opportunities",
@@ -716,6 +968,91 @@
       "verified": true
     },
     {
+      "id": "git-advanced-workflows",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "ship"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "wshobson/agents",
+      "ref": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "path": "plugins/developer-essentials/skills/git-advanced-workflows",
+      "license": "MIT",
+      "stack": [
+        "general"
+      ]
+    },
+    {
+      "id": "go-concurrency-patterns",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "wshobson/agents",
+      "ref": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "path": "plugins/systems-programming/skills/go-concurrency-patterns",
+      "license": "MIT",
+      "stack": [
+        "go"
+      ]
+    },
+    {
+      "id": "go-strict",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "build",
+        "review"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "0xMassi/claude-skills",
+      "ref": "c5cf85f819c5c026dd5961756e163b0e9ea5dfe1",
+      "path": "go-strict",
+      "license": "MIT",
+      "stack": [
+        "go"
+      ]
+    },
+    {
+      "id": "grill-me",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "discover"
+      ],
+      "artifact": [
+        "*"
+      ],
+      "mode": "auto",
+      "repo": "local",
+      "path": ".",
+      "license": "NO-LICENSE",
+      "stack": [
+        "general"
+      ],
+      "note": "viết lại từ RobMitt/grill-me-skill cho Antigravity"
+    },
+    {
       "id": "handoff",
       "pack": "meta",
       "domain": [
@@ -752,6 +1089,70 @@
       "license": "MIT"
     },
     {
+      "id": "java",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "Mindrally/skills",
+      "ref": "7682ca77710e0971eab4e0ae5dddfa281aea0ba5",
+      "path": "java",
+      "license": "Apache-2.0",
+      "stack": [
+        "java"
+      ]
+    },
+    {
+      "id": "javascript-strict",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "build",
+        "review"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "0xMassi/claude-skills",
+      "ref": "c5cf85f819c5c026dd5961756e163b0e9ea5dfe1",
+      "path": "javascript-strict",
+      "license": "MIT",
+      "stack": [
+        "typescript"
+      ]
+    },
+    {
+      "id": "javascript-testing-patterns",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "verify"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "wshobson/agents",
+      "ref": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "path": "plugins/javascript-typescript/skills/javascript-testing-patterns",
+      "license": "MIT",
+      "stack": [
+        "typescript"
+      ]
+    },
+    {
       "id": "karpathy-guidelines",
       "pack": "code",
       "domain": [
@@ -772,7 +1173,32 @@
       "families": [
         "logic"
       ],
-      "note": "nghĩ trước khi code, tối giản, sửa phẫu thuật, mục tiêu kiểm chứng được"
+      "note": "nghĩ trước khi code, tối giản, sửa phẫu thuật, mục tiêu kiểm chứng được",
+      "extra": [
+        "EXAMPLES.md",
+        "CLAUDE.md"
+      ]
+    },
+    {
+      "id": "kotlin-development",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "Mindrally/skills",
+      "ref": "7682ca77710e0971eab4e0ae5dddfa281aea0ba5",
+      "path": "kotlin-development",
+      "license": "Apache-2.0",
+      "stack": [
+        "kotlin"
+      ]
     },
     {
       "id": "language-tutor",
@@ -817,6 +1243,49 @@
       "license": "MIT"
     },
     {
+      "id": "lua",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "Mindrally/skills",
+      "ref": "7682ca77710e0971eab4e0ae5dddfa281aea0ba5",
+      "path": "lua",
+      "license": "Apache-2.0",
+      "stack": [
+        "lua"
+      ]
+    },
+    {
+      "id": "memory-safety-patterns",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "wshobson/agents",
+      "ref": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "path": "plugins/systems-programming/skills/memory-safety-patterns",
+      "license": "MIT",
+      "stack": [
+        "cpp",
+        "rust"
+      ]
+    },
+    {
       "id": "mobile-native",
       "pack": "motion",
       "domain": [
@@ -833,6 +1302,48 @@
       "ref": "e8a175de22ae1e49370fc144c1f3bb9aeedf988d",
       "path": "skills/mobile-native",
       "license": "MIT"
+    },
+    {
+      "id": "modern-javascript-patterns",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "wshobson/agents",
+      "ref": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "path": "plugins/javascript-typescript/skills/modern-javascript-patterns",
+      "license": "MIT",
+      "stack": [
+        "typescript"
+      ]
+    },
+    {
+      "id": "nodejs-backend-patterns",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "wshobson/agents",
+      "ref": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "path": "plugins/javascript-typescript/skills/nodejs-backend-patterns",
+      "license": "MIT",
+      "stack": [
+        "typescript"
+      ]
     },
     {
       "id": "onboard-repo",
@@ -917,6 +1428,48 @@
       ]
     },
     {
+      "id": "performance-audit-standard",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "verify"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "0xMassi/claude-skills",
+      "ref": "c5cf85f819c5c026dd5961756e163b0e9ea5dfe1",
+      "path": "performance-audit-standard",
+      "license": "MIT",
+      "stack": [
+        "general"
+      ]
+    },
+    {
+      "id": "php-development",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "Mindrally/skills",
+      "ref": "7682ca77710e0971eab4e0ae5dddfa281aea0ba5",
+      "path": "php-development",
+      "license": "Apache-2.0",
+      "stack": [
+        "php"
+      ]
+    },
+    {
       "id": "pick-ui-library",
       "pack": "motion",
       "domain": [
@@ -974,6 +1527,48 @@
       "note": "Rule always_on. Không cài như skill, không có mức khác ngoài full."
     },
     {
+      "id": "postgres-strict",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "0xMassi/claude-skills",
+      "ref": "c5cf85f819c5c026dd5961756e163b0e9ea5dfe1",
+      "path": "postgres-strict",
+      "license": "MIT",
+      "stack": [
+        "sql"
+      ]
+    },
+    {
+      "id": "postgresql-table-design",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "wshobson/agents",
+      "ref": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "path": "plugins/database-design/skills/postgresql-table-design",
+      "license": "MIT",
+      "stack": [
+        "general"
+      ]
+    },
+    {
       "id": "pptx",
       "pack": "docs",
       "domain": [
@@ -1010,6 +1605,321 @@
       "ref": "e8a175de22ae1e49370fc144c1f3bb9aeedf988d",
       "path": "skills/prototype",
       "license": "MIT"
+    },
+    {
+      "id": "python-anti-patterns",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "review"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "wshobson/agents",
+      "ref": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "path": "plugins/python-development/skills/python-anti-patterns",
+      "license": "MIT",
+      "stack": [
+        "python"
+      ]
+    },
+    {
+      "id": "python-background-jobs",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "wshobson/agents",
+      "ref": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "path": "plugins/python-development/skills/python-background-jobs",
+      "license": "MIT",
+      "stack": [
+        "python"
+      ]
+    },
+    {
+      "id": "python-code-style",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "wshobson/agents",
+      "ref": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "path": "plugins/python-development/skills/python-code-style",
+      "license": "MIT",
+      "stack": [
+        "python"
+      ]
+    },
+    {
+      "id": "python-configuration",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "wshobson/agents",
+      "ref": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "path": "plugins/python-development/skills/python-configuration",
+      "license": "MIT",
+      "stack": [
+        "python"
+      ]
+    },
+    {
+      "id": "python-design-patterns",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "wshobson/agents",
+      "ref": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "path": "plugins/python-development/skills/python-design-patterns",
+      "license": "MIT",
+      "stack": [
+        "python"
+      ]
+    },
+    {
+      "id": "python-error-handling",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "wshobson/agents",
+      "ref": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "path": "plugins/python-development/skills/python-error-handling",
+      "license": "MIT",
+      "stack": [
+        "python"
+      ]
+    },
+    {
+      "id": "python-observability",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "verify"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "wshobson/agents",
+      "ref": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "path": "plugins/python-development/skills/python-observability",
+      "license": "MIT",
+      "stack": [
+        "python"
+      ]
+    },
+    {
+      "id": "python-packaging",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "ship"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "wshobson/agents",
+      "ref": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "path": "plugins/python-development/skills/python-packaging",
+      "license": "MIT",
+      "stack": [
+        "python"
+      ]
+    },
+    {
+      "id": "python-performance-optimization",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "verify"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "wshobson/agents",
+      "ref": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "path": "plugins/python-development/skills/python-performance-optimization",
+      "license": "MIT",
+      "stack": [
+        "python"
+      ]
+    },
+    {
+      "id": "python-project-structure",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "wshobson/agents",
+      "ref": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "path": "plugins/python-development/skills/python-project-structure",
+      "license": "MIT",
+      "stack": [
+        "python"
+      ]
+    },
+    {
+      "id": "python-resilience",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "wshobson/agents",
+      "ref": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "path": "plugins/python-development/skills/python-resilience",
+      "license": "MIT",
+      "stack": [
+        "python"
+      ]
+    },
+    {
+      "id": "python-resource-management",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "wshobson/agents",
+      "ref": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "path": "plugins/python-development/skills/python-resource-management",
+      "license": "MIT",
+      "stack": [
+        "python"
+      ]
+    },
+    {
+      "id": "python-testing-patterns",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "verify"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "wshobson/agents",
+      "ref": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "path": "plugins/python-development/skills/python-testing-patterns",
+      "license": "MIT",
+      "stack": [
+        "python"
+      ]
+    },
+    {
+      "id": "python-type-safety",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "wshobson/agents",
+      "ref": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "path": "plugins/python-development/skills/python-type-safety",
+      "license": "MIT",
+      "stack": [
+        "python"
+      ]
+    },
+    {
+      "id": "react-modernization",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "wshobson/agents",
+      "ref": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "path": "plugins/framework-migration/skills/react-modernization",
+      "license": "MIT",
+      "stack": [
+        "typescript"
+      ]
     },
     {
       "id": "receiving-code-review",
@@ -1129,6 +2039,134 @@
       ]
     },
     {
+      "id": "ruby",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "Mindrally/skills",
+      "ref": "7682ca77710e0971eab4e0ae5dddfa281aea0ba5",
+      "path": "ruby",
+      "license": "Apache-2.0",
+      "stack": [
+        "ruby"
+      ]
+    },
+    {
+      "id": "rust-async-patterns",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "wshobson/agents",
+      "ref": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "path": "plugins/systems-programming/skills/rust-async-patterns",
+      "license": "MIT",
+      "stack": [
+        "rust"
+      ]
+    },
+    {
+      "id": "rust-skills",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "build",
+        "review"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "leonardomso/rust-skills",
+      "ref": "fd2a861ab0406a4ac536a55274d14ea6fd1ca9c9",
+      "path": ".",
+      "license": "MIT",
+      "stack": [
+        "rust"
+      ]
+    },
+    {
+      "id": "rust-strict",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "build",
+        "review"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "0xMassi/claude-skills",
+      "ref": "c5cf85f819c5c026dd5961756e163b0e9ea5dfe1",
+      "path": "rust-strict",
+      "license": "MIT",
+      "stack": [
+        "rust"
+      ]
+    },
+    {
+      "id": "security-audit-standard",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "review"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "0xMassi/claude-skills",
+      "ref": "c5cf85f819c5c026dd5961756e163b0e9ea5dfe1",
+      "path": "security-audit-standard",
+      "license": "MIT",
+      "stack": [
+        "general"
+      ]
+    },
+    {
+      "id": "shellcheck-configuration",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "wshobson/agents",
+      "ref": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "path": "plugins/shell-scripting/skills/shellcheck-configuration",
+      "license": "MIT",
+      "stack": [
+        "shell"
+      ]
+    },
+    {
       "id": "ship-pr",
       "pack": "code",
       "domain": [
@@ -1184,6 +2222,48 @@
       "path": "core/AGENTS.md",
       "license": "MIT",
       "note": "Quét skill trước khi trả lời."
+    },
+    {
+      "id": "sql-optimization-patterns",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "verify"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "wshobson/agents",
+      "ref": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "path": "plugins/developer-essentials/skills/sql-optimization-patterns",
+      "license": "MIT",
+      "stack": [
+        "general"
+      ]
+    },
+    {
+      "id": "stride-analysis-patterns",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "review"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "wshobson/agents",
+      "ref": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "path": "plugins/security-scanning/skills/stride-analysis-patterns",
+      "license": "MIT",
+      "stack": [
+        "general"
+      ]
     },
     {
       "id": "study-plan-builder",
@@ -1264,6 +2344,28 @@
       "license": "MIT"
     },
     {
+      "id": "swift-strict",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "build",
+        "review"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "0xMassi/claude-skills",
+      "ref": "c5cf85f819c5c026dd5961756e163b0e9ea5dfe1",
+      "path": "swift-strict",
+      "license": "MIT",
+      "stack": [
+        "swift"
+      ]
+    },
+    {
       "id": "systematic-debugging",
       "pack": "code",
       "domain": [
@@ -1301,6 +2403,48 @@
       "ref": "c73a9b89e781f8d44e17124af645af9db15d0577",
       "path": "skills/task-design",
       "license": "MIT"
+    },
+    {
+      "id": "taste-skill",
+      "pack": "design",
+      "domain": [
+        "design"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "web-ui"
+      ],
+      "mode": "auto",
+      "repo": "Leonxlnx/taste-skill",
+      "ref": null,
+      "path": "skills/taste-skill",
+      "license": "MIT",
+      "stack": [
+        "general"
+      ]
+    },
+    {
+      "id": "temporal-python-testing",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "verify"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "wshobson/agents",
+      "ref": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "path": "plugins/backend-development/skills/temporal-python-testing",
+      "license": "MIT",
+      "stack": [
+        "python"
+      ]
     },
     {
       "id": "test-driven-development",
@@ -1342,6 +2486,27 @@
       ]
     },
     {
+      "id": "testing-best-practices",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "verify"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "ajbmachon/ajbm-skills",
+      "ref": null,
+      "path": "plugins/development-skills/skills/testing-best-practices",
+      "license": "NOASSERTION",
+      "stack": [
+        "general"
+      ]
+    },
+    {
       "id": "theme-factory",
       "pack": "design",
       "domain": [
@@ -1362,6 +2527,132 @@
       "license": "Apache-2.0"
     },
     {
+      "id": "thinking-first-principles",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "discover"
+      ],
+      "artifact": [
+        "*"
+      ],
+      "mode": "auto",
+      "repo": "tjboudreaux/cc-thinking-skills",
+      "ref": null,
+      "path": "skills/thinking-first-principles",
+      "license": "MIT",
+      "stack": [
+        "general"
+      ]
+    },
+    {
+      "id": "thinking-five-whys-plus",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "discover"
+      ],
+      "artifact": [
+        "*"
+      ],
+      "mode": "auto",
+      "repo": "tjboudreaux/cc-thinking-skills",
+      "ref": null,
+      "path": "skills/thinking-five-whys-plus",
+      "license": "MIT",
+      "stack": [
+        "general"
+      ]
+    },
+    {
+      "id": "thinking-model-router",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "discover"
+      ],
+      "artifact": [
+        "*"
+      ],
+      "mode": "auto",
+      "repo": "tjboudreaux/cc-thinking-skills",
+      "ref": null,
+      "path": "skills/thinking-model-router",
+      "license": "MIT",
+      "stack": [
+        "general"
+      ]
+    },
+    {
+      "id": "thinking-pre-mortem",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "discover"
+      ],
+      "artifact": [
+        "*"
+      ],
+      "mode": "auto",
+      "repo": "tjboudreaux/cc-thinking-skills",
+      "ref": null,
+      "path": "skills/thinking-pre-mortem",
+      "license": "MIT",
+      "stack": [
+        "general"
+      ]
+    },
+    {
+      "id": "thinking-reversibility",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "discover"
+      ],
+      "artifact": [
+        "*"
+      ],
+      "mode": "auto",
+      "repo": "tjboudreaux/cc-thinking-skills",
+      "ref": null,
+      "path": "skills/thinking-reversibility",
+      "license": "MIT",
+      "stack": [
+        "general"
+      ]
+    },
+    {
+      "id": "thinking-scientific-method",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "discover"
+      ],
+      "artifact": [
+        "*"
+      ],
+      "mode": "auto",
+      "repo": "tjboudreaux/cc-thinking-skills",
+      "ref": null,
+      "path": "skills/thinking-scientific-method",
+      "license": "MIT",
+      "stack": [
+        "general"
+      ]
+    },
+    {
       "id": "triage-ci",
       "pack": "code",
       "domain": [
@@ -1380,6 +2671,49 @@
       "license": "MIT",
       "families": [
         "logic"
+      ]
+    },
+    {
+      "id": "typescript-advanced-types",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "wshobson/agents",
+      "ref": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "path": "plugins/javascript-typescript/skills/typescript-advanced-types",
+      "license": "MIT",
+      "stack": [
+        "typescript"
+      ]
+    },
+    {
+      "id": "typescript-strict",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "build",
+        "review"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "0xMassi/claude-skills",
+      "ref": "c5cf85f819c5c026dd5961756e163b0e9ea5dfe1",
+      "path": "typescript-strict",
+      "license": "MIT",
+      "stack": [
+        "typescript"
       ]
     },
     {
@@ -1417,6 +2751,27 @@
       "ref": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
       "path": "skills/using-superpowers",
       "license": "MIT"
+    },
+    {
+      "id": "uv-package-manager",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "wshobson/agents",
+      "ref": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "path": "plugins/python-development/skills/uv-package-manager",
+      "license": "MIT",
+      "stack": [
+        "python"
+      ]
     },
     {
       "id": "vercel-byoc",

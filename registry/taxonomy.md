@@ -15,7 +15,7 @@ Antigravity **không tự cài** skill theo loại project — nó chỉ tự *c
 Nên bước tất định phải nằm ở khâu cài. Cô lập bằng **vắng mặt** mạnh hơn cô lập bằng
 **mệnh lệnh**: một skill không có trong `.agents/skills/` thì không có cách nào được gọi.
 
-## Bốn trục
+## Trục chính: bốn cái
 
 Mỗi skill khai báo trong [`registry/skills.json`](skills.json):
 
@@ -60,16 +60,6 @@ Ponytail nằm ở `system`. **Không có mode nào khác cho nó.**
 
 ## Trục phụ: `families`
 
-Dùng khi hai bộ skill cùng domain nhưng không được trộn:
-
-- `families: ["k12"]` — edu-agents (soạn giáo án phổ thông)
-- `families: ["language"]` — language-teaching (dạy ngoại ngữ)
-
-Skill **không khai** `families` = khớp mọi họ. Skill **có khai** = chỉ khớp profile cùng họ.
-Không có trục này thì mở project K-12 sẽ thấy cả `lesson-planning` của bộ ngoại ngữ.
-
-### `families: ["logic"]` — kỷ luật kỹ thuật
-
 12 skill mang `families: ["logic"]`: cách suy luận khi code, không phải công cụ của một
 framework. Chúng đi theo **miền** (`domain: code`) chứ không theo `artifact`, nên profile có
 `domain` chứa `code` là nhận — bất kể artifact là `web-ui`, `native-ui` hay `code`.
@@ -78,7 +68,44 @@ framework. Chúng đi theo **miền** (`domain: code`) chứ không theo `artifa
 `artifact: [native-ui, motion]`, nên **không** skill debug nào lọt vào. Khai miền mà chặn
 artifact của chính miền đó là tự vô hiệu hoá.
 
+Ngoài `logic`, hai họ còn lại tách bộ giáo dục:
+
+- `families: ["k12"]` — edu-agents (soạn giáo án phổ thông)
+- `families: ["language"]` — language-teaching (dạy ngoại ngữ)
+
+Skill **không khai** `families` = khớp mọi họ. Skill **có khai** = chỉ khớp profile cùng họ.
+Không có trục này thì mở project K-12 sẽ thấy cả `lesson-planning` của bộ ngoại ngữ.
+
 Chi tiết sáu cổng: [docs/code-logic.md](../docs/code-logic.md).
+
+## Trục thứ năm: `stack` — ngôn ngữ
+
+
+`domain` nói "code", nhưng không nói code **ngôn ngữ gì**. Skill `python-testing-patterns`
+không có nghĩa trong project TypeScript. Nên có thêm `stack`:
+
+| Giá trị | Nghĩa |
+|---|---|
+| `general` | Dùng được ở mọi project code |
+| `python` | Chỉ project có Python |
+| `typescript` | Chỉ project TS/JS |
+| `go` · `rust` · `java` · `csharp` · `ruby` · `php` · `kotlin` · `swift` · `lua` · `cpp` · `sql` | Theo ngôn ngữ |
+
+Skill **không khai** `stack` thì vào mọi project (tương thích với các skill cũ).
+
+Bộ dò nhận: `python` `typescript` `go` `rust` `java` `kotlin` `csharp` `ruby` `php` `swift`
+`lua` `cpp` `sql` `shell`.
+
+`install.py` tự dò stack bằng cách đếm đuôi file trong workspace (≥ 2 file mới tính, để
+một file lẻ không kéo cả bộ skill vào):
+
+```bash
+python3 tools/install.py --profile web-admin -w ~/p/admin              # tự dò
+python3 tools/install.py --profile web-admin -w ~/p/admin --stacks go   # ép
+```
+
+Hai công cụ `install.py` và `route.py` **dùng chung một hàm** `tools/skillselect.py`.
+Trước đây mỗi bên có bản `select()` riêng và chúng đã lệch nhau.
 
 ## Hàng rào cứng: `forbid_domains`
 
@@ -100,17 +127,17 @@ Profile khai domain bị cấm, router loại **tuyệt đối** — kể cả s
 
 | Profile | Skill | Plugin | Agent | LSP | Dùng cho |
 |---|---|---|---|---|---|
-| `web-admin` | 41 | 6 | 43 | ✅ | Dashboard, CRUD, SaaS |
-| `mobile-app` | 38 | 3 | 41 | ✅ | React Native, Expo, iOS/Android |
-| `landing` | 26 | 4 | 43 | ✅ | Landing, marketing, portfolio |
-| `cli-tool` | 26 | 6 | 41 | ✅ | CLI, script, backend |
+| `web-admin` | 68 | 6 | 43 | ✅ | Dashboard, CRUD, SaaS |
+| `mobile-app` | 64 | 3 | 41 | ✅ | React Native, Expo, iOS/Android |
+| `cli-tool` | 52 | 6 | 41 | ✅ | CLI, script, backend |
+| `landing` | 34 | 4 | 43 | ✅ | Landing, marketing, portfolio |
 | `education-k12` | 19 | — | — | — | Giáo án phổ thông, đề kiểm tra |
-| `design-system` | 15 | 2 | 10 | ✅ | UI kit, component library |
+| `design-system` | 16 | 2 | 10 | ✅ | UI kit, component library |
 | `education-language` | 11 | — | — | — | Trung tâm ngoại ngữ, gia sư |
 | `docs-writer` | 6 | 1 | 3 | — | Báo cáo, thuyết trình, bảng tính |
 | `meta` | 5 | 3 | 8 | ✅ | Nuôi chính hệ thống (plugin, hook, AGENTS.md) |
 
-Số đo bằng cách cài thật rồi `ls` (skill = file trong `.agents/skills/`, agent = file
+Số đo trên workspace TypeScript (dự án Python sẽ cộng 18 skill `python-*`). Đo bằng cách cài thật rồi `ls` (skill = file trong `.agents/skills/`, agent = file
 trong `.agents/agents/`, plugin = số khai báo trong profile — cần `--plugins` mới chép).
 
 **LSP** = profile tự bật tầng code intelligence (xem `registry/lsp.json`). Cột này là
@@ -118,7 +145,7 @@ trong `.agents/agents/`, plugin = số khai báo trong profile — cần `--plug
 
 Thêm profile mới = thêm một file JSON. Không cần sửa code.
 
-Tổng registry: **87 skill** (84 vendor + 3 rule hệ thống) + 46 subagent + 9 plugin + **12
+Tổng registry: **151 skill** (148 vendor + 3 rule hệ thống) + 46 subagent + 9 plugin + **12
 language server**. Skill, agent và plugin đều đã nằm trong repo, pin commit, nên cài đặt
 không cần mạng.
 
