@@ -156,7 +156,10 @@ kiểm bằng `shutil.which` rồi mới đăng ký cái nào máy đang có.
 ## Ví dụ chạy
 
 ```bash
-# cài phần global (rules + skill luôn có mặt)
+# cài TOÀN BỘ cho cả máy — mọi project dùng được, không cần profile
+python3 tools/install.py --system
+
+# cài phần global tối thiểu (rules + 4 skill luôn có mặt)
 python3 tools/install.py --core
 
 # xem có profile gì

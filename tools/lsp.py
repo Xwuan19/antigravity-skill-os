@@ -59,7 +59,7 @@ def scan(ws: Path) -> Counter:
     return counts
 
 
-def build_config(bridge: str, langs: list[str], ws: Path) -> dict:
+def build_config(bridge: str, langs: list[str], ws) -> dict:
     srv = servers()
     out = {}
     for lang in langs:
@@ -112,16 +112,20 @@ def install(ws: Path, langs: list[str] | None = None, *, bridge: str | None = No
             say("    Không language server nào dùng được. Chưa ghi gì.")
         return result
 
-    # Bridge phải nằm trong workspace để workspace tự chứa
+    # Global: bridge nằm trong ~/.gemini. Workspace: nằm trong <ws>/.agents
+    # để workspace tự chứa, repo xoá vẫn chạy.
     if bridge is None:
-        bridge_path = ws / ".agents" / "lsp" / "lsp_bridge.py"
+        bridge_path = (GLOBAL_CFG.parent / "lsp" / "lsp_bridge.py" if global_
+                       else ws / ".agents" / "lsp" / "lsp_bridge.py")
         if copy_bridge and not dry:
             bridge_path.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(BRIDGE, bridge_path)
             bridge_path.chmod(0o755)
         bridge = str(bridge_path)
 
-    cfg = build_config(bridge, ok, ws)
+    # global: root để "." — bridge giải theo cwd lúc Antigravity khởi động,
+    # nên một config dùng được cho mọi workspace
+    cfg = build_config(bridge, ok, "." if global_ else ws)
     target = GLOBAL_CFG if global_ else ws / ".agents" / "mcp_config.json"
 
     # giữ server của người dùng, chỉ thêm/cập nhật cái của mình
@@ -228,7 +232,7 @@ def main() -> None:
 
     print()
     r = install(ws, langs, dry=a.scan or a.dry_run, force=a.force,
-                copy_bridge=True)
+                copy_bridge=True, global_=a.global_)
     if r["written"]:
         print("\n  Khởi động lại Antigravity để nạp MCP server.")
         print("  Thử: \"dùng lsp_definition tìm chỗ khai báo hàm X\"\n")
