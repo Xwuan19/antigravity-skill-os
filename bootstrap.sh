@@ -42,7 +42,7 @@ if [ "$SYSTEM" -eq 0 ] && [ -z "$PROFILE" ]; then
 
   Hoặc cài riêng cho một project:
     bash bootstrap.sh web-admin ~/p/admin
-    (profile: web-admin landing cli-tool mobile-app design-system docs-writer education-k12 education-language meta)"
+    (profile: web-admin landing cli-tool mobile-app desktop-app design-system docs-writer education-k12 education-language meta)"
 fi
 
 command -v python3 >/dev/null || die "Cần python3 (>= 3.10)."

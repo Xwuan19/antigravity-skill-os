@@ -1,0 +1,46 @@
+{
+  "id": "desktop-app",
+  "label": "App desktop: macOS / Tauri / Electron / WPF",
+  "tags": [
+    "desktop",
+    "macos",
+    "tauri",
+    "electron",
+    "wpf",
+    "winui",
+    "native"
+  ],
+  "select": {
+    "domain": [
+      "design",
+      "code"
+    ],
+    "artifact": [
+      "native-ui",
+      "web-ui",
+      "code"
+    ]
+  },
+  "forbid_domains": [
+    "education",
+    "docs"
+  ],
+  "families": [
+    "desktop",
+    "design-core",
+    "logic"
+  ],
+  "rationale": "App cài trên máy: cần HIG, layout cửa sổ, icon, token — không cần skill web landing.",
+  "max_skills": 70,
+  "agent_groups": [
+    "code",
+    "design",
+    "meta"
+  ],
+  "plugins": [
+    "commit-commands",
+    "code-review",
+    "feature-dev"
+  ],
+  "lsp": true
+}
