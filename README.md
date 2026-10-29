@@ -11,19 +11,71 @@ không bao giờ thấy skill của nhau — không phải vì bị dặn đừn
 Repo **tự chứa**: 151 skill + 46 subagent + 9 plugin Claude Code, pin commit.
 Clone về là cài được, không cần mạng.
 
-## Bắt đầu trong 3 lệnh
+## Một lệnh
 
 ```bash
-git clone <repo> antigravity-skill-os && cd antigravity-skill-os
+bash bootstrap.sh web-admin ~/p/admin
+```
 
-python3 tools/install.py --core                                                # rules + 4 skill global
-python3 tools/install.py --profile web-admin -w ~/p/admin --hooks --plugins    # đầy đủ
-python3 tools/lsp.py --check                                                   # máy có language server nào
-python3 tools/lsp.py -w ~/p/admin                                              # nối LSP vào MCP
-python3 tools/install.py --list                                                # xem đã cài gì
+Script tự làm hết: lấy repo (dùng bản đang đứng, hoặc clone), cài tầng global
+(`~/.gemini/AGENTS.md` + 4 skill), cài workspace theo profile, bật hook + plugin + LSP,
+rồi in ra việc còn lại. Chạy lại nhiều lần vô hại.
+
+```bash
+bash bootstrap.sh cli-tool ~/p/bot              # profile khác
+bash bootstrap.sh web-admin ~/p/admin --stacks go
+bash bootstrap.sh web-admin ~/p/admin --no-hooks --no-plugins
+```
+
+Chưa có repo trên máy:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/Xwuan19/antigravity-skill-os/main/bootstrap.sh -o bootstrap.sh
+bash bootstrap.sh web-admin ~/p/admin
+```
+
+### Nếu bạn chỉ muốn từng bước
+
+```bash
+git clone https://github.com/Xwuan19/antigravity-skill-os && cd antigravity-skill-os
+
+python3 tools/install.py --core                                    # rules + 4 skill global
+python3 tools/install.py --profile web-admin -w ~/p/admin --hooks --plugins
+python3 tools/lsp.py --check                                       # máy có language server nào
+python3 tools/lsp.py -w ~/p/admin                                  # nối LSP vào MCP
+python3 tools/install.py --list                                    # xem profile
 ```
 
 Có `--dry-run` cho mọi lệnh, `--uninstall` để gỡ, `--include-manual` để cài cả skill phải gọi bằng `/`.
+
+## ⚠ Đọc trước: "đưa link repo cho Antigravity" **không** đủ
+
+Không có cơ chế nào để Antigravity tự tải skill từ một URL GitHub. Skill phải **là file
+trên đĩa** ở đúng một trong hai chỗ:
+
+```
+~/.gemini/config/skills/<id>/SKILL.md     ← mọi project
+<workspace>/.agents/skills/<id>/SKILL.md  ← chỉ project đó
+```
+
+Nên chuỗi thật là:
+
+```
+clone + chạy installer   →   file nằm trên đĩa   →   Antigravity tự nạp từ đó
+   (một lần, ở trên)          (bootstrap.sh)         (từ đây mới tự động)
+```
+
+Sau bước cài thì **đúng là tự động**: không slash command, không cần nhắc, agent tự chọn
+skill theo mô tả khi việc khớp. Nhưng bước cài phải chạy — nói "hãy đọc repo này" trong
+chat thì model chỉ đọc được văn bản, không tạo ra file skill.
+
+| Việc | Tự động? |
+|---|---|
+| Cài skill vào đĩa | ❌ một lệnh `bootstrap.sh` |
+| Chọn skill theo ngữ cảnh | ✅ tự động, mỗi lượt |
+| Ponytail `full` khoá cứng | ✅ global rules, mọi phiên |
+| Hook / plugin / MCP | ✅ sau khi cài, khởi động lại Antigravity một lần |
+| Language server (LSP) | ⚠️ phải cài binary trên máy (`--check` in lệnh cài) |
 
 ## Hai tầng cài
 
