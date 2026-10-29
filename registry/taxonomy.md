@@ -86,21 +86,33 @@ Profile khai domain bị cấm, router loại **tuyệt đối** — kể cả s
 
 9 kiểu project dựng sẵn trong [`profiles/`](../profiles):
 
-| Profile | Skill | Thành phần | Dùng cho |
-|---|---|---|---|
-| `web-admin` | 28 | code 16, design 6, motion 6 | Dashboard, CRUD, SaaS |
-| `landing` | 25 | code 8, design 6, motion 11 | Landing, marketing, portfolio |
-| `mobile-app` | 17 | code 6, design 1, motion 10 | React Native, Expo, iOS/Android |
-| `design-system` | 15 | design 5, motion 10 | UI kit, component library |
-| `cli-tool` | 13 | code 13 | CLI, script, backend |
-| `education-k12` | 19 | education 14, docs 5 | Giáo án phổ thông, đề kiểm tra |
-| `education-language` | 11 | education 9, docs 2 | Trung tâm ngoại ngữ, gia sư |
-| `docs-writer` | 6 | docs 5, design 1 | Báo cáo, thuyết trình, bảng tính |
+| Profile | Skill | Plugin | Agent | LSP | Dùng cho |
+|---|---|---|---|---|---|
+| `web-admin` | 29 | 6 | 43 | ✅ | Dashboard, CRUD, SaaS |
+| `landing` | 26 | 4 | 43 | ✅ | Landing, marketing, portfolio |
+| `education-k12` | 19 | — | — | — | Giáo án phổ thông, đề kiểm tra |
+| `mobile-app` | 18 | 3 | 41 | ✅ | React Native, Expo, iOS/Android |
+| `design-system` | 15 | 2 | 10 | ✅ | UI kit, component library |
+| `cli-tool` | 14 | 6 | 41 | ✅ | CLI, script, backend |
+| `education-language` | 11 | — | — | — | Trung tâm ngoại ngữ, gia sư |
+| `docs-writer` | 6 | 1 | 3 | — | Báo cáo, thuyết trình, bảng tính |
+| `meta` | 5 | 3 | 8 | ✅ | Nuôi chính hệ thống (plugin, hook, AGENTS.md) |
+
+Số đo bằng cách cài thật rồi `ls` (skill = file trong `.agents/skills/`, agent = file
+trong `.agents/agents/`, plugin = số khai báo trong profile — cần `--plugins` mới chép).
+
+**LSP** = profile tự bật tầng code intelligence (xem `registry/lsp.json`). Cột này là
+`true`/`false` trong JSON; `--lsp` / `--no-lsp` ghi đè khi cài.
 
 Thêm profile mới = thêm một file JSON. Không cần sửa code.
 
-Tổng registry: **75 skill** (72 vendor + 3 rule hệ thống) + 46 subagent + 9 plugin. Toàn bộ đã nằm trong `packs/`,
-pin commit, nên cài đặt không cần mạng.
+Tổng registry: **75 skill** (72 vendor + 3 rule hệ thống) + 46 subagent + 9 plugin + **12
+language server**. Skill, agent và plugin đều đã nằm trong repo, pin commit, nên cài đặt
+không cần mạng.
+
+Language server thì **không vendor** — chúng là chương trình riêng, giấy phép riêng, và
+phải khớp với toolchain của máy. `registry/lsp.json` chỉ ghi *lệnh* + *cách cài*; `tools/lsp.py`
+kiểm bằng `shutil.which` rồi mới đăng ký cái nào máy đang có.
 
 ## Ví dụ chạy
 
@@ -116,6 +128,10 @@ python3 tools/install.py --profile web-admin -w ~/projects/shop-admin
 
 # xem trước, không ghi gì
 python3 tools/install.py --profile landing -w ~/p/landing --dry-run
+
+# nối code intelligence cho 12 ngôn ngữ
+python3 tools/lsp.py -w ~/projects/shop-admin
+python3 tools/lsp.py --check
 
 # project lạ, chưa có profile → suy từ tags (router, không cài)
 python3 tools/route.py --tags dashboard,design

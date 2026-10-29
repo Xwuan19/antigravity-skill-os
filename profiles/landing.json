@@ -34,5 +34,6 @@
     "code-review",
     "feature-dev",
     "security-guidance"
-  ]
+  ],
+  "lsp": true
 }

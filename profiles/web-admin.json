@@ -37,5 +37,6 @@
     "security-guidance",
     "claude-md-management",
     "code-simplifier"
-  ]
+  ],
+  "lsp": true
 }

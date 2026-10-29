@@ -103,6 +103,47 @@ agent `kubernetes-specialist`).
 
 Bật bằng `"enabled": true` trong `.agents/hooks.json`.
 
+### 3.3 Code intelligence (LSP) — 12 ngôn ngữ
+
+Đây là khoảng cách lớn nhất còn lại, và nó không phải chuyện "thiếu skill".
+
+Claude Code nhúng sẵn LSP client trong binary: agent gọi tới là có định nghĩa, tham
+chiếu, hover, symbol. Antigravity chỉ nói **MCP**; language server chỉ nói **LSP**. Hai
+giao thức khác nhau, nên phải có cầu.
+
+12 plugin `*-lsp` trong `anthropics/claude-plugins-official` — kiểm bằng `git ls-tree -r`
+— **chỉ có `README.md` + `LICENSE`**. Không `mcp_config.json`, không `mcpServers`. Toàn
+bộ phần nối nằm trong binary Claude Code, không có gì để chuyển.
+
+Đã thử dùng cầu có sẵn: `jonrad/lsp-mcp` (TS, chưa publish npm), `blackwell-systems/agent-lsp`
+(Go), `bug-ops/mcpls` (Rust) — **cả ba đều phải build toolchain**. Không hợp với nguyên
+tắc cài offline, không cần mạng.
+
+Nên tự viết: `tools/lsp_bridge.py`, stdlib Python, 380 dòng.
+
+```
+Antigravity ──MCP──► lsp_bridge.py ──LSP──► typescript-language-server
+                                    ├─────► pyright-langserver
+                                    ├─────► gopls
+                                    └─────► … 9 server còn lại
+```
+
+| Mặt | Chi tiết |
+|---|---|
+| Tool mở ra | `lsp_definition`, `lsp_references`, `lsp_hover`, `lsp_document_symbols`, `lsp_workspace_symbols` |
+| Phụ thuộc | không — `subprocess` + `json` + `pathlib` |
+| Framing | `Content-Length` hai chiều: LSP ở trong, MCP (JSON một dòng) ở ngoài |
+| Đăng ký | `<ws>/.agents/mcp_config.json`, khoá `lsp-<lang>` |
+| Cầu nằm ở đâu | chép vào `<ws>/.agents/lsp/lsp_bridge.py` — repo mất vẫn chạy |
+| Thiếu server | cầu vẫn sống, trả câu hướng dẫn thay vì treo phiên |
+| Test | `python3 tools/test_lsp_bridge.py` → **9/9** |
+
+12 ngôn ngữ: TypeScript/JS, Python, Go, Rust, C/C++, C#, Java, Kotlin, Lua, PHP, Ruby,
+Swift. Không chọn một cái — `--lsp` quét workspace và bật **tất cả** cái đang có mặt.
+
+Đối chiếu: Claude Code gắn LSP cho ~10 ngôn ngữ nhưng **không cấu hình được** server
+ngoài danh sách. Antigravity + repo này phủ 12 và thêm được bằng `registry/lsp.json`.
+
 ---
 
 ## 4. Không port được — và vì sao
@@ -114,36 +155,42 @@ Bật bằng `"enabled": true` trong `.agents/hooks.json`.
 | Marketplace `/plugin install` từ Claude | Định dạng `plugin.json` khác (`$schema` Antigravity chỉ cho `name` + `description`) |
 | Một số hook event của Claude | Antigravity thiếu `Notification`, `SubagentStop`, `PreCompact` |
 | Skill cần hook để persist state | Chạy được, nhưng phải viết lại hook theo schema Antigravity |
+| 12 plugin `*-lsp` | Chỉ có README + LICENSE, config nằm trong binary Claude Code → **tự viết cầu LSP→MCP** (xong, xem §3.3) |
 
 ---
 
 ## 5. Những skill Claude Code nên thêm tiếp
 
-Đây là danh sách **chưa port**, xếp theo giá trị:
+Cập nhật sau khi port xong đợt 3. Danh sách **còn lại**:
 
 | Ưu tiên | Skill / plugin | Nguồn | Vì sao đáng |
 |---|---|---|---|
-| 1 | **handoff** | cộng đồng | Nén phiên thành 1 file markdown để tiếp tục phiên mới. Bù đúng chỗ context bị compact |
-| 2 | **grill-me** | cộng đồng | Phỏng vấn ngược trước khi viết code — chống hiểu sai yêu cầu |
-| 3 | **planning-with-files** | cộng đồng | Plan ghi ra file, sống sót khi mất context |
-| 4 | **context-mode** / **claude-mem** | mksglu / cộng đồng | Bộ nhớ xuyên phiên — Claude Code không có sẵn, Antigravity cũng không |
-| 5 | **commit-commands** | `claude-plugins-official` | Commit + PR nhất quán |
-| 6 | **security-guidance** | `claude-plugins-official` | Cảnh báo bảo mật khi sửa file, review diff lúc Stop |
-| 7 | **claude-md-management** | `claude-plugins-official` | Audit và dọn `AGENTS.md` khi nó phình |
-| 8 | **hookify** | `claude-plugins-official` | Biến câu "từ giờ luôn..." thành hook thật |
-| 9 | **code-review** (multi-agent) | `claude-plugins-official` | Review song song nhiều agent + chấm độ tin cậy |
-| 10 | **LSP plugins** | `anthropics/claude-plugins-official` | Code intelligence theo ngôn ngữ — Antigravity không có |
-| 11 | **taste-skill** | Leonxlnx | Design có "gu", dial chỉnh variance/motion |
-| 12 | **wshobson/agents** | 42k★, MIT | **92 plugin** đã đóng gói sẵn skills + agents — nguồn lớn nhất chưa khai thác |
+| 1 | **`wshobson/agents`** | 42k★, MIT | **92 plugin** đã ở đúng định dạng Antigravity (`skills/` + `agents/`). Nguồn lớn nhất chưa khai thác — đủ để nhân đôi số skill hiện có |
+| 2 | **`grill-me`** | cộng đồng | Phỏng vấn ngược trước khi code, chống hiểu sai yêu cầu. **Kẹt license** — repo không có LICENSE |
+| 3 | **`taste-skill`** | Leonxlnx | Design có "gu", dial variance/motion. **Kẹt license** — không có LICENSE |
+| 4 | `context-mode` | mksglu | Bộ nhớ xuyên phiên. **Elastic License 2.0** — không vendor |
+| 5 | `claude-mem` | cộng đồng | Apache-2.0 nhưng là **app Node** (sqlite + UI), không phải skill trần |
 
-Ưu tiên 1–4 là thứ bù đúng điểm yếu lớn nhất của cả hai: **mất context giữa phiên**.
+### Đã xong trong đợt 3
+
+| Thứ | Tình trạng |
+|---|---|
+| `handoff` | ✅ tự viết (MIT) — mọi bản cộng đồng đều không có license |
+| `planning-with-files` | ✅ vendor MIT, repo đã native Antigravity |
+| `security-guidance` | ✅ port từ `claude-plugins-official` |
+| `claude-md-management` | ✅ port |
+| `hookify` | ✅ port |
+| `code-review`, `feature-dev`, `commit-commands` | ✅ port |
+| **LSP** | ✅ tự viết cầu — xem §3.3 |
 
 ---
 
 ## 6. Kết luận
 
-- **Ngang**: skill, rules, subagent, hooks, plugin, slash command.
+- **Ngang**: skill, rules, subagent, hooks, plugin, slash command, **code intelligence (LSP)**.
 - **Antigravity nhỉnh**: điều phối đa agent (`/boost`, workspace branch, agent-to-agent), rule theo thư mục.
-- **Claude Code nhỉnh**: hệ sinh thái nội dung — và ta vừa port 46 agent từ đó sang.
+- **Claude Code nhỉnh**: hệ sinh thái nội dung — và ta vừa port 46 agent + 9 plugin từ đó sang.
+- **LSP**: Claude Code gắn cứng trong binary cho ~10 ngôn ngữ, không cấu hình được server
+  ngoài danh sách. Bản ở đây phủ 12, mở rộng bằng `registry/lsp.json`, và cấu hình được.
 - **"Mạnh hơn"** không đến từ việc copy thêm skill, mà từ: subagent chuyên biệt + hook
   chặn lỗi + cô lập theo profile + ponytail khoá cứng. Bốn thứ đó đã có.

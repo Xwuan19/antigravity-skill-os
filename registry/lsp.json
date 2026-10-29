@@ -1,0 +1,102 @@
+{
+  "_comment": "12 language server, đối chiếu với plugins/<lang>-lsp của claude-plugins-official. `command` phải có trên PATH; `install` để in hướng dẫn.",
+  "bridge": "tools/lsp_bridge.py",
+  "servers": {
+    "typescript": {
+      "label": "TypeScript / JavaScript",
+      "ext": [".ts", ".tsx", ".js", ".jsx", ".mts", ".cts", ".mjs", ".cjs"],
+      "command": "typescript-language-server",
+      "args": ["--stdio"],
+      "install": "npm install -g typescript-language-server typescript",
+      "mcp_name": "lsp-typescript"
+    },
+    "python": {
+      "label": "Python",
+      "ext": [".py", ".pyi"],
+      "command": "pyright-langserver",
+      "args": ["--stdio"],
+      "install": "npm install -g pyright   # hoặc: pipx install pyright",
+      "mcp_name": "lsp-python"
+    },
+    "go": {
+      "label": "Go",
+      "ext": [".go"],
+      "command": "gopls",
+      "args": [],
+      "install": "go install golang.org/x/tools/gopls@latest",
+      "mcp_name": "lsp-go"
+    },
+    "rust": {
+      "label": "Rust",
+      "ext": [".rs"],
+      "command": "rust-analyzer",
+      "args": [],
+      "install": "rustup component add rust-analyzer",
+      "mcp_name": "lsp-rust"
+    },
+    "clangd": {
+      "label": "C / C++",
+      "ext": [".c", ".h", ".cpp", ".cc", ".cxx", ".hpp", ".hxx"],
+      "command": "clangd",
+      "args": [],
+      "install": "brew install llvm   # hoặc apt install clangd",
+      "mcp_name": "lsp-clangd"
+    },
+    "csharp": {
+      "label": "C#",
+      "ext": [".cs"],
+      "command": "csharp-ls",
+      "args": [],
+      "install": "dotnet tool install --global csharp-ls",
+      "mcp_name": "lsp-csharp"
+    },
+    "java": {
+      "label": "Java",
+      "ext": [".java"],
+      "command": "jdtls",
+      "args": [],
+      "install": "brew install jdtls   # hoặc tải từ eclipse.jdt.ls",
+      "mcp_name": "lsp-java"
+    },
+    "kotlin": {
+      "label": "Kotlin",
+      "ext": [".kt", ".kts"],
+      "command": "kotlin-lsp",
+      "args": ["--stdio"],
+      "install": "brew install JetBrains/utils/kotlin-lsp",
+      "mcp_name": "lsp-kotlin"
+    },
+    "lua": {
+      "label": "Lua",
+      "ext": [".lua"],
+      "command": "lua-language-server",
+      "args": [],
+      "install": "brew install lua-language-server",
+      "mcp_name": "lsp-lua"
+    },
+    "php": {
+      "label": "PHP",
+      "ext": [".php"],
+      "command": "intelephense",
+      "args": ["--stdio"],
+      "install": "npm install -g intelephense",
+      "mcp_name": "lsp-php"
+    },
+    "ruby": {
+      "label": "Ruby",
+      "ext": [".rb", ".rake", ".gemspec", ".ru"],
+      "command": "ruby-lsp",
+      "args": [],
+      "install": "gem install ruby-lsp",
+      "mcp_name": "lsp-ruby"
+    },
+    "swift": {
+      "label": "Swift",
+      "ext": [".swift"],
+      "command": "sourcekit-lsp",
+      "args": [],
+      "install": "Có sẵn trong Swift toolchain / Xcode",
+      "mcp_name": "lsp-swift"
+    }
+  }
+}

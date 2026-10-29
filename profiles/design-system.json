@@ -31,5 +31,6 @@
   "plugins": [
     "commit-commands",
     "claude-md-management"
-  ]
+  ],
+  "lsp": true
 }

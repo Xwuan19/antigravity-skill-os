@@ -33,6 +33,7 @@ AGENTS_SRC = ROOT / "agents"
 HOOKS_SRC = ROOT / "hooks"
 PLUGINS_SRC = ROOT / "plugins"
 PLUGINS_REG = ROOT / "registry" / "plugins.json"
+sys.path.insert(0, str(ROOT / "tools"))
 PROFILES = ROOT / "profiles"
 OWNER = ".skill-os-owner"
 
@@ -197,6 +198,31 @@ def install_hooks(ws: Path, dry: bool, force: bool) -> None:
         print("    ✓ hooks.json + 3 script (chỉ session-start bật mặc định)")
 
 
+def install_lsp(ws: Path, spec: str, dry: bool) -> None:
+    """Đăng ký language server qua MCP. spec: '', 'auto', 'all', 'go,python'."""
+    import lsp as lsp_mod
+
+    print(f"\n  LSP → {ws / '.agents' / 'mcp_config.json'}")
+    if spec.strip().lower() in ("", "auto"):
+        langs = None
+    elif spec.strip().lower() == "all":
+        langs = list(lsp_mod.servers())
+    else:
+        langs = [x.strip() for x in spec.split(",") if x.strip()]
+        bad = [x for x in langs if x not in lsp_mod.servers()]
+        if bad:
+            print(f"    ✗ không hỗ trợ: {', '.join(bad)}")
+            return
+
+    r = lsp_mod.install(ws, langs, dry=dry, copy_bridge=True)
+    if r["written"]:
+        n = len([s for s in r["servers"] if s.startswith("lsp-")])
+        print(f"    → {n} language server đã nối. Khởi động lại Antigravity để nạp.")
+    elif r["missing"]:
+        print("    → chưa đăng ký gì: cài language server rồi chạy lại "
+              "(`python3 tools/lsp.py --check`).")
+
+
 def do_manifest(dest_root: Path, skills: list[dict], prof: str, dry: bool) -> None:
     if dry:
         return
@@ -213,7 +239,7 @@ def do_manifest(dest_root: Path, skills: list[dict], prof: str, dry: bool) -> No
 def do_workspace(skills: list[dict], profiles: dict[str, dict],
                  profile: str, ws: Path, dry: bool, force: bool,
                  include_manual: bool = False, hooks: bool = False,
-                 plugins: bool = False) -> None:
+                 plugins: bool = False, lsp: str | None = None) -> None:
     if profile not in profiles:
         sys.exit(f"  Không có profile '{profile}'. Có: {', '.join(profiles)}")
     prof = profiles[profile]
@@ -231,6 +257,8 @@ def do_workspace(skills: list[dict], profiles: dict[str, dict],
     install_plugins(prof.get("plugins", []) if plugins else [], ws, dry, force)
     if hooks:
         install_hooks(ws, dry, force)
+    if lsp is not None:
+        install_lsp(ws, lsp, dry)
     do_manifest(target, chosen, profile, dry)
     skipped = len([s for s in skills if s["mode"] != "system"]) - len(chosen)
     print(f"\n  {sum(by_pack.values())} skill đã cài — "
@@ -291,6 +319,11 @@ def main() -> None:
                     help="cài cả plugin đã port (mặc định tắt để workspace gọn)")
     ap.add_argument("--hooks", action="store_true",
                     help="cài hooks.json (session-start nhắc luật hệ thống)")
+    ap.add_argument("--lsp", nargs="?", const="auto", default=None, metavar="LANGS",
+                    help="nối language server qua MCP: bỏ trống = tự dò theo "
+                         "workspace, hoặc 'all', hoặc 'go,python,rust' "
+                         "(mặc định theo profile)")
+    ap.add_argument("--no-lsp", action="store_true", help="tắt LSP dù profile có bật")
     a = ap.parse_args()
 
     skills, profiles = load()
@@ -303,8 +336,13 @@ def main() -> None:
     if a.core:
         do_core(skills, dry, a.force)
     if a.profile:
+        lsp_spec = a.lsp
+        if a.no_lsp:
+            lsp_spec = None
+        elif lsp_spec is None and profiles.get(a.profile, {}).get("lsp"):
+            lsp_spec = "auto"
         do_workspace(skills, profiles, a.profile, Path(a.workspace).expanduser().resolve(),
-                     dry, a.force, a.include_manual, a.hooks, a.plugins)
+                     dry, a.force, a.include_manual, a.hooks, a.plugins, lsp_spec)
     if a.uninstall:
         do_uninstall(skills, dry)
     if not any([a.list, a.core, a.profile, a.uninstall]):

@@ -33,5 +33,6 @@
     "commit-commands",
     "code-review",
     "feature-dev"
-  ]
+  ],
+  "lsp": true
 }

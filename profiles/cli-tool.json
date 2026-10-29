@@ -36,5 +36,6 @@
     "security-guidance",
     "code-simplifier",
     "mcp-server-dev"
-  ]
+  ],
+  "lsp": true
 }

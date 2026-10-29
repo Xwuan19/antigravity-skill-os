@@ -23,5 +23,6 @@
     "claude-md-management",
     "hookify"
   ],
-  "max_skills": 20
+  "max_skills": 20,
+  "lsp": true
 }

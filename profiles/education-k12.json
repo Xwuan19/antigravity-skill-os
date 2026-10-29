@@ -32,5 +32,6 @@
     "k12"
   ],
   "agent_groups": [],
-  "plugins": []
+  "plugins": [],
+  "lsp": false
 }

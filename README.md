@@ -18,6 +18,8 @@ git clone <repo> antigravity-skill-os && cd antigravity-skill-os
 
 python3 tools/install.py --core                                                # rules + 4 skill global
 python3 tools/install.py --profile web-admin -w ~/p/admin --hooks --plugins    # đầy đủ
+python3 tools/lsp.py --check                                                   # máy có language server nào
+python3 tools/lsp.py -w ~/p/admin                                              # nối LSP vào MCP
 python3 tools/install.py --list                                                # xem đã cài gì
 ```
 
@@ -31,6 +33,7 @@ Có `--dry-run` cho mọi lệnh, `--uninstall` để gỡ, `--include-manual` �
 | Workspace | `--profile <id> -w <dir>` | `<dir>/.agents/skills/` + `.agents/agents/` | Cô lập cứng trong project đó |
 | Hooks | `--hooks` | `<dir>/.agents/hooks.json` + `.agents/skill-os/` | SessionStart nhắc luật hệ thống |
 | Plugins | `--plugins` | `<dir>/.agents/plugins/` | 9 plugin Claude Code đã port (23 skill) |
+| LSP | `--lsp` | `<dir>/.agents/mcp_config.json` + `.agents/lsp/` | code intelligence 12 ngôn ngữ qua MCP |
 
 **Cô lập cứng:** mỗi project một `--profile`. Router loại toàn bộ skill không liên quan —
 50 skill trong 73 bị loại khỏi workspace mobile. Muốn chắc chắn "folder design chỉ có skill
@@ -39,19 +42,19 @@ design" thì tách workspace, vì Antigravity **không** hỗ trợ skill theo s
 Skill `mode: manual` mặc định **không cài** — phải `--include-manual`, để danh sách
 description trong workspace gọn lại.
 
-## 8 profile
+## 9 profile
 
-| Profile | Skill | Thành phần | Cho |
-|---|---|---|---|
-| `web-admin` | 28 | code 16, design 6, motion 6 | Dashboard, CRUD, SaaS |
-| `landing` | 25 | code 8, design 6, motion 11 | Landing, marketing, portfolio |
-| `mobile-app` | 17 | code 6, design 1, motion 10 | React Native, Expo, iOS/Android |
-| `design-system` | 15 | design 5, motion 10 | UI kit, component library |
-| `cli-tool` | 13 | code 13 | CLI, script, backend |
-| `education-k12` | 19 | education 14, docs 5 | Giáo án phổ thông, đề kiểm tra |
-| `education-language` | 11 | education 9, docs 2 | Trung tâm ngoại ngữ, gia sư |
-| `docs-writer` | 6 | docs 5, design 1 | Báo cáo, thuyết trình, bảng tính |
-| `meta` | — | meta | Nuôi chính hệ thống này (plugin-dev, hookify) |
+| Profile | Skill | Agent | LSP | Cho |
+|---|---|---|---|---|
+| `web-admin` | 29 | 43 | ✅ | Dashboard, CRUD, SaaS |
+| `landing` | 26 | 43 | ✅ | Landing, marketing, portfolio |
+| `education-k12` | 19 | — | — | Giáo án phổ thông, đề kiểm tra |
+| `mobile-app` | 18 | 41 | ✅ | React Native, Expo, iOS/Android |
+| `design-system` | 15 | 10 | ✅ | UI kit, component library |
+| `cli-tool` | 14 | 41 | ✅ | CLI, script, backend |
+| `education-language` | 11 | — | — | Trung tâm ngoại ngữ, gia sư |
+| `docs-writer` | 6 | 3 | — | Báo cáo, thuyết trình, bảng tính |
+| `meta` | 5 | 8 | ✅ | Nuôi chính hệ thống này (plugin-dev, hookify) |
 
 Thêm profile = thêm 1 file JSON trong `profiles/`. Không sửa code.
 
@@ -99,6 +102,57 @@ Cộng thêm **`planning-with-files`** (MIT, 27k★ — repo đã native Antigra
 (không có license), `claude-mem` (là app Node, không phải skill). Lý do đầy đủ trong
 tài liệu trên.
 
+## Code intelligence: LSP cho 12 ngôn ngữ
+
+Claude Code có LSP gắn trong binary. Antigravity thì **nói MCP**, còn language server
+thì nói **LSP** — hai giao thức khác nhau. Nên repo có một cầu nhỏ:
+
+```
+Antigravity  ──MCP (JSON/stdio)──►  tools/lsp_bridge.py  ──LSP (Content-Length)──►  gopls / pyright / jdtls / …
+```
+
+`lsp_bridge.py` chỉ dùng stdlib Python — không npm, không cargo, không pip. Nó mở 5 tool
+cho agent: `lsp_definition`, `lsp_references`, `lsp_hover`, `lsp_document_symbols`,
+`lsp_workspace_symbols`.
+
+| Ngôn ngữ | Server | Cài |
+|---|---|---|
+| TypeScript / JavaScript / TSX | `typescript-language-server` | `npm i -g typescript-language-server typescript` |
+| Python | `pyright-langserver` | `npm i -g pyright` |
+| Go | `gopls` | `go install golang.org/x/tools/gopls@latest` |
+| Rust | `rust-analyzer` | `rustup component add rust-analyzer` |
+| C / C++ | `clangd` | `apt install clangd` / `brew install llvm` |
+| C# | `csharp-ls` | `dotnet tool install --global csharp-ls` |
+| Java | `jdtls` | `brew install jdtls` |
+| Kotlin | `kotlin-lsp` | `brew install JetBrains/utils/kotlin-lsp` |
+| Lua | `lua-language-server` | `brew install lua-language-server` |
+| PHP | `intelephense` | `npm i -g intelephense` |
+| Ruby | `ruby-lsp` | `gem install ruby-lsp` |
+| Swift | `sourcekit-lsp` | có sẵn trong Swift toolchain |
+
+**Không cần chọn ngôn ngữ.** `--lsp` quét workspace, đếm file theo đuôi, đăng ký đúng
+những server có mặt trên máy. Workspace đa ngôn ngữ thì nhiều server cùng lúc:
+
+```bash
+python3 tools/lsp.py --check                  # 12 dòng, cái nào thiếu thì in lệnh cài
+python3 tools/lsp.py -w ~/p/mixed             # tự dò: ra python + go + typescript
+python3 tools/lsp.py -w . --langs go,rust     # ép đăng ký, bỏ qua quét
+python3 tools/lsp.py -w . --langs all         # đăng ký cả 12 (thiếu server sẽ báo)
+python3 tools/lsp.py -w . --global            # ghi ~/.gemini/config/mcp_config.json
+python3 tools/lsp.py -w . --remove            # gỡ lsp-*, giữ MCP server của bạn
+```
+
+Profile nào chạm code thì **tự bật**: `web-admin`, `landing`, `cli-tool`, `mobile-app`,
+`design-system`, `meta`. `docs-writer` và 2 profile giáo dục thì tắt. Ghi đè bằng
+`--lsp` / `--no-lsp`.
+
+Cầu được **chép vào** `<ws>/.agents/lsp/lsp_bridge.py` và `mcp_config.json` trỏ vào bản
+trong workspace — repo biến mất thì workspace vẫn chạy. Ghi vào `mcp_config.json` có sẵn
+thì **merge**, server của bạn không bị xoá.
+
+> Thiếu language server thì cầu vẫn sống và trả lời bằng câu hướng dẫn, không làm treo
+> phiên. Đây là hành vi có test hồi quy.
+
 ## Ngang Claude Code ở đâu
 
 Đối chiếu đầy đủ: [docs/claude-code-parity.md](docs/claude-code-parity.md).
@@ -106,6 +160,7 @@ tài liệu trên.
 | Năng lực | Claude Code | Antigravity | |
 |---|---|---|---|
 | Skill / rules / subagent / hooks / plugin / slash | ✅ | ✅ | ngang |
+| Code intelligence (LSP: định nghĩa, tham chiếu, hover) | ✅ | ✅ 12 ngôn ngữ | ngang |
 | Hệ sinh thái nội dung | 15.000+ repo | nhỏ | **Claude Code thắng** |
 | Điều phối đa agent | ✅ | ✅ `/boost` 3 tầng | **Antigravity nhỉnh** |
 | Subagent workspace | — | `inherit` / `branch` / `share` | Antigravity |
@@ -136,12 +191,14 @@ lifecycle hook nên mức không lưu qua lượt; chỉ cần tồn tại một
 
 ```
 core/            rules always_on — ponytail FULL, skill-first, verify, language
-registry/        skills.json (75) + agents.json (46) + plugins.json (9) + taxonomy.md
+registry/        skills.json (75) + agents.json (46) + plugins.json (9) + lsp.json (12) + taxonomy.md
 profiles/        9 kiểu project → skill + nhóm agent + plugin
 packs/           72 skill đã vendor + VENDOR.json (sha256 từng cái)
 agents/          46 subagent đã port sang định dạng Antigravity
 plugins/         9 plugin Claude Code đã port (23 skill + 8 agent)
 hooks/           hooks.json + session-start / format / safety
+tools/lsp_bridge.py    cầu LSP → MCP (stdlib, 5 tool)
+tools/lsp.py           dò workspace, sinh mcp_config.json
 tools/route.py   xem router chọn gì (không cài)
 tools/install.py cài app: skills + agents + plugins + hooks
 tools/vendor.py  tải/cập nhật skill từ upstream, pin commit
@@ -178,9 +235,20 @@ Mỗi bản ghi trong `packs/VENDOR.json` có `source` (repo@commit), `sha256`, 
 - Rule **có** phạm vi theo thư mục bất kỳ, và là cộng dồn (global + workspace + directory).
 - Plugin là global và nạp **toàn bộ** thư mục con của `skills/` → phải tách plugin theo pack.
 - Ngân sách: 20.000 token cho global + `always_on`; 24 KB mỗi file rule; description ≤ 1024 ký tự.
-- Antigravity **không** có lifecycle hook → mọi cơ chế "mức/phím tắt" sẽ trôi giữa các lượt.
+- Antigravity **có** 6 lifecycle hook (`SessionStart`, `PreToolUse`, `PostToolUse`,
+  `PreInvocation`, `PostInvocation`, `Stop`) — xem `hooks/hooks.json`. ponytail vẫn khoá
+  cứng bằng rules `always_on`, hook chỉ là lưới an toàn.
 - Antigravity **không tự cài** skill theo loại project — nó chỉ tự chọn trong số đã có.
   Vì vậy bước chọn phải tất định ở khâu cài (`install.py`), model chọn trong số đó mỗi lượt.
+- MCP server nạp từ `<ws>/.agents/mcp_config.json` (workspace) và
+  `~/.gemini/config/mcp_config.json` (global). Mỗi entry cần đúng **một** transport:
+  `command` (stdio) hoặc `serverUrl` (HTTP).
+- App còn có đường UI: **Settings → Customizations → Installed MCP Servers** (MCP Store).
+  Ghi file là đường tất định, hợp với cài offline.
+- Language server **không** phải MCP server — phải có cầu. `python3 tools/lsp.py --check`
+  cho biết máy đang thiếu cái nào.
+- `argparse` của cầu sẽ nuốt `--stdio` nếu không đặt sau `--`. Đây là bug thật đã gặp và
+  đã có test hồi quy (`tools/test_lsp_bridge.py`).
 
 ## Nguồn và license
 
@@ -198,6 +266,7 @@ Mỗi bản ghi trong `packs/VENDOR.json` có `source` (repo@commit), `sha256`, 
 | [VoltAgent/awesome-claude-code-subagents](https://github.com/VoltAgent/awesome-claude-code-subagents) | MIT | 46 subagent (port) |
 | [anthropics/claude-plugins-official](https://github.com/anthropics/claude-plugins-official) | Apache-2.0 | 9 plugin (port) |
 | [OthmanAdi/planning-with-files](https://github.com/OthmanAdi/planning-with-files) | MIT | planning-with-files |
+| language server (gopls, pyright, jdtls, …) | giấy phép riêng của từng server | **không vendor** — cài bằng trình quản lý gói của bạn |
 
 `vercel-labs/agent-skills` không có file `LICENSE` ở gốc, nhưng README mục *License* ghi
 MIT và 4 SKILL.md tự khai `license: MIT`. Coi là MIT.
@@ -213,4 +282,4 @@ thêm §3 (phạm vi skill theo project) và §4 (ngôn ngữ).
 - [core/AGENTS.md](core/AGENTS.md) — core rules đang dùng
 - [docs/claude-code-parity.md](docs/claude-code-parity.md) — đối chiếu năng lực
 - [docs/ported-from-claude-code.md](docs/ported-from-claude-code.md) — port cái gì, bỏ cái gì, vì sao
-- [packs/design/apple-design/PATCH.md](packs/design/apple-design/PATCH.md) — lưu ý riêng
+- [packs/design/apple-design/SKILL.md](packs/design/apple-design/SKILL.md) — skill design gốc Apple, kèm LICENSE

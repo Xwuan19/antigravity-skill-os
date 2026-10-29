@@ -193,7 +193,7 @@ Nguồn: [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills)
 
 | ☐ | Skill | Việc nó làm |
 |---|---|---|
-| ☑ | `apple-design` | 17 mục từ WWDC: response, direct manipulation, interruptibility, spring, momentum, rubber-banding, materials, typography, reduced-motion. **23KB — sát trần 24KB.** Đã vendor, xem [PATCH.md](../packs/design/apple-design/PATCH.md) |
+| ☑ | `apple-design` | 17 mục từ WWDC: response, direct manipulation, interruptibility, spring, momentum, rubber-banding, materials, typography, reduced-motion. **23KB — sát trần 24KB.** Đã vendor, xem [PATCH.md](../packs/design/apple-design/SKILL.md) |
 | ☑ | `emil-design-eng` | Quan điểm design-engineering của tác giả |
 | ☑ | `animate` | Viết animation |
 | ☑ | `improve-animations` | Nâng animation có sẵn |

@@ -31,5 +31,6 @@
   ],
   "plugins": [
     "commit-commands"
-  ]
+  ],
+  "lsp": false
 }

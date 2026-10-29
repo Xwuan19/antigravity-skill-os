@@ -28,5 +28,6 @@
     "language"
   ],
   "agent_groups": [],
-  "plugins": []
+  "plugins": [],
+  "lsp": false
 }
