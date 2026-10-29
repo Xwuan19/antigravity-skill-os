@@ -11,38 +11,52 @@ không bao giờ thấy skill của nhau — không phải vì bị dặn đừn
 Repo **tự chứa**: 151 skill + 46 subagent + 9 plugin Claude Code, pin commit.
 Clone về là cài được, không cần mạng.
 
-## Một lệnh
+## Một lệnh: cài cho toàn bộ máy
 
 ```bash
-bash bootstrap.sh web-admin ~/p/admin
+bash bootstrap.sh --system
 ```
 
-Script tự làm hết: lấy repo (dùng bản đang đứng, hoặc clone), cài tầng global
-(`~/.gemini/AGENTS.md` + 4 skill), cài workspace theo profile, bật hook + plugin + LSP,
-rồi in ra việc còn lại. Chạy lại nhiều lần vô hại.
+Cài **một lần**, mọi project dùng được — không phải làm gì cho từng project nữa.
 
-```bash
-bash bootstrap.sh cli-tool ~/p/bot              # profile khác
-bash bootstrap.sh web-admin ~/p/admin --stacks go
-bash bootstrap.sh web-admin ~/p/admin --no-hooks --no-plugins
-```
+Nó ghi vào `~/.gemini/`:
+
+| Ghi gì | Ở đâu |
+|---|---|
+| Rules always_on (ponytail full, skill-first, verify) | `~/.gemini/AGENTS.md` |
+| **Toàn bộ 144 skill** | `~/.gemini/config/skills/` |
+| LSP cho mọi language server có trên máy | `~/.gemini/config/mcp_config.json` |
+
+Chạy lại nhiều lần vô hại — skill đã có thì bỏ qua.
 
 Chưa có repo trên máy:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/Xwuan19/antigravity-skill-os/main/bootstrap.sh -o bootstrap.sh
-bash bootstrap.sh web-admin ~/p/admin
+bash bootstrap.sh --system
 ```
 
-### Nếu bạn chỉ muốn từng bước
+## Hoặc cài hẹp cho một project
+
+Dùng khi bạn muốn workspace đó **không** thấy skill ngoài lĩnh vực:
+
+```bash
+bash bootstrap.sh web-admin ~/p/admin      # 68 skill, không có skill Python
+bash bootstrap.sh cli-tool ~/p/bot         # 52 skill, không có skill design
+```
+
+Cách này cài thêm vào `<project>/.agents/skills/`, chỉ project đó thấy. Xem bảng profile bên dưới.
+
+### Từng bước, nếu không dùng script
 
 ```bash
 git clone https://github.com/Xwuan19/antigravity-skill-os && cd antigravity-skill-os
 
-python3 tools/install.py --core                                    # rules + 4 skill global
+python3 tools/install.py --system                                  # toàn bộ máy
+python3 tools/install.py --core                                    # chỉ rules + 4 skill tối thiểu
 python3 tools/install.py --profile web-admin -w ~/p/admin --hooks --plugins
 python3 tools/lsp.py --check                                       # máy có language server nào
-python3 tools/lsp.py -w ~/p/admin                                  # nối LSP vào MCP
+python3 tools/lsp.py --global --langs all                          # LSP cho mọi project
 python3 tools/install.py --list                                    # xem profile
 ```
 
@@ -61,8 +75,8 @@ trên đĩa** ở đúng một trong hai chỗ:
 Nên chuỗi thật là:
 
 ```
-clone + chạy installer   →   file nằm trên đĩa   →   Antigravity tự nạp từ đó
-   (một lần, ở trên)          (bootstrap.sh)         (từ đây mới tự động)
+chạy installer  →  file nằm trên đĩa  →  Antigravity tự nạp từ đó, mọi project
+ (một lần/cả máy)    (~/.gemini/)         (từ đây mới tự động)
 ```
 
 Sau bước cài thì **đúng là tự động**: không slash command, không cần nhắc, agent tự chọn
@@ -71,17 +85,19 @@ chat thì model chỉ đọc được văn bản, không tạo ra file skill.
 
 | Việc | Tự động? |
 |---|---|
-| Cài skill vào đĩa | ❌ một lệnh `bootstrap.sh` |
+| Cài skill vào đĩa | ❌ `bash bootstrap.sh --system`, **một lần cho cả máy** |
 | Chọn skill theo ngữ cảnh | ✅ tự động, mỗi lượt |
 | Ponytail `full` khoá cứng | ✅ global rules, mọi phiên |
 | Hook / plugin / MCP | ✅ sau khi cài, khởi động lại Antigravity một lần |
+| Project mới | ✅ **không làm gì cả** — đã nằm ở tầng global |
 | Language server (LSP) | ⚠️ phải cài binary trên máy (`--check` in lệnh cài) |
 
 ## Hai tầng cài
 
 | Tầng | Lệnh | Đích | Hiệu lực |
 |---|---|---|---|
-| Global | `--core` | `~/.gemini/AGENTS.md` + `~/.gemini/config/skills/` | Mọi project, mọi phiên, không cần `/` |
+| System | `--system` | `~/.gemini/AGENTS.md` + **toàn bộ** skill vào `~/.gemini/config/skills/` | Mọi project, mọi phiên. Không cần cài lại cho từng project |
+| Global | `--core` | `~/.gemini/AGENTS.md` + 4 skill tối thiểu | Như trên nhưng danh sách skill gọn hơn |
 | Workspace | `--profile <id> -w <dir>` | `<dir>/.agents/skills/` + `.agents/agents/` | Cô lập cứng trong project đó |
 | Hooks | `--hooks` | `<dir>/.agents/hooks.json` + `.agents/skill-os/` | SessionStart nhắc luật hệ thống |
 | Plugins | `--plugins` | `<dir>/.agents/plugins/` | 9 plugin Claude Code đã port (23 skill) |
@@ -424,4 +440,5 @@ thêm §3 (phạm vi skill theo project) và §4 (ngôn ngữ).
 - [docs/claude-code-parity.md](docs/claude-code-parity.md) — đối chiếu năng lực
 - [docs/ported-from-claude-code.md](docs/ported-from-claude-code.md) — port cái gì, bỏ cái gì, vì sao
 - [docs/code-logic.md](docs/code-logic.md) — sáu cổng logic code, skill nào giữ cổng nào
+- [docs/prompt-cho-antigravity.md](docs/prompt-cho-antigravity.md) — câu để dán vào Antigravity, nó tự cài
 - [packs/design/apple-design/SKILL.md](packs/design/apple-design/SKILL.md) — skill design gốc Apple, kèm LICENSE

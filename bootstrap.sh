@@ -1,15 +1,11 @@
 #!/usr/bin/env bash
-# Cài Antigravity Skill OS trong một lệnh.
+# Cài Antigravity Skill OS.
 #
-#   bash bootstrap.sh web-admin ~/p/admin
-#   bash bootstrap.sh cli-tool ~/p/bot --no-hooks
-#   bash bootstrap.sh web-admin            # cài vào thư mục hiện tại
+#   bash bootstrap.sh --system                  # TOÀN BỘ máy — mọi project dùng được
+#   bash bootstrap.sh web-admin ~/p/admin       # chỉ một project (cô lập)
 #
-# Script làm đúng những gì cần, không hỏi gì thêm:
-#   1. lấy repo (dùng bản đang đứng nếu chạy trong repo, không thì clone)
-#   2. --core                → rules + skill global, mọi project
-#   3. --profile <p> -w <ws> → skill + agent + plugin + hook + LSP cho project
-#   4. in ra việc còn lại (khởi động lại Antigravity, cài language server thiếu)
+# --system cài tất cả skill vào ~/.gemini/config/skills/ + rules global + LSP global.
+# Không cần làm gì cho từng project nữa.
 #
 # Không cần mạng sau bước clone: toàn bộ skill đã nằm trong repo.
 
@@ -18,26 +14,36 @@ set -euo pipefail
 REPO_URL="${SKILL_OS_REPO:-https://github.com/Xwuan19/antigravity-skill-os.git}"
 CACHE="${SKILL_OS_CACHE:-$HOME/.cache/antigravity-skill-os}"
 
-PROFILE="${1:-}"
-WS="${2:-$PWD}"
-shift $(( $# < 2 ? $# : 2 )) 2>/dev/null || true
+SYSTEM=0
+PROFILE=""
+WS=""
+FLAGS=()
 
-NO_HOOKS=0; NO_PLUGINS=0; NO_LSP=0; STACKS=""
-while [ $# -gt 0 ]; do
-  case "$1" in
-    --no-hooks)   NO_HOOKS=1 ;;
-    --no-plugins) NO_PLUGINS=1 ;;
-    --no-lsp)     NO_LSP=1 ;;
-    --stacks)     STACKS="${2:-}"; shift ;;
-    *)            echo "  ! bỏ qua tham số lạ: $1" >&2 ;;
+for a in "$@"; do
+  case "$a" in
+    --system)     SYSTEM=1 ;;
+    --no-hooks|--no-plugins|--no-lsp|--include-manual|--dry-run) FLAGS+=("$a") ;;
+    -*)           echo "  ! tham số lạ: $a" >&2 ;;
+    *)            if [ -z "$PROFILE" ]; then PROFILE="$a"
+                  elif [ -z "$WS" ]; then WS="$a"
+                  else echo "  ! bỏ qua tham số thừa: $a" >&2; fi ;;
   esac
-  shift
 done
+
+has() { local x; for x in "${FLAGS[@]:-}"; do [ "$x" = "$1" ] && return 0; done; return 1; }
 
 die() { printf '\n  ✗ %s\n\n' "$1" >&2; exit 1; }
 
-[ -n "$PROFILE" ] || die "Thiếu profile. Ví dụ: bash bootstrap.sh web-admin ~/p/admin
-  Xem danh sách: python3 tools/install.py --list"
+if [ "$SYSTEM" -eq 0 ] && [ -z "$PROFILE" ]; then
+  die "Chưa chọn kiểu cài.
+
+  Cài toàn bộ máy (khuyên dùng lần đầu):
+    bash bootstrap.sh --system
+
+  Hoặc cài riêng cho một project:
+    bash bootstrap.sh web-admin ~/p/admin
+    (profile: web-admin landing cli-tool mobile-app design-system docs-writer education-k12 education-language meta)"
+fi
 
 command -v python3 >/dev/null || die "Cần python3 (>= 3.10)."
 
@@ -58,46 +64,80 @@ else
   ROOT="$CACHE"
 fi
 
+# ===========================================================================
+# Chế độ hệ thống
+# ===========================================================================
+if [ "$SYSTEM" -eq 1 ]; then
+  echo "  Chế độ: TOÀN BỘ HỆ THỐNG  (${SKILL_OS_HOME:-~/.gemini})"
+
+  echo
+  echo "── Rules + toàn bộ skill ──"
+  SYS=()
+  has --include-manual && SYS+=(--include-manual)
+  has --dry-run && SYS+=(--dry-run)
+  python3 "$ROOT/tools/install.py" --system "${SYS[@]}"
+
+  if ! has --no-lsp; then
+    echo
+    echo "── LSP toàn cục ──"
+    GLO=()
+    has --dry-run && GLO+=(--dry-run)
+    python3 "$ROOT/tools/lsp.py" --global --langs all "${GLO[@]}" || true
+  fi
+
+  echo
+  echo "──────────────────────────────────────────────"
+  echo "  Xong. Mọi project giờ dùng được, không cần cài lại."
+  echo
+  echo "  1. Khởi động lại Antigravity một lần."
+  echo "  2. Thử trong phiên mới: \"có skill gì đang bật?\""
+  echo
+  echo "  Cài thêm language server (nếu bước LSP báo thiếu):"
+  echo "       python3 $ROOT/tools/lsp.py --check"
+  echo "──────────────────────────────────────────────"
+  exit 0
+fi
+
+# ===========================================================================
+# Chế độ một project
+# ===========================================================================
+WS="${WS:-$PWD}"
 WS="$(cd "$WS" 2>/dev/null && pwd || { mkdir -p "$WS" && cd "$WS" && pwd; })"
 echo "  Workspace: $WS"
 echo "  Profile:   $PROFILE"
 
-# ---- 2. global ------------------------------------------------------------
 echo
 echo "── Tầng global (mọi project) ──"
 python3 "$ROOT/tools/install.py" --core
 
-# ---- 3. workspace ---------------------------------------------------------
 echo
 echo "── Tầng workspace ──"
 ARGS=(--profile "$PROFILE" -w "$WS" --no-lsp)
-[ "$NO_HOOKS"   -eq 0 ] && ARGS+=(--hooks)
-[ "$NO_PLUGINS" -eq 0 ] && ARGS+=(--plugins)
-[ -n "$STACKS" ]        && ARGS+=(--stacks "$STACKS")
+has --no-hooks   || ARGS+=(--hooks)
+has --no-plugins || ARGS+=(--plugins)
+has --include-manual && ARGS+=(--include-manual)
+has --dry-run && ARGS+=(--dry-run)
 python3 "$ROOT/tools/install.py" "${ARGS[@]}"
 
-# ---- 4. LSP ---------------------------------------------------------------
-if [ "$NO_LSP" -eq 0 ]; then
+if ! has --no-lsp; then
   echo
   echo "── LSP ──"
   python3 "$ROOT/tools/lsp.py" -w "$WS" || true
 fi
 
-# ---- 5. việc còn lại ------------------------------------------------------
 echo
 echo "──────────────────────────────────────────────"
 echo "  Xong. Còn 2 việc:"
 echo
 echo "  1. Khởi động lại Antigravity để nó nạp skill + MCP server."
 echo
-if [ "$NO_LSP" -eq 0 ]; then
-  echo "  2. Nếu bước LSP báo thiếu language server, cài rồi chạy lại:"
-  echo "       python3 $ROOT/tools/lsp.py --check"
-else
+if has --no-lsp; then
   echo "  2. LSP đang tắt (--no-lsp). Bật sau bằng:"
   echo "       python3 $ROOT/tools/lsp.py -w $WS"
+else
+  echo "  2. Nếu bước LSP báo thiếu language server, cài rồi chạy lại:"
+  echo "       python3 $ROOT/tools/lsp.py --check"
 fi
 echo
 echo "  Kiểm chứng trong phiên mới: hỏi \"có skill gì đang bật?\""
-echo "  hoặc thử \"sửa bug này\" — nếu có skill logic, nó sẽ hỏi/tái hiện trước."
 echo "──────────────────────────────────────────────"

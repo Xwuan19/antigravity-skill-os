@@ -112,6 +112,55 @@ def do_core(skills: list[dict], dry: bool, force: bool) -> None:
         print(f"    {copy_skill(s, GLOBAL_SKILLS, dry, force)} {s['id']}")
 
 
+def do_system(skills: list[dict], dry: bool, force: bool,
+              include_manual: bool = False) -> None:
+    """Cài TOÀN BỘ skill vào tầng global — mọi project đều thấy, không cần profile.
+
+    Đánh đổi: workspace nào cũng nạp đủ danh sách skill, nên mất phần "cô lập cứng".
+    Đổi lại: cài một lần, không phải làm gì cho từng project nữa.
+    """
+    print(f"\n  Rules → {GLOBAL_RULES}")
+    print(f"    {install_rules(dry)}")
+
+    chosen = [s for s in skills
+              if s["mode"] != "system"
+              and (s["mode"] != "manual" or include_manual)]
+    print(f"\n  Skill global → {GLOBAL_SKILLS}  ({len(chosen)})")
+
+    by_pack: dict[str, int] = {}
+    new = existing = 0
+    for s in chosen:
+        r = copy_skill(s, GLOBAL_SKILLS, dry, force)
+        if r.startswith(("✓", "~", "=")):
+            by_pack[s["pack"]] = by_pack.get(s["pack"], 0) + 1
+        if r.startswith(("✓", "~")):
+            new += 1
+        elif r.startswith("="):
+            existing += 1
+        if not r.startswith(("✓", "~", "=")):
+            print(f"    {r} — {s['id']}")
+
+    if dry:
+        print(f"\n  {sum(by_pack.values())} skill sẽ cài — "
+              + ", ".join(f"{k} {v}" for k, v in sorted(by_pack.items())))
+    elif new:
+        print(f"\n  {new} skill mới, {existing} đã có — "
+              + ", ".join(f"{k} {v}" for k, v in sorted(by_pack.items())))
+    else:
+        print(f"\n  {existing} skill đã có sẵn, không đổi gì.")
+
+    if not dry:
+        GLOBAL_DIR.mkdir(parents=True, exist_ok=True)
+        (GLOBAL_DIR / "skill-os.json").write_text(json.dumps({
+            "installed_by": "antigravity-skill-os",
+            "mode": "system",
+            "when": datetime.now().isoformat(timespec="seconds"),
+            "skills": [s["id"] for s in chosen],
+            "packs": dict(sorted(by_pack.items())),
+            "always_on": "ponytail FULL + skill-first + verify (rules global)",
+        }, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+
 def install_agents(groups: list[str], ws: Path, dry: bool, force: bool) -> int:
     """Copy subagent .md vào <ws>/.agents/agents/."""
     if not groups:
@@ -317,7 +366,11 @@ def do_uninstall(skills: list[dict], dry: bool) -> None:
 
 def main() -> None:
     ap = argparse.ArgumentParser(description="Cài/ gỡ Skill OS cho Antigravity App")
-    ap.add_argument("--core", action="store_true", help="cài rules + skill global")
+    ap.add_argument("--core", action="store_true",
+                    help="cài rules + 4 skill global tối thiểu")
+    ap.add_argument("--system", action="store_true",
+                    help="cài TOÀN BỘ skill vào global — mọi project đều có, "
+                         "không cần --profile cho từng project")
     ap.add_argument("--profile")
     ap.add_argument("--workspace", "-w", default=".")
     ap.add_argument("--list", action="store_true")
@@ -349,6 +402,8 @@ def main() -> None:
         do_list(skills)
     if a.core:
         do_core(skills, dry, a.force)
+    if a.system:
+        do_system(skills, dry, a.force, a.include_manual)
     if a.profile:
         lsp_spec = a.lsp
         if a.no_lsp:
@@ -360,7 +415,7 @@ def main() -> None:
                      a.stacks)
     if a.uninstall:
         do_uninstall(skills, dry)
-    if not any([a.list, a.core, a.profile, a.uninstall]):
+    if not any([a.list, a.core, a.system, a.profile, a.uninstall]):
         ap.print_help()
     print()
 
