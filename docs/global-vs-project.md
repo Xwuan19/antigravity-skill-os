@@ -67,6 +67,22 @@ Token thật của từng workspace ở mô hình B (4 skill global + profile r�
 3. **Cần cô lập thật** (yêu cầu gốc: "skill giáo dục phải vắng khỏi workspace web-admin") →
    B. Không có cách nào khác: global bật bao nhiêu skill thì mọi project thấy bấy nhiêu.
 
+### B chạy bằng hai lệnh (đã có sẵn)
+
+```bash
+bash bootstrap.sh --core --prune     # global: rules + 4 skill ≈ 10% ngân sách
+bash bootstrap.sh auto ~/p/btvn      # mỗi project: tự dò profile rồi rót
+```
+
+`--core --prune` gỡ luôn 182 skill global của bản `--system` trước đó. Đo thật:
+
+| Workspace | Skill (global+riêng) | Ước lượng | Đồng hồ Antigravity |
+|---|---|---|---|
+| `btvn` (giáo án) | 4 + 24 = 28 | 4.104 ≈ 21% | ≈ 22% |
+| `SlidePPT` | 4 + 16 = 20 | 3.303 ≈ 17% | ≈ 18% |
+| `web-admin` (Next/TS) | 4 + 167 = 171 | 14.092 ≈ 70% | ≈ 95% |
+| `cli-tool` | 4 + 134 = 138 | 11.170 ≈ 56% | ≈ 78% |
+
 Chọn A mà vẫn muốn cô lập thì phải chọn lại: **hai thứ đó loại trừ nhau**.
 
 ## Hai lỗi đã sửa khi kiểm chuyện này

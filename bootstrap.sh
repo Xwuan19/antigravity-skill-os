@@ -4,6 +4,8 @@
 #   bash bootstrap.sh --system                  # TOÀN BỘ máy — mọi project dùng được
 #   bash bootstrap.sh --system --exclude-pack education,docs
 #                                              # global gọn: bỏ hẳn pack giáo dục/docs
+#   bash bootstrap.sh --core --prune            # global mỏng: rules + 4 skill
+#   bash bootstrap.sh auto ~/p/btvn             # rót skill đúng project (tự dò)
 #   bash bootstrap.sh web-admin ~/p/admin       # chỉ một project (cô lập)
 #
 # --system cài tất cả skill vào ~/.gemini/config/skills/ + rules global + LSP global.
@@ -17,6 +19,7 @@ REPO_URL="${SKILL_OS_REPO:-https://github.com/Xwuan19/antigravity-skill-os.git}"
 CACHE="${SKILL_OS_CACHE:-$HOME/.cache/antigravity-skill-os}"
 
 SYSTEM=0
+CORE=0
 PROFILE=""
 WS=""
 FLAGS=()
@@ -27,6 +30,7 @@ for a in "$@"; do
   if [ "$WANT_EXCLUDE" -eq 1 ]; then EXCLUDE="$a"; WANT_EXCLUDE=0; continue; fi
   case "$a" in
     --system)     SYSTEM=1 ;;
+    --core)       CORE=1 ;;
     --exclude-pack) WANT_EXCLUDE=1 ;;
     --exclude-pack=*) EXCLUDE="${a#*=}" ;;
     --no-hooks|--no-plugins|--no-lsp|--include-manual|--dry-run|--no-rules|--prune) FLAGS+=("$a") ;;
@@ -41,10 +45,14 @@ has() { local x; for x in "${FLAGS[@]:-}"; do [ "$x" = "$1" ] && return 0; done;
 
 die() { printf '\n  ✗ %s\n\n' "$1" >&2; exit 1; }
 
-if [ "$SYSTEM" -eq 0 ] && [ -z "$PROFILE" ]; then
+if [ "$SYSTEM" -eq 0 ] && [ "$CORE" -eq 0 ] && [ -z "$PROFILE" ]; then
   die "Chưa chọn kiểu cài.
 
-  Cài toàn bộ máy (khuyên dùng lần đầu):
+  Tầng global mỏng + rót skill theo từng project (đỡ trần ngữ cảnh):
+    bash bootstrap.sh --core --prune            # global chỉ còn 4 skill + rules
+    bash bootstrap.sh auto ~/p/btvn             # mỗi project: tự dò rồi rót
+
+  Cài toàn bộ máy (mọi project thấy hết):
     bash bootstrap.sh --system
 
   Hoặc cài riêng cho một project:
@@ -69,6 +77,29 @@ else
     echo "  Repo: $CACHE"
   fi
   ROOT="$CACHE"
+fi
+
+# ===========================================================================
+# Chế độ global mỏng: rules + 4 skill core
+# ===========================================================================
+if [ "$CORE" -eq 1 ]; then
+  echo "  Chế độ: GLOBAL MỎNG  (${SKILL_OS_HOME:-~/.gemini})"
+  echo
+  if has --prune; then
+    python3 "$ROOT/tools/install.py" --core --prune
+  else
+    python3 "$ROOT/tools/install.py" --core
+  fi
+  echo
+  echo "──────────────────────────────────────────────"
+  echo "  Global giờ chỉ có rules + 4 skill. Mỗi project rót riêng:"
+  echo
+  echo "       bash bootstrap.sh auto ~/p/<ten-project>"
+  echo
+  echo "  (tự dò profile theo nội dung thư mục; muốn chỉ định tay thì"
+  echo "   bash bootstrap.sh web-admin ~/p/admin)"
+  echo "──────────────────────────────────────────────"
+  exit 0
 fi
 
 # ===========================================================================
@@ -117,7 +148,11 @@ echo "  Profile:   $PROFILE"
 
 echo
 echo "── Tầng global (mọi project) ──"
-python3 "$ROOT/tools/install.py" --core
+if has --prune; then
+  python3 "$ROOT/tools/install.py" --core --prune
+else
+  python3 "$ROOT/tools/install.py" --core
+fi
 
 echo
 echo "── Tầng workspace ──"
@@ -127,6 +162,7 @@ has --no-plugins || ARGS+=(--plugins)
 has --include-manual && ARGS+=(--include-manual)
 has --dry-run && ARGS+=(--dry-run)
 has --no-rules   && ARGS+=(--no-rules)
+has --prune      && ARGS+=(--prune)
 python3 "$ROOT/tools/install.py" "${ARGS[@]}"
 
 if ! has --no-lsp; then

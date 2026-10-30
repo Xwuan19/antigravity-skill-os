@@ -11,7 +11,40 @@ không bao giờ thấy skill của nhau — không phải vì bị dặn đừn
 Repo **tự chứa**: 237 skill + 46 subagent + 9 plugin Claude Code, pin commit.
 Clone về là cài được, không cần mạng.
 
-## Một lệnh: cài cho toàn bộ máy
+## Hai cách dùng — chọn theo mục tiêu
+
+| | **Global mỏng + rót theo project** (khuyến nghị) | **Toàn bộ máy** |
+|---|---|---|
+| Lệnh | `bootstrap.sh --core --prune` rồi `bootstrap.sh auto <dir>` mỗi project | `bootstrap.sh --system` |
+| Project của bạn thấy | đúng skill của nó: 20–171 | **tất cả 186**, kể cả skill không liên quan |
+| Ngân sách một phiên | 18% – 95% (btvn 22%, slide 18%, web-admin 95%) | **103% → Antigravity tự loại ~10 skill** |
+| Việc phải làm | một lệnh cho mỗi project mới | không làm gì |
+| Cô lập domain | có — skill ngoài domain **không có trên đĩa** | không — project giáo dục vẫn thấy `springboot-*` |
+
+Global và project **cộng dồn** và Antigravity không cho project ẩn skill global. Nên muốn "project
+nào dùng skill nấy" thì global phải mỏng đúng 4 skill — đó là toàn bộ lý do tồn tại của `--core`.
+
+### Global mỏng + rót theo project
+
+```bash
+bash bootstrap.sh --core --prune        # global: rules + 4 skill (≈ 10% ngân sách)
+bash bootstrap.sh auto  ~/p/btvn         # tự dò profile rồi rót
+bash bootstrap.sh auto  ~/p/SlidePPT
+bash bootstrap.sh auto  ~/p/web-shop
+```
+
+`auto` đọc nội dung thư mục — `giao-an.docx`/tên thư mục → `education-k12`, `.pptx` → `docs-writer`,
+`tauri.conf.json` → `desktop-app`, `react-native` trong `package.json` → `mobile-app`, `.py` không
+frontend → `cli-tool`, `next`/`.tsx` → `web-admin`. Nó **in lý do** rồi mới cài; sai thì chỉ định tay:
+
+```bash
+bash bootstrap.sh web-admin ~/p/admin --prune     # --prune: gỡ skill của profile cũ
+```
+
+Mỗi lần cài xong script in ngân sách thật của workspace đó (cả hai đồng hồ). Đổi profile mà
+quên `--prune` thì nó cũng cảnh báo.
+
+## Cài toàn bộ máy (nếu bạn muốn mọi project giống nhau)
 
 ```bash
 bash bootstrap.sh --system

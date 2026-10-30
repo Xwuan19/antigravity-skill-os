@@ -104,13 +104,53 @@ def install_global_rules(dry: bool) -> str:
     return f"✓ {GLOBAL_RULES}{msg}"
 
 
-def do_core(skills: list[dict], dry: bool, force: bool) -> None:
+def do_core(skills: list[dict], dry: bool, force: bool,
+            prune: bool = False) -> None:
     print(f"\n  Rules → {GLOBAL_RULES}")
     print(f"    {install_global_rules(dry)}")
     core = [s for s in skills if s["mode"] == "core"]
     print(f"\n  Skill global → {GLOBAL_SKILLS}  ({len(core)})")
     for s in core:
         print(f"    {copy_skill(s, GLOBAL_SKILLS, dry, force)} {s['id']}")
+
+    ids = {s["id"] for s in core}
+    if prune and GLOBAL_SKILLS.is_dir():
+        extra = [d for d in GLOBAL_SKILLS.iterdir()
+                 if d.is_dir() and d.name not in ids and (d / OWNER).is_file()]
+        if extra and not dry:
+            for d in extra:
+                shutil.rmtree(d)
+            print(f"    - đã gỡ {len(extra)} skill global, chỉ giữ {len(core)} skill core")
+        elif extra:
+            print(f"    · sẽ gỡ {len(extra)} skill global, chỉ giữ {len(core)} skill core")
+
+
+def _desc_chars(sk: Path) -> int:
+    """Số ký tự phần `description:` của một SKILL.md đã cài."""
+    f = sk / "SKILL.md"
+    if not f.is_file():
+        return 0
+    t = f.read_text(encoding="utf-8", errors="replace")
+    a = t.find("description:")
+    b = t.find("---", a + 3)
+    return len(t[a:b]) if a != -1 and b != -1 else 0
+
+
+def budget_ws(target: Path) -> None:
+    """Ngân sách THẬT của một workspace: skill global + skill riêng của project."""
+    glob = ([d for d in GLOBAL_SKILLS.iterdir() if d.is_dir()]
+            if GLOBAL_SKILLS.is_dir() else [])
+    own = ([d for d in target.iterdir() if d.is_dir()] if target.is_dir() else [])
+    chars = sum(_desc_chars(d) for d in glob + own)
+    rules = ROOT / "core" / "AGENTS.md"
+    r_chars = len(rules.read_text(encoding="utf-8")) if rules.is_file() else 0
+    n = len(glob) + len(own)
+    tok = (chars + r_chars) // 4
+    ui = 1497 + 102.2 * n
+    mark = "  ⚠ vượt trần" if ui > 20000 else ""
+    print(f"\n  Ngân sách workspace: {len(glob)} global + {len(own)} riêng = {n} skill")
+    print(f"    ước lượng {tok:,} token ≈ {tok/20000:.0%} · "
+          f"đồng hồ Antigravity ≈ {ui:,.0f} ≈ {ui/20000:.0%}{mark}")
 
 
 def budget(chosen: list[dict]) -> None:
@@ -409,11 +449,71 @@ def install_stack_rules(ws: Path, stacks: list[str] | None, dry: bool) -> tuple[
     return written, changed
 
 
+EDU_WORDS = ("btvn", "bai-tap", "bai_giang", "giao-an", "lesson", "edu", "hoc",
+             "truong", "lop", "de-thi", "de-kiem-tra", "curriculum")
+
+
+def guess_profile(ws: Path) -> tuple[str | None, str]:
+    """Đoán profile từ thứ có trong thư mục. Trả (id, lý do) hoặc (None, lý do)."""
+    if not ws.is_dir():
+        return None, "thư mục chưa tồn tại"
+    skip = {"node_modules", "dist", "build", "target", ".venv", "vendor",
+            ".agents", ".gemini", ".claude", ".codex", "packs"}
+    files = []
+    for f in ws.rglob("*"):
+        if len(files) > 3000:
+            break
+        parts = set(f.parts)
+        # thư mục ẩn là của công cụ (.agents/skills, .git…), không phải nội dung project
+        if any(p.startswith(".") for p in f.relative_to(ws).parts[:-1]):
+            continue
+        if f.is_file() and not (parts & skip):
+            files.append(f)
+    if not files:
+        return None, "thư mục trống"
+
+    exts = {f.suffix.lower() for f in files}
+    code = exts & {".py", ".go", ".rs", ".ts", ".tsx", ".js", ".jsx", ".java",
+                   ".kt", ".cs", ".cpp", ".rb", ".php", ".dart", ".swift"}
+    names = {f.name.lower() for f in files}
+    blob = ""
+    for n in ("package.json", "Cargo.toml"):
+        f = ws / n
+        if f.is_file():
+            blob += f.read_text(encoding="utf-8", errors="replace")[:4000].lower()
+
+    if {"pubspec.yaml", "app.json"} & names or "react-native" in blob or "expo" in blob:
+        return "mobile-app", "có pubspec.yaml / react-native / expo"
+    if ({"tauri.conf.json", "tauri.conf.json5", "electron-builder.yml"} & names
+            or "src-tauri" in {p.name for p in ws.iterdir() if p.is_dir()}
+            or "tauri" in blob or "electron" in blob or ".xaml" in exts):
+        return "desktop-app", "có Tauri / Electron / WPF"
+    lowered = str(ws).lower() + " " + " ".join(sorted(names)[:200])
+    if any(w in lowered for w in EDU_WORDS) and not code:
+        return "education-k12", "thư mục/tên file mang từ khóa giáo dục, không có code"
+    if not code:
+        if exts & {".docx", ".pptx", ".xlsx", ".pdf"}:
+            return "docs-writer", "chỉ có tài liệu văn phòng"
+        if exts <= {".md", ".txt", ""}:
+            return "docs-writer", "chỉ có file văn bản"
+    if ({"components.json", "tailwind.config.js", "tailwind.config.ts"} & names
+            or (ws / "src" / "components" / "ui").is_dir()):
+        return "design-system", "có cấu hình shadcn/Tailwind, thư viện component"
+    if "package.json" in names or exts & {".tsx", ".jsx", ".vue", ".svelte"}:
+        if (ws / "index.html").is_file() and "package.json" not in names:
+            return "landing", "chỉ có HTML tĩnh"
+        return "web-admin", "có package.json / JSX / Vue"
+    if code:
+        return "cli-tool", "có code nhưng không có frontend"
+    return None, "không nhận ra loại project"
+
+
 def do_workspace(skills: list[dict], profiles: dict[str, dict],
                  profile: str, ws: Path, dry: bool, force: bool,
                  include_manual: bool = False, hooks: bool = False,
                  plugins: bool = False, lsp: str | None = None,
-                 stacks: str | None = None, rules: bool = True) -> None:
+                 stacks: str | None = None, rules: bool = True,
+                 prune: bool = False) -> None:
     if profile not in profiles:
         sys.exit(f"  Không có profile '{profile}'. Có: {', '.join(profiles)}")
     prof = profiles[profile]
@@ -468,6 +568,19 @@ def do_workspace(skills: list[dict], profiles: dict[str, dict],
     else:
         print(f"\n  {existing} skill đã có sẵn, không đổi gì — workspace đã cài rồi.")
     print(f"  {skipped} skill bị loại khỏi workspace này (cô lập cứng).")
+    if target.is_dir():
+        ids = {s["id"] for s in chosen}
+        stale = [d for d in target.iterdir()
+                 if d.is_dir() and d.name not in ids and (d / OWNER).is_file()]
+        if stale and prune:
+            for d in stale:
+                shutil.rmtree(d)
+            print(f"  - đã gỡ {len(stale)} skill của profile cũ trong workspace")
+        elif stale:
+            print(f"  {len(stale)} skill của profile cũ còn trong workspace "
+                  f"(đổi profile mà không dọn) — thêm `--prune` để gỡ.")
+    if not dry:
+        budget_ws(target)
     if in_global:
         n_glob = len([d for d in GLOBAL_SKILLS.iterdir() if (d / OWNER).is_file()])
         print(f"  ⚠  global đang bật {n_glob} skill: project này vẫn thấy hết. "
@@ -523,7 +636,8 @@ def main() -> None:
     ap.add_argument("--system", action="store_true",
                     help="cài TOÀN BỘ skill vào global — mọi project đều có, "
                          "không cần --profile cho từng project")
-    ap.add_argument("--profile")
+    ap.add_argument("--profile",
+                    help="id profile, hoặc 'auto' để tự dò theo nội dung thư mục")
     ap.add_argument("--workspace", "-w", default=".")
     ap.add_argument("--list", action="store_true")
     ap.add_argument("--uninstall", action="store_true")
@@ -561,10 +675,17 @@ def main() -> None:
     if a.list:
         do_list(skills)
     if a.core:
-        do_core(skills, dry, a.force)
+        do_core(skills, dry, a.force, a.prune)
     if a.system:
         do_system(skills, dry, a.force, a.include_manual, a.exclude_pack, a.prune)
     if a.profile:
+        if a.profile == "auto":
+            guess, why = guess_profile(Path(a.workspace).expanduser().resolve())
+            if not guess:
+                sys.exit(f"  Không tự đoán được profile ({why}). "
+                         f"Chỉ định tay: {', '.join(sorted(profiles))}")
+            print(f"\n  Tự dò profile: {guess}  ({why})")
+            a.profile = guess
         lsp_spec = a.lsp
         if a.no_lsp:
             lsp_spec = None
@@ -572,7 +693,7 @@ def main() -> None:
             lsp_spec = "auto"
         do_workspace(skills, profiles, a.profile, Path(a.workspace).expanduser().resolve(),
                      dry, a.force, a.include_manual, a.hooks, a.plugins, lsp_spec,
-                     a.stacks, not a.no_rules)
+                     a.stacks, not a.no_rules, a.prune)
     if a.uninstall:
         do_uninstall(skills, dry)
     if not any([a.list, a.core, a.system, a.profile, a.uninstall]):

@@ -138,6 +138,32 @@ muốn dọn — `--prune` **không** đụng vào chúng.
 Script cài in đúng số skill nó vừa cài; nếu số trên đĩa nhiều hơn thì đó là thư mục còn sót từ
 bản cũ, `install.py` sẽ liệt kê tên.
 
+## 3d. Chuyển sang "global mỏng + rót theo project"
+
+Dùng khi bạn muốn mỗi project **chỉ** thấy skill của nó (đỡ trần ngữ cảnh), thay vì mọi project
+đều thấy 186 skill. Dán:
+
+```
+Chuyển Antigravity Skill OS sang mô hình global mỏng, mỗi project một bộ skill riêng.
+
+1. Chạy: bash ~/.antigravity-skill-os/bootstrap.sh --core --prune
+   (global còn rules + 4 skill; bỏ 182 skill global của lần cài --system trước)
+
+2. Rồi với từng project của tôi, mỗi cái một lần:
+   bash ~/.antigravity-skill-os/bootstrap.sh auto <đường-dẫn-project>
+
+   Project hiện có: [liệt kê đường dẫn]. Script tự dò profile theo nội dung thư mục
+   và in lý do; nếu dò sai thì đổi sang profile tay (web-admin, docs-writer,
+   education-k12, desktop-app, mobile-app, cli-tool, landing, design-system, meta).
+
+3. Báo lại bảng: project → profile → số skill → % ngân sách script in ra.
+
+Không sửa file trong repo. Không xoá skill nào không do Skill OS tạo.
+```
+
+Sau đó mỗi project mới chỉ cần một lệnh. Đổi profile cho một project thì thêm `--prune` để gỡ
+skill của profile cũ.
+
 ## 4. Kiểm chứng sau khi khởi động lại
 
 Cài xong **phải khởi động lại Antigravity** để nó nạp skill + MCP server. Rồi dán:
