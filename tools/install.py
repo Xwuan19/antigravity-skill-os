@@ -540,6 +540,14 @@ def guess_profile(ws: Path) -> tuple[str | None, str]:
         if (ws / "index.html").is_file() and "package.json" not in names:
             return "static-site", "có index.html nhưng không có package.json"
         return "web-admin", "có package.json / JSX / Vue"
+    # Trang tĩnh thường có app.js/style.css — vẫn KHÔNG phải project code. Không có
+    # package.json/build config thì đó là <script src> thuần, không phải module/CLI.
+    build_files = {"package.json", "tsconfig.json", "deno.json", "bun.lockb"}
+    build_cfg = [n for n in names if n.split(".")[0] in
+                 {"vite.config", "next.config", "webpack.config", "rollup.config",
+                  "svelte.config", "astro.config", "tailwind.config", "nuxt.config"}]
+    if ({"index.html", "index.htm"} & names and not (build_files & names) and not build_cfg):
+        return "static-site", "có index.html, không có build tool (JS/CSS thuần)"
     if code:
         return "cli-tool", "có code nhưng không có frontend"
     return None, "không nhận ra loại project"
