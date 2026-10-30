@@ -237,9 +237,15 @@ def check(skills: list[dict], manifest: dict) -> int:
         if not d.is_dir():
             print(f"  ✗ {s['id']:<30} thiếu thư mục")
             bad += 1
-        elif rec.get("sha256") and (d / "SKILL.md").is_file() \
-                and sha(d / "SKILL.md") != rec["sha256"]:
+        elif not (d / "SKILL.md").is_file():
+            print(f"  ✗ {s['id']:<30} thiếu SKILL.md")
+            bad += 1
+        elif not rec.get("sha256"):
+            print(f"  ? {s['id']:<30} thiếu sha256")
+            bad += 1
+        elif sha(d / "SKILL.md") != rec["sha256"]:
             print(f"  ~ {s['id']:<30} SKILL.md đã bị sửa tay")
+            bad += 1
     return bad
 
 

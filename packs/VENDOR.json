@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-30T02:08:10Z",
+  "generated": "2026-10-30T05:17:49Z",
   "skills": {
     "using-superpowers": {
       "pack": "meta",
@@ -566,8 +566,8 @@
       "source": "local (tự viết)",
       "path": "meta/handoff",
       "license": "MIT",
-      "bytes": 0,
-      "sha256": null
+      "bytes": 3338,
+      "sha256": "843d8da81999dc21f50a539bf1dfbd81ddb1914102d79a5d6f3d8b89fe60c309"
     },
     "planning-with-files": {
       "pack": "code",
@@ -1872,7 +1872,135 @@
       "license": "MIT",
       "bytes": 5524,
       "sha256": "5e97549c29209007ae3221cb8af45cfd78c5038c57f7c953e2d7591a75fdcdff"
+    },
+    "mocha-skill": {
+      "pack": "code",
+      "source": "LambdaTest/agent-skills@992638bccbc311f42c0bd8b2b3387a0d1ce6288d",
+      "path": "mocha-skill",
+      "license": "MIT",
+      "bytes": 21043,
+      "sha256": "9576b2c7a0c4aa24d4adcc2c5424b34c133be448bfda6c1e03c3682aa6410144"
+    },
+    "nunit-skill": {
+      "pack": "code",
+      "source": "LambdaTest/agent-skills@992638bccbc311f42c0bd8b2b3387a0d1ce6288d",
+      "path": "nunit-skill",
+      "license": "MIT",
+      "bytes": 22990,
+      "sha256": "650c99846ec8257fab21ff44979f8739908eb66ca55c1f947bb0d219a6111aaf"
+    },
+    "phpunit-skill": {
+      "pack": "code",
+      "source": "LambdaTest/agent-skills@992638bccbc311f42c0bd8b2b3387a0d1ce6288d",
+      "path": "phpunit-skill",
+      "license": "MIT",
+      "bytes": 37295,
+      "sha256": "ea1addb90003c6013fa9872432d60950b7ee03f4a0e34697e10c6f8be5a273f9"
+    },
+    "rspec-skill": {
+      "pack": "code",
+      "source": "LambdaTest/agent-skills@992638bccbc311f42c0bd8b2b3387a0d1ce6288d",
+      "path": "rspec-skill",
+      "license": "MIT",
+      "bytes": 23847,
+      "sha256": "bee203829df6583a185853b56ccbac0b028cc9ad897117b11c193a80cfc12603"
+    },
+    "vitest-skill": {
+      "pack": "code",
+      "source": "LambdaTest/agent-skills@992638bccbc311f42c0bd8b2b3387a0d1ce6288d",
+      "path": "vitest-skill",
+      "license": "MIT",
+      "bytes": 21547,
+      "sha256": "677dff0f72aa0bfbee5a4fb3ccf26fb868a41e80d366dce43370a9d9b8033739"
+    },
+    "xunit-skill": {
+      "pack": "code",
+      "source": "LambdaTest/agent-skills@992638bccbc311f42c0bd8b2b3387a0d1ce6288d",
+      "path": "xunit-skill",
+      "license": "MIT",
+      "bytes": 22033,
+      "sha256": "809cccabb730f144db906e84ce1b3bf24b2629e4d4919f734756c02dc3990d42"
+    },
+    "test-fixing": {
+      "pack": "code",
+      "source": "sickn33/agentic-awesome-skills@753c5f7bb64650b7d3ac0ab84d9b24892d7aed8b",
+      "path": "skills/test-fixing",
+      "license": "MIT",
+      "bytes": 4913,
+      "sha256": "29398e110c3547f6047d4734cce5f9b1e74fe67d0cc524499dd830deb1b4f8e4"
+    },
+    "pytest-skill": {
+      "pack": "code",
+      "source": "LambdaTest/agent-skills@992638bccbc311f42c0bd8b2b3387a0d1ce6288d",
+      "path": "pytest-skill",
+      "license": "MIT",
+      "bytes": 22791,
+      "sha256": "67b255295c9d30643118d5f555e5464c03451bbbf5319fdbb2bc5b374b5743f6"
+    },
+    "unittest-skill": {
+      "pack": "code",
+      "source": "LambdaTest/agent-skills@992638bccbc311f42c0bd8b2b3387a0d1ce6288d",
+      "path": "unittest-skill",
+      "license": "MIT",
+      "bytes": 30239,
+      "sha256": "572d2469108b67b37af4951b31dd4fba0aa4f0e0a63950b7dd458516eced92ca"
+    },
+    "junit-5-skill": {
+      "pack": "code",
+      "source": "LambdaTest/agent-skills@992638bccbc311f42c0bd8b2b3387a0d1ce6288d",
+      "path": "junit-5-skill",
+      "license": "MIT",
+      "bytes": 25382,
+      "sha256": "8ddb342dda1a225dd482200a86e1e362c387d62d0cf79dfc1047cef83e089c8a"
+    },
+    "testng-skill": {
+      "pack": "code",
+      "source": "LambdaTest/agent-skills@992638bccbc311f42c0bd8b2b3387a0d1ce6288d",
+      "path": "testng-skill",
+      "license": "MIT",
+      "bytes": 28153,
+      "sha256": "7f38b9454141e90a70b9de6fcc63e842e6693b9eea619ef33b831a08c04ed5f8"
+    },
+    "mstest-skill": {
+      "pack": "code",
+      "source": "LambdaTest/agent-skills@992638bccbc311f42c0bd8b2b3387a0d1ce6288d",
+      "path": "mstest-skill",
+      "license": "MIT",
+      "bytes": 27407,
+      "sha256": "d3a6c0ef376078c3c3cb21f7c05fec639a02c8644f1bb25f187e9d87d0fd3ff9"
+    },
+    "testunit-skill": {
+      "pack": "code",
+      "source": "LambdaTest/agent-skills@992638bccbc311f42c0bd8b2b3387a0d1ce6288d",
+      "path": "testunit-skill",
+      "license": "MIT",
+      "bytes": 22599,
+      "sha256": "de221f1717cac4ee811b991e5607d06ad0c2686eba4f8304c57da97e5d32d7ef"
+    },
+    "jest-skill": {
+      "pack": "code",
+      "source": "LambdaTest/agent-skills@992638bccbc311f42c0bd8b2b3387a0d1ce6288d",
+      "path": "jest-skill",
+      "license": "MIT",
+      "bytes": 26298,
+      "sha256": "3d4301c0a01fea772d30a5a4a38b05d3fd14d8b377582fa0f828c174c1867d71"
+    },
+    "jasmine-skill": {
+      "pack": "code",
+      "source": "LambdaTest/agent-skills@992638bccbc311f42c0bd8b2b3387a0d1ce6288d",
+      "path": "jasmine-skill",
+      "license": "MIT",
+      "bytes": 26208,
+      "sha256": "addfd4749e853f37bbb8b95f4f0f00a81605ca75a6ed1b89cd1ff10e7989c260"
+    },
+    "lint-and-validate": {
+      "pack": "code",
+      "source": "sickn33/agentic-awesome-skills@753c5f7bb64650b7d3ac0ab84d9b24892d7aed8b",
+      "path": "skills/lint-and-validate",
+      "license": "MIT",
+      "bytes": 3025,
+      "sha256": "172188426196c5ab446d889dbd02d1cff6a9c5b8f00356513b3ca39af9eb1c41"
     }
   },
-  "total_bytes": 26494456
+  "total_bytes": 26863564
 }

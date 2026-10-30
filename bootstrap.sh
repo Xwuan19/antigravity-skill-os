@@ -33,7 +33,7 @@ for a in "$@"; do
     --core)       CORE=1 ;;
     --exclude-pack) WANT_EXCLUDE=1 ;;
     --exclude-pack=*) EXCLUDE="${a#*=}" ;;
-    --no-hooks|--no-plugins|--no-lsp|--include-manual|--dry-run|--no-rules|--prune) FLAGS+=("$a") ;;
+    --no-hooks|--no-plugins|--no-lsp|--include-manual|--dry-run|--no-rules|--prune|--update-owned) FLAGS+=("$a") ;;
     -*)           echo "  ! tham số lạ: $a" >&2 ;;
     *)            if [ -z "$PROFILE" ]; then PROFILE="$a"
                   elif [ -z "$WS" ]; then WS="$a"
@@ -44,6 +44,9 @@ done
 has() { local x; for x in "${FLAGS[@]:-}"; do [ "$x" = "$1" ] && return 0; done; return 1; }
 
 die() { printf '\n  ✗ %s\n\n' "$1" >&2; exit 1; }
+
+# A preview should not create Python bytecode caches in the repo either.
+if has --dry-run; then export PYTHONDONTWRITEBYTECODE=1; fi
 
 if [ "$SYSTEM" -eq 0 ] && [ "$CORE" -eq 0 ] && [ -z "$PROFILE" ]; then
   die "Chưa chọn kiểu cài.
@@ -68,15 +71,24 @@ if [ -f "$HERE/tools/install.py" ] && [ -d "$HERE/packs" ]; then
   ROOT="$HERE"
   echo "  Repo: $ROOT (bản đang đứng)"
 else
-  command -v git >/dev/null || die "Cần git để clone repo."
-  if [ -d "$CACHE/.git" ]; then
-    git -C "$CACHE" pull --ff-only --quiet && echo "  Repo: $CACHE (đã cập nhật)"
+  if has --dry-run; then
+    if [ -f "$CACHE/tools/install.py" ] && [ -d "$CACHE/packs" ]; then
+      ROOT="$CACHE"
+      echo "  Repo: $CACHE (dry-run: không pull)"
+    else
+      die "Dry-run cần repo đã có sẵn; clone trước rồi chạy bootstrap.sh từ repo."
+    fi
   else
-    echo "  Đang clone…"
-    git clone --quiet --depth 1 "$REPO_URL" "$CACHE"
-    echo "  Repo: $CACHE"
+    command -v git >/dev/null || die "Cần git để clone repo."
+    if [ -d "$CACHE/.git" ]; then
+      git -C "$CACHE" pull --ff-only --quiet && echo "  Repo: $CACHE (đã cập nhật)"
+    else
+      echo "  Đang clone…"
+      git clone --quiet --depth 1 "$REPO_URL" "$CACHE"
+      echo "  Repo: $CACHE"
+    fi
+    ROOT="$CACHE"
   fi
-  ROOT="$CACHE"
 fi
 
 # ===========================================================================
@@ -85,11 +97,12 @@ fi
 if [ "$CORE" -eq 1 ]; then
   echo "  Chế độ: GLOBAL MỎNG  (${SKILL_OS_HOME:-~/.gemini})"
   echo
-  if has --prune; then
-    python3 "$ROOT/tools/install.py" --core --prune
-  else
-    python3 "$ROOT/tools/install.py" --core
-  fi
+  CORE_ARGS=(--core)
+  has --prune && CORE_ARGS+=(--prune)
+  has --dry-run && CORE_ARGS+=(--dry-run)
+  has --update-owned && CORE_ARGS+=(--update-owned)
+  python3 "$ROOT/tools/install.py" "${CORE_ARGS[@]}"
+  if has --dry-run; then echo "  Dry-run hoàn tất — chưa cài hay ghi gì."; exit 0; fi
   echo
   echo "──────────────────────────────────────────────"
   echo "  Global giờ chỉ có rules + 4 skill. Mỗi project rót riêng:"
@@ -115,6 +128,7 @@ if [ "$SYSTEM" -eq 1 ]; then
   has --dry-run && SYS+=(--dry-run)
   [ -n "$EXCLUDE" ] && SYS+=(--exclude-pack "$EXCLUDE")
   has --prune && SYS+=(--prune)
+  has --update-owned && SYS+=(--update-owned)
   python3 "$ROOT/tools/install.py" --system "${SYS[@]}"
 
   if ! has --no-lsp; then
@@ -127,6 +141,7 @@ if [ "$SYSTEM" -eq 1 ]; then
 
   echo
   echo "──────────────────────────────────────────────"
+  if has --dry-run; then echo "  Dry-run hoàn tất — chưa cài hay ghi gì."; exit 0; fi
   echo "  Xong. Mọi project giờ dùng được, không cần cài lại."
   echo
   echo "  1. Khởi động lại Antigravity một lần."
@@ -142,17 +157,21 @@ fi
 # Chế độ một project
 # ===========================================================================
 WS="${WS:-$PWD}"
-WS="$(cd "$WS" 2>/dev/null && pwd || { mkdir -p "$WS" && cd "$WS" && pwd; })"
+if has --dry-run; then
+  WS="$(python3 -c 'import pathlib,sys; print(pathlib.Path(sys.argv[1]).expanduser().resolve())' "$WS")"
+else
+  WS="$(cd "$WS" 2>/dev/null && pwd || { mkdir -p "$WS" && cd "$WS" && pwd; })"
+fi
 echo "  Workspace: $WS"
 echo "  Profile:   $PROFILE"
 
 echo
 echo "── Tầng global (mọi project) ──"
-if has --prune; then
-  python3 "$ROOT/tools/install.py" --core --prune
-else
-  python3 "$ROOT/tools/install.py" --core
-fi
+CORE_ARGS=(--core)
+has --prune && CORE_ARGS+=(--prune)
+has --dry-run && CORE_ARGS+=(--dry-run)
+has --update-owned && CORE_ARGS+=(--update-owned)
+python3 "$ROOT/tools/install.py" "${CORE_ARGS[@]}"
 
 echo
 echo "── Tầng workspace ──"
@@ -163,17 +182,21 @@ has --include-manual && ARGS+=(--include-manual)
 has --dry-run && ARGS+=(--dry-run)
 has --no-rules   && ARGS+=(--no-rules)
 has --prune      && ARGS+=(--prune)
+has --update-owned && ARGS+=(--update-owned)
 [ -n "$EXCLUDE" ] && ARGS+=(--exclude-pack "$EXCLUDE")
 python3 "$ROOT/tools/install.py" "${ARGS[@]}"
 
 if ! has --no-lsp; then
   echo
   echo "── LSP ──"
-  python3 "$ROOT/tools/lsp.py" -w "$WS" || true
+  LSP_ARGS=(-w "$WS")
+  has --dry-run && LSP_ARGS+=(--dry-run)
+  python3 "$ROOT/tools/lsp.py" "${LSP_ARGS[@]}" || true
 fi
 
 echo
 echo "──────────────────────────────────────────────"
+if has --dry-run; then echo "  Dry-run hoàn tất — chưa cài hay ghi gì."; exit 0; fi
 echo "  Xong. Còn 2 việc:"
 echo
 echo "  1. Khởi động lại Antigravity để nó nạp skill + MCP server."

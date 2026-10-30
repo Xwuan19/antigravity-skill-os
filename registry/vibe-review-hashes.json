@@ -1,0 +1,94 @@
+{
+  "jasmine-skill": {
+    "LICENSE": "e6f84c7e8a2b848489204f0ee2909c0b48978d0300c22f1d0f3adc2ebef00bec",
+    "SKILL.md": "addfd4749e853f37bbb8b95f4f0f00a81605ca75a6ed1b89cd1ff10e7989c260",
+    "reference/advanced-patterns.md": "a7d74c4d903532cc1f5ce44d9f9fedb7d6c4de39c888c3f9a2d584385728fa02",
+    "reference/playbook.md": "440ecceffcb598933b78de13cd917b32ad0aaa4cf0879a72412772c5ede038bd"
+  },
+  "jest-skill": {
+    "LICENSE": "e6f84c7e8a2b848489204f0ee2909c0b48978d0300c22f1d0f3adc2ebef00bec",
+    "SKILL.md": "3d4301c0a01fea772d30a5a4a38b05d3fd14d8b377582fa0f828c174c1867d71",
+    "reference/advanced-patterns.md": "8e445ef801adff52bb0f4416929aaf155ff1b2a4d07e09295eb2d53074a78e69",
+    "reference/playbook.md": "49f26fdd9e9bd1e3dd3734c4534343b8ae6699b170cb5f4d3c2f7b9e09624aeb"
+  },
+  "junit-5-skill": {
+    "LICENSE": "e6f84c7e8a2b848489204f0ee2909c0b48978d0300c22f1d0f3adc2ebef00bec",
+    "SKILL.md": "8ddb342dda1a225dd482200a86e1e362c387d62d0cf79dfc1047cef83e089c8a",
+    "reference/advanced-patterns.md": "10d6145ff6cd23aa4d58181cbcacea7d3736a5752208316fca1f16178a884599",
+    "reference/playbook.md": "ebf5b40bd0a0546b598ffdb77ce27dce58d3fe90b7ee9c5f7c00c571b0095179"
+  },
+  "lint-and-validate": {
+    "LICENSE": "af98370a7edc0f00ec46979d049517833c9a7fa2ba74e3cf8cc42f7db557299d",
+    "SKILL.md": "172188426196c5ab446d889dbd02d1cff6a9c5b8f00356513b3ca39af9eb1c41"
+  },
+  "mocha-skill": {
+    "LICENSE": "e6f84c7e8a2b848489204f0ee2909c0b48978d0300c22f1d0f3adc2ebef00bec",
+    "SKILL.md": "9576b2c7a0c4aa24d4adcc2c5424b34c133be448bfda6c1e03c3682aa6410144",
+    "reference/advanced-patterns.md": "6fe451acbd94ee8dfd17343129ae988bd60cffac0130f90e415461098ba8ec4a",
+    "reference/playbook.md": "d5c61600ced3289b5ab36f8da27cd3f874b635fc705b35ca026d0af956907e7a"
+  },
+  "mstest-skill": {
+    "LICENSE": "e6f84c7e8a2b848489204f0ee2909c0b48978d0300c22f1d0f3adc2ebef00bec",
+    "SKILL.md": "d3a6c0ef376078c3c3cb21f7c05fec639a02c8644f1bb25f187e9d87d0fd3ff9",
+    "reference/advanced-patterns.md": "2997fcc797c28ff2a1e7271cde8aec99ed7ac9bfa4bb8ddc77f0a6444d7a2539",
+    "reference/playbook.md": "690a625e140092a29d34048ef5544f6c95c80c59b0c418da47e799e788f4c240"
+  },
+  "nunit-skill": {
+    "LICENSE": "e6f84c7e8a2b848489204f0ee2909c0b48978d0300c22f1d0f3adc2ebef00bec",
+    "SKILL.md": "650c99846ec8257fab21ff44979f8739908eb66ca55c1f947bb0d219a6111aaf",
+    "reference/advanced-patterns.md": "b20b1a17fdeb327ed0bd113bab1f2a19a8c25966ca88de063f9fd5c6e828108a",
+    "reference/playbook.md": "62f8b3032cf5a274b35eeb058d193a1611e194beec01e26cc1d56fde7731fcd3"
+  },
+  "phpunit-skill": {
+    "LICENSE": "e6f84c7e8a2b848489204f0ee2909c0b48978d0300c22f1d0f3adc2ebef00bec",
+    "SKILL.md": "ea1addb90003c6013fa9872432d60950b7ee03f4a0e34697e10c6f8be5a273f9",
+    "reference/advanced-patterns.md": "0d3c9f962dbfc2fd7ae9f64e39b715fc619d9f7fcb2b9e45a4c436c4187a8969",
+    "reference/playbook.md": "1d622d396178caf2671d52108ce6180a516cca53b5b95293be5b934f9b7f8db9"
+  },
+  "pytest-skill": {
+    "LICENSE": "e6f84c7e8a2b848489204f0ee2909c0b48978d0300c22f1d0f3adc2ebef00bec",
+    "SKILL.md": "67b255295c9d30643118d5f555e5464c03451bbbf5319fdbb2bc5b374b5743f6",
+    "reference/advanced-patterns.md": "324f93cbcc73c9918521f69200b4be3744b7e1219ddf5414bcd59be5e1e782ed",
+    "reference/playbook.md": "02da3341634de43d145d1575c5e41a15d654747df38ae2e9c3cd43628eeabb3b"
+  },
+  "rspec-skill": {
+    "LICENSE": "e6f84c7e8a2b848489204f0ee2909c0b48978d0300c22f1d0f3adc2ebef00bec",
+    "SKILL.md": "bee203829df6583a185853b56ccbac0b028cc9ad897117b11c193a80cfc12603",
+    "reference/advanced-patterns.md": "4bf0307b7f6fc3b745dc5aba10e41e0b439c41b13c98ce406b23dba56861fdb5",
+    "reference/playbook.md": "59704c1c2fccfbc6b1aa6a1eb77e5aaf1c49282e06b1f3faa6c44c037ef9615f"
+  },
+  "test-fixing": {
+    "LICENSE": "af98370a7edc0f00ec46979d049517833c9a7fa2ba74e3cf8cc42f7db557299d",
+    "SKILL.md": "29398e110c3547f6047d4734cce5f9b1e74fe67d0cc524499dd830deb1b4f8e4"
+  },
+  "testng-skill": {
+    "LICENSE": "e6f84c7e8a2b848489204f0ee2909c0b48978d0300c22f1d0f3adc2ebef00bec",
+    "SKILL.md": "7f38b9454141e90a70b9de6fcc63e842e6693b9eea619ef33b831a08c04ed5f8",
+    "reference/advanced-patterns.md": "2a69c09f51d2caa00c784f651e92b3f8fc0036a9dc8f27aca29bc06ce75e6549",
+    "reference/playbook.md": "b775354bfd2262973b76478bc5ce3d7fb267cc12abbf1a3f809134db1d4fcfa3"
+  },
+  "testunit-skill": {
+    "LICENSE": "e6f84c7e8a2b848489204f0ee2909c0b48978d0300c22f1d0f3adc2ebef00bec",
+    "SKILL.md": "de221f1717cac4ee811b991e5607d06ad0c2686eba4f8304c57da97e5d32d7ef",
+    "reference/advanced-patterns.md": "f840bc5d4c7d827fc974b6f7409494f1d1f9d8ff91845d5736fba82a4b783601",
+    "reference/playbook.md": "e21da9ccda3438ee64a1f66b3da7e26d5f35ba96977fadc31632e393807f8ff8"
+  },
+  "unittest-skill": {
+    "LICENSE": "e6f84c7e8a2b848489204f0ee2909c0b48978d0300c22f1d0f3adc2ebef00bec",
+    "SKILL.md": "572d2469108b67b37af4951b31dd4fba0aa4f0e0a63950b7dd458516eced92ca",
+    "reference/advanced-patterns.md": "3b83687e4d7c9a6e4389722a517ad8aabb03c46fc9ea44860e37a2f0affbab2e",
+    "reference/playbook.md": "c422c114513415e980a612d6b75ac743127f23ba62265ae0c94e97ad1da79ce6"
+  },
+  "vitest-skill": {
+    "LICENSE": "e6f84c7e8a2b848489204f0ee2909c0b48978d0300c22f1d0f3adc2ebef00bec",
+    "SKILL.md": "677dff0f72aa0bfbee5a4fb3ccf26fb868a41e80d366dce43370a9d9b8033739",
+    "reference/advanced-patterns.md": "8863defdfccfd74fa110cd52943e9bb0e19cc8767d246f2cb15b488d4d6c87e1",
+    "reference/playbook.md": "a06ed3933873a079755db11f71fa77e2295b59adfd69aedb1d9ad46b39f58e62"
+  },
+  "xunit-skill": {
+    "LICENSE": "e6f84c7e8a2b848489204f0ee2909c0b48978d0300c22f1d0f3adc2ebef00bec",
+    "SKILL.md": "809cccabb730f144db906e84ce1b3bf24b2629e4d4919f734756c02dc3990d42",
+    "reference/advanced-patterns.md": "10f596dd2b9e5437d9c8fd9e087a010daa3992e2d85229e7b54c2866a9aade96",
+    "reference/playbook.md": "4ee4da33cc83f12e1556e227d20e736cb35cf4d8a7e1e93c43a4ff96dc680526"
+  }
+}

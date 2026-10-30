@@ -5334,6 +5334,419 @@
       "ref": "e8a175de22ae1e49370fc144c1f3bb9aeedf988d",
       "path": "skills/write-swift",
       "license": "MIT"
+    },
+    {
+      "id": "mocha-skill",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "verify"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "LambdaTest/agent-skills",
+      "ref": "992638bccbc311f42c0bd8b2b3387a0d1ce6288d",
+      "path": "mocha-skill",
+      "license": "MIT",
+      "stack": [
+        "typescript"
+      ],
+      "global": false,
+      "fm_desc": "Use when writing, debugging, or reviewing Mocha tests for an existing typescript project.",
+      "note_md": "**Skill OS:** Prefer the project’s existing test tools and dependencies. Do not install packages or run network-dependent setup without checking the environment and user authorization."
+    },
+    {
+      "id": "nunit-skill",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "verify"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "LambdaTest/agent-skills",
+      "ref": "992638bccbc311f42c0bd8b2b3387a0d1ce6288d",
+      "path": "nunit-skill",
+      "license": "MIT",
+      "stack": [
+        "csharp"
+      ],
+      "global": false,
+      "fm_desc": "Use when writing, debugging, or reviewing NUnit tests for an existing csharp project.",
+      "note_md": "**Skill OS:** Prefer the project’s existing test tools and dependencies. Do not install packages or run network-dependent setup without checking the environment and user authorization."
+    },
+    {
+      "id": "phpunit-skill",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "verify"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "LambdaTest/agent-skills",
+      "ref": "992638bccbc311f42c0bd8b2b3387a0d1ce6288d",
+      "path": "phpunit-skill",
+      "license": "MIT",
+      "stack": [
+        "php"
+      ],
+      "global": false,
+      "fm_desc": "Use when writing, debugging, or reviewing PHPUnit tests for an existing php project.",
+      "note_md": "**Skill OS:** Prefer the project’s existing test tools and dependencies. Do not install packages or run network-dependent setup without checking the environment and user authorization."
+    },
+    {
+      "id": "rspec-skill",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "verify"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "LambdaTest/agent-skills",
+      "ref": "992638bccbc311f42c0bd8b2b3387a0d1ce6288d",
+      "path": "rspec-skill",
+      "license": "MIT",
+      "stack": [
+        "ruby"
+      ],
+      "global": false,
+      "fm_desc": "Use when writing, debugging, or reviewing RSpec tests for an existing ruby project.",
+      "note_md": "**Skill OS:** Prefer the project’s existing test tools and dependencies. Do not install packages or run network-dependent setup without checking the environment and user authorization."
+    },
+    {
+      "id": "test-fixing",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "verify"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "sickn33/agentic-awesome-skills",
+      "ref": "753c5f7bb64650b7d3ac0ab84d9b24892d7aed8b",
+      "path": "skills/test-fixing",
+      "license": "MIT",
+      "stack": [
+        "general"
+      ],
+      "global": false,
+      "fm_desc": "Use when diagnosing and fixing failing tests; group failures by root cause and verify fixes without weakening tests.",
+      "patch": [
+        [
+          "uv run pytest tests/path/to/test_file.py -v",
+          "pytest tests/path/to/test_file.py -v"
+        ],
+        [
+          "uv run pytest -k \"pattern\" -v",
+          "pytest -k \"pattern\" -v"
+        ]
+      ]
+    },
+    {
+      "id": "vitest-skill",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "verify"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "LambdaTest/agent-skills",
+      "ref": "992638bccbc311f42c0bd8b2b3387a0d1ce6288d",
+      "path": "vitest-skill",
+      "license": "MIT",
+      "stack": [
+        "typescript"
+      ],
+      "global": false,
+      "fm_desc": "Use when writing, debugging, or reviewing Vitest tests for an existing typescript project.",
+      "note_md": "**Skill OS:** Prefer the project’s existing test tools and dependencies. Do not install packages or run network-dependent setup without checking the environment and user authorization."
+    },
+    {
+      "id": "xunit-skill",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "verify"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "LambdaTest/agent-skills",
+      "ref": "992638bccbc311f42c0bd8b2b3387a0d1ce6288d",
+      "path": "xunit-skill",
+      "license": "MIT",
+      "stack": [
+        "csharp"
+      ],
+      "global": false,
+      "fm_desc": "Use when writing, debugging, or reviewing xUnit tests for an existing csharp project.",
+      "note_md": "**Skill OS:** Prefer the project’s existing test tools and dependencies. Do not install packages or run network-dependent setup without checking the environment and user authorization."
+    },
+    {
+      "id": "pytest-skill",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "verify"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "LambdaTest/agent-skills",
+      "ref": "992638bccbc311f42c0bd8b2b3387a0d1ce6288d",
+      "path": "pytest-skill",
+      "license": "MIT",
+      "stack": [
+        "python"
+      ],
+      "global": false,
+      "fm_desc": "Use when writing, debugging, or reviewing pytest tests for an existing python project.",
+      "note_md": "**Skill OS:** Prefer the project’s existing test tools and dependencies. Do not install packages or run network-dependent setup without checking the environment and user authorization."
+    },
+    {
+      "id": "unittest-skill",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "verify"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "LambdaTest/agent-skills",
+      "ref": "992638bccbc311f42c0bd8b2b3387a0d1ce6288d",
+      "path": "unittest-skill",
+      "license": "MIT",
+      "stack": [
+        "python"
+      ],
+      "global": false,
+      "fm_desc": "Use when writing, debugging, or reviewing Python unittest tests for an existing python project.",
+      "note_md": "**Skill OS:** Prefer the project’s existing test tools and dependencies. Do not install packages or run network-dependent setup without checking the environment and user authorization."
+    },
+    {
+      "id": "junit-5-skill",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "verify"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "LambdaTest/agent-skills",
+      "ref": "992638bccbc311f42c0bd8b2b3387a0d1ce6288d",
+      "path": "junit-5-skill",
+      "license": "MIT",
+      "stack": [
+        "java"
+      ],
+      "global": false,
+      "fm_desc": "Use when writing, debugging, or reviewing JUnit 5 tests for an existing java project.",
+      "note_md": "**Skill OS:** Prefer the project’s existing test tools and dependencies. Do not install packages or run network-dependent setup without checking the environment and user authorization.",
+      "patch": [
+        [
+          "Read reference/spring-integration.md",
+          "Follow the existing project’s Spring integration test configuration and documentation"
+        ]
+      ]
+    },
+    {
+      "id": "testng-skill",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "verify"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "LambdaTest/agent-skills",
+      "ref": "992638bccbc311f42c0bd8b2b3387a0d1ce6288d",
+      "path": "testng-skill",
+      "license": "MIT",
+      "stack": [
+        "java"
+      ],
+      "global": false,
+      "fm_desc": "Use when writing, debugging, or reviewing TestNG tests for an existing java project.",
+      "note_md": "**Skill OS:** Prefer the project’s existing test tools and dependencies. Do not install packages or run network-dependent setup without checking the environment and user authorization."
+    },
+    {
+      "id": "mstest-skill",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "verify"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "LambdaTest/agent-skills",
+      "ref": "992638bccbc311f42c0bd8b2b3387a0d1ce6288d",
+      "path": "mstest-skill",
+      "license": "MIT",
+      "stack": [
+        "csharp"
+      ],
+      "global": false,
+      "fm_desc": "Use when writing, debugging, or reviewing MSTest tests for an existing csharp project.",
+      "note_md": "**Skill OS:** Prefer the project’s existing test tools and dependencies. Do not install packages or run network-dependent setup without checking the environment and user authorization."
+    },
+    {
+      "id": "testunit-skill",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "verify"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "LambdaTest/agent-skills",
+      "ref": "992638bccbc311f42c0bd8b2b3387a0d1ce6288d",
+      "path": "testunit-skill",
+      "license": "MIT",
+      "stack": [
+        "ruby"
+      ],
+      "global": false,
+      "fm_desc": "Use when writing, debugging, or reviewing Test::Unit tests for an existing ruby project.",
+      "note_md": "**Skill OS:** Prefer the project’s existing test tools and dependencies. Do not install packages or run network-dependent setup without checking the environment and user authorization."
+    },
+    {
+      "id": "jest-skill",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "verify"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "LambdaTest/agent-skills",
+      "ref": "992638bccbc311f42c0bd8b2b3387a0d1ce6288d",
+      "path": "jest-skill",
+      "license": "MIT",
+      "stack": [
+        "typescript"
+      ],
+      "global": false,
+      "fm_desc": "Use when writing, debugging, or reviewing Jest tests for an existing typescript project.",
+      "note_md": "**Skill OS:** Prefer the project’s existing test tools and dependencies. Do not install packages or run network-dependent setup without checking the environment and user authorization."
+    },
+    {
+      "id": "jasmine-skill",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "verify"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "LambdaTest/agent-skills",
+      "ref": "992638bccbc311f42c0bd8b2b3387a0d1ce6288d",
+      "path": "jasmine-skill",
+      "license": "MIT",
+      "stack": [
+        "typescript"
+      ],
+      "global": false,
+      "fm_desc": "Use when writing, debugging, or reviewing Jasmine tests for an existing typescript project.",
+      "note_md": "**Skill OS:** Prefer the project’s existing test tools and dependencies. Do not install packages or run network-dependent setup without checking the environment and user authorization."
+    },
+    {
+      "id": "lint-and-validate",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "verify"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "sickn33/agentic-awesome-skills",
+      "ref": "753c5f7bb64650b7d3ac0ab84d9b24892d7aed8b",
+      "path": "skills/lint-and-validate",
+      "license": "MIT",
+      "stack": [
+        "general"
+      ],
+      "global": false,
+      "fm_desc": "Use when checking code changes with the project’s configured linters and type checkers; report failures and unrun checks.",
+      "exclude": [
+        "scripts"
+      ],
+      "cut": [
+        [
+          "## Bundled helpers",
+          "## Limitations"
+        ]
+      ],
+      "patch": [
+        [
+          "The runner executes trusted project commands, which may mutate files or access the network. It does not install dependencies, detect every monorepo configuration, or replace the project's CI contract. The inventory is a bounded source sample, not semantic type coverage; inferred types, generics, decorator behavior and correctness require the actual type checker. Do not label unrun checks as successful.",
+          "Project commands may mutate files or access the network; inspect them before running. These instructions do not replace the project’s CI contract. Do not label unrun checks as successful."
+        ]
+      ]
     }
   ]
 }
