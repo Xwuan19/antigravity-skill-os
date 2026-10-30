@@ -97,16 +97,23 @@ No evidence → say it is an assumption, not a conclusion.
 
 ---
 
-## 3. Skills are scoped per project — do not use what is not installed
+## 3. Skill scopes — global first, project on top
 
-- **Use only skills present in the open project's `.agents/skills/`.** A skill not there
-  does not exist for this project — do not reconstruct its content from memory.
-- If `.agents/skill-os.json` exists, that is the chosen set for this project. Do not pull
-  in other packs without asking.
+Two scopes exist and they **stack**:
+
+- `~/.gemini/config/skills/` — **global**. Every project, every session. Always in scope.
+- `<project>/.agents/skills/` — this project only.
+
+Use a skill if it is present in **either** scope. A skill present in neither does not exist
+for this project — do not reconstruct its content from memory, and do not claim one is
+installed.
+
+- `.agents/skill-os.json` lists what was picked for this project, on top of global.
 - If `tools/route.py` exists (Skill OS repo), use it instead of guessing:
   `--list-profiles`, `--profile <id>`, `--profile <id> --install <ws>`.
 - **Never mix domains.** A web project does not use education skills; an education project
-  does not use motion skills. Isolation works by absence, not by the instruction "don't use X".
+  does not use motion skills. On a system-wide install both are on disk — the rule applies to
+  what you *choose to follow*, not to what exists.
 
 ---
 
