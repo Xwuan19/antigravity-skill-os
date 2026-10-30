@@ -97,6 +97,23 @@ def patch_skill(dest: Path, s: dict) -> None:
     if not sk.is_file():
         return
     txt = orig = sk.read_text(encoding="utf-8")
+
+    # fm_desc: viết lại frontmatter chỉ còn name + description.
+    # Dùng khi bản gốc mang hooks/allowed-tools/metadata của Claude Code
+    # (`${CLAUDE_SKILL_DIR}`, `~/.claude/...`) hoặc description dài quá mức.
+    fd = s.get("fm_desc")
+    if fd:
+        end = txt.find("\n---", 3) if txt.startswith("---") else -1
+        body = txt[end + 4:].lstrip("\n") if end != -1 else txt
+        txt = (f"---\nname: {s['id']}\n"
+               f"description: {json.dumps(fd, ensure_ascii=False)}\n---\n\n{body}")
+    for a, b in s.get("cut", []):
+        i = txt.find(a)
+        j = txt.find(b, i + len(a)) if i != -1 else -1
+        if i == -1 or j == -1:
+            print(f"      ! {s['id']}: cut không khớp — {a[:40]}")
+        else:
+            txt = txt[:i] + txt[j:]
     for old, new in s.get("patch", []):
         if old not in txt:
             print(f"      ! {s['id']}: patch không khớp — {old[:50]}")

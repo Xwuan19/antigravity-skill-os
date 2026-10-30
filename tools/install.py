@@ -113,6 +113,31 @@ def do_core(skills: list[dict], dry: bool, force: bool) -> None:
         print(f"    {copy_skill(s, GLOBAL_SKILLS, dry, force)} {s['id']}")
 
 
+def budget(chosen: list[dict]) -> None:
+    """Ước lượng ngân sách always-on.
+
+    Antigravity cho 20.000 token cho rules always_on + description của skill.
+    Cả `AGENTS.md` lẫn description đều ăn vào đó, nên đếm cả hai.
+    """
+    total = 0
+    for s in chosen:
+        p = pack_dir(s) / "SKILL.md"
+        if not p.is_file():
+            continue
+        t = p.read_text(encoding="utf-8", errors="replace")
+        a = t.find("description:")
+        b = t.find("---", a + 3)
+        if a != -1 and b != -1:
+            total += len(t[a:b])
+    rules = ROOT / "core" / "AGENTS.md"
+    r_chars = len(rules.read_text(encoding="utf-8")) if rules.is_file() else 0
+    tok = (total + r_chars) // 4
+    pct = tok / 20000
+    flag = "  ⚠ đã gần trần" if pct > 0.85 else ""
+    print(f"  Ngân sách: {tok:,} token ≈ {pct:.0%} trần 20k — "
+          f"{len(chosen)} description + AGENTS.md{r_chars and f' ({r_chars:,} ký tự)'}{flag}")
+
+
 def do_system(skills: list[dict], dry: bool, force: bool,
               include_manual: bool = False) -> None:
     """Cài TOÀN BỘ skill vào tầng global — mọi project đều thấy, không cần profile.
@@ -125,20 +150,23 @@ def do_system(skills: list[dict], dry: bool, force: bool,
 
     chosen = [s for s in skills
               if s["mode"] != "system"
-              and (s["mode"] != "manual" or include_manual)]
+              and (s["mode"] != "manual" or include_manual)
+              and s.get("global", True) is not False]
+    project_only = [s for s in skills
+                    if s["mode"] != "system" and s.get("global", True) is False]
     print(f"\n  Skill global → {GLOBAL_SKILLS}  ({len(chosen)})")
 
     by_pack: dict[str, int] = {}
     new = existing = 0
     for s in chosen:
         r = copy_skill(s, GLOBAL_SKILLS, dry, force)
-        if r.startswith(("✓", "~", "=")):
+        if r.startswith(("✓", "~", "=", "·")):
             by_pack[s["pack"]] = by_pack.get(s["pack"], 0) + 1
         if r.startswith(("✓", "~")):
             new += 1
         elif r.startswith("="):
             existing += 1
-        if not r.startswith(("✓", "~", "=")):
+        if not r.startswith(("✓", "~", "=", "·")):
             print(f"    {r} — {s['id']}")
 
     if dry:
@@ -150,6 +178,11 @@ def do_system(skills: list[dict], dry: bool, force: bool,
     else:
         print(f"\n  {existing} skill đã có sẵn, không đổi gì.")
 
+    n_po = len(project_only)
+    if n_po:
+        print(f"  {n_po} skill theo ngôn ngữ/khung không cài vào global — "
+              "dùng `bootstrap.sh <profile> <dir>` cho project cần.")
+    budget(chosen)
     if not dry:
         GLOBAL_DIR.mkdir(parents=True, exist_ok=True)
         (GLOBAL_DIR / "skill-os.json").write_text(json.dumps({
@@ -346,7 +379,7 @@ def do_workspace(skills: list[dict], profiles: dict[str, dict],
             new += 1
         elif r.startswith("="):
             existing += 1
-        if r.startswith(("✓", "~", "=")):
+        if r.startswith(("✓", "~", "=", "·")):
             by_pack[s["pack"]] = by_pack.get(s["pack"], 0) + 1
     if rules:
         got, changed = install_stack_rules(ws, stk, dry)

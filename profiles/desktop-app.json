@@ -31,7 +31,7 @@
     "logic"
   ],
   "rationale": "App cài trên máy: cần HIG, layout cửa sổ, icon, token — không cần skill web landing.",
-  "max_skills": 70,
+  "max_skills": 115,
   "agent_groups": [
     "code",
     "design",

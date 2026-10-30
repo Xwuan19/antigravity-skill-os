@@ -123,21 +123,21 @@ Profile khai domain bị cấm, router loại **tuyệt đối** — kể cả s
 
 ## Profile
 
-9 kiểu project dựng sẵn trong [`profiles/`](../profiles):
+10 kiểu project dựng sẵn trong [`profiles/`](../profiles):
 
 | Profile | Skill | Plugin | Agent | LSP | Dùng cho |
 |---|---|---|---|---|---|
-| `web-admin` | 68 | 6 | 43 | ✅ | Dashboard, CRUD, SaaS |
-| `mobile-app` | 64 | 3 | 41 | ✅ | React Native, Expo, iOS/Android |
-| `cli-tool` | 52 | 6 | 41 | ✅ | CLI, script, backend |
-| `landing` | 34 | 4 | 43 | ✅ | Landing, marketing, portfolio |
-| `education-k12` | 19 | — | — | — | Giáo án phổ thông, đề kiểm tra |
-| `design-system` | 16 | 2 | 10 | ✅ | UI kit, component library |
-| `education-language` | 11 | — | — | — | Trung tâm ngoại ngữ, gia sư |
-| `docs-writer` | 6 | 1 | 3 | — | Báo cáo, thuyết trình, bảng tính |
-| `meta` | 5 | 3 | 8 | ✅ | Nuôi chính hệ thống (plugin, hook, AGENTS.md) |
-
-Số đo trên workspace TypeScript (dự án Python sẽ cộng 18 skill `python-*`). Đo bằng cách cài thật rồi `ls` (skill = file trong `.agents/skills/`, agent = file
+| `desktop-app` | 109 | 3 | 43 | ✅ | App cài trên máy: macOS, Tauri, Electron, WPF |
+| `web-admin` | 102 | 6 | 43 | ✅ | Dashboard, CRUD, SaaS |
+| `mobile-app` | 85 | 3 | 41 | ✅ | React Native, Expo, iOS/Android |
+| `cli-tool` | 69 | 6 | 41 | ✅ | CLI, script, backend |
+| `landing` | 52 | 4 | 43 | ✅ | Landing, marketing, portfolio |
+| `design-system` | 29 | 2 | 10 | ✅ | UI kit, component library, token |
+| `education-k12` | 24 | — | — | — | Giáo án phổ thông, đề kiểm tra |
+| `education-language` | 16 | — | — | — | Trung tâm ngoại ngữ, gia sư |
+| `docs-writer` | 16 | 1 | 3 | — | Báo cáo, thuyết trình, bảng tính |
+| `meta` | 8 | 3 | 8 | ✅ | Nuôi chính hệ thống (plugin, hook, AGENTS.md) |
+Số đo trên workspace TypeScript (dự án Python cộng tới 22 skill `python-*`, dự án Java cộng 9 skill Spring/Quarkus/JPA). Đo bằng cách cài thật rồi `ls` (skill = file trong `.agents/skills/`, agent = file
 trong `.agents/agents/`, plugin = số khai báo trong profile — cần `--plugins` mới chép).
 
 **LSP** = profile tự bật tầng code intelligence (xem `registry/lsp.json`). Cột này là
@@ -145,7 +145,9 @@ trong `.agents/agents/`, plugin = số khai báo trong profile — cần `--plug
 
 Thêm profile mới = thêm một file JSON. Không cần sửa code.
 
-Tổng registry: **187 skill** (184 vendor + 3 rule hệ thống) + 46 subagent + 9 plugin + **12
+Tổng registry: **237 skill** (234 vendor + 3 rule hệ thống), trong đó **44 skill** khai `global: false`
+nên bị loại khỏi `--system` và chỉ vào project đúng stack (`django-*`, `laravel-*`, `springboot-*`,
+`quarkus-*`, `vue-patterns`, `docker-patterns`…) + 46 subagent + 9 plugin + **12
 language server**. Skill, agent và plugin đều đã nằm trong repo, pin commit, nên cài đặt
 không cần mạng.
 

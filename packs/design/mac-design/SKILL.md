@@ -16,7 +16,7 @@ where the system has nothing.
 - Toolbars: which item goes where, per column: [toolbars.md](toolbars.md).
 - The menu bar, context menus, and the Dock menu: [menus.md](menus.md).
 - Apple's current text on one topic, when a rule here is not enough:
-  `"${CLAUDE_SKILL_DIR}/scripts/hig.sh" <topic>` (for example `toolbars`,
+  `"${SKILL_DIR:-$HOME/.gemini/config/skills/mac-design}/scripts/hig.sh" <topic>` (for example `toolbars`,
   `sheets`). It prints the HIG page as plain text.
 - App-wide tokens (colors, radii, motion): call the Skill tool with
   `design-system`.

@@ -193,21 +193,33 @@ Nguồn: [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills)
 
 ---
 
-### 3.5 Đo lường & tự chẩn đoán — [affaan-m/ECC](https://github.com/affaan-m/ECC) · MIT
+### 3.5 [affaan-m/ECC](https://github.com/affaan-m/ECC) · MIT — 313 skill, lấy 53
 
 ECC là **hệ cài đặt đa harness** (Claude Code, Codex, Cursor, Gemini CLI, Qwen, Kimi,
-Copilot…), không phải kho skill — và **không** hỗ trợ Antigravity (`~/.gemini/AGENTS.md`).
-Cài ECC không làm Antigravity có thêm skill nào. Nhưng 3 skill dưới đây không phụ thuộc
-runtime của nó, nên lấy được:
+Copilot…), **không** target Antigravity. Cài nguyên repo không làm Antigravity có thêm skill
+nào. Nhưng bên trong nó có thư viện skill thật: **`skills/` gốc = 313 skill**, phần lớn là
+`<lang>/<framework>-patterns` viết ở mức hướng dẫn thuần — những cái đó lấy được.
 
-| ☑ | Skill | Pack | Việc nó làm |
+Đã lấy **53**: 9 skill kiến trúc/quy trình vào toàn máy, 44 skill theo ngôn ngữ chỉ vào
+project đúng stack. Bảng đầy đủ + cách port (`cut`, `patch`, `fm_desc`) + danh sách đã loại:
+[**docs/ecc-skills.md**](ecc-skills.md).
+
+| Skill | Pack | Vào global | Việc nó làm |
 |---|---|---|---|
-| ☑ | `change-impact` | code | Đo tác động trước khi sửa (call path, schema, API, test, migration, rollback), rồi so kế hoạch với diff thật |
-| ☑ | `eval-harness` | code | Khung eval: định nghĩa tiêu chí đạt/trượt, chạy, chấm, chốt trước khi tin một workflow |
-| ☑ | `agent-introspection-debugging` | meta | Agent lặp tool / đốt token không tiến triển: capture → chẩn đoán → gỡ rối có kiểm soát |
+| `change-impact` | code | ✅ | Đo tác động trước khi sửa (call path, schema, API, test, migration, rollback), rồi so kế hoạch với diff thật |
+| `architecture-decision-records` | code | ✅ | Ghi quyết định kiến trúc thành ADR đánh số trong `docs/adr/` |
+| `hexagonal-architecture` | code | ✅ | Ports & Adapters: domain sạch, phụ thuộc đảo chiều, use-case test được |
+| `contract-first` | code | ✅ | OpenAPI/AsyncAPI làm nguồn chân lý cho cả hai phía |
+| `issue-review` | code | ✅ | Review GitHub issue như review PR |
+| `production-audit` | code | ✅ | Audit sẵn sàng production từ bằng chứng cục bộ |
+| `eval-harness` | code | ✅ | Khung eval: tiêu chí đạt/trượt, chạy, chấm, chốt trước khi tin một workflow |
+| `agent-introspection-debugging` | meta | ✅ | Agent lặp tool / đốt token không tiến triển: chẩn đoán có kiểm soát |
+| `accessibility` | design | ✅ | WCAG 2.2 AA cho web + iOS + Android |
+| `django-*`, `laravel-*`, `springboot-*`, `quarkus-*`, `kotlin-*`, `vue-patterns`, `docker-patterns`… | code | — | 44 skill theo stack, xem bảng ở `docs/ecc-skills.md` |
 
 `eval-harness` đã vá: bỏ `allowed-tools` (tên tool của Claude), đổi "Claude Code" →
-"Antigravity"/"the model".
+"Antigravity"/"the model". `docker-patterns` bị `cut` cả khối "ECC Plugin Setup Harness";
+`planning-with-files` bị `cut` toàn bộ phần hook/slash và viết lại frontmatter.
 
 **Không lấy `benchmark-methodology`** dù tên nghe hợp: nội dung là **phân tích đối thủ
 marketing** (positioning, voice, offer packaging), không phải benchmark code.
@@ -262,6 +274,9 @@ Lọc từ 44 skill của một agent runtime. Chi tiết cách lọc + 34 cái 
 | ☐ | nhóm diagram (Excalidraw / Mermaid / D3) | chưa chốt nguồn — xem [top-agent-skills](https://top-agent-skills.com/) | Vẽ sơ đồ kiến trúc từ mô tả |
 
 ### 4.0b Bổ sung 2026-10-30 — 30 skill, phủ đủ 5 mảng
+
+> Thêm 3 skill nữa cùng ngày từ `affaan-m/ECC` — `accessibility`, `liquid-glass-design`,
+> `make-interfaces-feel-better` → pack `design` = **37 skill** (34 + 3).
 
 Trước lượt này pack design chỉ có skill web. Thiếu hẳn **mobile**, **desktop** và **slide**.
 
