@@ -57,9 +57,14 @@ Nó ghi vào `~/.gemini/`:
 
 | Ghi gì | Ở đâu |
 |---|---|
-| Rules always_on (ponytail full, skill-first, verify) | `~/.gemini/AGENTS.md` |
+| Rules always_on (ponytail full, skill-first, verify, chống treo task) | `~/.gemini/AGENTS.md` |
 | **186 skill** (44 skill theo ngôn ngữ để project tự cài) | `~/.gemini/config/skills/` |
 | LSP cho mọi language server có trên máy | `~/.gemini/config/mcp_config.json` |
+
+Quy tắc chống treo yêu cầu agent phân biệt lệnh hữu hạn với server/watcher, kiểm tra
+trạng thái và log khi chờ lâu, tránh chạy trùng và báo rõ khi bị chặn. Đây là chỉ dẫn,
+không phải tiến trình giám sát độc lập: nếu Antigravity tự đơ thì không tự khôi phục được.
+Chạy lại `--core` hoặc `--system` để cập nhật rules global; installer sao lưu `AGENTS.md` cũ.
 
 > **Ngân sách — đọc kỹ chỗ này.** Ước lượng theo description: 186 skill + `AGENTS.md`
 > ≈ **16.500 token**. Nhưng **đồng hồ trong Settings → Skills đếm cao hơn ~24%**: hồi quy từ
