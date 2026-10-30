@@ -72,3 +72,8 @@ Chọn A mà vẫn muốn cô lập thì phải chọn lại: **hai thứ đó l
   `= 24 skill đã có ở global — không chép lại`.
 - **Cảnh báo sai**: khi cả hai tầng cùng bật, lệnh cài project giờ in rõ
   `⚠ global đang bật 186 skill: project này vẫn thấy hết. Cô lập đúng chỉ khi global mỏng`.
+- **Skill sót lại**: skill bị bỏ khỏi registry ở bản cũ vẫn nằm trong `config/skills/`, ăn
+  ngân sách và hiện ở mọi project. Giờ `--system` liệt kê tên, `--prune` dọn (chỉ xoá thư mục
+  do Skill OS tạo). Đây cũng là lý do hay thấy **190** thay vì 186: 4 skill `mode: manual`
+  (`vercel-byoc`, `vercel-cli-with-tokens`, `brand-guidelines`, `skill-creator`) từ lần cài
+  có `--include-manual`.

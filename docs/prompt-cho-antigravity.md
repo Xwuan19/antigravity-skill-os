@@ -121,8 +121,18 @@ Kiểm tra tầng skill global:
 ```
 
 Đáp án đúng của câu 3: `accessibility` hoặc `taste-skill` / `ui-ux-pro-max`. Nếu nó trả lời
-"không có skill nào" thì tầng global chưa nạp — kiểm `ls ~/.gemini/config/skills | wc -l`
-(phải là 186, hoặc 156 nếu có `--exclude-pack`) rồi khởi động lại lần nữa.
+"không có skill nào" thì tầng global chưa nạp — kiểm `ls ~/.gemini/config/skills | wc -l` rồi
+khởi động lại lần nữa.
+
+| Con số trên đĩa | Ứng với lệnh nào |
+|---|---|
+| **186** | `--system` (mặc định) |
+| **156** | `--system --exclude-pack education,docs` |
+| **190** | `--system --include-manual` (thêm 4 skill manual) |
+| 190 sau khi đã cài 186 | 4 skill manual còn sót — `--prune` để dọn, hoặc cứ để |
+
+Script cài in đúng số skill nó vừa cài; nếu số trên đĩa nhiều hơn thì đó là thư mục còn sót từ
+bản cũ, `install.py` sẽ liệt kê tên.
 
 ## 4. Kiểm chứng sau khi khởi động lại
 
