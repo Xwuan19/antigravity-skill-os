@@ -84,7 +84,8 @@ bash bootstrap.sh auto ~/p/btvn      # mỗi project: tự dò profile rồi ró
 | `web-admin` `--exclude-pack motion` | 4 + 161 = 165 | 13.476 ≈ 67% | ≈ 92% |
 | `web-admin` `--exclude-pack motion,design` | 4 + 141 = 145 | 11.750 ≈ 59% | ≈ 82% |
 | `cli-tool` | 4 + 134 = 138 | 11.170 ≈ 56% | ≈ 78% |
-| `landing` (HTML tĩnh) | 4 + 52 = 56 | 5.866 ≈ 29% | ≈ 36% |
+| `static-site` (HTML/CSS) | 4 + 29 = 33 | 4.105 ≈ 21% | **≈ 24%** |
+| `landing` (có build tool) | 4 + 52 = 56 | 5.866 ≈ 29% | ≈ 36% |
 
 **Dải "18–25%" chỉ đúng cho giáo dục và tài liệu.** `landing` 36%, `cli-tool` 78%,
 `web-admin` 95%. Profile code bản thân nó đã 134–171 skill, nên muốn nhẹ hơn thì phải bỏ bớt
@@ -136,4 +137,5 @@ Chọn A mà vẫn muốn cô lập thì phải chọn lại: **hai thứ đó l
 - Đọc luôn `.agents/skills` của lần cài trước → có script `.py` nên đoán thành `cli-tool`.
 - Workspace nằm dưới `…/.gemini/…`, `…/build/…`, `…/target/…` → mọi file bị loại, báo "thư mục
   trống". Đây là lỗi thật trên máy Windows của user, nơi repo ở `…/.gemini/antigravity/scratch/`.
-- Trang HTML tĩnh (chỉ `index.html`) không khớp profile nào → trả `None`.
+- Trang HTML tĩnh (chỉ `index.html`) không khớp profile nào → trả `None`. Nay có profile
+  riêng `static-site` (29 skill, không skill framework) thay vì mượn `landing` (52 skill).

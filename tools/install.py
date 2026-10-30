@@ -532,13 +532,13 @@ def guess_profile(ws: Path) -> tuple[str | None, str]:
         if exts <= {".md", ".txt", ""}:
             return "docs-writer", "chỉ có file văn bản"
         if exts & {".html", ".htm", ".css"}:
-            return "landing", "chỉ có HTML/CSS tĩnh"
+            return "static-site", "chỉ có HTML/CSS tĩnh, không có build tool"
     if ({"components.json", "tailwind.config.js", "tailwind.config.ts"} & names
             or (ws / "src" / "components" / "ui").is_dir()):
         return "design-system", "có cấu hình shadcn/Tailwind, thư viện component"
     if "package.json" in names or exts & {".tsx", ".jsx", ".vue", ".svelte"}:
         if (ws / "index.html").is_file() and "package.json" not in names:
-            return "landing", "chỉ có HTML tĩnh"
+            return "static-site", "có index.html nhưng không có package.json"
         return "web-admin", "có package.json / JSX / Vue"
     if code:
         return "cli-tool", "có code nhưng không có frontend"
