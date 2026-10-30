@@ -139,21 +139,30 @@ def budget(chosen: list[dict]) -> None:
 
 
 def do_system(skills: list[dict], dry: bool, force: bool,
-              include_manual: bool = False) -> None:
+              include_manual: bool = False,
+              exclude_pack: str | None = None) -> None:
     """Cài TOÀN BỘ skill vào tầng global — mọi project đều thấy, không cần profile.
 
     Đánh đổi: workspace nào cũng nạp đủ danh sách skill, nên mất phần "cô lập cứng".
     Đổi lại: cài một lần, không phải làm gì cho từng project nữa.
     """
+    skip_pack = {p.strip() for p in (exclude_pack or "").split(",") if p.strip()}
+    bad = skip_pack - {s["pack"] for s in skills}
+    if bad:
+        sys.exit(f"  Không có pack {', '.join(sorted(bad))}. "
+                 f"Có: {', '.join(sorted({s['pack'] for s in skills}))}")
+
     print(f"\n  Rules → {GLOBAL_RULES}")
     print(f"    {install_global_rules(dry)}")
-
     chosen = [s for s in skills
               if s["mode"] != "system"
               and (s["mode"] != "manual" or include_manual)
-              and s.get("global", True) is not False]
+              and s.get("global", True) is not False
+              and s["pack"] not in skip_pack]
     project_only = [s for s in skills
                     if s["mode"] != "system" and s.get("global", True) is False]
+    left_out = [s for s in skills
+                if s["mode"] != "system" and s["pack"] in skip_pack]
     print(f"\n  Skill global → {GLOBAL_SKILLS}  ({len(chosen)})")
 
     by_pack: dict[str, int] = {}
@@ -178,6 +187,10 @@ def do_system(skills: list[dict], dry: bool, force: bool,
     else:
         print(f"\n  {existing} skill đã có sẵn, không đổi gì.")
 
+    if left_out:
+        print(f"  {len(left_out)} skill bị loại theo --exclude-pack "
+              f"({', '.join(sorted(skip_pack))}) — cài vào project cần bằng "
+              "`bootstrap.sh <profile> <dir>`.")
     n_po = len(project_only)
     if n_po:
         print(f"  {n_po} skill theo ngôn ngữ/khung không cài vào global — "
@@ -369,7 +382,15 @@ def do_workspace(skills: list[dict], profiles: dict[str, dict],
     target = ws / ".agents" / "skills"
     print(f"\n  Profile : {profile} — {prof['label']}")
     print(f"  Stack   : {', '.join(stk) if stk else 'không lọc theo ngôn ngữ'}")
+    # Skill đã cài ở tầng global thì mọi project đều đã thấy — chép lại chỉ tốn đĩa
+    # và làm danh sách description dài gấp đôi.
+    in_global = [s for s in chosen if (GLOBAL_SKILLS / s["id"] / OWNER).is_file()]
+    if in_global:
+        chosen = [s for s in chosen if s not in in_global]
     print(f"  Cài vào : {target}  ({len(chosen)} skill)")
+    if in_global:
+        print(f"    = {len(in_global)} skill đã có ở global — không chép lại "
+              f"({GLOBAL_SKILLS})")
     by_pack: dict[str, int] = {}
     new = existing = 0
     for s in chosen:
@@ -401,9 +422,16 @@ def do_workspace(skills: list[dict], profiles: dict[str, dict],
     elif new:
         print(f"\n  {new} skill mới, {existing} đã có sẵn — "
               + ", ".join(f"{k} {v}" for k, v in sorted(by_pack.items())))
+    elif in_global and not target.exists():
+        print(f"\n  không có gì để chép — toàn bộ {len(in_global)} skill của profile "
+              "đã có ở tầng global.")
     else:
         print(f"\n  {existing} skill đã có sẵn, không đổi gì — workspace đã cài rồi.")
     print(f"  {skipped} skill bị loại khỏi workspace này (cô lập cứng).")
+    if in_global:
+        n_glob = len([d for d in GLOBAL_SKILLS.iterdir() if (d / OWNER).is_file()])
+        print(f"  ⚠  global đang bật {n_glob} skill: project này vẫn thấy hết. "
+              "Cô lập đúng chỉ khi global mỏng — dùng `--core` thay `--system`.")
     cap = prof.get("max_skills")
     if cap and len(chosen) > cap:
         print(f"  ⚠  {len(chosen)} skill > trần {cap} của profile — "
@@ -474,6 +502,9 @@ def main() -> None:
     ap.add_argument("--no-lsp", action="store_true", help="tắt LSP dù profile có bật")
     ap.add_argument("--no-rules", action="store_true",
                     help="không cài luật theo ngôn ngữ vào .agents/rules/")
+    ap.add_argument("--exclude-pack", metavar="PACKS",
+                    help="với --system: bỏ hẳn pack khỏi tầng global "
+                         "(vd 'education,docs') để danh sách skill gọn hơn")
     ap.add_argument("--stacks", metavar="LIST",
                     help="lọc skill theo ngôn ngữ: 'python,go'. Bỏ trống = tự dò "
                          "theo đuôi file trong workspace")
@@ -489,7 +520,7 @@ def main() -> None:
     if a.core:
         do_core(skills, dry, a.force)
     if a.system:
-        do_system(skills, dry, a.force, a.include_manual)
+        do_system(skills, dry, a.force, a.include_manual, a.exclude_pack)
     if a.profile:
         lsp_spec = a.lsp
         if a.no_lsp:

@@ -33,6 +33,10 @@ Nó ghi vào `~/.gemini/`:
 > skill theo framework/ngôn ngữ (`django-patterns`, `laravel-tdd`, `springboot-security`,
 > `vue-patterns`…) chỉ có nghĩa khi project đúng stack. Bật toàn máy thì chúng nằm trong
 > description list của *mọi* project mà không bao giờ dùng tới.
+>
+> **Muốn danh sách global gọn hơn?** `bash bootstrap.sh --system --exclude-pack education,docs`
+> → 156 skill, **13.506 token ≈ 68%**, project giáo dục/tài liệu rót riêng khi cần. Đánh đổi
+> của ba mô hình, đo bằng số thật: [docs/global-vs-project.md](docs/global-vs-project.md).
 
 Chạy lại nhiều lần vô hại — skill đã có thì bỏ qua.
 
@@ -508,5 +512,6 @@ thêm §3 (phạm vi skill theo project) và §4 (ngôn ngữ).
 - [docs/hermes-filter.md](docs/hermes-filter.md) — lọc 44 skill của `hermes-agent` xuống 10, cách làm từng bước
 - [docs/rules-per-stack.md](docs/rules-per-stack.md) — luật theo ngôn ngữ, vì sao không chép của ECC
 - [docs/ecc-skills.md](docs/ecc-skills.md) — lấy 53 skill từ kho 313 của ECC, cách port từng loại
+- [docs/global-vs-project.md](docs/global-vs-project.md) — global hay theo-project: số đo thật của 3 mô hình, cái nào hợp việc gì
 - [docs/prompt-cho-antigravity.md](docs/prompt-cho-antigravity.md) — câu để dán vào Antigravity, nó tự cài
 - [packs/design/apple-design/SKILL.md](packs/design/apple-design/SKILL.md) — skill design gốc Apple, kèm LICENSE
