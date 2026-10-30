@@ -8,7 +8,7 @@ Project web quản lý nhận design + code. Project giáo án nhận education 
 không bao giờ thấy skill của nhau — không phải vì bị dặn đừng dùng, mà vì skill
 **không tồn tại** trong workspace đó. Ponytail `full` thì luôn bật cho tất cả.
 
-Repo **tự chứa**: 187 skill + 46 subagent + 9 plugin Claude Code, pin commit.
+Repo **tự chứa**: 237 skill + 46 subagent + 9 plugin Claude Code, pin commit.
 Clone về là cài được, không cần mạng.
 
 ## Một lệnh: cài cho toàn bộ máy
@@ -24,12 +24,15 @@ Nó ghi vào `~/.gemini/`:
 | Ghi gì | Ở đâu |
 |---|---|
 | Rules always_on (ponytail full, skill-first, verify) | `~/.gemini/AGENTS.md` |
-| **Toàn bộ 180 skill** | `~/.gemini/config/skills/` |
+| **186 skill** (44 skill theo ngôn ngữ để project tự cài) | `~/.gemini/config/skills/` |
 | LSP cho mọi language server có trên máy | `~/.gemini/config/mcp_config.json` |
 
-> **Ngân sách:** 180 description ≈ **15.900 token ≈ 80%** trần 20k của Antigravity cho
-> always-on. Còn dùng được, nhưng đã gần trần — skill thêm từ giờ nên cài theo project
-> (`bootstrap.sh <profile> <dir>`) thay vì nhét tiếp vào `--system`.
+> **Ngân sách:** 186 description + `AGENTS.md` ≈ **16.481 token ≈ 82%** trần 20k của
+> Antigravity cho always-on — còn dư ~3.500 token, đủ cho vài skill nữa nhưng không nhiều.
+> 44 skill còn lại bị loại khỏi `--system` vì **ngữ nghĩa**, không vì ngân sách: chúng là
+> skill theo framework/ngôn ngữ (`django-patterns`, `laravel-tdd`, `springboot-security`,
+> `vue-patterns`…) chỉ có nghĩa khi project đúng stack. Bật toàn máy thì chúng nằm trong
+> description list của *mọi* project mà không bao giờ dùng tới.
 
 Chạy lại nhiều lần vô hại — skill đã có thì bỏ qua.
 
@@ -45,8 +48,8 @@ bash bootstrap.sh --system
 Dùng khi bạn muốn workspace đó **không** thấy skill ngoài lĩnh vực:
 
 ```bash
-bash bootstrap.sh web-admin ~/p/admin      # 68 skill, không có skill Python
-bash bootstrap.sh cli-tool ~/p/bot         # 52 skill, không có skill design
+bash bootstrap.sh web-admin ~/p/admin      # 102 skill, không có skill Python
+bash bootstrap.sh cli-tool ~/p/bot         # 69 skill, không có skill design
 ```
 
 Cách này cài thêm vào `<project>/.agents/skills/`, chỉ project đó thấy. Xem bảng profile bên dưới.
@@ -109,8 +112,9 @@ chat thì model chỉ đọc được văn bản, không tạo ra file skill.
 | Stack | `--stacks` | (lọc, không chép gì) | skill theo ngôn ngữ: tự dò đuôi file, hoặc ép `python,go` |
 
 **Cô lập cứng:** mỗi project một `--profile`. Router loại toàn bộ skill không liên quan —
-50 skill trong 73 bị loại khỏi workspace mobile. Muốn chắc chắn "folder design chỉ có skill
-design" thì tách workspace, vì Antigravity **không** hỗ trợ skill theo sub-folder.
+`education-k12` chỉ nhận 24/237 skill (`docs` + `education`), không một dòng code nào. Muốn
+chắc chắn "folder design chỉ có skill design" thì tách workspace, vì Antigravity **không**
+hỗ trợ skill theo sub-folder.
 
 Skill `mode: manual` mặc định **không cài** — phải `--include-manual`, để danh sách
 description trong workspace gọn lại.
@@ -136,36 +140,37 @@ Tắt bằng `--no-rules`. Chi tiết: [docs/rules-per-stack.md](docs/rules-per-
 
 | Profile | Skill | Agent | LSP | Cho |
 |---|---|---|---|---|
-| `desktop-app` | 84 | 43 | ✅ | App cài trên máy: macOS, Tauri, Electron, WPF |
-| `web-admin` | 76 | 43 | ✅ | Dashboard, CRUD, SaaS |
-| `mobile-app` | 67 | 41 | ✅ | React Native, Expo, iOS/Android |
-| `cli-tool` | 52 | 41 | ✅ | CLI, script, backend |
-| `landing` | 42 | 43 | ✅ | Landing, marketing, portfolio |
-| `design-system` | 24 | 10 | ✅ | UI kit, component library, token |
-| `education-k12` | 19 | — | — | Giáo án phổ thông, đề kiểm tra |
-| `education-language` | 11 | — | — | Trung tâm ngoại ngữ, gia sư |
-| `docs-writer` | 10 | 3 | — | Báo cáo, thuyết trình, bảng tính |
-| `meta` | 5 | 8 | ✅ | Nuôi chính hệ thống này (plugin-dev, hookify) |
+| `desktop-app` | 109 | 43 | ✅ | App cài trên máy: macOS, Tauri, Electron, WPF |
+| `web-admin` | 102 | 43 | ✅ | Dashboard, CRUD, SaaS |
+| `mobile-app` | 85 | 41 | ✅ | React Native, Expo, iOS/Android |
+| `cli-tool` | 69 | 41 | ✅ | CLI, script, backend |
+| `landing` | 52 | 43 | ✅ | Landing, marketing, portfolio |
+| `design-system` | 29 | 10 | ✅ | UI kit, component library, token |
+| `education-k12` | 24 | — | — | Giáo án phổ thông, đề kiểm tra |
+| `education-language` | 16 | — | — | Trung tâm ngoại ngữ, gia sư |
+| `docs-writer` | 16 | 3 | — | Báo cáo, thuyết trình, bảng tính |
+| `meta` | 8 | 8 | ✅ | Nuôi chính hệ thống này (plugin-dev, hookify) |
 
-Đo trên workspace TypeScript, có `--stacks` tự dò. Project Python nhiều hơn; workspace
-chưa có file nào thì không lọc stack (lấy hết).
+Đo trên workspace TypeScript, có `--stacks` tự dò. Project Python nhiều hơn (`web-admin` 111
+thay vì 102, `desktop-app` 118); workspace chưa có file nào thì không lọc stack (lấy hết).
 
 Thêm profile = thêm 1 file JSON trong `profiles/`. Không sửa code.
 
 ## Thiết kế: web, mobile, desktop, slide
 
-30 skill thiết kế trong pack `design`. Chọn theo việc, không theo tool.
+37 skill thiết kế trong pack `design`. Chọn theo việc, không theo tool.
 
 | Cần gì | Skill |
 |---|---|
 | **UI/UX tổng** — style, palette, font, UX rule, chart | `ui-ux-pro-max` (22 stack: react → wpf/winui/avalonia/javafx), `design-system` |
 | **Web** — dựng giao diện | `frontend-design`, `ui-styling` (shadcn + Tailwind), `shadcn-ui`, `web-design-guidelines`, `extract-static-html` |
-| **Mobile** — iOS/Android/RN | `apple-hig` (123 trang HIG), `react-native`, `swiftui-pro` |
+| **Mobile** — iOS/Android/RN | `apple-hig` (123 trang HIG), `react-native`, `swiftui-pro`, `liquid-glass-design` |
 | **Desktop** — macOS/Tauri/Electron/WPF | `mac-design`, `mac-design-kit`, `mac-layout-grid`, `mac-ux-design`, `mac-design-system`, `mac-app-icon`, `mac-design-from-app` |
 | **Slide / thuyết trình** | `slides`, `frontend-slides` |
 | **Nhận diện** — logo, icon, brand, banner | `design`, `brand`, `brand-guidelines` |
-| **Chống nhạt** — UI trông như template | `taste-design`, `taste-skill`, `apple-design`, `emil-design-eng` |
+| **Chống nhạt** — UI trông như template | `taste-design`, `taste-skill`, `apple-design`, `emil-design-eng`, `make-interfaces-feel-better` |
 | **Rút hệ thống từ code có sẵn** | `extract-design-md`, `mac-design-from-app` |
+| **A11y** — WCAG 2.2 AA web + iOS + Android | `accessibility` |
 
 `ui-ux-pro-max` tra cứu offline bằng `search.py` trên CSV: 79 style, 192 palette,
 74 cặp font, 119 UX rule, 105 icon, 25 loại chart. Không cần mạng.
@@ -269,20 +274,29 @@ ngôn ngữ, không phải hai bộ khác nhau.
 
 | Ngôn ngữ | Skill | Nguồn |
 |---|---|---|
-| Python | 18 (`python-*`, `uv-package-manager`, `async-python-patterns`, `fastapi-templates`…) | wshobson |
-| TypeScript / JS | 7 (`typescript-strict`, `javascript-strict`, `typescript-advanced-types`, `nodejs-backend-patterns`…) | 0xMassi, wshobson |
+| Python | 22 — Django (patterns/tdd/security), FastAPI, `python-*`, `uv-package-manager`, `async-python-patterns` | ECC, wshobson |
+| TypeScript / JS | 13 — NestJS, Vue, Nuxt 4, Vite, Prisma, Angular, `typescript-strict`, `javascript-strict` | ECC, 0xMassi, wshobson |
+| Java | 9 — Spring Boot (patterns/tdd/security), Quarkus (patterns/tdd/security), JPA, MyBatis | ECC |
+| Kotlin | 5 — patterns, Ktor, Exposed, testing | ECC |
+| C / C++ | 4 — `cpp`, `cpp-coding-standards`, `cpp-testing`, `memory-safety-patterns` | ECC, Mindrally, wshobson |
+| PHP | 4 — Laravel (patterns/tdd/security), `php-*` | ECC |
 | Rust | 4 (`rust-strict`, `rust-skills` 265 rule, `rust-async-patterns`) | 0xMassi, leonardomso, wshobson |
-| Go | 2 (`go-strict`, `go-concurrency-patterns`) | 0xMassi, wshobson |
-| C# | 2 (`c-sharp`, `dotnet-backend-patterns`) | Mindrally, wshobson |
-| C / C++ | 2 (`cpp`, `memory-safety-patterns`) | Mindrally, wshobson |
 | Shell | 3 (`bash-defensive-patterns`, `bats-testing-patterns`, `shellcheck-configuration`) | wshobson |
-| Java · Kotlin · Ruby · PHP · Lua · Swift · SQL | 1 mỗi cái | Mindrally, 0xMassi |
+| C# | 3 — `c-sharp`, `dotnet-backend-patterns`, `csharp-testing` | ECC, Mindrally, wshobson |
+| Go | 3 — `go-strict`, `go-concurrency-patterns`, `golang-testing` | ECC, 0xMassi, wshobson |
+| Perl | 2 — `perl-patterns`, `perl-testing` | ECC |
+| Ruby | 2 — Rails patterns, `ruby-*` | ECC, Mindrally |
+| Swift | 2 — SwiftUI, Apple design | twostraws, dickwu |
+| Dart / Flutter | 1 — `flutter-dart-code-review` | ECC |
+| F# | 1 — `fsharp-testing` | ECC |
+| Lua · SQL | 1 mỗi cái | Mindrally, 0xMassi |
 
-Ngôn ngữ **chưa có skill riêng**: Dart/Flutter. Vẫn có LSP cho Dart? — không, xem bảng LSP
-(12 ngôn ngữ, chưa gồm Dart).
+18 ngôn ngữ có skill riêng. LSP phủ 12 (`dart`, `perl`, `fsharp`, `lua`, `sql`, `ruby`, `swift`
+chưa có language server trong repo).
 
-**Chi phí thật:** 64 skill ≈ **4.400 token** description mỗi phiên; 77 skill ≈ 5.100 token.
-Đây là giá của việc có nhiều skill — `route.py` in ra con số này trước khi bạn cài.
+**Chi phí thật:** mỗi workspace mang 52–109 skill tuỳ profile; `--system` mang 186 ≈ 16.500
+token description mỗi phiên (xem mục ngân sách ở trên). Đây là giá của việc có nhiều skill —
+`route.py` in ra con số này trước khi bạn cài.
 
 ## Code intelligence: LSP cho 12 ngôn ngữ
 
@@ -374,10 +388,10 @@ lifecycle hook nên mức không lưu qua lượt; chỉ cần tồn tại một
 
 ```
 core/            rules always_on — ponytail FULL, skill-first, verify, language
-rules/           14 luật ngôn ngữ + common.md (always-on, cài theo workspace)
-registry/        skills.json (187) + agents.json (46) + plugins.json (9) + lsp.json (12) + taxonomy.md
-profiles/        9 kiểu project → skill + nhóm agent + plugin
-packs/           184 skill đã vendor + VENDOR.json (sha256 từng cái)
+rules/           15 luật ngôn ngữ + common.md (always-on, cài theo workspace)
+registry/        skills.json (237) + agents.json (46) + plugins.json (9) + lsp.json (12) + taxonomy.md
+profiles/        10 kiểu project → skill + nhóm agent + plugin
+packs/           234 skill đã vendor + VENDOR.json (sha256 từng cái)
 agents/          46 subagent đã port sang định dạng Antigravity
 plugins/         9 plugin Claude Code đã port (23 skill + 8 agent)
 hooks/           hooks.json + session-start / format / safety
@@ -493,5 +507,6 @@ thêm §3 (phạm vi skill theo project) và §4 (ngôn ngữ).
 - [docs/code-logic.md](docs/code-logic.md) — sáu cổng logic code, skill nào giữ cổng nào
 - [docs/hermes-filter.md](docs/hermes-filter.md) — lọc 44 skill của `hermes-agent` xuống 10, cách làm từng bước
 - [docs/rules-per-stack.md](docs/rules-per-stack.md) — luật theo ngôn ngữ, vì sao không chép của ECC
+- [docs/ecc-skills.md](docs/ecc-skills.md) — lấy 53 skill từ kho 313 của ECC, cách port từng loại
 - [docs/prompt-cho-antigravity.md](docs/prompt-cho-antigravity.md) — câu để dán vào Antigravity, nó tự cài
 - [packs/design/apple-design/SKILL.md](packs/design/apple-design/SKILL.md) — skill design gốc Apple, kèm LICENSE

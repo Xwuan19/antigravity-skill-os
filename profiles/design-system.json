@@ -23,7 +23,7 @@
     "code"
   ],
   "rationale": "Không cần superpowers/TDD. Cần quy chuẩn thị giác và chuyển động nhất quán.",
-  "max_skills": 18,
+  "max_skills": 35,
   "agent_groups": [
     "design",
     "meta"

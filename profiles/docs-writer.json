@@ -25,7 +25,7 @@
     "code"
   ],
   "rationale": "Chỉ cần xuất file và quy chuẩn trình bày.",
-  "max_skills": 14,
+  "max_skills": 22,
   "agent_groups": [
     "docs"
   ],

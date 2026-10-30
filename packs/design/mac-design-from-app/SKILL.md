@@ -18,7 +18,7 @@ measuring, next to this skill:
 - `scripts/compare.swift`: a side-by-side, a diff, and the share of pixels
   that differ.
 
-Run them with `swift "${CLAUDE_SKILL_DIR}/scripts/measure.swift" ...`.
+Run them with `swift "${SKILL_DIR:-$HOME/.gemini/config/skills/mac-design-from-app}/scripts/measure.swift" ...`.
 All coordinates are points (pixels / 2 for a Retina capture).
 
 ## 1. Get the screenshots
@@ -87,8 +87,8 @@ reference.
 ## 6. Compare until it matches
 
 ```bash
-swift "${CLAUDE_SKILL_DIR}/scripts/compare.swift" design/reference/main.png /tmp/<App>-shots/<page>-light.png /tmp/<App>-compare
-swift "${CLAUDE_SKILL_DIR}/scripts/compare.swift" ... /tmp/<App>-compare-sidebar 0 0 220 300
+swift "${SKILL_DIR:-$HOME/.gemini/config/skills/mac-design-from-app}/scripts/compare.swift" design/reference/main.png /tmp/<App>-shots/<page>-light.png /tmp/<App>-compare
+swift "${SKILL_DIR:-$HOME/.gemini/config/skills/mac-design-from-app}/scripts/compare.swift" ... /tmp/<App>-compare-sidebar 0 0 220 300
 ```
 
 Open `side-by-side.png` and `diff.png` with the Read tool. Then measure

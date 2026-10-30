@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-30T01:57:42Z",
+  "generated": "2026-10-30T02:08:10Z",
   "skills": {
     "using-superpowers": {
       "pack": "meta",
@@ -14,8 +14,8 @@
       "source": "obra/superpowers@2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
       "path": "skills/writing-skills",
       "license": "MIT",
-      "bytes": 110279,
-      "sha256": "8cb3ac68c6d8c4bb46886b998b09af7989643cab8bd0e46ee86dd62e64546bbe"
+      "bytes": 110336,
+      "sha256": "fdce9c139a7b64f90ab481aee090e1cd513e6399fe06c73ccc703fa29da9a0ac"
     },
     "verification-before-completion": {
       "pack": "meta",
@@ -574,8 +574,8 @@
       "source": "OthmanAdi/planning-with-files@5d29800bf8b919ca9a88ee7885b90050b5cb64ed",
       "path": ".agents/skills/planning-with-files",
       "license": "MIT",
-      "bytes": 471289,
-      "sha256": "ddef2d7f6ff8f7894b8b55604dafbe3158b9a311edba4a1745a7099684979593"
+      "bytes": 449798,
+      "sha256": "6a359848db288c6d250c0972552bc8188416da9606e00bab7d089d079bddd0c8"
     },
     "audit-security": {
       "pack": "code",
@@ -998,8 +998,8 @@
       "source": "Leonxlnx/taste-skill@HEAD",
       "path": "skills/taste-skill",
       "license": "MIT",
-      "bytes": 2425234,
-      "sha256": "3435ed963b15a1b6447746ec8844ab2cd38d8d2e8ead3451937f42df01e408c4"
+      "bytes": 2424489,
+      "sha256": "17c71a497fba9faeb11f5f334562a865060cf2d02bdf74e3f6d1dcc8d6b8e1e4"
     },
     "bash-defensive-patterns": {
       "pack": "code",
@@ -1190,8 +1190,8 @@
       "source": "dickwu/apple-design-skill@ff4ebddf0488598723a82bfdce1afb04de0b1c44",
       "path": ".",
       "license": "none",
-      "bytes": 1245742,
-      "sha256": "399f953eb1a27866a51fab4f081588bbc5672da87370e75ffd6b857c742fa1ca"
+      "bytes": 1244955,
+      "sha256": "9022de08ca738109e13fe9c364c4e7a288fd334230443d604c5c39025ebb33e4"
     },
     "banner-design": {
       "pack": "design",
@@ -1214,8 +1214,8 @@
       "source": "nextlevelbuilder/ui-ux-pro-max-skill@28b3b8dee8c976df4fa3e94aed4e092ad43fcb03",
       "path": ".claude/skills/design",
       "license": "MIT",
-      "bytes": 291480,
-      "sha256": "e93fe3683b7fa18a9bfcd00c0dc6e12c6859be07b7bfe20145f96ea49b72da13"
+      "bytes": 290925,
+      "sha256": "7ea511006a1a4171fc72c89b461cc8b254d51a7d0a44d9270f2a6ed156e20fba"
     },
     "design-system": {
       "pack": "design",
@@ -1262,8 +1262,8 @@
       "source": "google-labs-code/stitch-skills@0337446dadde6f8c94210444e2aa9d546126480f",
       "path": "plugins/stitch-design/skills/extract-design-md",
       "license": "Apache-2.0",
-      "bytes": 51905,
-      "sha256": "60e731e508a2f946744fa7856473ab1e034d593cf5411e95820c06b21d8e05af"
+      "bytes": 51336,
+      "sha256": "ad1bc72446f7a4899b9374fce476c297bd00b7243573709c89a609f562885d14"
     },
     "extract-static-html": {
       "pack": "design",
@@ -1318,16 +1318,16 @@
       "source": "daveebbelaar/bama@f0c2cdbf9e41d838c14d8b7596729581dd4833c0",
       "path": "skills/design/mac-design",
       "license": "MIT",
-      "bytes": 74808,
-      "sha256": "cbda2e5283b3c65604d656344b21742956776a14b587d5190ba7954a1fcaac27"
+      "bytes": 74841,
+      "sha256": "6b4ed8131341431c5a70eeaa46815e30cde18bed8b98de0a412a2befeb229ca6"
     },
     "mac-design-from-app": {
       "pack": "design",
       "source": "daveebbelaar/bama@f0c2cdbf9e41d838c14d8b7596729581dd4833c0",
       "path": "skills/design/design-from-app",
       "license": "MIT",
-      "bytes": 21874,
-      "sha256": "e9f5ac623b0f53080bb23da57654bcf07ddc0a5f0ffa6dd985b4f2863f49d0dc"
+      "bytes": 22000,
+      "sha256": "12cb3816ba5a86ee5bbb9035b8e87888da6fe04d78841e8fdfa3867dcb6642db"
     },
     "mac-design-kit": {
       "pack": "design",
@@ -1371,7 +1371,7 @@
     },
     "change-impact": {
       "pack": "code",
-      "source": "affaan-m/ECC@25278e7d7b6cf6e6a4e7a6c8e10f14ff22f0eb5b",
+      "source": "affaan-m/ECC@91b5f6a371f7b06d2c3e0c208147c559e11f022c",
       "path": ".agents/skills/change-impact",
       "license": "MIT",
       "bytes": 7287,
@@ -1379,15 +1379,15 @@
     },
     "eval-harness": {
       "pack": "code",
-      "source": "affaan-m/ECC@25278e7d7b6cf6e6a4e7a6c8e10f14ff22f0eb5b",
+      "source": "affaan-m/ECC@91b5f6a371f7b06d2c3e0c208147c559e11f022c",
       "path": ".agents/skills/eval-harness",
       "license": "MIT",
       "bytes": 6640,
-      "sha256": "01783a716aa593c9f9fa0a82791b71b0423356b6474ec4708be98f25a0001c73"
+      "sha256": "4fad5babbd5a8636de56ded6425376e2e980b8474d2357ea10135eb8c37dec0a"
     },
     "agent-introspection-debugging": {
       "pack": "meta",
-      "source": "affaan-m/ECC@25278e7d7b6cf6e6a4e7a6c8e10f14ff22f0eb5b",
+      "source": "affaan-m/ECC@91b5f6a371f7b06d2c3e0c208147c559e11f022c",
       "path": ".agents/skills/agent-introspection-debugging",
       "license": "MIT",
       "bytes": 6687,
@@ -1472,7 +1472,407 @@
       "license": "MIT",
       "bytes": 5045,
       "sha256": "a689257facb937cfca9bc5507dd9e729f287f0cd3f6abbf73448eb25f73fbaab"
+    },
+    "angular-developer": {
+      "pack": "code",
+      "source": "affaan-m/ECC@91b5f6a371f7b06d2c3e0c208147c559e11f022c",
+      "path": "skills/angular-developer",
+      "license": "MIT",
+      "bytes": 132263,
+      "sha256": "28ee37a8cf63add48fffc7c8676c6368aee35f3042525e79769b5a3d4e01aed1"
+    },
+    "architecture-decision-records": {
+      "pack": "code",
+      "source": "affaan-m/ECC@91b5f6a371f7b06d2c3e0c208147c559e11f022c",
+      "path": "skills/architecture-decision-records",
+      "license": "MIT",
+      "bytes": 8253,
+      "sha256": "263b20e81801aa5fa7e75eaec6c38345c0ac028ca0edbd67b1b9071c5fcbe11f"
+    },
+    "contract-first": {
+      "pack": "code",
+      "source": "affaan-m/ECC@91b5f6a371f7b06d2c3e0c208147c559e11f022c",
+      "path": "skills/contract-first",
+      "license": "MIT",
+      "bytes": 10832,
+      "sha256": "3eaacf16a9bbd92888659e9c1e15b0fa4eb96a41c257dd9e08f2e63b824f0cea"
+    },
+    "cpp-coding-standards": {
+      "pack": "code",
+      "source": "affaan-m/ECC@91b5f6a371f7b06d2c3e0c208147c559e11f022c",
+      "path": "skills/cpp-coding-standards",
+      "license": "MIT",
+      "bytes": 23362,
+      "sha256": "f870b47d3493b0ad0b6e3808a679ac3c429b60f03193af6c9dc0e0d9e6981436"
+    },
+    "cpp-testing": {
+      "pack": "code",
+      "source": "affaan-m/ECC@91b5f6a371f7b06d2c3e0c208147c559e11f022c",
+      "path": "skills/cpp-testing",
+      "license": "MIT",
+      "bytes": 10246,
+      "sha256": "a92fb5da9b7e3cd1b4dee185b3eb9d0a55352af6396bf996d2eef72d683784df"
+    },
+    "csharp-testing": {
+      "pack": "code",
+      "source": "affaan-m/ECC@91b5f6a371f7b06d2c3e0c208147c559e11f022c",
+      "path": "skills/csharp-testing",
+      "license": "MIT",
+      "bytes": 9797,
+      "sha256": "ee93aae975fa9d44bebc33be010b24435d38177e77395c697048622d9be68ad1"
+    },
+    "deployment-patterns": {
+      "pack": "code",
+      "source": "affaan-m/ECC@91b5f6a371f7b06d2c3e0c208147c559e11f022c",
+      "path": "skills/deployment-patterns",
+      "license": "MIT",
+      "bytes": 12184,
+      "sha256": "b864abd1954570c4a469b7e1deb897e57858d25db2fd98d035ff7bca4a15b9b6"
+    },
+    "django-patterns": {
+      "pack": "code",
+      "source": "affaan-m/ECC@91b5f6a371f7b06d2c3e0c208147c559e11f022c",
+      "path": "skills/django-patterns",
+      "license": "MIT",
+      "bytes": 22187,
+      "sha256": "14abe2b635054dff872c07d4993057e614b48ac718c0431f1299931be7d69516"
+    },
+    "django-security": {
+      "pack": "code",
+      "source": "affaan-m/ECC@91b5f6a371f7b06d2c3e0c208147c559e11f022c",
+      "path": "skills/django-security",
+      "license": "MIT",
+      "bytes": 18293,
+      "sha256": "9bee68f0fd5ae193693745c1fdc99b6335d30f9b113aebe171fe3d675cf5ad8e"
+    },
+    "django-tdd": {
+      "pack": "code",
+      "source": "affaan-m/ECC@91b5f6a371f7b06d2c3e0c208147c559e11f022c",
+      "path": "skills/django-tdd",
+      "license": "MIT",
+      "bytes": 22102,
+      "sha256": "20bd5378fb9b76b396916daa8781dd45eef6336e5d4b3a46edb0c3e4eefaf074"
+    },
+    "docker-patterns": {
+      "pack": "code",
+      "source": "affaan-m/ECC@91b5f6a371f7b06d2c3e0c208147c559e11f022c",
+      "path": "skills/docker-patterns",
+      "license": "MIT",
+      "bytes": 9235,
+      "sha256": "4c4033773141ee2d1bf24a9b456660c7628263ae609f5dc52fced24df0ec85a9"
+    },
+    "fastapi-patterns": {
+      "pack": "code",
+      "source": "affaan-m/ECC@91b5f6a371f7b06d2c3e0c208147c559e11f022c",
+      "path": "skills/fastapi-patterns",
+      "license": "MIT",
+      "bytes": 16717,
+      "sha256": "3ad1bb7ce5d48722d41504e4b84bbc2c9898e9accc1e5a659ec0418be11b4553"
+    },
+    "flutter-dart-code-review": {
+      "pack": "code",
+      "source": "affaan-m/ECC@91b5f6a371f7b06d2c3e0c208147c559e11f022c",
+      "path": "skills/flutter-dart-code-review",
+      "license": "MIT",
+      "bytes": 24265,
+      "sha256": "5ceac13c9b99c97340f9a47c081737aceee1f803ed9045b7fbc980243b01db03"
+    },
+    "fsharp-testing": {
+      "pack": "code",
+      "source": "affaan-m/ECC@91b5f6a371f7b06d2c3e0c208147c559e11f022c",
+      "path": "skills/fsharp-testing",
+      "license": "MIT",
+      "bytes": 9012,
+      "sha256": "d89f8cb5235f7896b014aae4aa94026bd1a38bc6add956d3fc7ccf2963f2adb7"
+    },
+    "golang-testing": {
+      "pack": "code",
+      "source": "affaan-m/ECC@91b5f6a371f7b06d2c3e0c208147c559e11f022c",
+      "path": "skills/golang-testing",
+      "license": "MIT",
+      "bytes": 17815,
+      "sha256": "e3399562c58590dfcbd09bfcbf8f401120a2ded0418eb33bbfca6c697ac485ad"
+    },
+    "hexagonal-architecture": {
+      "pack": "code",
+      "source": "affaan-m/ECC@91b5f6a371f7b06d2c3e0c208147c559e11f022c",
+      "path": "skills/hexagonal-architecture",
+      "license": "MIT",
+      "bytes": 12591,
+      "sha256": "1579f70e4cd5a2dde39d29a2055d18b39f06b063a308d3b43a498900c99495b7"
+    },
+    "issue-review": {
+      "pack": "code",
+      "source": "affaan-m/ECC@91b5f6a371f7b06d2c3e0c208147c559e11f022c",
+      "path": "skills/issue-review",
+      "license": "MIT",
+      "bytes": 24043,
+      "sha256": "9816488b0660877f39a46b2308bce2ac40ffc4947daf37f3c1189d70d4e2b49e"
+    },
+    "jpa-patterns": {
+      "pack": "code",
+      "source": "affaan-m/ECC@91b5f6a371f7b06d2c3e0c208147c559e11f022c",
+      "path": "skills/jpa-patterns",
+      "license": "MIT",
+      "bytes": 5750,
+      "sha256": "bcdd45c5e435df259856b20aae47182209b0467b542eacfc7e32bcf452326839"
+    },
+    "kotlin-exposed-patterns": {
+      "pack": "code",
+      "source": "affaan-m/ECC@91b5f6a371f7b06d2c3e0c208147c559e11f022c",
+      "path": "skills/kotlin-exposed-patterns",
+      "license": "MIT",
+      "bytes": 23190,
+      "sha256": "dda4952840ddff31a9ea4ad7161dd75fbc13ff73ebf73d5ee9fa42fcce287167"
+    },
+    "kotlin-ktor-patterns": {
+      "pack": "code",
+      "source": "affaan-m/ECC@91b5f6a371f7b06d2c3e0c208147c559e11f022c",
+      "path": "skills/kotlin-ktor-patterns",
+      "license": "MIT",
+      "bytes": 20607,
+      "sha256": "f2fa0b135ad0f37ee7a79dd346d236758f25c60c525de451bba28678659a5261"
+    },
+    "kotlin-patterns": {
+      "pack": "code",
+      "source": "affaan-m/ECC@91b5f6a371f7b06d2c3e0c208147c559e11f022c",
+      "path": "skills/kotlin-patterns",
+      "license": "MIT",
+      "bytes": 20022,
+      "sha256": "e519234772a3697763ad484908d180c4c653439fea75a56c03440c272f9f0896"
+    },
+    "kotlin-testing": {
+      "pack": "code",
+      "source": "affaan-m/ECC@91b5f6a371f7b06d2c3e0c208147c559e11f022c",
+      "path": "skills/kotlin-testing",
+      "license": "MIT",
+      "bytes": 21871,
+      "sha256": "13e39ad65e86e86c22fbdb6273bdc8d17d3784c221a8f08207a1e9e2e9c29a0a"
+    },
+    "kubernetes-patterns": {
+      "pack": "code",
+      "source": "affaan-m/ECC@91b5f6a371f7b06d2c3e0c208147c559e11f022c",
+      "path": "skills/kubernetes-patterns",
+      "license": "MIT",
+      "bytes": 21170,
+      "sha256": "808b2ec032224e251f1bef9f6e9879e88e2e7abd0feb393632fb6042d8ac5ecc"
+    },
+    "laravel-patterns": {
+      "pack": "code",
+      "source": "affaan-m/ECC@91b5f6a371f7b06d2c3e0c208147c559e11f022c",
+      "path": "skills/laravel-patterns",
+      "license": "MIT",
+      "bytes": 11735,
+      "sha256": "6fa9d96a7b944ef9775e2ecb93a56bc29d6219e34eb5af491792638fc5cb46b4"
+    },
+    "laravel-security": {
+      "pack": "code",
+      "source": "affaan-m/ECC@91b5f6a371f7b06d2c3e0c208147c559e11f022c",
+      "path": "skills/laravel-security",
+      "license": "MIT",
+      "bytes": 27898,
+      "sha256": "1300ff41c52cef3f868f651427aa331971c48a53fe1492e0024d0ae0468d3198"
+    },
+    "laravel-tdd": {
+      "pack": "code",
+      "source": "affaan-m/ECC@91b5f6a371f7b06d2c3e0c208147c559e11f022c",
+      "path": "skills/laravel-tdd",
+      "license": "MIT",
+      "bytes": 18934,
+      "sha256": "505fa6c5caad022a5db0c359aebdcdcce1ad16e5863dc13ef862aec48cfa1628"
+    },
+    "mcp-server-patterns": {
+      "pack": "code",
+      "source": "affaan-m/ECC@91b5f6a371f7b06d2c3e0c208147c559e11f022c",
+      "path": "skills/mcp-server-patterns",
+      "license": "MIT",
+      "bytes": 5263,
+      "sha256": "eacb07c953e0440c758e3ee7d92984d2c9128e3444005ea7ad5da7bc0201d43d"
+    },
+    "mybatis-patterns": {
+      "pack": "code",
+      "source": "affaan-m/ECC@91b5f6a371f7b06d2c3e0c208147c559e11f022c",
+      "path": "skills/mybatis-patterns",
+      "license": "MIT",
+      "bytes": 19177,
+      "sha256": "9b1d2d79222a57ab7bdbebeeb53a92aa87849f329a96c7df5b9ada651796f9f0"
+    },
+    "mysql-patterns": {
+      "pack": "code",
+      "source": "affaan-m/ECC@91b5f6a371f7b06d2c3e0c208147c559e11f022c",
+      "path": "skills/mysql-patterns",
+      "license": "MIT",
+      "bytes": 13240,
+      "sha256": "cab57c6a6d7e0bab99329945edda900811c40ec929b47aa95611f9df58f7391d"
+    },
+    "nestjs-patterns": {
+      "pack": "code",
+      "source": "affaan-m/ECC@91b5f6a371f7b06d2c3e0c208147c559e11f022c",
+      "path": "skills/nestjs-patterns",
+      "license": "MIT",
+      "bytes": 7604,
+      "sha256": "7f41406abaf10185d9a784e894108ded771a0177b1051e0b2c65d14f226bd581"
+    },
+    "nuxt4-patterns": {
+      "pack": "code",
+      "source": "affaan-m/ECC@91b5f6a371f7b06d2c3e0c208147c559e11f022c",
+      "path": "skills/nuxt4-patterns",
+      "license": "MIT",
+      "bytes": 5832,
+      "sha256": "8f99946d5aa8e11dae8ba1ade746a6a803efcba63ba8b618dbf7748331c14e47"
+    },
+    "perl-patterns": {
+      "pack": "code",
+      "source": "affaan-m/ECC@91b5f6a371f7b06d2c3e0c208147c559e11f022c",
+      "path": "skills/perl-patterns",
+      "license": "MIT",
+      "bytes": 12662,
+      "sha256": "617ced86628e866a6242ef763ec736d5f7ee3fa0a5afc34236d808db6de9c4b3"
+    },
+    "perl-testing": {
+      "pack": "code",
+      "source": "affaan-m/ECC@91b5f6a371f7b06d2c3e0c208147c559e11f022c",
+      "path": "skills/perl-testing",
+      "license": "MIT",
+      "bytes": 12353,
+      "sha256": "17723ed2249fa98d4ee7affc53bb479898725eb1a7466d46871bf215317fb79e"
+    },
+    "prisma-patterns": {
+      "pack": "code",
+      "source": "affaan-m/ECC@91b5f6a371f7b06d2c3e0c208147c559e11f022c",
+      "path": "skills/prisma-patterns",
+      "license": "MIT",
+      "bytes": 16352,
+      "sha256": "fb0c7644f32b22ee030071c71fa00bda1825f955f7304a375ef299a7290227f2"
+    },
+    "production-audit": {
+      "pack": "code",
+      "source": "affaan-m/ECC@91b5f6a371f7b06d2c3e0c208147c559e11f022c",
+      "path": "skills/production-audit",
+      "license": "MIT",
+      "bytes": 8798,
+      "sha256": "3ab3dd8a364ee17566e9361f0ebed2aec3b3146ede44e1db0a72c5ceae1ca0a4"
+    },
+    "quarkus-patterns": {
+      "pack": "code",
+      "source": "affaan-m/ECC@91b5f6a371f7b06d2c3e0c208147c559e11f022c",
+      "path": "skills/quarkus-patterns",
+      "license": "MIT",
+      "bytes": 22591,
+      "sha256": "5f91bed186170a23837452508fc731ec4cada0a337ae95b1327f80311fa6ab6b"
+    },
+    "quarkus-security": {
+      "pack": "code",
+      "source": "affaan-m/ECC@91b5f6a371f7b06d2c3e0c208147c559e11f022c",
+      "path": "skills/quarkus-security",
+      "license": "MIT",
+      "bytes": 13472,
+      "sha256": "bb7c13aec927ec8d73f2e949eee2a4d44a9f908541e7d9acd7e2fd8f64f0ae3e"
+    },
+    "quarkus-tdd": {
+      "pack": "code",
+      "source": "affaan-m/ECC@91b5f6a371f7b06d2c3e0c208147c559e11f022c",
+      "path": "skills/quarkus-tdd",
+      "license": "MIT",
+      "bytes": 26597,
+      "sha256": "556d1c2d04e3e0ef10f474ed413013646088ff057f9be02d3a3c4f833ccc33c5"
+    },
+    "rails-patterns": {
+      "pack": "code",
+      "source": "affaan-m/ECC@91b5f6a371f7b06d2c3e0c208147c559e11f022c",
+      "path": "skills/rails-patterns",
+      "license": "MIT",
+      "bytes": 17585,
+      "sha256": "914ab8d9d907da06436a512180a65660fbb5d94cd04f56426e3b87a42357acd1"
+    },
+    "redis-patterns": {
+      "pack": "code",
+      "source": "affaan-m/ECC@91b5f6a371f7b06d2c3e0c208147c559e11f022c",
+      "path": "skills/redis-patterns",
+      "license": "MIT",
+      "bytes": 13048,
+      "sha256": "6cabb1cd03174a0584ff3538371c780aba90da156db15260691278ed3307d8fe"
+    },
+    "springboot-patterns": {
+      "pack": "code",
+      "source": "affaan-m/ECC@91b5f6a371f7b06d2c3e0c208147c559e11f022c",
+      "path": "skills/springboot-patterns",
+      "license": "MIT",
+      "bytes": 11118,
+      "sha256": "ff1884a8492d078d1bbb35f3ce0a8ae25f1ad95dab8596f4944a7c3110680946"
+    },
+    "springboot-security": {
+      "pack": "code",
+      "source": "affaan-m/ECC@91b5f6a371f7b06d2c3e0c208147c559e11f022c",
+      "path": "skills/springboot-security",
+      "license": "MIT",
+      "bytes": 9204,
+      "sha256": "566ecf928bf76812d15efd62e2f00841652e1618f0a97d8dda93e1c247a162c5"
+    },
+    "springboot-tdd": {
+      "pack": "code",
+      "source": "affaan-m/ECC@91b5f6a371f7b06d2c3e0c208147c559e11f022c",
+      "path": "skills/springboot-tdd",
+      "license": "MIT",
+      "bytes": 4857,
+      "sha256": "e4bd145484d93fb569eb0e1a09ffeb5cca68533d63c83805146b111c48bba172"
+    },
+    "vite-patterns": {
+      "pack": "code",
+      "source": "affaan-m/ECC@91b5f6a371f7b06d2c3e0c208147c559e11f022c",
+      "path": "skills/vite-patterns",
+      "license": "MIT",
+      "bytes": 18186,
+      "sha256": "2238d353196b6732ba897e32f1872078fde7a9d11f5aca43b53da8bfc7e3917d"
+    },
+    "vue-patterns": {
+      "pack": "code",
+      "source": "affaan-m/ECC@91b5f6a371f7b06d2c3e0c208147c559e11f022c",
+      "path": "skills/vue-patterns",
+      "license": "MIT",
+      "bytes": 14253,
+      "sha256": "65e322383510de25bd5fc6fce4b0980d99d38b341f09bea662bd9a410e20c016"
+    },
+    "accessibility": {
+      "pack": "design",
+      "source": "affaan-m/ECC@91b5f6a371f7b06d2c3e0c208147c559e11f022c",
+      "path": "skills/accessibility",
+      "license": "MIT",
+      "bytes": 7617,
+      "sha256": "2762f21d09d199009ed4f95b28c911436b367c30963dc5ddb48b8e1ad7fc1585"
+    },
+    "liquid-glass-design": {
+      "pack": "design",
+      "source": "affaan-m/ECC@91b5f6a371f7b06d2c3e0c208147c559e11f022c",
+      "path": "skills/liquid-glass-design",
+      "license": "MIT",
+      "bytes": 10190,
+      "sha256": "6e424b8daba26c92a8283cd3e5b35c7b2bc78a0a9fc07821a5939027090b8e43"
+    },
+    "make-interfaces-feel-better": {
+      "pack": "design",
+      "source": "affaan-m/ECC@91b5f6a371f7b06d2c3e0c208147c559e11f022c",
+      "path": "skills/make-interfaces-feel-better",
+      "license": "MIT",
+      "bytes": 5866,
+      "sha256": "aff91aef917cba9c65681ae77197cee93ce9b697ee8916ea684ef8537c99fb52"
+    },
+    "rules-distill": {
+      "pack": "meta",
+      "source": "affaan-m/ECC@91b5f6a371f7b06d2c3e0c208147c559e11f022c",
+      "path": "skills/rules-distill",
+      "license": "MIT",
+      "bytes": 16168,
+      "sha256": "64d38c4c9c65a6cbe02e8ae64c510abf7dfeea443c5d6f693a95b8696a66f3c9"
+    },
+    "skill-scout": {
+      "pack": "meta",
+      "source": "affaan-m/ECC@91b5f6a371f7b06d2c3e0c208147c559e11f022c",
+      "path": "skills/skill-scout",
+      "license": "MIT",
+      "bytes": 5524,
+      "sha256": "5e97549c29209007ae3221cb8af45cfd78c5038c57f7c953e2d7591a75fdcdff"
     }
   },
-  "total_bytes": 25666456
+  "total_bytes": 26494456
 }

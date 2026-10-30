@@ -26,7 +26,7 @@
     "docs"
   ],
   "rationale": "React Native + Expo. Có skill thiết kế mobile (HIG, layout, icon) nhưng không kéo skill desktop vào.",
-  "max_skills": 64,
+  "max_skills": 95,
   "agent_groups": [
     "code",
     "meta"
