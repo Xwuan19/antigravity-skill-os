@@ -153,8 +153,9 @@ Chuyển Antigravity Skill OS sang mô hình global mỏng, mỗi project một 
    bash ~/.antigravity-skill-os/bootstrap.sh auto <đường-dẫn-project>
 
    Project hiện có: [liệt kê đường dẫn]. Script tự dò profile theo nội dung thư mục
-   và in lý do; nếu dò sai thì đổi sang profile tay (web-admin, docs-writer,
-   education-k12, desktop-app, mobile-app, cli-tool, landing, design-system, meta).
+   và in lý do; nếu dò sai thì đổi sang profile tay (web-admin, landing, static-site,
+   cli-tool, mobile-app, desktop-app, design-system, docs-writer, education-k12,
+   education-language, meta).
 
 3. Báo lại bảng: project → profile → số skill → % ngân sách script in ra.
 

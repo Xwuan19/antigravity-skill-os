@@ -123,7 +123,7 @@ Profile khai domain bị cấm, router loại **tuyệt đối** — kể cả s
 
 ## Profile
 
-10 kiểu project dựng sẵn trong [`profiles/`](../profiles):
+11 kiểu project dựng sẵn trong [`profiles/`](../profiles):
 
 | Profile | Skill | Plugin | Agent | LSP | Dùng cho |
 |---|---|---|---|---|---|
@@ -133,6 +133,7 @@ Profile khai domain bị cấm, router loại **tuyệt đối** — kể cả s
 | `cli-tool` | 69 | 6 | 41 | ✅ | CLI, script, backend |
 | `landing` | 52 | 4 | 43 | ✅ | Landing, marketing, portfolio |
 | `design-system` | 29 | 2 | 10 | ✅ | UI kit, component library, token |
+| `static-site` | 29 | — | 2 | — | Trang tĩnh HTML/CSS, không framework |
 | `education-k12` | 24 | — | — | — | Giáo án phổ thông, đề kiểm tra |
 | `education-language` | 16 | — | — | — | Trung tâm ngoại ngữ, gia sư |
 | `docs-writer` | 16 | 1 | 3 | — | Báo cáo, thuyết trình, bảng tính |

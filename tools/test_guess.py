@@ -31,7 +31,7 @@ CASES = [
     ("go", {"main.go": "package main"}, "cli-tool"),
     ("shadcn", {"components.json": "{}", "src/components/ui/button.tsx": "x"},
      "design-system"),
-    ("html tĩnh", {"index.html": "x", "style.css": "x"}, "landing"),
+    ("html tĩnh", {"index.html": "x", "style.css": "x"}, "static-site"),
 ]
 
 # Workspace nằm dưới thư mục cha tên trùng `skip` — từng làm mọi file bị loại và

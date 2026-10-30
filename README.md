@@ -187,7 +187,7 @@ code, không phụ thuộc agent có nhớ gọi skill hay không — đó là c
 `swift` `cpp` `lua` `sql` `shell`. Workspace Python: **2 file, ~2.1 KB** always-on.
 Tắt bằng `--no-rules`. Chi tiết: [docs/rules-per-stack.md](docs/rules-per-stack.md).
 
-## 10 profile
+## 11 profile
 
 | Profile | Skill | Agent | LSP | Cho |
 |---|---|---|---|---|
@@ -197,6 +197,7 @@ Tắt bằng `--no-rules`. Chi tiết: [docs/rules-per-stack.md](docs/rules-per-
 | `cli-tool` | 69 | 41 | ✅ | CLI, script, backend |
 | `landing` | 52 | 43 | ✅ | Landing, marketing, portfolio |
 | `design-system` | 29 | 10 | ✅ | UI kit, component library, token |
+| `static-site` | 29 | 2 | — | Trang tĩnh HTML/CSS, không framework, không build tool |
 | `education-k12` | 24 | — | — | Giáo án phổ thông, đề kiểm tra |
 | `education-language` | 16 | — | — | Trung tâm ngoại ngữ, gia sư |
 | `docs-writer` | 16 | 3 | — | Báo cáo, thuyết trình, bảng tính |

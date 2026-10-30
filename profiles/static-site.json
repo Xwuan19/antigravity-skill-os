@@ -1,0 +1,33 @@
+{
+  "id": "static-site",
+  "label": "Trang tĩnh / landing HTML-CSS (không framework)",
+  "tags": [
+    "static",
+    "html",
+    "css",
+    "landing",
+    "one-page",
+    "portfolio"
+  ],
+  "select": {
+    "domain": [
+      "design",
+      "motion"
+    ],
+    "artifact": [
+      "web-ui",
+      "motion"
+    ]
+  },
+  "forbid_domains": [
+    "education",
+    "code"
+  ],
+  "rationale": "Không có build tool, không framework: skill Angular/Prisma/Vite không có gì để bám vào. Chỉ giữ thiết kế + chuyển động.",
+  "max_skills": 40,
+  "agent_groups": [
+    "design"
+  ],
+  "plugins": [],
+  "lsp": false
+}
