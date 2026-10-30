@@ -105,6 +105,14 @@ bash bootstrap.sh web-admin ~/p/shop --exclude-pack motion,design --prune  # 95%
 Khi workspace ở trên 90%, `install.py` tự in `⚠ sát trần (còn ~N skill)` để biết còn bao nhiêu
 skill nữa là Antigravity bắt đầu loại bớt.
 
+**Xem trước mà không ghi gì:** thêm `--dry-run` — nó tính ngân sách trên bộ *sẽ* cài và ra đúng
+con số như lúc cài thật:
+
+```
+Ngân sách dự kiến: 4 global + 141 riêng = 145 skill (chưa ghi gì)
+  ước lượng 11.750 token ≈ 59% · đồng hồ Antigravity ≈ 16.316 ≈ 82%
+```
+
 Chọn A mà vẫn muốn cô lập thì phải chọn lại: **hai thứ đó loại trừ nhau**.
 
 ## Hai lỗi đã sửa khi kiểm chuyện này
