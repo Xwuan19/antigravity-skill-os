@@ -221,8 +221,30 @@ marketing** (positioning, voice, offer packaging), không phải benchmark code.
 | `ceorkm/mobile-app-ui-design` | Không LICENSE, không có gì hơn `apple-hig` + `ui-ux-pro-max` |
 | `kevmoo/dash_skills` | Toàn Dart code-quality, không phải thiết kế |
 | Cài nguyên `affaan-m/ECC` | Là hệ cài đặt đa harness, không có target Antigravity; `rules/` gắn `paths:` của Claude Code |
-| `nousresearch/hermes-agent` | Là **ứng dụng agent** (60k commit: TUI, desktop, gateway, providers); `skills/` gọi tool `hermes pm` — không chạy ngoài runtime đó |
+| `nousresearch/hermes-agent` (nguyên repo) | Là **ứng dụng agent**; nhưng đã lọc được 10/44 skill — xem §3.6 |
 | `anthropics/skills/pptx` | Sinh PPTX bằng python-pptx; `slides` + `frontend-slides` cho kết quả đẹp hơn, đã có sẵn |
+
+### 3.6 Skill của `NousResearch/hermes-agent` — 10/44, MIT
+
+Lọc từ 44 skill của một agent runtime. Chi tiết cách lọc + 34 cái bị loại:
+[docs/hermes-filter.md](hermes-filter.md).
+
+| ☑ | Skill | Pack | Việc nó làm |
+|---|---|---|---|
+| ☑ | `humanizer` | docs | Bỏ dấu vết văn AI, 29 mẫu + trước/sau |
+| ☑ | `grounded-citations` | docs | Ledger url→[n], quote nguyên văn, verify bản nháp |
+| ☑ | `meeting-action-items` | docs | Biên bản họp → quyết định, owner, ticket |
+| ☑ | `document-to-action-items` | docs | Tài liệu dài → nghĩa vụ, deadline, việc |
+| ☑ | `weekly-review-planning` | docs | Tổng kết tuần, việc treo, kế hoạch tuần sau |
+| ☑ | `popular-web-designs` | design | 54 design system thật + template HTML/CSS |
+| ☑ | `baoyu-infographic` | design | 21 layout × 21 style |
+| ☑ | `architecture-diagram` | design | Sơ đồ kiến trúc SVG, xuất HTML |
+| ☑ | `spike` | code | Thí nghiệm vứt đi trước khi xây |
+| ☑ | `codebase-inspection` | code | LOC, tỉ lệ ngôn ngữ, code vs comment |
+
+Đã vá tool name Hermes → Antigravity (`read_file`→`view_file`, `write_file`→`write_to_file`,
+`patch`→`replace_file_content`), đổi `$HERMES_HOME` → `~/.gemini`, bỏ các dòng
+`hermes skills install`.
 
 ## 4. PACK DESIGN — cài vào workspace thiết kế
 

@@ -275,6 +275,31 @@
       "mode": "auto"
     },
     {
+      "id": "codebase-inspection",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "discover"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "NousResearch/hermes-agent",
+      "ref": "088f657ecf77674c7b8e2ededf4e3576d82e042c",
+      "path": "skills/software-development/codebase-inspection",
+      "license": "MIT",
+      "note": "Đo codebase bằng pygount: LOC, tỉ lệ ngôn ngữ, code vs comment.",
+      "patch": [
+        [
+          "author: Hermes Agent",
+          "author: NousResearch/hermes-agent"
+        ]
+      ]
+    },
+    {
       "id": "cpp",
       "pack": "code",
       "domain": [
@@ -1515,6 +1540,59 @@
       ]
     },
     {
+      "id": "spike",
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "plan"
+      ],
+      "artifact": [
+        "code"
+      ],
+      "mode": "auto",
+      "repo": "NousResearch/hermes-agent",
+      "ref": "088f657ecf77674c7b8e2ededf4e3576d82e042c",
+      "path": "skills/software-development/spike",
+      "license": "MIT",
+      "note": "Thí nghiệm vứt đi để kiểm một ý trước khi xây thật. Bổ trợ cổng 'tái hiện'.",
+      "patch": [
+        [
+          "## If the user has the full GSD system installed\n\nIf `gsd-spike` shows up as a sibling skill (installed via `npx get-shit-done-cc --hermes`), prefer **`gsd-spike`** when the user wants the full GSD workflow: persistent `.planning/spikes/` state, MANIFEST tracking across sessions, Given/When/Then verdict format, and commit patterns that integrate with the rest of GSD. This skill is the lightweight standalone version for users who don't have (or don't want) the full system.\n\n",
+          ""
+        ],
+        [
+          "Use Hermes tools for the research step:",
+          "Use the available tools for the research step:"
+        ],
+        [
+          "- `web_search(\"python websocket streaming libraries 2025\")` — find candidates",
+          "- search the web for \"python websocket streaming libraries 2025\" — find candidates"
+        ],
+        [
+          "clone and read their `README.md` / `examples/` via `read_file`",
+          "clone and read their `README.md` / `examples/` via `view_file`"
+        ],
+        [
+          "- `web_extract(urls=[\"https://websockets.readthedocs.io/...\"])` — read the actual docs (returns markdown)",
+          "- fetch the actual docs page — it comes back as markdown"
+        ],
+        [
+          "write_file(\"spikes/001-websocket-streaming/README.md\"",
+          "write_to_file(\"spikes/001-websocket-streaming/README.md\""
+        ],
+        [
+          "write_file(\"spikes/001-websocket-streaming/main.py\"",
+          "write_to_file(\"spikes/001-websocket-streaming/main.py\""
+        ],
+        [
+          "install with `npx get-shit-done-cc --hermes --global`.",
+          "install it separately if you want the full system."
+        ]
+      ]
+    },
+    {
       "id": "sql-optimization-patterns",
       "pack": "code",
       "domain": [
@@ -2217,6 +2295,36 @@
       ]
     },
     {
+      "id": "architecture-diagram",
+      "pack": "design",
+      "domain": [
+        "design"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "web-ui",
+        "image"
+      ],
+      "mode": "auto",
+      "repo": "NousResearch/hermes-agent",
+      "ref": "088f657ecf77674c7b8e2ededf4e3576d82e042c",
+      "path": "skills/creative/architecture-diagram",
+      "license": "MIT",
+      "note": "Sơ đồ kiến trúc/hạ tầng bằng SVG trên nền tối, xuất HTML. Có template.",
+      "patch": [
+        [
+          "3. Save with `write_file` to a `.html` file",
+          "3. Save with `write_to_file` to a `.html` file"
+        ],
+        [
+          "skill_view(name=\"architecture-diagram\", file_path=\"templates/template.html\")",
+          "view_file(\"templates/template.html\")   # next to this SKILL.md"
+        ]
+      ]
+    },
+    {
       "id": "banner-design",
       "pack": "design",
       "domain": [
@@ -2234,6 +2342,36 @@
       "path": ".claude/skills/banner-design",
       "license": "MIT",
       "note": "Banner quảng cáo đủ kích thước, đúng tỉ lệ từng nền tảng."
+    },
+    {
+      "id": "baoyu-infographic",
+      "pack": "design",
+      "domain": [
+        "design"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "image",
+        "slide"
+      ],
+      "mode": "auto",
+      "repo": "NousResearch/hermes-agent",
+      "ref": "088f657ecf77674c7b8e2ededf4e3576d82e042c",
+      "path": "skills/creative/baoyu-infographic",
+      "license": "MIT",
+      "note": "Infographic: 21 layout × 21 style, có framework phân tích + prompt nền.",
+      "patch": [
+        [
+          "using `write_file`",
+          "using `write_to_file`"
+        ],
+        [
+          "for Hermes Agent's tool ecosystem.",
+          "(packaged via NousResearch/hermes-agent)."
+        ]
+      ]
     },
     {
       "id": "brand",
@@ -2604,6 +2742,59 @@
       ]
     },
     {
+      "id": "popular-web-designs",
+      "pack": "design",
+      "domain": [
+        "design"
+      ],
+      "phase": [
+        "build"
+      ],
+      "artifact": [
+        "web-ui"
+      ],
+      "mode": "auto",
+      "repo": "NousResearch/hermes-agent",
+      "ref": "088f657ecf77674c7b8e2ededf4e3576d82e042c",
+      "path": "skills/creative/popular-web-designs",
+      "license": "MIT",
+      "note": "54 design system thật (Stripe, Linear, Vercel…) kèm template HTML/CSS từng cái.",
+      "patch": [
+        [
+          "- **`design-md`** (optional: `hermes skills install official/creative/design-md`) —\n  use when the deliverable is a formal DESIGN.md token spec file, not a rendered artifact.\n",
+          ""
+        ],
+        [
+          "2. Load it: `skill_view(name=\"popular-web-designs\", file_path=\"templates/<site>.md\")`",
+          "2. Load it with `view_file` on `templates/<site>.md` (next to this SKILL.md)"
+        ],
+        [
+          "4. Pair with the `generative-widgets` skill to serve the result via cloudflared tunnel",
+          "4. Open the result locally and look at it before delivering"
+        ],
+        [
+          "**Hermes Implementation Notes**",
+          "**Implementation Notes**"
+        ],
+        [
+          "- Reminders to use `write_file` for HTML creation and `browser_exec` (`capture_screenshot()`) for verification",
+          "- Reminders to use `write_to_file` to create the HTML, then open it to verify"
+        ],
+        [
+          "<!-- Paste the Google Fonts <link> from the template's Hermes notes -->",
+          "<!-- Paste the Google Fonts <link> from the template's notes -->"
+        ],
+        [
+          "Write the file with `write_file`, serve with the `generative-widgets` workflow (cloudflared tunnel),\nand verify the result with `browser_exec`: open the page, `capture_screenshot()`, and inspect the image to confirm visual accuracy.",
+          "Write the file with `write_to_file`, then open it with `run_command` and inspect the rendering to confirm visual accuracy."
+        ],
+        [
+          "author: Hermes Agent + Teknium (design systems sourced from VoltAgent/awesome-design-md)",
+          "author: VoltAgent/awesome-design-md (packaged by NousResearch/hermes-agent)"
+        ]
+      ]
+    },
+    {
       "id": "react-native",
       "pack": "design",
       "domain": [
@@ -2861,6 +3052,31 @@
       "license": "Apache-2.0"
     },
     {
+      "id": "document-to-action-items",
+      "pack": "docs",
+      "domain": [
+        "docs"
+      ],
+      "phase": [
+        "plan"
+      ],
+      "artifact": [
+        "document"
+      ],
+      "mode": "auto",
+      "repo": "NousResearch/hermes-agent",
+      "ref": "088f657ecf77674c7b8e2ededf4e3576d82e042c",
+      "path": "skills/productivity/document-to-action-items",
+      "license": "MIT",
+      "note": "Tài liệu dài → nghĩa vụ, deadline, việc phải làm, trích dẫn chỗ gốc.",
+      "patch": [
+        [
+          "Use `read_file` for local files and `web_extract` for URLs",
+          "Use `view_file` for local files and a page fetch for URLs"
+        ]
+      ]
+    },
+    {
       "id": "docx",
       "pack": "docs",
       "domain": [
@@ -2877,6 +3093,143 @@
       "ref": "2235be7c60b551f5de82ade908fd3816455afcda",
       "path": "skills/docx",
       "license": "Apache-2.0"
+    },
+    {
+      "id": "grounded-citations",
+      "pack": "docs",
+      "domain": [
+        "docs"
+      ],
+      "phase": [
+        "discover",
+        "verify"
+      ],
+      "artifact": [
+        "document"
+      ],
+      "mode": "auto",
+      "repo": "NousResearch/hermes-agent",
+      "ref": "088f657ecf77674c7b8e2ededf4e3576d82e042c",
+      "path": "skills/research/grounded-citations",
+      "license": "MIT",
+      "note": "Câu trả lời/tài liệu có trích dẫn kiểm được: ledger url→[n], quote nguyên văn, verify draft.",
+      "patch": [
+        [
+          "Retrieval comes from whatever is configured: `web_search`, `web_extract`,\n`browser_exec`, or `terminal` (curl, CLIs).",
+          "Retrieval comes from whatever is available: web search, page fetch, or `run_command` (curl, CLIs)."
+        ],
+        [
+          "Ledger location: `$HERMES_HOME/cache/citations/ledger.json` (profile-aware).\nOverride per task with `--ledger <path>` or `HERMES_CITATION_LEDGER`.",
+          "Ledger location: `~/.gemini/cache/citations/ledger.json` unless `HERMES_CITATION_LEDGER` is set.\nOverride per task with `--ledger <path>`."
+        ],
+        [
+          "S=~/.hermes/skills/research/grounded-citations/scripts/sources.py",
+          "S=\"<thư mục chứa SKILL.md này>/scripts/sources.py\""
+        ],
+        [
+          "After each `web_search` /\n`web_extract` / `browser_exec` / fetch, pass the URLs",
+          "After each search / page fetch, pass the URLs"
+        ],
+        [
+          "| Open web | `web_search` → `web_extract` | official docs, articles, announcements |",
+          "| Open web | search → page fetch | official docs, articles, announcements |"
+        ],
+        [
+          "| Community discussion | `reddit-reading` (`search`, `thread`) | real user experience, complaints, workarounds |\n| Blogs / releases / changelogs | `rss-feeds` (`read`, `discover`) | dated primary posts, version history |",
+          "| Community discussion | web search / page fetch | real user experience, complaints, workarounds |\n| Blogs / releases / changelogs | page fetch | dated primary posts, version history |"
+        ],
+        [
+          "| Code | `terminal` with `gh search repos` / `gh search issues` | implementations, open bugs |",
+          "| Code | `run_command` with `gh search repos` / `gh search issues` | implementations, open bugs |"
+        ],
+        [
+          "| X/Twitter | `xurl` (needs API access) | announcements, developer chatter |",
+          ""
+        ],
+        [
+          "The `reddit-reading` and `rss-feeds` skills are optional. If absent, install with\n`hermes skills install official/social-media/reddit-reading` or\n`hermes skills install official/research/rss-feeds` before using them.\n\n",
+          ""
+        ],
+        [
+          "Cite the extracted page\n  when the claim needs the body — `web_extract` it first.",
+          "Cite the extracted page\n  when the claim needs the body — fetch the page first."
+        ],
+        [
+          "from the extracted page text, not a search-result description — `web_extract`\n  first, save the text, then `quote --from` that file.",
+          "from the extracted page text, not a search-result description — fetch the page\n  first, save the text, then `quote --from` that file."
+        ]
+      ]
+    },
+    {
+      "id": "humanizer",
+      "pack": "docs",
+      "domain": [
+        "docs"
+      ],
+      "phase": [
+        "review",
+        "ship"
+      ],
+      "artifact": [
+        "document"
+      ],
+      "mode": "auto",
+      "repo": "NousResearch/hermes-agent",
+      "ref": "088f657ecf77674c7b8e2ededf4e3576d82e042c",
+      "path": "skills/creative/humanizer",
+      "license": "MIT",
+      "note": "Bỏ dấu vết văn AI: 29 mẫu nhận diện + ví dụ trước/sau, theo chuẩn Wikipedia 'Signs of AI writing'.",
+      "patch": [
+        [
+          "Hermes's baseline voice already strips most of these",
+          "Your baseline voice already strips most of these"
+        ],
+        [
+          "## How to use it in Hermes",
+          "## How to use it"
+        ],
+        [
+          "Use `read_file` to load it, then `patch` or `write_file` to apply edits. For a markdown doc in a repo, a targeted `patch` per section is cleaner than rewriting the whole file.",
+          "Use `view_file` to load it, then `replace_file_content` or `write_to_file` to apply edits. For a markdown doc in a repo, a targeted `replace_file_content` per section is cleaner than rewriting the whole file."
+        ],
+        [
+          "(use `read_file` if it's a file)",
+          "(use `view_file` if it's a file)"
+        ],
+        [
+          "apply the edit with `patch` (targeted) or `write_file` (full rewrite)",
+          "apply the edit with `replace_file_content` (targeted) or `write_to_file` (full rewrite)"
+        ],
+        [
+          "(`read_file`, `patch`, `write_file`)",
+          "(`view_file`, `replace_file_content`, `write_to_file`)"
+        ]
+      ]
+    },
+    {
+      "id": "meeting-action-items",
+      "pack": "docs",
+      "domain": [
+        "docs"
+      ],
+      "phase": [
+        "plan"
+      ],
+      "artifact": [
+        "document"
+      ],
+      "mode": "auto",
+      "repo": "NousResearch/hermes-agent",
+      "ref": "088f657ecf77674c7b8e2ededf4e3576d82e042c",
+      "path": "skills/productivity/meeting-action-items",
+      "license": "MIT",
+      "note": "Biên bản họp → quyết định có trích dẫn, người chịu trách nhiệm, ticket.",
+      "patch": [
+        [
+          "Use `read_file`",
+          "Use `view_file`"
+        ]
+      ]
     },
     {
       "id": "pdf",
@@ -2913,6 +3266,25 @@
       "ref": "2235be7c60b551f5de82ade908fd3816455afcda",
       "path": "skills/pptx",
       "license": "Apache-2.0"
+    },
+    {
+      "id": "weekly-review-planning",
+      "pack": "docs",
+      "domain": [
+        "docs"
+      ],
+      "phase": [
+        "plan"
+      ],
+      "artifact": [
+        "document"
+      ],
+      "mode": "auto",
+      "repo": "NousResearch/hermes-agent",
+      "ref": "088f657ecf77674c7b8e2ededf4e3576d82e042c",
+      "path": "skills/productivity/weekly-review-planning",
+      "license": "MIT",
+      "note": "Tổng kết tuần: cam kết nào đang treo, việc nào kẹt, tuần sau làm gì."
     },
     {
       "id": "xlsx",

@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-29T17:44:44Z",
+  "generated": "2026-10-30T01:57:42Z",
   "skills": {
     "using-superpowers": {
       "pack": "meta",
@@ -1392,7 +1392,87 @@
       "license": "MIT",
       "bytes": 6687,
       "sha256": "5357d123cf8cee6dc2e901542a28a19d7ee9e939e34528d27987897318bcfbf6"
+    },
+    "codebase-inspection": {
+      "pack": "code",
+      "source": "NousResearch/hermes-agent@088f657ecf77674c7b8e2ededf4e3576d82e042c",
+      "path": "skills/software-development/codebase-inspection",
+      "license": "MIT",
+      "bytes": 4695,
+      "sha256": "6d19160ed2fbc9167d877573b88c720e082368ba217cede87543daf5095ea7f5"
+    },
+    "spike": {
+      "pack": "code",
+      "source": "NousResearch/hermes-agent@088f657ecf77674c7b8e2ededf4e3576d82e042c",
+      "path": "skills/software-development/spike",
+      "license": "MIT",
+      "bytes": 9280,
+      "sha256": "665b818dc17788533749418391ec928b1ef8981fb5157cbdda9853aca55bba3d"
+    },
+    "architecture-diagram": {
+      "pack": "design",
+      "source": "NousResearch/hermes-agent@088f657ecf77674c7b8e2ededf4e3576d82e042c",
+      "path": "skills/creative/architecture-diagram",
+      "license": "MIT",
+      "bytes": 19372,
+      "sha256": "39f0705e9c253f5d5109abd6b17a821b83d1d5ec8f5eeece9aece8e7677668b7"
+    },
+    "baoyu-infographic": {
+      "pack": "design",
+      "source": "NousResearch/hermes-agent@088f657ecf77674c7b8e2ededf4e3576d82e042c",
+      "path": "skills/creative/baoyu-infographic",
+      "license": "MIT",
+      "bytes": 72285,
+      "sha256": "8f5480109d908552d5fb215a79bf8e677979079914dc4c1749fad96c95ce28f5"
+    },
+    "popular-web-designs": {
+      "pack": "design",
+      "source": "NousResearch/hermes-agent@088f657ecf77674c7b8e2ededf4e3576d82e042c",
+      "path": "skills/creative/popular-web-designs",
+      "license": "MIT",
+      "bytes": 876422,
+      "sha256": "4dc9c3e64132f44ff4a070f4fd4255afa3bae4b86544cff0ace93cdd0db8bd66"
+    },
+    "document-to-action-items": {
+      "pack": "docs",
+      "source": "NousResearch/hermes-agent@088f657ecf77674c7b8e2ededf4e3576d82e042c",
+      "path": "skills/productivity/document-to-action-items",
+      "license": "MIT",
+      "bytes": 4992,
+      "sha256": "21235976cd939c2b1bccefb8e8a26f7c568823db7c89e6df2b0a3ab0e63ec132"
+    },
+    "grounded-citations": {
+      "pack": "docs",
+      "source": "NousResearch/hermes-agent@088f657ecf77674c7b8e2ededf4e3576d82e042c",
+      "path": "skills/research/grounded-citations",
+      "license": "MIT",
+      "bytes": 45477,
+      "sha256": "6a359577b9969b8631b3fd8f71fefdd5490d011a8fed25debf13512e1498e829"
+    },
+    "humanizer": {
+      "pack": "docs",
+      "source": "NousResearch/hermes-agent@088f657ecf77674c7b8e2ededf4e3576d82e042c",
+      "path": "skills/creative/humanizer",
+      "license": "MIT",
+      "bytes": 35584,
+      "sha256": "9d8e9b88fa2fc0ba6b7756aa83ffad6598697228a093001b8a3204bddfcec628"
+    },
+    "meeting-action-items": {
+      "pack": "docs",
+      "source": "NousResearch/hermes-agent@088f657ecf77674c7b8e2ededf4e3576d82e042c",
+      "path": "skills/productivity/meeting-action-items",
+      "license": "MIT",
+      "bytes": 4878,
+      "sha256": "8d6f0efd9ce3fa03434a10eac9ca43f2a5771ef1a7c8ae7401fcf0257d3ab0b4"
+    },
+    "weekly-review-planning": {
+      "pack": "docs",
+      "source": "NousResearch/hermes-agent@088f657ecf77674c7b8e2ededf4e3576d82e042c",
+      "path": "skills/productivity/weekly-review-planning",
+      "license": "MIT",
+      "bytes": 5045,
+      "sha256": "a689257facb937cfca9bc5507dd9e729f287f0cd3f6abbf73448eb25f73fbaab"
     }
   },
-  "total_bytes": 24588426
+  "total_bytes": 25666456
 }
