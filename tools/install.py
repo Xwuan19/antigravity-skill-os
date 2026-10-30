@@ -148,21 +148,45 @@ def _desc_chars(sk: Path) -> int:
     return len(t[a:b]) if a != -1 and b != -1 else 0
 
 
-def budget_ws(target: Path) -> None:
-    """Ngân sách THẬT của một workspace: skill global + skill riêng của project."""
+def _desc_pack(s: dict) -> int:
+    """Số ký tự description của một skill còn nằm trong packs/ (chưa cài)."""
+    f = pack_dir(s) / "SKILL.md"
+    if not f.is_file():
+        return 0
+    t = f.read_text(encoding="utf-8", errors="replace")
+    a = t.find("description:")
+    b = t.find("---", a + 3)
+    return len(t[a:b]) if a != -1 and b != -1 else 0
+
+
+def budget_ws(target: Path, projected: list[dict] | None = None) -> None:
+    """Ngân sách của một workspace: skill global + skill riêng của project.
+
+    `projected` = danh sách skill SẼ cài (dùng cho --dry-run, khi đĩa chưa đổi).
+    Không truyền thì đo thật trên đĩa.
+    """
     glob = ([d for d in GLOBAL_SKILLS.iterdir() if d.is_dir()]
             if GLOBAL_SKILLS.is_dir() else [])
-    own = ([d for d in target.iterdir() if d.is_dir()] if target.is_dir() else [])
-    chars = sum(_desc_chars(d) for d in glob + own)
+    if projected is not None:
+        own_n = len(projected)
+        chars = sum(_desc_chars(d) for d in glob) + sum(_desc_pack(s) for s in projected)
+        head = "Ngân sách dự kiến"
+        tail = " (chưa ghi gì)"
+    else:
+        own = ([d for d in target.iterdir() if d.is_dir()] if target.is_dir() else [])
+        own_n = len(own)
+        chars = sum(_desc_chars(d) for d in glob + own)
+        head = "Ngân sách workspace"
+        tail = ""
     rules = ROOT / "core" / "AGENTS.md"
     r_chars = len(rules.read_text(encoding="utf-8")) if rules.is_file() else 0
-    n = len(glob) + len(own)
+    n = len(glob) + own_n
     tok = (chars + r_chars) // 4
     ui = 1497 + 102.2 * n
     mark = ("  ⚠ VƯỢT TRẦN — sẽ bị loại bớt" if ui > 20000
             else "  ⚠ sát trần (còn ~{:.0f} skill)".format((20000 - ui) / 102.2)
             if ui > 18000 else "")
-    print(f"\n  Ngân sách workspace: {len(glob)} global + {len(own)} riêng = {n} skill")
+    print(f"\n  {head}: {len(glob)} global + {own_n} riêng = {n} skill{tail}")
     print(f"    ước lượng {tok:,} token ≈ {tok/20000:.0%} · "
           f"đồng hồ Antigravity ≈ {ui:,.0f} ≈ {ui/20000:.0%}{mark}")
 
@@ -599,8 +623,7 @@ def do_workspace(skills: list[dict], profiles: dict[str, dict],
         elif stale:
             print(f"  {len(stale)} skill của profile cũ còn trong workspace "
                   f"(đổi profile mà không dọn) — thêm `--prune` để gỡ.")
-    if not dry:
-        budget_ws(target)
+    budget_ws(target, projected=chosen if dry else None)
     if in_global:
         n_glob = len([d for d in GLOBAL_SKILLS.iterdir() if (d / OWNER).is_file()])
         print(f"  ⚠  global đang bật {n_glob} skill: project này vẫn thấy hết. "
