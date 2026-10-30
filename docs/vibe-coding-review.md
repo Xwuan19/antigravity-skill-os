@@ -92,7 +92,9 @@ tăng nhiễu; cần đối chiếu runtime thực trước khi kết luận kh�
 - Phát hiện `vendor.py --check` cũ in cảnh báo hash sai nhưng vẫn trả exit 0, và bỏ
   lọt `SKILL.md`/hash bị thiếu. Đã sửa để trả lỗi; bổ sung test âm. Ghi hash thực tế
   cho skill `handoff` local vốn có hash rỗng. `vendor.py --check` vẫn chỉ hash
-  `SKILL.md`, không kiểm mọi file reference ngoài cohort nói trên.
+  `SKILL.md`, không kiểm mọi file reference ngoài cohort nói trên. Hash chuẩn hóa
+  CRLF thành LF cho file văn bản, nên khác biệt chỉ ở kiểu xuống dòng không được coi
+  là chỉnh sửa; nội dung khác vẫn gây lỗi.
 - Đã đọc thêm sáu ứng viên AAS, chưa nhập: `phase-gated-debugging` trùng quy trình
   debug hiện có và mặc định đòi xác nhận, không hợp yêu cầu tự chủ; `agentic-test-audit`
   cần runner/dependency riêng; `code-review-checklist`, `code-review-excellence` và

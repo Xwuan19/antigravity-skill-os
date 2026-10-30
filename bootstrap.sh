@@ -63,7 +63,18 @@ if [ "$SYSTEM" -eq 0 ] && [ "$CORE" -eq 0 ] && [ -z "$PROFILE" ]; then
     (profile: web-admin landing static-site cli-tool mobile-app desktop-app design-system docs-writer education-k12 education-language meta)"
 fi
 
-command -v python3 >/dev/null || die "Cần python3 (>= 3.10)."
+# Git Bash on Windows commonly exposes `python` or the `py` launcher, not `python3`.
+PYTHON=()
+for candidate in python3 python py; do
+  command -v "$candidate" >/dev/null 2>&1 || continue
+  args=("$candidate")
+  [ "$candidate" = py ] && args+=(-3)
+  if "${args[@]}" -c 'import sys; sys.exit(sys.version_info < (3, 10))' >/dev/null 2>&1; then
+    PYTHON=("${args[@]}")
+    break
+  fi
+done
+[ "${#PYTHON[@]}" -gt 0 ] || die "Cần Python >= 3.10 (python3, python hoặc py -3)."
 
 # ---- 1. tìm repo ----------------------------------------------------------
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -101,7 +112,7 @@ if [ "$CORE" -eq 1 ]; then
   has --prune && CORE_ARGS+=(--prune)
   has --dry-run && CORE_ARGS+=(--dry-run)
   has --update-owned && CORE_ARGS+=(--update-owned)
-  python3 "$ROOT/tools/install.py" "${CORE_ARGS[@]}"
+  "${PYTHON[@]}" "$ROOT/tools/install.py" "${CORE_ARGS[@]}"
   if has --dry-run; then echo "  Dry-run hoàn tất — chưa cài hay ghi gì."; exit 0; fi
   echo
   echo "──────────────────────────────────────────────"
@@ -129,14 +140,14 @@ if [ "$SYSTEM" -eq 1 ]; then
   [ -n "$EXCLUDE" ] && SYS+=(--exclude-pack "$EXCLUDE")
   has --prune && SYS+=(--prune)
   has --update-owned && SYS+=(--update-owned)
-  python3 "$ROOT/tools/install.py" --system "${SYS[@]}"
+  "${PYTHON[@]}" "$ROOT/tools/install.py" --system "${SYS[@]}"
 
   if ! has --no-lsp; then
     echo
     echo "── LSP toàn cục ──"
     GLO=()
     has --dry-run && GLO+=(--dry-run)
-    python3 "$ROOT/tools/lsp.py" --global --langs all "${GLO[@]}" || true
+    "${PYTHON[@]}" "$ROOT/tools/lsp.py" --global --langs all "${GLO[@]}" || true
   fi
 
   echo
@@ -148,7 +159,7 @@ if [ "$SYSTEM" -eq 1 ]; then
   echo "  2. Thử trong phiên mới: \"có skill gì đang bật?\""
   echo
   echo "  Cài thêm language server (nếu bước LSP báo thiếu):"
-  echo "       python3 $ROOT/tools/lsp.py --check"
+  echo "       ${PYTHON[*]} $ROOT/tools/lsp.py --check"
   echo "──────────────────────────────────────────────"
   exit 0
 fi
@@ -158,7 +169,7 @@ fi
 # ===========================================================================
 WS="${WS:-$PWD}"
 if has --dry-run; then
-  WS="$(python3 -c 'import pathlib,sys; print(pathlib.Path(sys.argv[1]).expanduser().resolve())' "$WS")"
+  WS="$("${PYTHON[@]}" -c 'import pathlib,sys; print(pathlib.Path(sys.argv[1]).expanduser().resolve())' "$WS")"
 else
   WS="$(cd "$WS" 2>/dev/null && pwd || { mkdir -p "$WS" && cd "$WS" && pwd; })"
 fi
@@ -171,7 +182,7 @@ CORE_ARGS=(--core)
 has --prune && CORE_ARGS+=(--prune)
 has --dry-run && CORE_ARGS+=(--dry-run)
 has --update-owned && CORE_ARGS+=(--update-owned)
-python3 "$ROOT/tools/install.py" "${CORE_ARGS[@]}"
+"${PYTHON[@]}" "$ROOT/tools/install.py" "${CORE_ARGS[@]}"
 
 echo
 echo "── Tầng workspace ──"
@@ -184,14 +195,14 @@ has --no-rules   && ARGS+=(--no-rules)
 has --prune      && ARGS+=(--prune)
 has --update-owned && ARGS+=(--update-owned)
 [ -n "$EXCLUDE" ] && ARGS+=(--exclude-pack "$EXCLUDE")
-python3 "$ROOT/tools/install.py" "${ARGS[@]}"
+"${PYTHON[@]}" "$ROOT/tools/install.py" "${ARGS[@]}"
 
 if ! has --no-lsp; then
   echo
   echo "── LSP ──"
   LSP_ARGS=(-w "$WS")
   has --dry-run && LSP_ARGS+=(--dry-run)
-  python3 "$ROOT/tools/lsp.py" "${LSP_ARGS[@]}" || true
+  "${PYTHON[@]}" "$ROOT/tools/lsp.py" "${LSP_ARGS[@]}" || true
 fi
 
 echo
@@ -203,10 +214,10 @@ echo "  1. Khởi động lại Antigravity để nó nạp skill + MCP server."
 echo
 if has --no-lsp; then
   echo "  2. LSP đang tắt (--no-lsp). Bật sau bằng:"
-  echo "       python3 $ROOT/tools/lsp.py -w $WS"
+  echo "       ${PYTHON[*]} $ROOT/tools/lsp.py -w $WS"
 else
   echo "  2. Nếu bước LSP báo thiếu language server, cài rồi chạy lại:"
-  echo "       python3 $ROOT/tools/lsp.py --check"
+  echo "       ${PYTHON[*]} $ROOT/tools/lsp.py --check"
 fi
 echo
 echo "  Kiểm chứng trong phiên mới: hỏi \"có skill gì đang bật?\""

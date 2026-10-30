@@ -33,7 +33,8 @@ LICENSE_NAMES = ["LICENSE", "LICENSE.txt", "LICENSE.md", "license", "COPYING"]
 
 
 def sha(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+    """Hash text with LF line endings, independent of Git's checkout settings."""
+    return hashlib.sha256(path.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
 
 
 def run(cmd: list[str]) -> tuple[bool, str]:
