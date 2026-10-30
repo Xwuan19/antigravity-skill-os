@@ -133,9 +133,21 @@ def budget(chosen: list[dict]) -> None:
     r_chars = len(rules.read_text(encoding="utf-8")) if rules.is_file() else 0
     tok = (total + r_chars) // 4
     pct = tok / 20000
+    # Đồng hồ thật của Antigravity đếm cao hơn ước lượng ký-tự/4 của mình khoảng 1/4.
+    # Hai điểm đo từ Settings → Skills: 195 skill = 21.430 token, 204 skill = 22.350.
+    # Hồi quy ra: ui ≈ 1.497 + 102,2 × số skill. Con số trên là SÀN, không phải trần.
+    ui = 1497 + 102.2 * len(chosen)
+    ui_pct = ui / 20000
     flag = "  ⚠ đã gần trần" if pct > 0.85 else ""
     print(f"  Ngân sách: {tok:,} token ≈ {pct:.0%} trần 20k — "
           f"{len(chosen)} description + AGENTS.md{r_chars and f' ({r_chars:,} ký tự)'}{flag}")
+    if ui_pct > 1.0:
+        print(f"    đồng hồ Antigravity: ≈ {ui:,.0f} token ≈ {ui_pct:.0%}"
+              "  ⚠ VƯỢT TRẦN — Antigravity sẽ tự loại bớt skill"
+              "  → bớt pack: `--exclude-pack education,docs`")
+    else:
+        print(f"    đồng hồ Antigravity: ≈ {ui:,.0f} token ≈ {ui_pct:.0%}"
+              + ("  ⚠ sát trần" if ui_pct > 0.95 else ""))
 
 
 def do_system(skills: list[dict], dry: bool, force: bool,
@@ -195,17 +207,21 @@ def do_system(skills: list[dict], dry: bool, force: bool,
     extra = sorted(have - expected)
     if extra:
         mine = [x for x in extra if (GLOBAL_SKILLS / x / OWNER).is_file()]
+        theirs = [x for x in extra if x not in mine]
         if prune and not dry and mine:
             for x in mine:
                 shutil.rmtree(GLOBAL_SKILLS / x)
-            print(f"  - đã xoá {len(mine)} thư mục không còn trong registry: "
-                  f"{', '.join(mine)}")
-            extra = [x for x in extra if x not in mine]
-        elif mine:
-            print(f"  {len(mine)} thư mục trên đĩa không thuộc bộ này: "
-                  f"{', '.join(mine)}")
-            print("    (skill bị bỏ khỏi registry ở bản cũ, hoặc skill manual) "
-                  "— thêm `--prune` để xoá.")
+            print(f"  - đã xoá {len(mine)} thư mục của bản cũ: {', '.join(mine)}")
+            extra, mine = theirs, []
+        if mine:
+            print(f"  {len(mine)} skill của bản cũ còn trên đĩa: {', '.join(mine)}")
+            print("    — thêm `--prune` để xoá (chỉ xoá thư mục do Skill OS tạo).")
+        if theirs:
+            print(f"  {len(theirs)} thư mục KHÔNG phải của Skill OS: {', '.join(theirs)}")
+            print("    — skill do Antigravity tự thêm hoặc bạn tự viết. Chúng cũng ăn ngân "
+                  "sách always-on; giữ thì thôi, không muốn thì xoá tay:")
+            for x in theirs:
+                print(f"      rm -rf {GLOBAL_SKILLS / x}")
     if not include_manual:
         n_man = len([s for s in skills if s["mode"] == "manual"])
         if n_man:
