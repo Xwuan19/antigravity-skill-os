@@ -2,6 +2,8 @@
 # Cài Antigravity Skill OS.
 #
 #   bash bootstrap.sh --system                  # TOÀN BỘ máy — mọi project dùng được
+#   bash bootstrap.sh --system --exclude-pack education,docs
+#                                              # global gọn: bỏ hẳn pack giáo dục/docs
 #   bash bootstrap.sh web-admin ~/p/admin       # chỉ một project (cô lập)
 #
 # --system cài tất cả skill vào ~/.gemini/config/skills/ + rules global + LSP global.
@@ -18,10 +20,15 @@ SYSTEM=0
 PROFILE=""
 WS=""
 FLAGS=()
+EXCLUDE=""
+WANT_EXCLUDE=0
 
 for a in "$@"; do
+  if [ "$WANT_EXCLUDE" -eq 1 ]; then EXCLUDE="$a"; WANT_EXCLUDE=0; continue; fi
   case "$a" in
     --system)     SYSTEM=1 ;;
+    --exclude-pack) WANT_EXCLUDE=1 ;;
+    --exclude-pack=*) EXCLUDE="${a#*=}" ;;
     --no-hooks|--no-plugins|--no-lsp|--include-manual|--dry-run|--no-rules) FLAGS+=("$a") ;;
     -*)           echo "  ! tham số lạ: $a" >&2 ;;
     *)            if [ -z "$PROFILE" ]; then PROFILE="$a"
@@ -75,6 +82,7 @@ if [ "$SYSTEM" -eq 1 ]; then
   SYS=()
   has --include-manual && SYS+=(--include-manual)
   has --dry-run && SYS+=(--dry-run)
+  [ -n "$EXCLUDE" ] && SYS+=(--exclude-pack "$EXCLUDE")
   python3 "$ROOT/tools/install.py" --system "${SYS[@]}"
 
   if ! has --no-lsp; then
