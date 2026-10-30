@@ -117,7 +117,26 @@ installed.
 
 ---
 
-## 4. Language
+## 4. Prevent stuck tasks
+
+- Before running a command, distinguish a finite task (tests, build, install) from a
+  long-running service or watcher. Use a suitable timeout for finite tasks when supported;
+  allow enough time for the work and report a timeout rather than assuming failure or success.
+- Start services with the environment's background-process tool when available. Check startup
+  logs and readiness (such as a listening port or health check); do not wait for them to exit.
+- If a task takes longer than expected, inspect its status and recent logs before acting.
+  Check for input prompts, network delays, build failures, deadlocks, or a healthy service.
+  Use a bounded wait when available; do not poll continuously or wait indefinitely.
+- A timed-out tool call may leave its process running. Do not rerun the same command until
+  its state is known; avoid duplicate work and side effects. Stop only the specific process
+  started for this task, and only when it is appropriate and safe, then address the cause.
+- If blocked, report the step, latest evidence, what was tried, and what help is needed.
+  Never claim completion without actual verification. These instructions cannot monitor or
+  recover the agent itself while the application is unresponsive.
+
+---
+
+## 5. Language
 
 - **Reply to the user in Vietnamese.** Every message, every project, no exceptions unless
   the user switches language first.
