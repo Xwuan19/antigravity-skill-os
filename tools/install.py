@@ -104,6 +104,18 @@ def install_global_rules(dry: bool) -> str:
     return f"✓ {GLOBAL_RULES}{msg}"
 
 
+def parse_packs(skills: list[dict], spec: str | None) -> set[str]:
+    """`--exclude-pack a,b` → set tên pack; tên sai thì dừng trước khi ghi gì."""
+    out = {p.strip() for p in (spec or "").split(",") if p.strip()}
+    if not out:
+        return out
+    bad = out - {s["pack"] for s in skills}
+    if bad:
+        sys.exit(f"  Không có pack {', '.join(sorted(bad))}. "
+                 f"Có: {', '.join(sorted({s['pack'] for s in skills}))}")
+    return out
+
+
 def do_core(skills: list[dict], dry: bool, force: bool,
             prune: bool = False) -> None:
     print(f"\n  Rules → {GLOBAL_RULES}")
@@ -147,7 +159,9 @@ def budget_ws(target: Path) -> None:
     n = len(glob) + len(own)
     tok = (chars + r_chars) // 4
     ui = 1497 + 102.2 * n
-    mark = "  ⚠ vượt trần" if ui > 20000 else ""
+    mark = ("  ⚠ VƯỢT TRẦN — sẽ bị loại bớt" if ui > 20000
+            else "  ⚠ sát trần (còn ~{:.0f} skill)".format((20000 - ui) / 102.2)
+            if ui > 18000 else "")
     print(f"\n  Ngân sách workspace: {len(glob)} global + {len(own)} riêng = {n} skill")
     print(f"    ước lượng {tok:,} token ≈ {tok/20000:.0%} · "
           f"đồng hồ Antigravity ≈ {ui:,.0f} ≈ {ui/20000:.0%}{mark}")
@@ -199,11 +213,7 @@ def do_system(skills: list[dict], dry: bool, force: bool,
     Đánh đổi: workspace nào cũng nạp đủ danh sách skill, nên mất phần "cô lập cứng".
     Đổi lại: cài một lần, không phải làm gì cho từng project nữa.
     """
-    skip_pack = {p.strip() for p in (exclude_pack or "").split(",") if p.strip()}
-    bad = skip_pack - {s["pack"] for s in skills}
-    if bad:
-        sys.exit(f"  Không có pack {', '.join(sorted(bad))}. "
-                 f"Có: {', '.join(sorted({s['pack'] for s in skills}))}")
+    skip_pack = parse_packs(skills, exclude_pack)
 
     print(f"\n  Rules → {GLOBAL_RULES}")
     print(f"    {install_global_rules(dry)}")
@@ -516,12 +526,19 @@ def do_workspace(skills: list[dict], profiles: dict[str, dict],
                  include_manual: bool = False, hooks: bool = False,
                  plugins: bool = False, lsp: str | None = None,
                  stacks: str | None = None, rules: bool = True,
-                 prune: bool = False) -> None:
+                 prune: bool = False, exclude_pack: str | None = None) -> None:
     if profile not in profiles:
         sys.exit(f"  Không có profile '{profile}'. Có: {', '.join(profiles)}")
     prof = profiles[profile]
     stk = resolve_stacks(ws, prof, stacks)
     chosen = select_all(skills, prof, include_manual, stk)
+    skip_pack = parse_packs(skills, exclude_pack)
+    if skip_pack:
+        dropped = [s for s in chosen if s["pack"] in skip_pack]
+        chosen = [s for s in chosen if s["pack"] not in skip_pack]
+        if dropped:
+            print(f"  Bỏ {len(dropped)} skill theo --exclude-pack "
+                  f"({', '.join(sorted(skip_pack))})")
     target = ws / ".agents" / "skills"
     print(f"\n  Profile : {profile} — {prof['label']}")
     print(f"  Stack   : {', '.join(stk) if stk else 'không lọc theo ngôn ngữ'}")
@@ -696,7 +713,7 @@ def main() -> None:
             lsp_spec = "auto"
         do_workspace(skills, profiles, a.profile, Path(a.workspace).expanduser().resolve(),
                      dry, a.force, a.include_manual, a.hooks, a.plugins, lsp_spec,
-                     a.stacks, not a.no_rules, a.prune)
+                     a.stacks, not a.no_rules, a.prune, a.exclude_pack)
     if a.uninstall:
         do_uninstall(skills, dry)
     if not any([a.list, a.core, a.system, a.profile, a.uninstall]):

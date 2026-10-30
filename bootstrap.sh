@@ -163,6 +163,7 @@ has --include-manual && ARGS+=(--include-manual)
 has --dry-run && ARGS+=(--dry-run)
 has --no-rules   && ARGS+=(--no-rules)
 has --prune      && ARGS+=(--prune)
+[ -n "$EXCLUDE" ] && ARGS+=(--exclude-pack "$EXCLUDE")
 python3 "$ROOT/tools/install.py" "${ARGS[@]}"
 
 if ! has --no-lsp; then

@@ -17,7 +17,7 @@ Clone về là cài được, không cần mạng.
 |---|---|---|
 | Lệnh | `bootstrap.sh --core --prune` rồi `bootstrap.sh auto <dir>` mỗi project | `bootstrap.sh --system` |
 | Project của bạn thấy | đúng skill của nó: 20–171 | **tất cả 186**, kể cả skill không liên quan |
-| Ngân sách một phiên | 18% – 95% (btvn 22%, slide 18%, web-admin 95%) | **103% → Antigravity tự loại ~10 skill** |
+| Ngân sách một phiên | btvn 22%, slide 18%, landing 36%, cli-tool 78%, web-admin 95% (cắt bớt pack được) | **103% → Antigravity tự loại ~10 skill** |
 | Việc phải làm | một lệnh cho mỗi project mới | không làm gì |
 | Cô lập domain | có — skill ngoài domain **không có trên đĩa** | không — project giáo dục vẫn thấy `springboot-*` |
 
@@ -39,6 +39,7 @@ frontend → `cli-tool`, `next`/`.tsx` → `web-admin`. Nó **in lý do** rồi 
 
 ```bash
 bash bootstrap.sh web-admin ~/p/admin --prune     # --prune: gỡ skill của profile cũ
+bash bootstrap.sh web-admin ~/p/shop --exclude-pack motion,design --prune   # 95% → 82%
 ```
 
 Mỗi lần cài xong script in ngân sách thật của workspace đó (cả hai đồng hồ). Đổi profile mà

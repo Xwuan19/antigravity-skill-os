@@ -80,9 +80,30 @@ bash bootstrap.sh auto ~/p/btvn      # mỗi project: tự dò profile rồi ró
 |---|---|---|---|
 | `btvn` (giáo án) | 4 + 24 = 28 | 4.104 ≈ 21% | ≈ 22% |
 | `SlidePPT` | 4 + 16 = 20 | 3.303 ≈ 17% | ≈ 18% |
-| `web-admin` (Next/TS) | 4 + 167 = 171 | 14.092 ≈ 70% | ≈ 95% |
+| `web-admin` (Next/TS) | 4 + 167 = 171 | 14.092 ≈ 70% | **≈ 95%** ⚠ |
+| `web-admin` `--exclude-pack motion` | 4 + 161 = 165 | 13.476 ≈ 67% | ≈ 92% |
+| `web-admin` `--exclude-pack motion,design` | 4 + 141 = 145 | 11.750 ≈ 59% | ≈ 82% |
 | `cli-tool` | 4 + 134 = 138 | 11.170 ≈ 56% | ≈ 78% |
 | `landing` (HTML tĩnh) | 4 + 52 = 56 | 5.866 ≈ 29% | ≈ 36% |
+
+**Dải "18–25%" chỉ đúng cho giáo dục và tài liệu.** `landing` 36%, `cli-tool` 78%,
+`web-admin` 95%. Profile code bản thân nó đã 134–171 skill, nên muốn nhẹ hơn thì phải bỏ bớt
+pack — xem mục dưới.
+
+## Cắt bớt pack trong một project
+
+`--exclude-pack` chạy được ở **cả** hai tầng:
+
+```bash
+bash bootstrap.sh web-admin ~/p/shop --exclude-pack motion              # 95% → 92%
+bash bootstrap.sh web-admin ~/p/shop --exclude-pack motion,design --prune  # 95% → 82%
+```
+
+Đo trên `web-admin` (Next/TS): 171 skill ≈ 95% → bỏ `motion` 165 ≈ 92% → bỏ thêm `design`
+145 ≈ 82%. `--prune` để gỡ skill của bộ cũ, không thì chúng vẫn nằm trong workspace.
+
+Khi workspace ở trên 90%, `install.py` tự in `⚠ sát trần (còn ~N skill)` để biết còn bao nhiêu
+skill nữa là Antigravity bắt đầu loại bớt.
 
 Chọn A mà vẫn muốn cô lập thì phải chọn lại: **hai thứ đó loại trừ nhau**.
 
