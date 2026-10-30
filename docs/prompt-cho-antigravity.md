@@ -29,7 +29,7 @@ Kết quả ghi vào `~/.gemini/`:
 | Ghi gì | Ở đâu |
 |---|---|
 | Rules always_on (ponytail full, skill-first, verify) | `AGENTS.md` |
-| Toàn bộ **144** skill | `config/skills/` |
+| **186** skill (44 skill theo stack để project tự cài) | `config/skills/` |
 | LSP cho mọi language server có trên máy | `config/mcp_config.json` |
 
 Mở project nào cũng thấy. Project mới không phải cài lại.
@@ -63,7 +63,68 @@ Không sửa file trong repo. Xong báo lại số skill và stack đã nhận.
 
 ---
 
-## 3. Kiểm chứng sau khi khởi động lại
+## 3. Bắt Antigravity **dùng** tầng global (khác với cài)
+
+Antigravity không có công tắc "bật global". Tầng global là **thư mục**:
+
+```
+~/.gemini/config/skills/<id>/SKILL.md   → mọi project, mọi phiên
+~/.gemini/AGENTS.md                     → luật always_on, nạp trước mọi request
+```
+
+Áp dụng = file nằm đúng chỗ + khởi động lại. Không câu nói nào làm nó nạp nếu file chưa có,
+và không câu nào cần thiết nếu file đã có. Ba việc **thật sự** cần nói:
+
+### 3a. Cài / cập nhật tầng global
+
+```
+Áp dụng tầng skill global của Antigravity Skill OS cho máy này.
+
+1. Kiểm tra hiện trạng: ls ~/.gemini/config/skills | wc -l
+2. Chưa có repo thì: git clone --depth 1 https://github.com/Xwuan19/antigravity-skill-os ~/.antigravity-skill-os
+   Có rồi thì:      git -C ~/.antigravity-skill-os pull --ff-only
+3. Chạy: bash ~/.antigravity-skill-os/bootstrap.sh --system
+4. Báo lại: script in ra bao nhiêu skill, ngân sách token bao nhiêu %, và nhắc tôi khởi động lại.
+
+Không sửa file nào trong repo. Không cài language server — thiếu thì chỉ in lệnh cho tôi.
+```
+
+Muốn bản global gọn hơn (bỏ hẳn pack giáo dục/tài liệu khỏi mọi project):
+
+```
+bash ~/.antigravity-skill-os/bootstrap.sh --system --exclude-pack education,docs
+```
+
+### 3b. Bắt nó thật sự tra skill trước khi làm
+
+Luật này **đã nằm trong** `~/.gemini/AGENTS.md` §1 (skill-first), nên sau khi cài bạn không
+phải nói. Chỉ dán lại khi phiên dài và nó bắt đầu làm ẩu:
+
+```
+Từ giờ trong phiên này:
+1. Trước khi trả lời, đối chiếu việc cần làm với skill đang nạp — global ở
+   ~/.gemini/config/skills/ và project ở .agents/skills/.
+2. Khớp skill nào thì đọc SKILL.md của nó rồi làm theo. Không cần tôi gõ /tên-skill.
+3. Mở đầu câu trả lời bằng một dòng: đang dùng skill nào (hoặc "không có skill khớp").
+4. Không có file thì đừng bịa nội dung skill. Nói thẳng là không có.
+```
+
+### 3c. Kiểm chứng nó thấy tầng global
+
+Khởi động lại Antigravity **một lần**, rồi dán:
+
+```
+Kiểm tra tầng skill global:
+1. Đếm thư mục trong ~/.gemini/config/skills, nhóm theo lĩnh vực.
+2. Kể tên 3 luật trong ~/.gemini/AGENTS.md.
+3. Có skill nào để review UI không? Tên gì, đọc mô tả của nó.
+```
+
+Đáp án đúng của câu 3: `accessibility` hoặc `taste-skill` / `ui-ux-pro-max`. Nếu nó trả lời
+"không có skill nào" thì tầng global chưa nạp — kiểm `ls ~/.gemini/config/skills | wc -l`
+(phải là 186, hoặc 156 nếu có `--exclude-pack`) rồi khởi động lại lần nữa.
+
+## 4. Kiểm chứng sau khi khởi động lại
 
 Cài xong **phải khởi động lại Antigravity** để nó nạp skill + MCP server. Rồi dán:
 
@@ -86,7 +147,7 @@ Câu thử hành vi (không phải thử cài):
 
 ---
 
-## 4. Cập nhật lên bản mới
+## 5. Cập nhật lên bản mới
 
 ```
 Cập nhật Antigravity Skill OS trên toàn máy:
@@ -96,7 +157,7 @@ bash ~/.antigravity-skill-os/bootstrap.sh --system
 
 Chạy lại vô hại: skill mới thì chép, skill đã có thì bỏ qua.
 
-## 5. Gỡ
+## 6. Gỡ
 
 ```
 Gỡ Antigravity Skill OS khỏi máy:
@@ -114,7 +175,7 @@ rồi xoá thư mục .agents/ của project
 
 ---
 
-## 6. Vì sao phải chạy lệnh, không chỉ đưa link
+## 7. Vì sao phải chạy lệnh, không chỉ đưa link
 
 Antigravity **không** tải skill từ URL. Skill phải là file trên đĩa:
 
