@@ -8,7 +8,7 @@ Project web quản lý nhận design + code. Project giáo án nhận education 
 không bao giờ thấy skill của nhau — không phải vì bị dặn đừng dùng, mà vì skill
 **không tồn tại** trong workspace đó. Ponytail `full` thì luôn bật cho tất cả.
 
-Repo **tự chứa**: 177 skill + 46 subagent + 9 plugin Claude Code, pin commit.
+Repo **tự chứa**: 187 skill + 46 subagent + 9 plugin Claude Code, pin commit.
 Clone về là cài được, không cần mạng.
 
 ## Một lệnh: cài cho toàn bộ máy
@@ -24,8 +24,12 @@ Nó ghi vào `~/.gemini/`:
 | Ghi gì | Ở đâu |
 |---|---|
 | Rules always_on (ponytail full, skill-first, verify) | `~/.gemini/AGENTS.md` |
-| **Toàn bộ 170 skill** | `~/.gemini/config/skills/` |
+| **Toàn bộ 180 skill** | `~/.gemini/config/skills/` |
 | LSP cho mọi language server có trên máy | `~/.gemini/config/mcp_config.json` |
+
+> **Ngân sách:** 180 description ≈ **15.900 token ≈ 80%** trần 20k của Antigravity cho
+> always-on. Còn dùng được, nhưng đã gần trần — skill thêm từ giờ nên cài theo project
+> (`bootstrap.sh <profile> <dir>`) thay vì nhét tiếp vào `--system`.
 
 Chạy lại nhiều lần vô hại — skill đã có thì bỏ qua.
 
@@ -371,9 +375,9 @@ lifecycle hook nên mức không lưu qua lượt; chỉ cần tồn tại một
 ```
 core/            rules always_on — ponytail FULL, skill-first, verify, language
 rules/           14 luật ngôn ngữ + common.md (always-on, cài theo workspace)
-registry/        skills.json (177) + agents.json (46) + plugins.json (9) + lsp.json (12) + taxonomy.md
+registry/        skills.json (187) + agents.json (46) + plugins.json (9) + lsp.json (12) + taxonomy.md
 profiles/        9 kiểu project → skill + nhóm agent + plugin
-packs/           174 skill đã vendor + VENDOR.json (sha256 từng cái)
+packs/           184 skill đã vendor + VENDOR.json (sha256 từng cái)
 agents/          46 subagent đã port sang định dạng Antigravity
 plugins/         9 plugin Claude Code đã port (23 skill + 8 agent)
 hooks/           hooks.json + session-start / format / safety
@@ -487,6 +491,7 @@ thêm §3 (phạm vi skill theo project) và §4 (ngôn ngữ).
 - [docs/claude-code-parity.md](docs/claude-code-parity.md) — đối chiếu năng lực
 - [docs/ported-from-claude-code.md](docs/ported-from-claude-code.md) — port cái gì, bỏ cái gì, vì sao
 - [docs/code-logic.md](docs/code-logic.md) — sáu cổng logic code, skill nào giữ cổng nào
+- [docs/hermes-filter.md](docs/hermes-filter.md) — lọc 44 skill của `hermes-agent` xuống 10, cách làm từng bước
 - [docs/rules-per-stack.md](docs/rules-per-stack.md) — luật theo ngôn ngữ, vì sao không chép của ECC
 - [docs/prompt-cho-antigravity.md](docs/prompt-cho-antigravity.md) — câu để dán vào Antigravity, nó tự cài
 - [packs/design/apple-design/SKILL.md](packs/design/apple-design/SKILL.md) — skill design gốc Apple, kèm LICENSE
