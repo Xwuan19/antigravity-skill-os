@@ -20,12 +20,16 @@ bộ skill thì sửa registry rồi chạy lại, không sửa trực tiếp tr
 
 ## Ba mô hình, đo bằng `install.py` trên máy
 
-Token = description của skill đang bật + `AGENTS.md` (5.185 ký tự), trần Antigravity 20.000.
+Token = description của skill đang bật + `AGENTS.md`, trần Antigravity 20.000.
+
+**Đồng hồ của Antigravity đếm cao hơn ước lượng của `install.py` khoảng 1/4.** Hồi quy từ hai
+lần đo trong Settings → Skills (195 skill = 21.430 token, 204 skill = 22.350): UI ≈
+`1.497 + 102,2 × số skill`. Con số của `install.py` là **sàn**; `install.py` giờ in cả hai dòng.
 
 | Mô hình | Lệnh | Global | Token mỗi phiên | Project thấy |
 |---|---|---|---|---|
-| **A. Toàn máy** | `bootstrap.sh --system` | 186 skill | **16.481 ≈ 82%** | 186 + skill riêng |
-| **A′. Toàn máy gọn** | `bootstrap.sh --system --exclude-pack education,docs` | 156 skill | **13.506 ≈ 68%** | 156 + skill riêng |
+| **A. Toàn máy** | `bootstrap.sh --system` | 186 skill | 16.500 ≈ 82% → **UI 103%** | 186 + skill riêng |
+| **A′. Toàn máy gọn** ← khuyên dùng | `bootstrap.sh --system --exclude-pack education,docs` | 156 skill | 13.554 ≈ 68% → **UI 87%** | 156 + skill riêng |
 | **B. Global mỏng** | `--core` rồi `bootstrap.sh <profile> <dir>` | 4 skill | 1.296 (global) + của project | 4 + skill của profile |
 
 Token thật của từng workspace ở mô hình B (4 skill global + profile rót vào):
@@ -52,7 +56,7 @@ Token thật của từng workspace ở mô hình B (4 skill global + profile r�
 | Cập nhật skill | chạy lại 1 lệnh, mọi project theo | phải chạy lại từng project |
 | Danh sách skill trong App | 186 dòng ở **mọi** workspace | chỉ skill đúng việc |
 | Cô lập domain | **không có** — project giáo dục vẫn thấy `springboot-security` | có, đúng như thiết kế |
-| Token | 16.481 cố định | 3.2k–14k tuỳ workspace |
+| Token | 103% (vượt trần → bị loại bớt) | 87% ở A′, 16–70% ở B |
 
 ## Khuyến nghị
 

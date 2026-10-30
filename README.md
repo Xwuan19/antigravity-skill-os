@@ -27,16 +27,21 @@ Nó ghi vào `~/.gemini/`:
 | **186 skill** (44 skill theo ngôn ngữ để project tự cài) | `~/.gemini/config/skills/` |
 | LSP cho mọi language server có trên máy | `~/.gemini/config/mcp_config.json` |
 
-> **Ngân sách:** 186 description + `AGENTS.md` ≈ **16.481 token ≈ 82%** trần 20k của
-> Antigravity cho always-on — còn dư ~3.500 token, đủ cho vài skill nữa nhưng không nhiều.
-> 44 skill còn lại bị loại khỏi `--system` vì **ngữ nghĩa**, không vì ngân sách: chúng là
-> skill theo framework/ngôn ngữ (`django-patterns`, `laravel-tdd`, `springboot-security`,
-> `vue-patterns`…) chỉ có nghĩa khi project đúng stack. Bật toàn máy thì chúng nằm trong
-> description list của *mọi* project mà không bao giờ dùng tới.
+> **Ngân sách — đọc kỹ chỗ này.** Ước lượng theo description: 186 skill + `AGENTS.md`
+> ≈ **16.500 token**. Nhưng **đồng hồ trong Settings → Skills đếm cao hơn ~24%**: hồi quy từ
+> máy thật (195 skill = 21.430 token, 204 skill = 22.350) ra `≈ 1.497 + 102,2 × số skill`.
+> Nghĩa là **186 skill ≈ 103% trần 20k** — vượt, và Antigravity **tự loại bớt skill** (panel
+> hiện "10 excluded"). Skill bị loại thì coi như không có.
 >
-> **Muốn danh sách global gọn hơn?** `bash bootstrap.sh --system --exclude-pack education,docs`
-> → 156 skill, **13.506 token ≈ 68%**, project giáo dục/tài liệu rót riêng khi cần. Đánh đổi
-> của ba mô hình, đo bằng số thật: [docs/global-vs-project.md](docs/global-vs-project.md).
+> Vì vậy lệnh khuyên dùng cho toàn máy là **bỏ hai pack ít dùng lại**:
+>
+> ```bash
+> bash bootstrap.sh --system --exclude-pack education,docs
+> ```
+>
+> 156 skill ≈ **87%** theo đồng hồ đó — còn ~13% cho skill riêng của từng project. Project giáo
+> dục/tài liệu cần thì rót đúng pack: `bash bootstrap.sh education-k12 ~/p/btvn`.
+> Ai muốn giữ đủ 186 thì được, chỉ cần biết là vài skill sẽ bị loại ngẫu nhiên theo ngân sách.
 
 Chạy lại nhiều lần vô hại — skill đã có thì bỏ qua. Bản cài cũ để lại thư mục skill đã bị bỏ
 khỏi registry thì script in ra tên chúng; thêm `--prune` để dọn (chỉ xoá thư mục do Skill OS

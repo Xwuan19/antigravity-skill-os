@@ -124,12 +124,16 @@ Kiểm tra tầng skill global:
 "không có skill nào" thì tầng global chưa nạp — kiểm `ls ~/.gemini/config/skills | wc -l` rồi
 khởi động lại lần nữa.
 
-| Con số trên đĩa | Ứng với lệnh nào |
-|---|---|
-| **186** | `--system` (mặc định) |
-| **156** | `--system --exclude-pack education,docs` |
-| **190** | `--system --include-manual` (thêm 4 skill manual) |
-| 190 sau khi đã cài 186 | 4 skill manual còn sót — `--prune` để dọn, hoặc cứ để |
+| Con số trên đĩa | Ứng với lệnh nào | Đồng hồ Antigravity |
+|---|---|---|
+| **156** | `--system --exclude-pack education,docs` (khuyên dùng) | ≈ 87% |
+| **186** | `--system` (mặc định) | ≈ 103% → **vượt, bị loại bớt** |
+| **190** | `--system --include-manual` | ≈ 105% |
+| 190 thành 186 | 4 skill manual còn sót → `--prune` | — |
+
+Panel có thể hiện thêm skill **không phải của repo** (`agy-customizations`, `antigravity-guide`…)
+do Antigravity tự thêm từ GitHub. `install.py --system` liệt kê chúng kèm lệnh `rm -rf` nếu bạn
+muốn dọn — `--prune` **không** đụng vào chúng.
 
 Script cài in đúng số skill nó vừa cài; nếu số trên đĩa nhiều hơn thì đó là thư mục còn sót từ
 bản cũ, `install.py` sẽ liệt kê tên.
