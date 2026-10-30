@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Integration tests for owned-only skill updates in an isolated HOME."""
 import os
+import shutil
 from pathlib import Path
 import subprocess
 import sys
@@ -48,6 +49,7 @@ class OwnedUpdateTests(unittest.TestCase):
         self.assertEqual(unmanaged.read_text(), 'user data')
         self.assertFalse((unmanaged.parent / '.skill-os-owner').exists())
 
+    @unittest.skipUnless(shutil.which('bash'), 'bash is required for bootstrap tests')
     def test_bootstrap_dry_run_never_writes(self):
         for args in (['--core'], ['--system'], ['cli-tool', str(self.ws / 'new')]):
             with self.subTest(args=args):
@@ -59,6 +61,7 @@ class OwnedUpdateTests(unittest.TestCase):
                 self.assertFalse((self.home / '.gemini').exists())
                 self.assertEqual(list(self.ws.iterdir()), [])
 
+    @unittest.skipUnless(shutil.which('bash'), 'bash is required for bootstrap tests')
     def test_bootstrap_dry_run_without_repo_does_not_clone(self):
         script = self.home / 'bootstrap.sh'
         script.write_bytes((ROOT / 'bootstrap.sh').read_bytes())
@@ -82,6 +85,21 @@ class OwnedUpdateTests(unittest.TestCase):
                          (ROOT / 'packs/code/test-driven-development/SKILL.md').read_bytes())
         self.assertEqual(unmanaged.read_text(), 'user data')
 
+    @unittest.skipIf(os.name == 'nt' or not shutil.which('bash'),
+                     'POSIX PATH isolation test requires bash')
+    def test_bootstrap_falls_back_to_python(self):
+        tools = self.home / 'bin'
+        tools.mkdir()
+        (tools / 'python').symlink_to(sys.executable)
+        (tools / 'dirname').symlink_to(shutil.which('dirname'))
+        env = dict(self.env, PATH=str(tools))
+        result = subprocess.run([shutil.which('bash'), str(ROOT / 'bootstrap.sh'), '--core', '--dry-run'],
+                                env=env, capture_output=True, text=True, timeout=60)
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        self.assertIn('Dry-run hoàn tất', result.stdout)
+        self.assertFalse((self.home / '.gemini').exists())
+
+    @unittest.skipUnless(shutil.which('bash'), 'bash is required for bootstrap tests')
     def test_bootstrap_core_update_flag(self):
         self.install('--core')
         owned = self.home / '.gemini/config/skills/handoff/SKILL.md'
@@ -91,6 +109,7 @@ class OwnedUpdateTests(unittest.TestCase):
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
         self.assertEqual(owned.read_bytes(), (ROOT / 'packs/meta/handoff/SKILL.md').read_bytes())
 
+    @unittest.skipUnless(shutil.which('bash'), 'bash is required for bootstrap tests')
     def test_bootstrap_workspace_update_flag(self):
         self.install(*self.profile)
         owned = self.ws / '.agents/skills/jest-skill/SKILL.md'

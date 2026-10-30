@@ -81,12 +81,39 @@ class ReviewChecks(unittest.TestCase):
                 self.assertRegex(s['ref'], r'^[0-9a-f]{40}$')
                 d = ROOT / 'packs' / s['pack'] / name
                 self.assertEqual(inspect_skill(d, name), [])
-                actual = {str(f.relative_to(d)).replace(os.sep, '/'): hashlib.sha256(f.read_bytes()).hexdigest()
+                actual = {str(f.relative_to(d)).replace(os.sep, '/'): vendor.sha(f)
                           for f in d.rglob('*') if f.is_file()}
                 self.assertEqual(actual, self.review_hashes[name], 'reviewed files changed')
-                self.assertEqual(hashlib.sha256((d / 'SKILL.md').read_bytes()).hexdigest(),
+                self.assertEqual(vendor.sha(d / 'SKILL.md'),
                                  self.manifest[name]['sha256'])
                 self.assertEqual(self.manifest[name]['source'], s['repo'] + '@' + s['ref'])
+
+    def test_review_hashes_accept_crlf_but_detect_content_changes(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            target = Path(tmp)
+            for name in COHORT:
+                source = ROOT / 'packs/code' / name
+                for rel, expected in self.review_hashes[name].items():
+                    dest = target / name / rel
+                    dest.parent.mkdir(parents=True, exist_ok=True)
+                    data = (source / rel).read_bytes().replace(b'\r\n', b'\n')
+                    dest.write_bytes(data.replace(b'\n', b'\r\n'))
+                    with self.subTest(skill=name, file=rel):
+                        self.assertEqual(vendor.sha(dest), expected)
+            skill = target / 'jest-skill' / 'SKILL.md'
+            skill.write_bytes(skill.read_bytes() + b'changed')
+            self.assertNotEqual(vendor.sha(skill), self.review_hashes['jest-skill']['SKILL.md'])
+
+    def test_vendor_check_accepts_crlf_checkout(self):
+        with tempfile.TemporaryDirectory() as tmp, patch.object(vendor, 'PACKS', Path(tmp)):
+            for skill in self.registry:
+                if skill['mode'] == 'system':
+                    continue
+                src = ROOT / 'packs' / skill['pack'] / skill['id'] / 'SKILL.md'
+                dest = Path(tmp) / skill['pack'] / skill['id'] / 'SKILL.md'
+                dest.parent.mkdir(parents=True, exist_ok=True)
+                dest.write_bytes(src.read_bytes().replace(b'\r\n', b'\n').replace(b'\n', b'\r\n'))
+            self.assertEqual(vendor.check(self.registry, {'skills': self.manifest}), 0)
 
     def test_vendor_check_rejects_modified_or_missing_skill(self):
         with tempfile.TemporaryDirectory() as tmp, patch.object(vendor, 'PACKS', Path(tmp)):
