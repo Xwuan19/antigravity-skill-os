@@ -32,6 +32,15 @@ CASES = [
     ("shadcn", {"components.json": "{}", "src/components/ui/button.tsx": "x"},
      "design-system"),
     ("html tĩnh", {"index.html": "x", "style.css": "x"}, "static-site"),
+    # Trang tĩnh rất hay có JS thuần — từng bị nhận thành cli-tool (134 skill, 78%)
+    ("html + app.js", {"index.html": "x", "app.js": "console.log(1)",
+                       "style.css": "x"}, "static-site"),
+    ("html + index.js", {"index.html": "x", "index.js": "x"}, "static-site"),
+    ("html + jsx", {"index.html": "x", "app.jsx": "x"}, "static-site"),
+    # ...nhưng Node script không có HTML thì vẫn là CLI
+    ("node script", {"cli.js": "#!/usr/bin/env node"}, "cli-tool"),
+    ("node + tsconfig", {"index.html": "x", "main.ts": "x", "tsconfig.json": "{}"},
+     "cli-tool"),
 ]
 
 # Workspace nằm dưới thư mục cha tên trùng `skip` — từng làm mọi file bị loại và

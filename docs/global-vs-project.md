@@ -139,3 +139,6 @@ Chọn A mà vẫn muốn cô lập thì phải chọn lại: **hai thứ đó l
   trống". Đây là lỗi thật trên máy Windows của user, nơi repo ở `…/.gemini/antigravity/scratch/`.
 - Trang HTML tĩnh (chỉ `index.html`) không khớp profile nào → trả `None`. Nay có profile
   riêng `static-site` (29 skill, không skill framework) thay vì mượn `landing` (52 skill).
+- Trang tĩnh có `app.js` (rất phổ biến) bị nhận thành `cli-tool` — 134 skill thay vì 29 — vì `.js`
+  bị tính là code. Giờ: có `index.html` mà không có `package.json`/`tsconfig`/build config thì là
+  `static-site`, bất kể có bao nhiêu file `.js`. Node script không có HTML vẫn là `cli-tool`.
