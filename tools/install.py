@@ -12,7 +12,8 @@ Phạm vi (Google Antigravity App):
     python3 tools/install.py --list                     # xem đã cài gì
     python3 tools/install.py --core --uninstall
 
-An toàn: không bao giờ xoá thư mục skill không do file này tạo (xem .skill-os-owner).
+Mặc định không ghi đè hay xoá skill không do Skill OS tạo (xem .skill-os-owner).
+--force có thể ghi đè skill không thuộc Skill OS; --update-owned chỉ ghi đè skill có dấu.
 File rules cũ được backup thành AGENTS.md.bak.<timestamp>.
 """
 from __future__ import annotations
@@ -70,13 +71,14 @@ def resolve_stacks(ws: Path, prof: dict, explicit: str | None) -> list[str] | No
     return skillselect.detect_stacks(ws) or None
 
 
-def copy_skill(skill: dict, dest_root: Path, dry: bool, force: bool) -> str:
+def copy_skill(skill: dict, dest_root: Path, dry: bool, force: bool,
+               update_owned: bool = False) -> str:
     src, dest = pack_dir(skill), dest_root / skill["id"]
     if not src.is_dir():
         return "✗ thiếu nguồn trong packs/"
     if dest.exists():
         owned = (dest / OWNER).is_file()
-        if owned and not force:
+        if owned and not (force or update_owned):
             return "= đã cài"
         if not owned and not force:
             return "! đã tồn tại, không do Skill OS tạo — bỏ qua (--force để ghi đè)"
@@ -117,13 +119,13 @@ def parse_packs(skills: list[dict], spec: str | None) -> set[str]:
 
 
 def do_core(skills: list[dict], dry: bool, force: bool,
-            prune: bool = False) -> None:
+            prune: bool = False, update_owned: bool = False) -> None:
     print(f"\n  Rules → {GLOBAL_RULES}")
     print(f"    {install_global_rules(dry)}")
     core = [s for s in skills if s["mode"] == "core"]
     print(f"\n  Skill global → {GLOBAL_SKILLS}  ({len(core)})")
     for s in core:
-        print(f"    {copy_skill(s, GLOBAL_SKILLS, dry, force)} {s['id']}")
+        print(f"    {copy_skill(s, GLOBAL_SKILLS, dry, force, update_owned)} {s['id']}")
 
     ids = {s["id"] for s in core}
     if prune and GLOBAL_SKILLS.is_dir():
@@ -231,7 +233,7 @@ def budget(chosen: list[dict]) -> None:
 def do_system(skills: list[dict], dry: bool, force: bool,
               include_manual: bool = False,
               exclude_pack: str | None = None,
-              prune: bool = False) -> None:
+              prune: bool = False, update_owned: bool = False) -> None:
     """Cài TOÀN BỘ skill vào tầng global — mọi project đều thấy, không cần profile.
 
     Đánh đổi: workspace nào cũng nạp đủ danh sách skill, nên mất phần "cô lập cứng".
@@ -255,7 +257,7 @@ def do_system(skills: list[dict], dry: bool, force: bool,
     by_pack: dict[str, int] = {}
     new = existing = 0
     for s in chosen:
-        r = copy_skill(s, GLOBAL_SKILLS, dry, force)
+        r = copy_skill(s, GLOBAL_SKILLS, dry, force, update_owned)
         if r.startswith(("✓", "~", "=", "·")):
             by_pack[s["pack"]] = by_pack.get(s["pack"], 0) + 1
         if r.startswith(("✓", "~")):
@@ -307,7 +309,7 @@ def do_system(skills: list[dict], dry: bool, force: bool,
               "`bootstrap.sh <profile> <dir>`.")
     n_po = len(project_only)
     if n_po:
-        print(f"  {n_po} skill theo ngôn ngữ/khung không cài vào global — "
+        print(f"  {n_po} skill chỉ dành cho project không cài vào global — "
               "dùng `bootstrap.sh <profile> <dir>` cho project cần.")
     budget(chosen)
     if not dry:
@@ -558,7 +560,8 @@ def do_workspace(skills: list[dict], profiles: dict[str, dict],
                  include_manual: bool = False, hooks: bool = False,
                  plugins: bool = False, lsp: str | None = None,
                  stacks: str | None = None, rules: bool = True,
-                 prune: bool = False, exclude_pack: str | None = None) -> None:
+                 prune: bool = False, exclude_pack: str | None = None,
+                 update_owned: bool = False) -> None:
     if profile not in profiles:
         sys.exit(f"  Không có profile '{profile}'. Có: {', '.join(profiles)}")
     prof = profiles[profile]
@@ -586,7 +589,7 @@ def do_workspace(skills: list[dict], profiles: dict[str, dict],
     by_pack: dict[str, int] = {}
     new = existing = 0
     for s in chosen:
-        r = copy_skill(s, target, dry, force)
+        r = copy_skill(s, target, dry, force, update_owned)
         print(f"    {r} {s['id']}")
         if r.startswith("✓") or r.startswith("~"):
             new += 1
@@ -694,6 +697,8 @@ def main() -> None:
     ap.add_argument("--uninstall", action="store_true")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--force", action="store_true", help="ghi đè skill không do Skill OS tạo")
+    ap.add_argument("--update-owned", action="store_true",
+                    help="cập nhật skill do Skill OS tạo, không ghi đè skill không có dấu sở hữu")
     ap.add_argument("--include-manual", action="store_true",
                     help="cài cả skill mode=manual (mặc định bỏ để workspace gọn)")
     ap.add_argument("--plugins", action="store_true",
@@ -726,9 +731,10 @@ def main() -> None:
     if a.list:
         do_list(skills)
     if a.core:
-        do_core(skills, dry, a.force, a.prune)
+        do_core(skills, dry, a.force, a.prune, a.update_owned)
     if a.system:
-        do_system(skills, dry, a.force, a.include_manual, a.exclude_pack, a.prune)
+        do_system(skills, dry, a.force, a.include_manual, a.exclude_pack, a.prune,
+                  a.update_owned)
     if a.profile:
         if a.profile == "auto":
             guess, why = guess_profile(Path(a.workspace).expanduser().resolve())
@@ -744,7 +750,7 @@ def main() -> None:
             lsp_spec = "auto"
         do_workspace(skills, profiles, a.profile, Path(a.workspace).expanduser().resolve(),
                      dry, a.force, a.include_manual, a.hooks, a.plugins, lsp_spec,
-                     a.stacks, not a.no_rules, a.prune, a.exclude_pack)
+                     a.stacks, not a.no_rules, a.prune, a.exclude_pack, a.update_owned)
     if a.uninstall:
         do_uninstall(skills, dry)
     if not any([a.list, a.core, a.system, a.profile, a.uninstall]):

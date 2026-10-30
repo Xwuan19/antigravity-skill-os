@@ -8,8 +8,9 @@ Project web quản lý nhận design + code. Project giáo án nhận education 
 không bao giờ thấy skill của nhau — không phải vì bị dặn đừng dùng, mà vì skill
 **không tồn tại** trong workspace đó. Ponytail `full` thì luôn bật cho tất cả.
 
-Repo **tự chứa**: 237 skill + 46 subagent + 9 plugin Claude Code, pin commit.
-Clone về là cài được, không cần mạng.
+Repo **tự chứa**: 253 skill + 46 subagent + 9 plugin Claude Code, pin commit.
+Clone về là cài được, không cần mạng. Kết quả khảo sát và kiểm tra các nguồn vibe coding:
+[docs/vibe-coding-review.md](docs/vibe-coding-review.md).
 
 ## Hai cách dùng — chọn theo mục tiêu
 
@@ -58,7 +59,7 @@ Nó ghi vào `~/.gemini/`:
 | Ghi gì | Ở đâu |
 |---|---|
 | Rules always_on (ponytail full, skill-first, verify, chống treo task) | `~/.gemini/AGENTS.md` |
-| **186 skill** (44 skill theo ngôn ngữ để project tự cài) | `~/.gemini/config/skills/` |
+| **186 skill** (60 skill chỉ dành cho project) | `~/.gemini/config/skills/` |
 | LSP cho mọi language server có trên máy | `~/.gemini/config/mcp_config.json` |
 
 Quy tắc chống treo yêu cầu agent phân biệt lệnh hữu hạn với server/watcher, kiểm tra
@@ -85,6 +86,14 @@ Chạy lại `--core` hoặc `--system` để cập nhật rules global; install
 Chạy lại nhiều lần vô hại — skill đã có thì bỏ qua. Bản cài cũ để lại thư mục skill đã bị bỏ
 khỏi registry thì script in ra tên chúng; thêm `--prune` để dọn (chỉ xoá thư mục do Skill OS
 tạo, skill của bạn giữ nguyên).
+
+**Cập nhật bản đã cài:** sau khi cập nhật repo, dùng `--update-owned` để ghi lại skill do
+Skill OS quản lý mà không đụng skill không có dấu sở hữu. Chạy trước với `--dry-run`, sau
+đó bỏ cờ này khi đã xem kết quả. Ví dụ: `python3 tools/install.py --core --update-owned`;
+với project, thêm `--profile <id> -w <dir> --update-owned`. Cờ này vẫn **ghi đè chỉnh sửa
+thủ công bên trong skill do Skill OS quản lý**, nên sao lưu trước. Rules global được backup;
+agent, plugin, hook cũ không tự cập nhật bằng cờ này và cần xem xét riêng. Chỉ dùng `--prune`
+khi đã xem danh sách sẽ gỡ. Prompt cập nhật toàn repo: [docs/prompt-cho-antigravity.md](docs/prompt-cho-antigravity.md#4-cập-nhật-toàn-bộ-repo-đã-cài).
 
 **186 hay 190?** Mặc định `--system` cài **186** và bỏ 4 skill `mode: manual` —
 `vercel-byoc`, `vercel-cli-with-tokens`, `brand-guidelines`, `skill-creator` (cần token thật,
@@ -168,7 +177,7 @@ chat thì model chỉ đọc được văn bản, không tạo ra file skill.
 | Stack | `--stacks` | (lọc, không chép gì) | skill theo ngôn ngữ: tự dò đuôi file, hoặc ép `python,go` |
 
 **Cô lập cứng:** mỗi project một `--profile`. Router loại toàn bộ skill không liên quan —
-`education-k12` chỉ nhận 24/237 skill (`docs` + `education`), không một dòng code nào. Muốn
+`education-k12` chỉ nhận 24/253 skill (`docs` + `education`), không một dòng code nào. Muốn
 chắc chắn "folder design chỉ có skill design" thì tách workspace, vì Antigravity **không**
 hỗ trợ skill theo sub-folder.
 
@@ -446,9 +455,9 @@ lifecycle hook nên mức không lưu qua lượt; chỉ cần tồn tại một
 ```
 core/            rules always_on — ponytail FULL, skill-first, verify, language
 rules/           15 luật ngôn ngữ + common.md (always-on, cài theo workspace)
-registry/        skills.json (237) + agents.json (46) + plugins.json (9) + lsp.json (12) + taxonomy.md
+registry/        skills.json (253) + agents.json (46) + plugins.json (9) + lsp.json (12) + taxonomy.md
 profiles/        10 kiểu project → skill + nhóm agent + plugin
-packs/           234 skill đã vendor + VENDOR.json (sha256 từng cái)
+packs/           250 skill đã vendor + VENDOR.json (sha256 từng cái)
 agents/          46 subagent đã port sang định dạng Antigravity
 plugins/         9 plugin Claude Code đã port (23 skill + 8 agent)
 hooks/           hooks.json + session-start / format / safety

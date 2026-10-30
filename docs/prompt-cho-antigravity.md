@@ -29,7 +29,7 @@ Kết quả ghi vào `~/.gemini/`:
 | Ghi gì | Ở đâu |
 |---|---|
 | Rules always_on (ponytail full, skill-first, verify) | `AGENTS.md` |
-| **186** skill (44 skill theo stack để project tự cài) | `config/skills/` |
+| **186** skill (60 skill chỉ dành cho project) | `config/skills/` |
 | LSP cho mọi language server có trên máy | `config/mcp_config.json` |
 
 Mở project nào cũng thấy. Project mới không phải cài lại.
@@ -238,3 +238,38 @@ Sau khi cài thì đúng là tự động: không slash command, agent tự ch�
 | Hook / plugin / MCP | tự nạp sau khi khởi động lại |
 | Project mới | không phải làm gì — đã ở tầng global |
 | Language server | **bạn** cài binary (`tools/lsp.py --check` in lệnh) |
+
+## 4. Cập nhật toàn bộ repo đã cài
+
+Prompt dưới đây cập nhật **repo và cấu hình đang dùng**, không chỉ skill. Cần repo mới có
+`--update-owned`. Trên Windows dùng `python` thay `python3` nếu phù hợp.
+
+```
+Cập nhật Antigravity Skill OS từ https://github.com/Xwuan19/antigravity-skill-os.
+Hãy dùng run_command để thực hiện, không chỉ hướng dẫn.
+
+1. Tìm repo đã cài. Kiểm tra nhánh và git status; nếu có thay đổi cục bộ,
+   không xóa hay ghi đè. Báo tôi trước. Nếu sạch và đang ở main, ghi commit cũ,
+   chạy git pull --ff-only, rồi báo commit mới. Nếu không ở main, dừng và báo tôi.
+
+2. Đọc README, hướng dẫn nâng cấp và diff giữa hai commit. Xác định thay đổi ở
+   skill, rules, profile, installer, agent, plugin, hook, MCP và thành phần mới.
+   Xác định máy đang dùng --core hay --system, các workspace/profile và tùy chọn
+   đã cài. Không tự thay đổi cấu hình, không đoán workspace nếu thiếu thông tin.
+
+3. Trước khi cập nhật, sao lưu các skill tôi có thể đã sửa tay và file cấu hình
+   liên quan. Chạy installer từ repo mới ở chế độ --dry-run, với cấu hình cũ,
+   --update-owned và các tùy chọn cũ. Đọc output; chỉ dùng --prune khi đã xem
+   các mục sẽ gỡ và xác nhận phù hợp. Nếu có xung đột hay thiếu thông tin, báo tôi.
+
+4. Nếu an toàn, chạy lại không có --dry-run. --update-owned chỉ cập nhật skill có
+   dấu Skill OS, vẫn ghi đè sửa tay trong các thư mục đó; nó không tự cập nhật
+   agent/plugin/hook đã có. Kiểm tra từng phần theo hướng dẫn bản mới và báo tôi
+   trước khi ghi đè các file không xác định được chủ sở hữu. Không dùng --force
+   mù quáng. Rules global cũ được installer backup nhưng vẫn phải kiểm tra trước.
+
+5. Chạy kiểm tra liên quan và đọc kết quả thật. Báo commit cũ/mới, thay đổi đã
+   áp dụng, kiểm tra đã chạy, xung đột và phần chưa thể cập nhật hoặc xác minh.
+   Không tuyên bố hoàn tất nếu chỉ pull. Nhắc tôi khởi động lại Antigravity và
+   mở phiên mới để kiểm tra danh sách skill.
+```
