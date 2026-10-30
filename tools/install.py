@@ -140,7 +140,8 @@ def budget(chosen: list[dict]) -> None:
 
 def do_system(skills: list[dict], dry: bool, force: bool,
               include_manual: bool = False,
-              exclude_pack: str | None = None) -> None:
+              exclude_pack: str | None = None,
+              prune: bool = False) -> None:
     """Cài TOÀN BỘ skill vào tầng global — mọi project đều thấy, không cần profile.
 
     Đánh đổi: workspace nào cũng nạp đủ danh sách skill, nên mất phần "cô lập cứng".
@@ -186,6 +187,29 @@ def do_system(skills: list[dict], dry: bool, force: bool,
               + ", ".join(f"{k} {v}" for k, v in sorted(by_pack.items())))
     else:
         print(f"\n  {existing} skill đã có sẵn, không đổi gì.")
+
+    # Thư mục có trên đĩa nhưng không thuộc bộ vừa cài: skill đã bị bỏ khỏi registry
+    # ở bản trước vẫn nằm đó, ăn ngân sách và hiện trong danh sách của mọi project.
+    expected = {s["id"] for s in chosen}
+    have = {d.name for d in GLOBAL_SKILLS.iterdir() if d.is_dir()} if GLOBAL_SKILLS.is_dir() else set()
+    extra = sorted(have - expected)
+    if extra:
+        mine = [x for x in extra if (GLOBAL_SKILLS / x / OWNER).is_file()]
+        if prune and not dry and mine:
+            for x in mine:
+                shutil.rmtree(GLOBAL_SKILLS / x)
+            print(f"  - đã xoá {len(mine)} thư mục không còn trong registry: "
+                  f"{', '.join(mine)}")
+            extra = [x for x in extra if x not in mine]
+        elif mine:
+            print(f"  {len(mine)} thư mục trên đĩa không thuộc bộ này: "
+                  f"{', '.join(mine)}")
+            print("    (skill bị bỏ khỏi registry ở bản cũ, hoặc skill manual) "
+                  "— thêm `--prune` để xoá.")
+    if not include_manual:
+        n_man = len([s for s in skills if s["mode"] == "manual"])
+        if n_man:
+            print(f"  {n_man} skill mode=manual không cài (thêm `--include-manual` nếu muốn).")
 
     if left_out:
         print(f"  {len(left_out)} skill bị loại theo --exclude-pack "
@@ -502,6 +526,9 @@ def main() -> None:
     ap.add_argument("--no-lsp", action="store_true", help="tắt LSP dù profile có bật")
     ap.add_argument("--no-rules", action="store_true",
                     help="không cài luật theo ngôn ngữ vào .agents/rules/")
+    ap.add_argument("--prune", action="store_true",
+                    help="với --system: xoá thư mục skill còn sót từ bản cũ "
+                         "(chỉ xoá cái do Skill OS tạo)")
     ap.add_argument("--exclude-pack", metavar="PACKS",
                     help="với --system: bỏ hẳn pack khỏi tầng global "
                          "(vd 'education,docs') để danh sách skill gọn hơn")
@@ -520,7 +547,7 @@ def main() -> None:
     if a.core:
         do_core(skills, dry, a.force)
     if a.system:
-        do_system(skills, dry, a.force, a.include_manual, a.exclude_pack)
+        do_system(skills, dry, a.force, a.include_manual, a.exclude_pack, a.prune)
     if a.profile:
         lsp_spec = a.lsp
         if a.no_lsp:

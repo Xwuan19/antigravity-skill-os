@@ -38,7 +38,15 @@ Nó ghi vào `~/.gemini/`:
 > → 156 skill, **13.506 token ≈ 68%**, project giáo dục/tài liệu rót riêng khi cần. Đánh đổi
 > của ba mô hình, đo bằng số thật: [docs/global-vs-project.md](docs/global-vs-project.md).
 
-Chạy lại nhiều lần vô hại — skill đã có thì bỏ qua.
+Chạy lại nhiều lần vô hại — skill đã có thì bỏ qua. Bản cài cũ để lại thư mục skill đã bị bỏ
+khỏi registry thì script in ra tên chúng; thêm `--prune` để dọn (chỉ xoá thư mục do Skill OS
+tạo, skill của bạn giữ nguyên).
+
+**186 hay 190?** Mặc định `--system` cài **186** và bỏ 4 skill `mode: manual` —
+`vercel-byoc`, `vercel-cli-with-tokens`, `brand-guidelines`, `skill-creator` (cần token thật,
+hoặc là brand của Anthropic, hoặc người dùng tự sửa trước khi dùng). Thêm `--include-manual`
+thì đĩa có 190, ngân sách 16.842 token ≈ 84%. Cả hai đều đúng; chỉ cần biết con số nào ứng với
+lệnh nào.
 
 Chưa có repo trên máy:
 

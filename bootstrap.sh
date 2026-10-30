@@ -29,7 +29,7 @@ for a in "$@"; do
     --system)     SYSTEM=1 ;;
     --exclude-pack) WANT_EXCLUDE=1 ;;
     --exclude-pack=*) EXCLUDE="${a#*=}" ;;
-    --no-hooks|--no-plugins|--no-lsp|--include-manual|--dry-run|--no-rules) FLAGS+=("$a") ;;
+    --no-hooks|--no-plugins|--no-lsp|--include-manual|--dry-run|--no-rules|--prune) FLAGS+=("$a") ;;
     -*)           echo "  ! tham số lạ: $a" >&2 ;;
     *)            if [ -z "$PROFILE" ]; then PROFILE="$a"
                   elif [ -z "$WS" ]; then WS="$a"
@@ -83,6 +83,7 @@ if [ "$SYSTEM" -eq 1 ]; then
   has --include-manual && SYS+=(--include-manual)
   has --dry-run && SYS+=(--dry-run)
   [ -n "$EXCLUDE" ] && SYS+=(--exclude-pack "$EXCLUDE")
+  has --prune && SYS+=(--prune)
   python3 "$ROOT/tools/install.py" --system "${SYS[@]}"
 
   if ! has --no-lsp; then
