@@ -457,17 +457,18 @@ def guess_profile(ws: Path) -> tuple[str | None, str]:
     """Đoán profile từ thứ có trong thư mục. Trả (id, lý do) hoặc (None, lý do)."""
     if not ws.is_dir():
         return None, "thư mục chưa tồn tại"
-    skip = {"node_modules", "dist", "build", "target", ".venv", "vendor",
-            ".agents", ".gemini", ".claude", ".codex", "packs"}
+    skip = {"node_modules", "dist", "build", "target", "vendor", "packs"}
     files = []
     for f in ws.rglob("*"):
         if len(files) > 3000:
             break
-        parts = set(f.parts)
-        # thư mục ẩn là của công cụ (.agents/skills, .git…), không phải nội dung project
-        if any(p.startswith(".") for p in f.relative_to(ws).parts[:-1]):
+        # Chỉ xét đường dẫn TƯƠNG ĐỐI. Dùng đường dẫn tuyệt đối thì workspace nằm
+        # dưới …/.gemini/…, …/build/… hay …/target/… sẽ bị loại sạch và báo nhầm
+        # "thư mục trống". Thư mục ẩn (.agents, .git, .venv) cũng bỏ qua.
+        rel = f.relative_to(ws).parts
+        if any(part.startswith(".") or part in skip for part in rel[:-1]):
             continue
-        if f.is_file() and not (parts & skip):
+        if f.is_file():
             files.append(f)
     if not files:
         return None, "thư mục trống"
@@ -496,6 +497,8 @@ def guess_profile(ws: Path) -> tuple[str | None, str]:
             return "docs-writer", "chỉ có tài liệu văn phòng"
         if exts <= {".md", ".txt", ""}:
             return "docs-writer", "chỉ có file văn bản"
+        if exts & {".html", ".htm", ".css"}:
+            return "landing", "chỉ có HTML/CSS tĩnh"
     if ({"components.json", "tailwind.config.js", "tailwind.config.ts"} & names
             or (ws / "src" / "components" / "ui").is_dir()):
         return "design-system", "có cấu hình shadcn/Tailwind, thư viện component"

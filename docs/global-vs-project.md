@@ -82,6 +82,7 @@ bash bootstrap.sh auto ~/p/btvn      # mỗi project: tự dò profile rồi ró
 | `SlidePPT` | 4 + 16 = 20 | 3.303 ≈ 17% | ≈ 18% |
 | `web-admin` (Next/TS) | 4 + 167 = 171 | 14.092 ≈ 70% | ≈ 95% |
 | `cli-tool` | 4 + 134 = 138 | 11.170 ≈ 56% | ≈ 78% |
+| `landing` (HTML tĩnh) | 4 + 52 = 56 | 5.866 ≈ 29% | ≈ 36% |
 
 Chọn A mà vẫn muốn cô lập thì phải chọn lại: **hai thứ đó loại trừ nhau**.
 
@@ -97,3 +98,13 @@ Chọn A mà vẫn muốn cô lập thì phải chọn lại: **hai thứ đó l
   do Skill OS tạo). Đây cũng là lý do hay thấy **190** thay vì 186: 4 skill `mode: manual`
   (`vercel-byoc`, `vercel-cli-with-tokens`, `brand-guidelines`, `skill-creator`) từ lần cài
   có `--include-manual`.
+
+## Skill tự dò sai thì sao
+
+`--profile auto` chỉ là **gợi ý**, nó luôn in lý do trước khi cài. Ba thứ từng làm nó sai, nay
+đều có test ([`tools/test_guess.py`](../tools/test_guess.py), 20/20):
+
+- Đọc luôn `.agents/skills` của lần cài trước → có script `.py` nên đoán thành `cli-tool`.
+- Workspace nằm dưới `…/.gemini/…`, `…/build/…`, `…/target/…` → mọi file bị loại, báo "thư mục
+  trống". Đây là lỗi thật trên máy Windows của user, nơi repo ở `…/.gemini/antigravity/scratch/`.
+- Trang HTML tĩnh (chỉ `index.html`) không khớp profile nào → trả `None`.
