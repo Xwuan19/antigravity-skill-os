@@ -136,7 +136,32 @@ installed.
 
 ---
 
-## 5. Language
+## 5. GitHub accounts — select per repository
+
+- Before a GitHub operation, identify the repository, remote URL and intended account.
+  Repository owner is not necessarily the authenticated account; organizations and
+  collaborator repositories can be accessed by either account. Use an explicit user
+  instruction or an existing per-repository mapping; if the account is unclear before
+  a write operation, ask rather than guessing.
+- Git HTTPS credentials (including Git Credential Manager), GitHub CLI authentication,
+  and Git commit author are separate. A username in an HTTPS remote can select a GCM
+  account; it does not prove authentication, permission, or the `gh` account. Inspect
+  the relevant account and remote without displaying credentials before a write. For
+  `gh`, check the active account and any authentication overrides in effect without
+  printing secret values. Do not silently switch a shared active account, particularly
+  when concurrent tasks may be using it.
+- Keep account-specific remote URLs and commit author settings local to the intended
+  repository; do not change global Git settings or another repository's configuration.
+  Set or change a mapping only when authorized and preserve existing remote settings.
+  Treat username and email for commits separately from the login; do not infer an email.
+- Never request, print, embed, or commit tokens, passwords or credential-helper output.
+  Do not expose userinfo or secret query parameters when reporting a remote. If the
+  selected account or access cannot be verified, stop the write and explain the blocker;
+  never try another account silently. Read-only checks do not prove push permission.
+
+---
+
+## 6. Language
 
 - **Reply to the user in Vietnamese.** Every message, every project, no exceptions unless
   the user switches language first.
