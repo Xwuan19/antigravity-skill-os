@@ -20,9 +20,12 @@ chat/log. Không đưa password/token vào URL, file, prompt hay lịch sử l�
 
 Người dùng có thể chỉ định tài khoản dùng cho một repo. Agent cần kiểm tra remote và
 cấu hình hiện có trước khi thay đổi; không sửa `--global`, không sửa repo khác và không
-đổi thông tin tác giả nếu người dùng chưa cung cấp. Tên tài khoản trong URL là tài khoản
-**đăng nhập**, không nhất thiết là `<owner>` của repo. Nếu chưa rõ chọn tài khoản nào,
-hỏi trước khi push, tạo PR hay thao tác ghi khác.
+đổi thông tin tác giả nếu người dùng chưa yêu cầu. Chọn tài khoản Git/GCM không có nghĩa
+là đổi author commit; nếu cấu hình đã đúng thì giữ nguyên, không ghi lại. Tên tài khoản
+trong URL là tài khoản **đăng nhập**, không nhất thiết là `<owner>` của repo. Nếu chưa rõ
+chọn tài khoản nào, hỏi trước khi push, tạo PR hay thao tác ghi khác. Nếu người dùng đã
+chỉ định rõ tài khoản và cho phép thao tác ghi, tiến hành mà không hỏi xác nhận thừa;
+dừng khi thông tin thiếu, mâu thuẫn hoặc thao tác phá hủy chưa được cho phép.
 
 Ví dụ, sau khi đã xác nhận repo, URL cũ và tài khoản với người dùng:
 

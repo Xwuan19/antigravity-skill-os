@@ -152,8 +152,13 @@ installed.
   when concurrent tasks may be using it.
 - Keep account-specific remote URLs and commit author settings local to the intended
   repository; do not change global Git settings or another repository's configuration.
-  Set or change a mapping only when authorized and preserve existing remote settings.
+  Inspect first and leave correct settings unchanged. Set or change a mapping only when
+  authorized and preserve existing remote settings. Selecting a Git login does not by
+  itself authorize changing the commit author; change it only when explicitly requested.
   Treat username and email for commits separately from the login; do not infer an email.
+- When the user has clearly authorized a write and specified the account, proceed without
+  asking for redundant confirmation. Stop when the account or other required information
+  is unclear or contradictory, or when a destructive action needs authorization.
 - Never request, print, embed, or commit tokens, passwords or credential-helper output.
   Do not expose userinfo or secret query parameters when reporting a remote. If the
   selected account or access cannot be verified, stop the write and explain the blocker;
