@@ -62,6 +62,9 @@ Nó ghi vào `~/.gemini/`:
 | **186 skill** (60 skill chỉ dành cho project) | `~/.gemini/config/skills/` |
 | LSP cho mọi language server có trên máy | `~/.gemini/config/mcp_config.json` |
 
+Quy tắc GitHub đa tài khoản phân biệt credential Git, tài khoản `gh` và author commit;
+chi tiết cấu hình theo repo: [docs/github-multi-account.md](docs/github-multi-account.md).
+
 Quy tắc chống treo yêu cầu agent phân biệt lệnh hữu hạn với server/watcher, kiểm tra
 trạng thái và log khi chờ lâu, tránh chạy trùng và báo rõ khi bị chặn. Đây là chỉ dẫn,
 không phải tiến trình giám sát độc lập: nếu Antigravity tự đơ thì không tự khôi phục được.
