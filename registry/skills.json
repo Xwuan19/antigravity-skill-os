@@ -5747,6 +5747,136 @@
           "Project commands may mutate files or access the network; inspect them before running. These instructions do not replace the project’s CI contract. Do not label unrun checks as successful."
         ]
       ]
+    },
+    {
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "verify"
+      ],
+      "artifact": [
+        "code",
+        "api"
+      ],
+      "mode": "auto",
+      "license": "MIT",
+      "stack": [
+        "general"
+      ],
+      "global": false,
+      "id": "reference-existence-check",
+      "repo": "SpawnZilla/agent-skills",
+      "ref": "60a035f526aae36a499e6a6ef3836bebdf44d917",
+      "path": "skills/reference-existence-check",
+      "fm_desc": "Verify proposed functions, paths, configuration and services against actual sources before relying on them.",
+      "patch": [
+        [
+          "use the existence-verification-escalation tiers before calling it fabricated",
+          "check search scope and errors, inspect plausible parent locations, and report uncertainty before claiming absence"
+        ]
+      ],
+      "note_md": "**Skill OS:** Verify existing inputs and APIs, but do not require a planned new output file to exist before creation. Respect permissions and avoid unsafe probes.",
+      "trim_eof": true
+    },
+    {
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "verify"
+      ],
+      "artifact": [
+        "code",
+        "api"
+      ],
+      "mode": "auto",
+      "license": "MIT",
+      "stack": [
+        "general"
+      ],
+      "global": false,
+      "id": "integration-reality-checker",
+      "repo": "aradmanamnaoon/vibe-coding-skills",
+      "ref": "d532b2b52725cbd92b2815fbc98e1e516503137b",
+      "path": "skills/testing/integration-reality-checker",
+      "fm_desc": "Check whether external integrations are truly verified or only covered by mocks, and report untested boundaries.",
+      "patch": [
+        [
+          "\n# Research mapping\n\nThis skill was selected from research problems: P023, P027. See research/vibe-coding-problems.md and research/problem-evidence.csv in the Vibe Coding Skills repository.",
+          ""
+        ]
+      ],
+      "note_md": "**Skill OS:** A local fake or captured fixture is not proof that a real external service works. Report the evidence level and any untested live boundary.",
+      "trim_eof": true
+    },
+    {
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "verify"
+      ],
+      "artifact": [
+        "code",
+        "api"
+      ],
+      "mode": "auto",
+      "license": "MIT",
+      "stack": [
+        "general"
+      ],
+      "global": false,
+      "id": "dependency-grounding-auditor",
+      "repo": "aradmanamnaoon/vibe-coding-skills",
+      "ref": "d532b2b52725cbd92b2815fbc98e1e516503137b",
+      "path": "skills/dependencies/dependency-grounding-auditor",
+      "fm_desc": "Verify dependency names, versions and APIs against project state and authoritative evidence before changing them.",
+      "patch": [
+        [
+          "\n# Research mapping\n\nThis skill was selected from research problems: P002, P003, P052. See research/vibe-coding-problems.md and research/problem-evidence.csv in the Vibe Coding Skills repository.",
+          ""
+        ],
+        [
+          "Check maintenance, license, security/advisory status, and whether the package is actually necessary for the task.",
+          "Check maintenance, security/advisory status, and whether the package is actually necessary for the task."
+        ]
+      ],
+      "trim_eof": true
+    },
+    {
+      "pack": "code",
+      "domain": [
+        "code"
+      ],
+      "phase": [
+        "verify"
+      ],
+      "artifact": [
+        "code",
+        "api"
+      ],
+      "mode": "auto",
+      "license": "MIT",
+      "stack": [
+        "general"
+      ],
+      "global": false,
+      "id": "completion-claims-auditor",
+      "repo": "aradmanamnaoon/vibe-coding-skills",
+      "ref": "d532b2b52725cbd92b2815fbc98e1e516503137b",
+      "path": "skills/agent-reliability/completion-claims-auditor",
+      "fm_desc": "Map completion claims to actual tests, runtime and remote evidence; distinguish passed, blocked and unverified.",
+      "patch": [
+        [
+          "\n# Research mapping\n\nThis skill was selected from research problems: P044, P039. See research/vibe-coding-problems.md and research/problem-evidence.csv in the Vibe Coding Skills repository.",
+          ""
+        ]
+      ],
+      "trim_eof": true
     }
   ]
 }

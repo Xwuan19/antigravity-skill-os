@@ -29,7 +29,7 @@ Kết quả ghi vào `~/.gemini/`:
 | Ghi gì | Ở đâu |
 |---|---|
 | Rules always_on (ponytail full, skill-first, verify) | `AGENTS.md` |
-| **186** skill (60 skill chỉ dành cho project) | `config/skills/` |
+| **186** skill (64 skill chỉ dành cho project) | `config/skills/` |
 | LSP cho mọi language server có trên máy | `config/mcp_config.json` |
 
 Mở project nào cũng thấy. Project mới không phải cài lại.

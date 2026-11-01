@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-30T05:17:49Z",
+  "generated": "2026-11-01T07:01:42Z",
   "skills": {
     "using-superpowers": {
       "pack": "meta",
@@ -2000,7 +2000,39 @@
       "license": "MIT",
       "bytes": 3025,
       "sha256": "172188426196c5ab446d889dbd02d1cff6a9c5b8f00356513b3ca39af9eb1c41"
+    },
+    "reference-existence-check": {
+      "pack": "code",
+      "source": "SpawnZilla/agent-skills@60a035f526aae36a499e6a6ef3836bebdf44d917",
+      "path": "skills/reference-existence-check",
+      "license": "MIT",
+      "bytes": 3003,
+      "sha256": "79f90ba8d0b317fd1b3eeadb8f12032ad3fdf5a312a97f600df2c73b3e4e3811"
+    },
+    "integration-reality-checker": {
+      "pack": "code",
+      "source": "aradmanamnaoon/vibe-coding-skills@d532b2b52725cbd92b2815fbc98e1e516503137b",
+      "path": "skills/testing/integration-reality-checker",
+      "license": "MIT",
+      "bytes": 3809,
+      "sha256": "76a063550bc9cbcff4cc3bf3fb231106a321fc92b36e25195335b9987f9dee9f"
+    },
+    "dependency-grounding-auditor": {
+      "pack": "code",
+      "source": "aradmanamnaoon/vibe-coding-skills@d532b2b52725cbd92b2815fbc98e1e516503137b",
+      "path": "skills/dependencies/dependency-grounding-auditor",
+      "license": "MIT",
+      "bytes": 3695,
+      "sha256": "baecbe074e47799d69cd036b0e21e650415e6e58e65a177d5c772c758779ac7f"
+    },
+    "completion-claims-auditor": {
+      "pack": "code",
+      "source": "aradmanamnaoon/vibe-coding-skills@d532b2b52725cbd92b2815fbc98e1e516503137b",
+      "path": "skills/agent-reliability/completion-claims-auditor",
+      "license": "MIT",
+      "bytes": 3781,
+      "sha256": "d5de35f0641b10b2676cff041531ce2ea23bb49d7d702dc7ee770eac20522e32"
     }
   },
-  "total_bytes": 26863564
+  "total_bytes": 26877852
 }
