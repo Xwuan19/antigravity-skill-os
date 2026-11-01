@@ -133,6 +133,11 @@ def patch_skill(dest: Path, s: dict) -> None:
             txt = f"{note}\n\n{txt}"
     if txt != orig:
         sk.write_text(txt, encoding="utf-8")
+    if s.get("trim_eof"):
+        for file in [sk, *(dest / name for name in LICENSE_NAMES)]:
+            if file.is_file():
+                data = file.read_bytes()
+                file.write_bytes(data.rstrip(b"\r\n") + b"\n")
 
 
 def vendor(skills: list[dict], only: str | None, ids: list[str] | None = None) -> dict:

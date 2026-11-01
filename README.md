@@ -8,9 +8,10 @@ Project web quản lý nhận design + code. Project giáo án nhận education 
 không bao giờ thấy skill của nhau — không phải vì bị dặn đừng dùng, mà vì skill
 **không tồn tại** trong workspace đó. Ponytail `full` thì luôn bật cho tất cả.
 
-Repo **tự chứa**: 253 skill + 46 subagent + 9 plugin Claude Code, pin commit.
+Repo **tự chứa**: 257 skill + 46 subagent + 9 plugin Claude Code, pin commit.
 Clone về là cài được, không cần mạng. Kết quả khảo sát và kiểm tra các nguồn vibe coding:
-[docs/vibe-coding-review.md](docs/vibe-coding-review.md).
+[docs/vibe-coding-review.md](docs/vibe-coding-review.md); khảo sát giảm khẳng định sai:
+[docs/grounding-review.md](docs/grounding-review.md).
 
 ## Hai cách dùng — chọn theo mục tiêu
 
@@ -59,7 +60,7 @@ Nó ghi vào `~/.gemini/`:
 | Ghi gì | Ở đâu |
 |---|---|
 | Rules always_on (ponytail full, skill-first, verify, chống treo task) | `~/.gemini/AGENTS.md` |
-| **186 skill** (60 skill chỉ dành cho project) | `~/.gemini/config/skills/` |
+| **186 skill** (64 skill chỉ dành cho project) | `~/.gemini/config/skills/` |
 | LSP cho mọi language server có trên máy | `~/.gemini/config/mcp_config.json` |
 
 Quy tắc GitHub đa tài khoản phân biệt credential Git, tài khoản `gh` và author commit;
@@ -180,7 +181,7 @@ chat thì model chỉ đọc được văn bản, không tạo ra file skill.
 | Stack | `--stacks` | (lọc, không chép gì) | skill theo ngôn ngữ: tự dò đuôi file, hoặc ép `python,go` |
 
 **Cô lập cứng:** mỗi project một `--profile`. Router loại toàn bộ skill không liên quan —
-`education-k12` chỉ nhận 24/253 skill (`docs` + `education`), không một dòng code nào. Muốn
+`education-k12` chỉ nhận 24/257 skill (`docs` + `education`), không một dòng code nào. Muốn
 chắc chắn "folder design chỉ có skill design" thì tách workspace, vì Antigravity **không**
 hỗ trợ skill theo sub-folder.
 
@@ -458,9 +459,9 @@ lifecycle hook nên mức không lưu qua lượt; chỉ cần tồn tại một
 ```
 core/            rules always_on — ponytail FULL, skill-first, verify, language
 rules/           15 luật ngôn ngữ + common.md (always-on, cài theo workspace)
-registry/        skills.json (253) + agents.json (46) + plugins.json (9) + lsp.json (12) + taxonomy.md
+registry/        skills.json (257) + agents.json (46) + plugins.json (9) + lsp.json (12) + taxonomy.md
 profiles/        10 kiểu project → skill + nhóm agent + plugin
-packs/           250 skill đã vendor + VENDOR.json (sha256 từng cái)
+packs/           254 skill đã vendor + VENDOR.json (sha256 từng cái)
 agents/          46 subagent đã port sang định dạng Antigravity
 plugins/         9 plugin Claude Code đã port (23 skill + 8 agent)
 hooks/           hooks.json + session-start / format / safety
